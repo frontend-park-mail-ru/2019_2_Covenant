@@ -59,3 +59,9 @@ typings/
 
 # next.js build output
 .next
+
+# jetbrains
+.idea/
+
+# mac-os
+.DS_Store
