@@ -65,3 +65,7 @@ typings/
 
 # mac-os
 .DS_Store
+
+#other
+build/
+
