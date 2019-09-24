@@ -17,16 +17,16 @@ const styles = () => {
         .pipe(cleanCSS({
             level: 2
         }))
-        .pipe(gulp.dest('build/'));
+        .pipe(gulp.dest('public/build/'));
 };
 
 const scripts = () => {
     return gulp.src(jsFiles)
         .pipe(concat('main.js'))
-        .pipe(gulp.dest('build/'));
+        .pipe(gulp.dest('public/build/'));
 };
 
-const clean = () => del(['build/*']);
+const clean = () => del(['public/build/*']);
 
 gulp.task('styles', styles);
 gulp.task('scripts', scripts);
