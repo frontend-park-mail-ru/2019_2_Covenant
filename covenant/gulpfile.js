@@ -21,8 +21,7 @@ const styles = () => {
 };
 
 const scripts = () => {
-    return gulp.src(jsFiles)
-        .pipe(concat('main.js'))
+    return gulp.src('src/js/*.js')
         .pipe(gulp.dest('public/build/'));
 };
 

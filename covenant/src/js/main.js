@@ -1,5 +1,6 @@
-'use strict'
+'use strict';
 
+const API = globalThis.API;
 const application = document.getElementById('wrapper');
 
 const menuItems = {
@@ -7,10 +8,23 @@ const menuItems = {
     login: 'Log-In'
 };
 
-function createElement({tagName = 'div', className = null, innerText = null} = {}) {
+function createElement(
+    {
+        tagName = 'div',
+        className = null,
+        innerText = null,
+        placeholder = null,
+        type = null,
+        name = null,
+        value = null,
+    } = {}) {
     const element = document.createElement(tagName);
-    if (className !== null) element.className = className;
-    if (innerText !== null) element.innerText = innerText;
+    if (className) element.className = className;
+    if (innerText) element.innerText = innerText;
+    if (placeholder) element.placeholder = placeholder;
+    if (type) element.type = type;
+    if (name) element.name = name;
+    if (value) element.value = value;
 
     return element;
 }
@@ -44,7 +58,50 @@ function createMainPage() {
 }
 
 function createSignUp() {
-    alert('SignUp');
+    const signUpForm = document.createElement('form');
+
+    const inputs = {
+        loginInput: createElement({tagName: 'input', type: 'text', name: 'login', placeholder: 'Никнейм'}),
+        emailInput: createElement({tagName: 'input', type: 'email', name: 'email', placeholder: 'Е-майл'}),
+        passwordInput: createElement({tagName: 'input', type: 'password', name: 'password', placeholder: 'Пароль'}),
+        repeatInput: createElement({
+            tagName: 'input',
+            type: 'password',
+            name: 'repeat',
+            placeholder: 'Повторите пароль'
+        }),
+        ageInput: createElement({tagName: 'input', type: 'number', name: 'age', placeholder: 'Возраст'}),
+        submitBtn: createElement({tagName: 'input', type: 'submit', value: 'Зарегистрироваться'})
+    };
+
+    Object.values(inputs).forEach(function (value) {
+       signUpForm.appendChild(value);
+    });
+
+    signUpForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const form = {
+            login: signUpForm.elements['login'].value,
+            email: signUpForm.elements['email'].value,
+            password: signUpForm.elements['password'].value,
+            age: parseInt(signUpForm.elements['age'].value)
+        };
+
+        const repeat = signUpForm.elements['repeat'].value;
+
+        if (form.password === repeat) {
+            (async function () {
+                const data = await API.signupreq({...form});
+                console.log(data);
+            })();
+        } else {
+            alert("Passwords are not equal.");
+        }
+    });
+
+    application.innerHTML = '';
+    application.appendChild(signUpForm);
 }
 
 function createLogIn() {
