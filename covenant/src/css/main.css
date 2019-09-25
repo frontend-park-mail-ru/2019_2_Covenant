@@ -27,6 +27,10 @@ html {
     --light-gray: #262626;
     --white: #FFFFFF;
     --red: #FF473A;
+    --fb-color: #3B5998;
+    --google-color: #dd4b39;
+    --twitter-color: #55ACEE;
+
 
     --logo-font: Megrim;
     --main-font: Montserrat;
@@ -41,9 +45,9 @@ html {
     width: 100%;
 }
 
-.content {
-    height: 600px;
-    top: 99px;
+.container {
+    display: flex;
+    height: 100vh;
     background: var(--light-gray);
 }
 
@@ -114,55 +118,35 @@ html {
 
 
 
-/*----------------login start--------------------*/
+/*----------------icons start--------------------*/
 
-
-.container {
-    display: flex;
-    height: 100vh;
-    background: var(--light-gray);
-}
-
-.login {
-    width: 250px;
-    margin: auto;
-    font-family: var(--main-font);
-    color: var(--white);
-}
-
-.login__title {
-    font-weight: normal;
+.fa {
+    padding: 12px;
+    margin: 3px;
+    font-size: 20px;
+    width: 20px;
     text-align: center;
+    text-decoration: none;
+    border-radius: 50%;
 }
 
-.login__email_input, .login__password_input {
-    width: 100%;
-    height: 37px;
-    box-sizing: border-box;
+.fa:hover {
+    opacity: 0.7;
 }
 
-.login__email_label, .login__password_label {
-    font-family: var(--main-font);
-    color: var(--white);
-    font-size: 10px;
-}
-
-.login__email, .login__password, .login__submit {
-    margin-bottom: 10px;
-}
-
-.login__submit_button {
-    width: 100%;
-    height: 42px;
-    border: none;
-    background-color: var(--red);
+.fa-facebook {
+    background: var(--fb-color);
     color: var(--white);
 }
 
-.login__forgot_password, .login__registration {
-    font-size: 10px;
+.fa-google {
+    background: var(--google-color);
     color: var(--white);
 }
 
+.fa-twitter {
+    background: var(--twitter-color);
+    color: var(--white);
+}
 
-/*----------------login end--------------------*/
+/*----------------icons end--------------------*/

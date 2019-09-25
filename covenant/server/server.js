@@ -42,4 +42,8 @@ app.get('/login', (req, res) => {
    res.sendFile(path.join(staticPath + '/login.html'));
 });
 
+app.get('/signup', (req, res) => {
+    res.sendFile(path.join(staticPath + '/signup.html'));
+});
+
 app.listen(port, () => console.log(`server listen on port ${port}`));

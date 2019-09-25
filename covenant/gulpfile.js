@@ -3,16 +3,8 @@ const concat = require('gulp-concat');
 const cleanCSS = require('gulp-clean-css');
 const del = require('del');
 
-const cssFiles = [
-    'src/css/main.css'
-];
-
-const jsFiles = [
-    'src/js/main.js'
-];
-
 const styles = () => {
-    return gulp.src(cssFiles)
+    return gulp.src('src/css/*.css')
         .pipe(concat('main.css'))
         .pipe(cleanCSS({
             level: 2
