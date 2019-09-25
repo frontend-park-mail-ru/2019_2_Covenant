@@ -7,3 +7,162 @@ p {
     color: green;
     font-weight: bold;
 }
+
+html {
+    position:relative; min-height:100%;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Montserrat Regular'), local('Montserrat-Regular'),
+    url(https://fonts.gstatic.com/s/montserrat/v14/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC,
+    U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+    --gray: #171717;
+    --light-gray: #262626;
+    --white: #FFFFFF;
+    --red: #FF473A;
+
+    --logo-font: Megrim;
+    --main-font: Montserrat;
+}
+
+/*----------------frame start--------------------*/
+
+.header {
+    height: 60px;
+    background: var(--gray);
+    position: absolute;
+    width: 100%;
+}
+
+.content {
+    height: 600px;
+    top: 99px;
+    background: var(--light-gray);
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 35px;
+    background: var(--gray);
+}
+
+.logo {
+    width: 450px;
+    height: 60px;
+    font-family: var(--logo-font);
+    font-size: 35px;
+    line-height: 15px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: var(--white);
+}
+
+.logo__title{
+     width: 75%;
+ }
+
+.login__link {
+    position: absolute;
+    width: 103px;
+    height: 33px;
+    left: 850px;
+    top: 12px;
+
+    font-family: var(--main-font);
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 15px;
+
+    display: flex;
+    align-items: center;
+
+    color: var(--white);
+}
+
+.signup__link {
+    position: absolute;
+    width: 103px;
+    height: 33px;
+    left: 930px;
+    top: 12px;
+
+    font-family: var(--main-font);
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 15px;
+
+    display: flex;
+    align-items: center;
+
+    color: var(--white);
+}
+
+/*----------------frame end--------------------*/
+
+
+
+/*----------------login start--------------------*/
+
+
+.container {
+    display: flex;
+    height: 100vh;
+    background: var(--light-gray);
+}
+
+.login {
+    width: 250px;
+    margin: auto;
+    font-family: var(--main-font);
+    color: var(--white);
+}
+
+.login__title {
+    font-weight: normal;
+    text-align: center;
+}
+
+.login__email_input, .login__password_input {
+    width: 100%;
+    height: 37px;
+    box-sizing: border-box;
+}
+
+.login__email_label, .login__password_label {
+    font-family: var(--main-font);
+    color: var(--white);
+    font-size: 10px;
+}
+
+.login__email, .login__password, .login__submit {
+    margin-bottom: 10px;
+}
+
+.login__submit_button {
+    width: 100%;
+    height: 42px;
+    border: none;
+    background-color: var(--red);
+    color: var(--white);
+}
+
+.login__forgot_password, .login__registration {
+    font-size: 10px;
+    color: var(--white);
+}
+
+
+/*----------------login end--------------------*/
