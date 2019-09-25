@@ -18,6 +18,21 @@
 
             return await response.json();
         }
+
+        async loginreq({login = '', password = ''} = {}) {
+            const response = await fetch('/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    'nickname': login,
+                    'password': password
+                })
+            });
+
+            return await response.json();
+        }
     }
 
     globalThis.API = new API();
