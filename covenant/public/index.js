@@ -68,6 +68,7 @@ function createLogIn() {
 const functions = {
     signup_link: createSignUp,
     login_link: createLogIn,
+    main_link: createMainPage
 };
 
 application.addEventListener('click', function (evt) {

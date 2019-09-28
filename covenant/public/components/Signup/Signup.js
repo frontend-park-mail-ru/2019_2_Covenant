@@ -5,7 +5,7 @@ export default function render() {
         <div class="header">
             <ul class="header__list">
                 <li class="header__list_home">
-                    <a href="#" class="header__list_home__link">Covenant</a>
+                    <a href="#" id="main_link" class="header__list_home__link">Covenant</a>
                 </li>
                 <li class="header__list_signup">
                     <a href="#" id="signup_link" class="header__list_signup__link">Sign Up</a>
