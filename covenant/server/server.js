@@ -17,7 +17,7 @@ console.log(staticPath);
 app.use(morgan('dev'));
 app.use(body.json());
 
-app.post('/signup', (req, res) => {
+app.post('/Signup', (req, res) => {
     const login = req.body.nickname;
     const password = req.body.password;
     const email = req.body.email;
@@ -38,7 +38,7 @@ app.post('/signup', (req, res) => {
     res.status(201).json({user});
 });
 
-app.post('/login', (req, res) => {
+app.post('/Login', (req, res) => {
     const login = req.body.nickname;
     const password = req.body.password;
 
@@ -50,7 +50,7 @@ app.post('/login', (req, res) => {
         return res.status(400).json({error: 'Doesn\'t exist.'});
     }
 
-    return res.status(200).json({result: 'SUCCESS'});
+    return res.status(200).json({result: 'SUCCESS', username: login});
 });
 
 app.listen(port, () => console.log(`server listen on port ${port}`));

@@ -1,6 +1,10 @@
 'use strict';
 
-const API = globalThis.API;
+import render from "./components/Login/Login.js";
+import APIModule from "./services/API.js";
+
+const API = new APIModule();
+
 const application = document.getElementById('wrapper');
 
 const menuItems = {
@@ -105,24 +109,17 @@ function createSignUp() {
 }
 
 function createLogIn() {
-    const loginForm = document.createElement('form');
+    application.innerHTML = '';
+    application.innerHTML = render();
 
-    const inputs = {
-        loginInput: createElement({tagName: 'input', type: 'text', name: 'login', placeholder: 'Никнейм'}),
-        passwordInput: createElement({tagName: 'input', type: 'password', name: 'password', placeholder: 'Пароль'}),
-        submitBtn: createElement({tagName: 'input', type: 'submit', value: 'Войти'})
-    };
-
-    Object.values(inputs).forEach(function (value) {
-        loginForm.appendChild(value);
-    });
+    const loginForm = document.getElementById('Login-form');
 
     loginForm.addEventListener('submit', function (e) {
         e.preventDefault();
 
         const form = {
-            login: loginForm.elements['login'].value,
-            password: loginForm.elements['password'].value
+            login: loginForm.elements['login__email_input'].value,
+            password: loginForm.elements['login__password_input'].value
         };
 
         (async function () {
@@ -130,9 +127,6 @@ function createLogIn() {
             console.log(data);
         })();
     });
-
-    application.innerHTML = '';
-    application.appendChild(loginForm);
 }
 
 const functions = {

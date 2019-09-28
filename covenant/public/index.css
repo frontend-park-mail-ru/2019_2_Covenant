@@ -1,3 +1,7 @@
+@import url('components/Profile/Profile.css');
+@import url('components/Login/Login.css');
+@import url('components/Signup/Signup.css');
+
 * {
     margin: 0;
     padding: 0;
