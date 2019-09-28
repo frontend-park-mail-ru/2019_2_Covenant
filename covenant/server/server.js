@@ -17,7 +17,7 @@ console.log(staticPath);
 app.use(morgan('dev'));
 app.use(body.json());
 
-app.post('/Signup', (req, res) => {
+app.post('/signup', (req, res) => {
     const login = req.body.nickname;
     const password = req.body.password;
     const email = req.body.email;
@@ -38,7 +38,7 @@ app.post('/Signup', (req, res) => {
     res.status(201).json({user});
 });
 
-app.post('/Login', (req, res) => {
+app.post('/login', (req, res) => {
     const login = req.body.nickname;
     const password = req.body.password;
 
