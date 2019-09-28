@@ -98,7 +98,7 @@ function createLogIn() {
         e.preventDefault();
 
         const form = {
-            login: loginForm.elements['login__email_input'].value,
+            email: loginForm.elements['login__email_input'].value,
             password: loginForm.elements['login__password_input'].value
         };
 

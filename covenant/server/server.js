@@ -18,39 +18,36 @@ app.use(morgan('dev'));
 app.use(body.json());
 
 app.post('/signup', (req, res) => {
-    const login = req.body.nickname;
     const password = req.body.password;
     const email = req.body.email;
-    const age = req.body.age;
 
-    if (!password || !email || !age ||
-        !(typeof age === 'number' && age > 10 && age < 100)) {
+    if (!password || !email) {
         return res.status(400).json({error: 'Invalid data.'});
     }
 
-    if (users_db[login]) {
+    if (users_db[email]) {
         return res.status(400).json({error: 'Already exist.'});
     }
 
-    const user = {login, password, email, age};
-    users_db[login] = user;
+    const user = {email, password};
+    users_db[email] = user;
 
     res.status(201).json({user});
 });
 
 app.post('/login', (req, res) => {
-    const login = req.body.nickname;
+    const email = req.body.email;
     const password = req.body.password;
 
-    if (!login || !password) {
+    if (!email || !password) {
         return res.status(400).json({error: 'Invalid data.'});
     }
 
-    if (!users_db[login] || users_db[login].password !== password) {
+    if (!users_db[email] || users_db[email].password !== password) {
         return res.status(400).json({error: 'Doesn\'t exist.'});
     }
 
-    return res.status(200).json({result: 'SUCCESS', username: login});
+    return res.status(200).json({result: 'SUCCESS'});
 });
 
 app.listen(port, () => console.log(`server listen on port ${port}`));

@@ -1,20 +1,17 @@
 const users_db = {
-    "Marshality": {
+    "marshalityy@gmail.com": {
         "email": "marshalityy@gmail.com",
-        "password": "12345",
-        "age": 21,
+        "password": "12345"
     },
 
-    "Floyd": {
+    "philipp-is@mail.ru": {
         "email": "philipp-is@mail.ru",
-        "password": "privet",
-        "age": 21
+        "password": "privet"
     },
 
-    "pycnick": {
+    "o_nikos-gr@mail.ru": {
         "email": "o_nikos-gr@mail.ru",
-        "password": "juggernaut",
-        "age": 21
+        "password": "juggernaut"
     }
 };
 
