@@ -30,6 +30,19 @@ class API {
 
         return await response.json();
     }
+
+    async profilereq({login = '', session = ''} = {}) {
+        const response = await fetch('/profile',{
+            method: 'GET'
+        });
+
+        const data = await response.json();
+
+        return {
+            status: response.status,
+            ...data
+        }
+    }
 }
 
 export default API;
