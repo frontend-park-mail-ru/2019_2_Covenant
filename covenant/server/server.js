@@ -1,5 +1,7 @@
 'use strict';
 
+const  users_db = require('./users');
+
 const express = require('express');
 const path = require('path');
 const body = require('body-parser');
@@ -14,29 +16,6 @@ console.log(staticPath);
 
 app.use(morgan('dev'));
 app.use(body.json());
-
-const users_db = {
-    "Marshality": {
-        "login": "Marshality",
-        "email": "marshalityy@gmail.com",
-        "password": "12345",
-        "age": 21,
-    },
-
-    "Floyd": {
-        "login": "Floyd",
-        "email": "philipp-is@mail.ru",
-        "password": "privet",
-        "age": 21
-    },
-
-    "pycnick": {
-        "login": "pycnick",
-        "email": "o_nikos-gr@mail.ru",
-        "password": "juggernaut",
-        "age": 21
-    }
-};
 
 app.post('/signup', (req, res) => {
     const login = req.body.nickname;
