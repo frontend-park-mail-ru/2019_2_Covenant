@@ -2,7 +2,7 @@
 
 class API {
     async signupreq({login = '', email = '', password = '', age = null} = {}) {
-        const response = await fetch('/Signup', {
+        const response = await fetch('/signup', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -19,7 +19,7 @@ class API {
     }
 
     async loginreq({login = '', password = ''} = {}) {
-        const response = await fetch('/Login', {
+        const response = await fetch('/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

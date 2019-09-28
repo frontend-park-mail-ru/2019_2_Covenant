@@ -1,9 +1,10 @@
 'use strict';
 
-import render from "./components/Login/Login.js";
+import RendererModule from "./services/Renderer.js";
 import APIModule from "./services/API.js";
 
 const API = new APIModule();
+const Renderer = new RendererModule();
 
 const application = document.getElementById('wrapper');
 
@@ -62,37 +63,19 @@ function createMainPage() {
 }
 
 function createSignUp() {
-    const signUpForm = document.createElement('form');
-
-    const inputs = {
-        loginInput: createElement({tagName: 'input', type: 'text', name: 'login', placeholder: 'Никнейм'}),
-        emailInput: createElement({tagName: 'input', type: 'email', name: 'email', placeholder: 'Е-майл'}),
-        passwordInput: createElement({tagName: 'input', type: 'password', name: 'password', placeholder: 'Пароль'}),
-        repeatInput: createElement({
-            tagName: 'input',
-            type: 'password',
-            name: 'repeat',
-            placeholder: 'Повторите пароль'
-        }),
-        ageInput: createElement({tagName: 'input', type: 'number', name: 'age', placeholder: 'Возраст'}),
-        submitBtn: createElement({tagName: 'input', type: 'submit', value: 'Зарегистрироваться'})
-    };
-
-    Object.values(inputs).forEach(function (value) {
-        signUpForm.appendChild(value);
-    });
+    application.innerHTML = '';
+    application.innerHTML = Renderer.signup();
+    const signUpForm = document.getElementById('signup-form');
 
     signUpForm.addEventListener('submit', function (e) {
         e.preventDefault();
 
         const form = {
-            login: signUpForm.elements['login'].value,
-            email: signUpForm.elements['email'].value,
-            password: signUpForm.elements['password'].value,
-            age: parseInt(signUpForm.elements['age'].value)
+            email: signUpForm.elements['signup__email_input'].value,
+            password: signUpForm.elements['signup__password_input'].value
         };
 
-        const repeat = signUpForm.elements['repeat'].value;
+        const repeat = signUpForm.elements['signup__repeat_password_input'].value;
 
         if (form.password === repeat) {
             (async function () {
@@ -103,16 +86,13 @@ function createSignUp() {
             alert("Passwords are not equal.");
         }
     });
-
-    application.innerHTML = '';
-    application.appendChild(signUpForm);
 }
 
 function createLogIn() {
     application.innerHTML = '';
-    application.innerHTML = render();
+    application.innerHTML = Renderer.login();
 
-    const loginForm = document.getElementById('Login-form');
+    const loginForm = document.getElementById('login-form');
 
     loginForm.addEventListener('submit', function (e) {
         e.preventDefault();
