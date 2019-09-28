@@ -8,10 +8,10 @@ function render() {
                     <a href="#" class="header__list_home__link">Covenant</a>
                 </li>
                 <li class="header__list_signup">
-                    <a href="#" class="header__list_signup__link">Sign Up</a>
+                    <a href="#" id="signup_link" class="header__list_signup__link">Sign Up</a>
                 </li>
                 <li class="header__list_login">
-                    <a href="#" class="header__list_login__link">Log In</a>
+                    <a href="#" id="login_link" class="header__list_login__link">Log In</a>
                 </li>
             </ul>
         </div>

@@ -13,53 +13,9 @@ const menuItems = {
     login: 'Log-In'
 };
 
-function createElement(
-    {
-        tagName = 'div',
-        className = null,
-        innerText = null,
-        placeholder = null,
-        type = null,
-        name = null,
-        value = null,
-    } = {}) {
-    const element = document.createElement(tagName);
-    if (className) element.className = className;
-    if (innerText) element.innerText = innerText;
-    if (placeholder) element.placeholder = placeholder;
-    if (type) element.type = type;
-    if (name) element.name = name;
-    if (value) element.value = value;
-
-    return element;
-}
-
 function createMainPage() {
-    const header = createElement({tagName: 'div', className: 'header'});
-
-    const headerLogo = createElement({tagName: 'div', className: 'header__logo'});
-    const logo = createElement({tagName: 'h1', innerText: 'Covenant'});
-    headerLogo.appendChild(logo);
-
-    const menu = createElement({tagName: 'nav', className: 'header__menu'});
-    const list = createElement({tagName: 'ul'});
-
-    Object.keys(menuItems).forEach(function (key) {
-        let item = createElement({tagName: 'li'});
-        let link = createElement({tagName: 'a', innerText: key});
-        link.href = `/${key}`;
-        link.dataset.section = key;
-        item.appendChild(link);
-        list.appendChild(item);
-    });
-
-    menu.appendChild(list);
-
-    header.appendChild(headerLogo);
-    header.appendChild(menu);
-
     application.innerHTML = '';
-    application.appendChild(header);
+    application.innerHTML = Renderer.main();
 }
 
 function createSignUp() {
@@ -110,8 +66,8 @@ function createLogIn() {
 }
 
 const functions = {
-    signup: createSignUp,
-    login: createLogIn,
+    signup_link: createSignUp,
+    login_link: createLogIn,
 };
 
 application.addEventListener('click', function (evt) {
@@ -119,7 +75,7 @@ application.addEventListener('click', function (evt) {
 
     if (target instanceof HTMLAnchorElement) {
         evt.preventDefault();
-        functions[target.dataset.section]();
+        functions[target.id]();
     }
 });
 
