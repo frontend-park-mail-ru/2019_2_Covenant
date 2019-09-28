@@ -38,12 +38,20 @@ app.post('/signup', (req, res) => {
     res.status(201).json({user});
 });
 
+const sendFile = (res, pagePath) => {
+    res.sendFile(path.join(staticPath + pagePath));
+};
+
 app.get('/login', (req, res) => {
-   res.sendFile(path.join(staticPath + '/login.html'));
+   sendFile(res, '/login.html');
 });
 
 app.get('/signup', (req, res) => {
-    res.sendFile(path.join(staticPath + '/signup.html'));
+    sendFile(res, '/signup.html');
+});
+
+app.get('/profile', (req, res) => {
+   sendFile(res, '/profile.html');
 });
 
 app.listen(port, () => console.log(`server listen on port ${port}`));
