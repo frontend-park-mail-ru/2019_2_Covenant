@@ -1,7 +1,6 @@
 const gulp = require('gulp');
 const concat = require('gulp-concat');
 const cleanCSS = require('gulp-clean-css');
-const imageMin = require('gulp-imagemin');
 const del = require('del');
 
 const path = {
@@ -27,12 +26,6 @@ const styles = () => {
         .pipe(gulp.dest(path.build.css));
 };
 
-const images = () => {
-    return gulp.src(path.src.img)
-        .pipe(imageMin())
-        .pipe(gulp.dest(path.build.img));
-};
-
 const scripts = () => {
     return gulp.src(path.src.js)
         .pipe(gulp.dest(path.build.js));
@@ -42,9 +35,7 @@ const clean = () => del([path.clean]);
 
 gulp.task('styles', styles);
 gulp.task('scripts', scripts);
-gulp.task('images', images);
 gulp.task('build', gulp.series(clean, gulp.parallel(
         styles,
-        scripts,
-        images
+        scripts
 )));
