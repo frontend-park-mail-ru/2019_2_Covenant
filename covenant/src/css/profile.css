@@ -1,4 +1,68 @@
-.profile {
+.container__profile {
     width: 1076px;
     margin: auto;
+}
+
+.profile {
+
+}
+
+.avatar {
+    display: inline-block;
+    padding: 0 20px;
+}
+
+.info {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.info__user {
+
+}
+
+.info__user__name {
+    display: inline-block;
+    padding: 10px;
+    font-family: var(--main-font);
+    font-size: 38px;
+    color: var(--white);
+}
+
+.info__user__edit {
+    display: inline-block;
+}
+
+.info__buttons {
+
+}
+.info__buttons__shuffle {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 10px;
+}
+
+.info__buttons__settings {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.btn__shuffle, .btn__settings {
+    background-color: var(--soft-gray);
+    border-radius: 15px;
+    border: none;
+}
+
+.btn__shuffle__label {
+    padding: 5px 30px 5px 5px;
+    vertical-align: middle;
+    font-family: var(--main-font);
+    font-size: 24px;
+    text-align: center;
+    color: var(--white);
+}
+
+.btn__shuffle__img, .btn__shuffle__settings {
+    vertical-align: middle;
+    padding: 5px;
 }

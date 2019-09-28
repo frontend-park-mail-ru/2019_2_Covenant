@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Megrim" />
     <link rel="stylesheet" type="text/css" href="build/css/main.css">
-    <title>Login</title>
+    <title>Profile</title>
 </head>
 <body>
 <div id="wrapper">
@@ -16,7 +16,7 @@
             </li>
             <li class="header__list_avatar">
                 <a href="#" class="header__list_avatar__link">
-                    <img src="build/img/user.png" width="34" height="34" alt="user">
+                    <img src="build/img/user.png" width="34" height="34" alt="user"/>
                 </a>
             </li>
             <li class="header__list_name">
@@ -25,8 +25,33 @@
         </ul>
     </div>
     <div class="container">
-        <div class="profile">
-
+        <div class="container__profile">
+            <div class="profile">
+                <div class="avatar">
+                    <img width="120" height="120" src="build/img/user_profile.png" alt="user_profile"/>
+                </div>
+                <div class="info">
+                    <div class="info__user">
+                        <label class="info__user__name">Vasya Pupkin</label>
+                        <div class="info__user__edit">
+                            <img src="build/img/edit.png" width="32" height="32" alt="edit" />
+                        </div>
+                    </div>
+                    <div class="info__buttons">
+                        <div class="info__buttons__shuffle">
+                            <button class="btn__shuffle" type="button">
+                                <img  class="btn__shuffle__img" src="build/img/play_dark.png" width="32" height="32" alt="play"/>
+                                <label class="btn__shuffle__label">Shuffle</label>
+                            </button>
+                        </div>
+                        <div class="info__buttons__settings">
+                            <button class="btn__settings" type="button">
+                                <img class="btn__shuffle__settings" src="build/img/settings_dark.png" width="32" height="32" alt="settings"/>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div>
     </div>
