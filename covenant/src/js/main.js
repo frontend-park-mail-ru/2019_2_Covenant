@@ -75,7 +75,7 @@ function createSignUp() {
     };
 
     Object.values(inputs).forEach(function (value) {
-       signUpForm.appendChild(value);
+        signUpForm.appendChild(value);
     });
 
     signUpForm.addEventListener('submit', function (e) {
@@ -105,7 +105,34 @@ function createSignUp() {
 }
 
 function createLogIn() {
-    alert('LogIn');
+    const loginForm = document.createElement('form');
+
+    const inputs = {
+        loginInput: createElement({tagName: 'input', type: 'text', name: 'login', placeholder: 'Никнейм'}),
+        passwordInput: createElement({tagName: 'input', type: 'password', name: 'password', placeholder: 'Пароль'}),
+        submitBtn: createElement({tagName: 'input', type: 'submit', value: 'Войти'})
+    };
+
+    Object.values(inputs).forEach(function (value) {
+        loginForm.appendChild(value);
+    });
+
+    loginForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const form = {
+            login: loginForm.elements['login'].value,
+            password: loginForm.elements['password'].value
+        };
+
+        (async function () {
+            const data = await API.loginreq({...form});
+            console.log(data);
+        })();
+    });
+
+    application.innerHTML = '';
+    application.appendChild(loginForm);
 }
 
 const functions = {

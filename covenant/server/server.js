@@ -59,4 +59,19 @@ app.post('/signup', (req, res) => {
     res.status(201).json({user});
 });
 
+app.post('/login', (req, res) => {
+    const login = req.body.nickname;
+    const password = req.body.password;
+
+    if (!login || !password) {
+        return res.status(400).json({error: 'Invalid data.'});
+    }
+
+    if (!users_db[login] || users_db[login].password !== password) {
+        return res.status(400).json({error: 'Doesn\'t exist.'});
+    }
+
+    return res.status(200).json({result: 'SUCCESS'});
+});
+
 app.listen(port, () => console.log(`server listen on port ${port}`));
