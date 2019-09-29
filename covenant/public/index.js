@@ -34,10 +34,13 @@ function createSignUp() {
         const repeat = signUpForm.elements['signup__repeat_password_input'].value;
 
         if (form.password === repeat) {
-            (async function () {
-                const data = await API.signupreq({...form});
-                console.log(data);
-            })();
+            API.signupreq({...form})
+                .then((response) => {
+                    console.log(response);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
         } else {
             alert("Passwords are not equal.");
         }
@@ -58,10 +61,13 @@ function createLogIn() {
             password: loginForm.elements['login__password_input'].value
         };
 
-        (async function () {
-            const data = await API.loginreq({...form});
-            console.log(data);
-        })();
+        API.loginreq({...form})
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     });
 }
 

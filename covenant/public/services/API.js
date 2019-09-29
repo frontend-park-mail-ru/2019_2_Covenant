@@ -4,6 +4,8 @@ class API {
     async signupreq({email = '', password = ''} = {}) {
         const response = await fetch('/signup', {
             method: 'POST',
+            mode: 'cors',
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -19,6 +21,8 @@ class API {
     async loginreq({email = '', password = ''} = {}) {
         const response = await fetch('/login', {
             method: 'POST',
+            mode: 'cors',
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -33,7 +37,9 @@ class API {
 
     async profilereq({login = '', session = ''} = {}) {
         const response = await fetch('/profile',{
-            method: 'GET'
+            method: 'GET',
+            mode: 'cors',
+            credentials: 'include',
         });
 
         const data = await response.json();

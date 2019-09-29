@@ -14,8 +14,22 @@ const staticPath = path.resolve(__dirname, '..', 'public/');
 app.use("/", express.static(staticPath));
 console.log(staticPath);
 
+
+function applyCORS(server) {
+    server.use((req, res, next) => {
+        res.header('Access-Control-Allow-Origin', '*');
+        res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+        res.header('Access-Control-Allow-Headers', 'Content-Type');
+        res.header('Access-Control-Allow-Credentials', 'true');
+
+        next();
+    });
+}
+
 app.use(morgan('dev'));
 app.use(body.json());
+
+applyCORS(app);
 
 app.post('/signup', (req, res) => {
     const password = req.body.password;
