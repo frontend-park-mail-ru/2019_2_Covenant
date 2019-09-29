@@ -1,7 +1,7 @@
 'use strict';
 
 class API {
-    async signupreq({email = '', password = ''} = {}) {
+    async signupReq({email = '', password = ''} = {}) {
         const response = await fetch('/signup', {
             method: 'POST',
             mode: 'cors',
@@ -18,7 +18,7 @@ class API {
         return await response.json();
     }
 
-    async loginreq({email = '', password = ''} = {}) {
+    async loginReq({email = '', password = ''} = {}) {
         const response = await fetch('/login', {
             method: 'POST',
             mode: 'cors',
@@ -35,7 +35,7 @@ class API {
         return await response.json();
     }
 
-    async profilereq({login = '', session = ''} = {}) {
+    async profileReq({login = '', session = ''} = {}) {
         const response = await fetch('/profile',{
             method: 'GET',
             mode: 'cors',
@@ -48,6 +48,16 @@ class API {
             status: response.status,
             ...data
         }
+    }
+
+    async checkAuthReq() {
+        const response = await fetch('/auth', {
+            method: 'GET',
+            mode: 'cors',
+            credentials: 'include'
+        });
+
+        return await response.json();
     }
 }
 

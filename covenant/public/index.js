@@ -18,6 +18,10 @@ function createMainPage() {
     application.innerHTML = Renderer.main();
 }
 
+function createProfile() {
+
+}
+
 function createSignUp() {
     application.innerHTML = '';
     application.innerHTML = Renderer.signup();
@@ -34,13 +38,11 @@ function createSignUp() {
         const repeat = signUpForm.elements['signup__repeat_password_input'].value;
 
         if (form.password === repeat) {
-            API.signupreq({...form})
-                .then((response) => {
-                    console.log(response);
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
+            API.signupReq({...form}).then(response => {
+                console.log(response);
+            }).catch(error => {
+                console.log(error);
+            });
         } else {
             alert("Passwords are not equal.");
         }
@@ -61,20 +63,32 @@ function createLogIn() {
             password: loginForm.elements['login__password_input'].value
         };
 
-        API.loginreq({...form})
-            .then((response) => {
-                console.log(response);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+        API.loginReq({...form}).then(response => {
+            console.log(response);
+        }).catch(error => {
+            console.log(error);
+        });
+    });
+}
+
+function auth(successCallback, failCallback) {
+    API.checkAuthReq().then(response => {
+        const status = response.stats;
+
+        if (status >= 200 && status < 400) {
+            successCallback();
+        } else {
+            console.log(response);
+            failCallback();
+        }
     });
 }
 
 const functions = {
-    signup_link: createSignUp,
-    login_link: createLogIn,
-    main_link: createMainPage
+    signup_link: () => auth(createProfile, createSignUp),
+    login_link: () => auth(createProfile, createLogIn),
+    main_link: createMainPage,
+    profile: () => auth(createProfile, createLogIn)
 };
 
 application.addEventListener('click', function (evt) {
