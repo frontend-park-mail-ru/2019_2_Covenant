@@ -1,7 +1,59 @@
 'use strict';
 
-export default function render() {
-	return `
+import EventBus from "../../services/PublisherSubscriber.js"
+
+export default class Profile {
+
+	constructor() {
+		this.edit = false;
+	}
+
+	onEdit(evt) {
+		this.edit = true;
+		EventBus.publish('renderProfile', {});
+	}
+
+	onSave() {
+		this.edit = false;
+		EventBus.publish('renderProfile', {});
+	}
+
+	afterRender() {
+		const editInfo = document.getElementById('edit_pencil');
+		if (editInfo) {
+			editInfo.addEventListener('click', (evt) => this.onEdit(evt));
+		}
+
+		const saveInfo = document.getElementById('save_info');
+		if(saveInfo) {
+			saveInfo.addEventListener('click', (evt) => this.onSave(evt));
+		}
+	}
+
+	renderInfo() {
+		if(!this.edit) {
+			return `
+			<div class="info__user">
+	            <label class="info__user__name">{{name}}</label>
+	            <div class="info__user__edit">
+	                <img id="edit_pencil" class="info__user__edit__img" src="img/edit.png" width="32" height="32" alt="edit" />
+	            </div>
+	        </div>
+			`;
+		}
+
+		return `
+			<div class="info__user">
+	            <input value={{name}} id="profile__name__input" type="text">
+	            <div class="info__user__save">
+	                <img id="save_info" class="info__user__edit__img" src="img/save.png" width="32" height="32" alt="save" />
+	            </div>
+	        </div>
+		`;
+	}
+
+	render() {
+		return `
 	    <div class="header">
 	        <ul class="header__list">
 	            <li class="header__list_home">
@@ -28,14 +80,9 @@ export default function render() {
 	                <div class="avatar">
 	                    <img width="120" height="120" src="img/user_profile.png" alt="user_profile"/>
 	                </div>
-	                <div class="info">
-	                    <div class="info__user">
-	                        <label class="info__user__name">{{name}}</label>
-	                        <div class="info__user__edit">
-	                            <img src="img/edit.png" width="32" height="32" alt="edit" />
-	                        </div>
-	                    </div>
-	                    <div class="info__buttons">
+	                <div class="info">`
+	                    + this.renderInfo() +
+	                    `<div class="info__buttons">
 	                        <div class="info__buttons__shuffle">
 	                            <button class="btn__shuffle" type="button">
 	                                <img  class="btn__shuffle__img" src="img/play_dark.png" width="32" height="32" alt="play"/>
@@ -112,4 +159,7 @@ export default function render() {
 	    <div class="footer">
 	    </div>
 	`;
-};
+	};
+
+
+}

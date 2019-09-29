@@ -1,7 +1,10 @@
 'use strict';
 
+import Profile from "./components/Profile/Profile.js";
+
 import RendererModule from "./services/Renderer.js";
 import APIModule from "./services/API.js";
+import EventBus from "./services/PublisherSubscriber.js";
 
 const API = new APIModule();
 const Renderer = new RendererModule();
@@ -13,6 +16,12 @@ const menuItems = {
     login: 'Log-In'
 };
 
+const components = {
+    profile: null
+};
+
+EventBus.subscribe('renderProfile', createProfile);
+
 function createMainPage() {
     application.innerHTML = '';
     application.innerHTML = Renderer.main();
@@ -22,9 +31,15 @@ function createProfile() {
     API.profileReq().then(response => {
         console.log(response);
 
-        const page = Mustache.render(Renderer.profile(), {name: response.user});
+        if(!components.profile)
+            components.profile = new Profile();
+
+        const page = Mustache.render(components.profile.render(), {name: response.user});
         application.innerHTML = '';
         application.innerHTML = page;
+
+        components.profile.afterRender();
+
     }).catch(error => {
         console.log(error);
     });
