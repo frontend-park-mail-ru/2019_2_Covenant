@@ -35,7 +35,7 @@ class API {
         return await response.json();
     }
 
-    async profileReq({login = '', session = ''} = {}) {
+    async profileReq() {
         const response = await fetch('/profile',{
             method: 'GET',
             mode: 'cors',

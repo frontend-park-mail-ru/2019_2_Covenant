@@ -5,15 +5,20 @@ export default function render() {
 	    <div class="header">
 	        <ul class="header__list">
 	            <li class="header__list_home">
-	                <a href="#" class="header__list_home__link">Covenant</a>
+	                <a href="" id="main_link" class="header__list_home__link">Covenant</a>
+	            </li>
+	            <li class="header__list_logout">
+	                <a href="" id="logout_link" class="header__list_logout__link">
+	                    <img src="img/logout.png" width="34" height="34" alt="logout"/>
+	                </a>
 	            </li>
 	            <li class="header__list_avatar">
-	                <a href="#" class="header__list_avatar__link">
+	                <a href="" id="profile" class="header__list_avatar__link">
 	                    <img src="img/user.png" width="34" height="34" alt="user"/>
 	                </a>
 	            </li>
 	            <li class="header__list_name">
-	                <a href="#" class="header__list_name__link">{{name}}</a>
+	                <a href="" id="profile" class="header__list_name__link">{{name}}</a>
 	            </li>
 	        </ul>
 	    </div>

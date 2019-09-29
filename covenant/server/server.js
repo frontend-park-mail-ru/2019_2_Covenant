@@ -98,4 +98,15 @@ app.post('/login', (req, res) => {
     return res.status(200).json({result: 'SUCCESS', user: users_db[email].username});
 });
 
+app.get('/profile', (req, res) => {
+    const id = req.cookies['covenant'];
+    const email = ids[id];
+
+    if (!id || !email) {
+        return res.status(400).json({error: 'Doesn\'t exist.'});
+    }
+
+    return res.status(200).json({result: 'SUCCESS', user: users_db[email].username});
+});
+
 app.listen(port, () => console.log(`server listen on port ${port}`));

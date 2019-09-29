@@ -18,10 +18,16 @@ function createMainPage() {
     application.innerHTML = Renderer.main();
 }
 
-function createProfile(user) {
-    const page = Mustache.render(Renderer.profile(), {name: user});
-    application.innerHTML = '';
-    application.innerHTML = page;
+function createProfile() {
+    API.profileReq().then(response => {
+        console.log(response);
+
+        const page = Mustache.render(Renderer.profile(), {name: response.user});
+        application.innerHTML = '';
+        application.innerHTML = page;
+    }).catch(error => {
+        console.log(error);
+    });
 }
 
 function createSignUp() {
@@ -67,7 +73,7 @@ function createLogIn() {
 
         API.loginReq({...form}).then(response => {
             console.log(response);
-            createProfile(response.user);
+            createProfile();
         }).catch(error => {
             console.log(error);
         });
@@ -76,9 +82,9 @@ function createLogIn() {
 
 function auth(successCallback, failCallback) {
     API.checkAuthReq().then(response => {
-        const status = response.stats;
+        const status = response.status;
 
-        if (status >= 200 && status < 400) {
+        if (response.auth === true || status >= 200 && status < 400) {
             successCallback();
         } else {
             console.log(response);
