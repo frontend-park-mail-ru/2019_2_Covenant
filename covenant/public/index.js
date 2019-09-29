@@ -18,8 +18,10 @@ function createMainPage() {
     application.innerHTML = Renderer.main();
 }
 
-function createProfile() {
-
+function createProfile(user) {
+    const page = Mustache.render(Renderer.profile(), {name: user});
+    application.innerHTML = '';
+    application.innerHTML = page;
 }
 
 function createSignUp() {
@@ -65,6 +67,7 @@ function createLogIn() {
 
         API.loginReq({...form}).then(response => {
             console.log(response);
+            createProfile(response.user);
         }).catch(error => {
             console.log(error);
         });

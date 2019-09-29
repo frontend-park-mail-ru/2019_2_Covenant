@@ -95,7 +95,7 @@ app.post('/login', (req, res) => {
     res.cookie('covenant', id, {expires: new Date(Date.now() + 1000 * 60 * 60 * 24)});
     res.cookie('authorized', true);
 
-    return res.status(200).json({result: 'SUCCESS'});
+    return res.status(200).json({result: 'SUCCESS', user: users_db[email].username});
 });
 
 app.listen(port, () => console.log(`server listen on port ${port}`));
