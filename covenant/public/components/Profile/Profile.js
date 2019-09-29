@@ -47,7 +47,7 @@ export default class Profile {
 		if(!this.edit) {
 			return `
 			<div class="info__user">
-	            <label class="info__user__name">{{name}}</label>
+	            <label class="info__user__name">{{username}}</label>
 	            <div class="info__user__edit">
 	                <img id="edit_pencil" class="info__user__edit__img" src="img/edit.png" width="32" height="32" alt="edit" />
 	            </div>
@@ -57,11 +57,25 @@ export default class Profile {
 
 		return `
 			<div class="info__user">
-	            <input value={{name}} id="profile__name__input" type="text">
+	            <input value={{username}} id="profile__name__input" type="text">
 	            <div class="info__user__save">
 	                <img id="save_info" class="info__user__edit__img" src="img/save.png" width="32" height="32" alt="save" />
 	            </div>
 	        </div>
+		`;
+	}
+
+	renderAvatar() {
+		return `
+			<div class="avatar">
+				<input type="file" id="avatar_upload_input" name="image" accept="images/*" style="display:block; max-width: 200px"/>	
+				{{#avatar}}			
+					<img width="120" height="120" src={{avatar}} alt="user_profile" id="avatar_upload" style="display: block; cursor:pointer"/>
+				{{/avatar}}
+				{{^avatar}}
+					<img width="120" height="120" src={{originalAvatar}} alt="user_profile" id="avatar_upload" style="display: block; cursor:pointer"/>
+				{{/avatar}}
+			</div>
 		`;
 	}
 
@@ -83,17 +97,15 @@ export default class Profile {
 	                </a>
 	            </li>
 	            <li class="header__list_name">
-	                <a href="" id="profile" class="header__list_name__link">{{name}}</a>
+	                <a href="" id="profile" class="header__list_name__link">{{username}}</a>
 	            </li>
 	        </ul>
 	    </div>
 	    <div class="container">
 	        <div class="container__profile">
 	            <div class="profile">
-	                <div class="avatar">
-	                    <img width="120" height="120" src="img/user_profile.png" alt="user_profile"/>
-	                </div>
-	                <div class="info">`
+	                ` + this.renderAvatar() +
+	                `<div class="info">`
 	                    + this.renderInfo() +
 	                    `<div class="info__buttons">
 	                        <div class="info__buttons__shuffle">

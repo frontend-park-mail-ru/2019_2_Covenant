@@ -34,7 +34,7 @@ function createProfile() {
         if(!components.profile)
             components.profile = new Profile();
 
-        const page = Mustache.render(components.profile.render(), {name: response.user});
+        const page = Mustache.render(components.profile.render(), response.user);
         application.innerHTML = '';
         application.innerHTML = page;
 

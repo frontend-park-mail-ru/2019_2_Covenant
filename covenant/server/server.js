@@ -51,7 +51,7 @@ const ids = {};
        }
 
        res.cookie('authorized', true);
-       res.status(200).json({auth: true, user: users_db[email].username});
+       res.status(200).json({auth: true, user: users_db[email]});
     });
 })(app);
 
@@ -107,7 +107,7 @@ app.get('/profile', (req, res) => {
         return res.status(400).json({error: 'Doesn\'t exist.'});
     }
 
-    return res.status(200).json({result: 'SUCCESS', user: users_db[email].username});
+    return res.status(200).json({result: 'SUCCESS', user: users_db[email]});
 });
 
 app.post('/profile', (req, res) => {
