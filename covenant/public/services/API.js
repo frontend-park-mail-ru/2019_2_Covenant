@@ -50,6 +50,23 @@ class API {
         }
     }
 
+    async profileSaveReq(name) {
+        const response = await fetch('/profile',{
+            method: 'POST',
+            mode: 'cors',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                'name': name
+            })
+        });
+
+        return await response.json();
+    }
+
+
     async checkAuthReq() {
         const response = await fetch('/auth', {
             method: 'GET',

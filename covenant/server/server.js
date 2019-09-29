@@ -35,7 +35,8 @@ const ids = {};
 
 (function checkAuth(server) {
     server.use((req, res, next) => {
-        if (req.path === '/login' || req.path === '/signup') {
+        if (req.path === '/login' || req.path === '/signup' ||
+            req.path === '/profile' && req.method === 'POST') {
             next();
             return;
         }
@@ -107,6 +108,20 @@ app.get('/profile', (req, res) => {
     }
 
     return res.status(200).json({result: 'SUCCESS', user: users_db[email].username});
+});
+
+app.post('/profile', (req, res) => {
+    const id = req.cookies['covenant'];
+    const email = ids[id];
+
+    const name = req.body.name;
+
+    if (!id || !email) {
+        return res.status(400).json({error: 'Doesn\'t exist.'});
+    }
+
+    users_db[email].username = name;
+    return res.status(200).json({result: 'SUCCESS', user: name});
 });
 
 app.listen(port, () => console.log(`server listen on port ${port}`));

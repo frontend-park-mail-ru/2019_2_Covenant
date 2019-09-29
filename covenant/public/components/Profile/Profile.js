@@ -1,6 +1,9 @@
 'use strict';
 
 import EventBus from "../../services/PublisherSubscriber.js"
+import ApiModule from "../../services/API.js";
+
+const API = new ApiModule();
 
 export default class Profile {
 
@@ -15,7 +18,17 @@ export default class Profile {
 
 	onSave() {
 		this.edit = false;
-		EventBus.publish('renderProfile', {});
+
+		const name = document.getElementById('profile__name__input').value;
+		if(!name || name === "")
+			return;
+
+		API.profileSaveReq(name).then(response => {
+			console.log(response);
+			EventBus.publish('renderProfile', {});
+		}).catch(error => {
+			console.log(error);
+		});
 	}
 
 	afterRender() {
