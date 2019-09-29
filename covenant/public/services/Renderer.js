@@ -1,7 +1,7 @@
 'use strict';
 /**
  * Renderer module
- * @module ./services/Renderer.js
+ * @module services/Renderer
  */
 
 import getLoginPage from "../components/Login/Login.js";
@@ -9,7 +9,7 @@ import getSignupPage from "../components/Signup/Signup.js";
 import getMainPage from "../components/Main/Main.js";
 
 /** Class represents rendering pages */
-export default class Renderer {
+class Renderer {
 
     /**
      * Rendering login page
@@ -35,3 +35,5 @@ export default class Renderer {
         return getMainPage();
     }
 }
+
+export default Renderer
