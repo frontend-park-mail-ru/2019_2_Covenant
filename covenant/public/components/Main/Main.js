@@ -1,5 +1,14 @@
 'use strict';
 
+/**
+ * Main module
+ * @module ../components/Main/Main.js
+ */
+
+/**
+ * Rendering code of main page
+ * @returns {string} HTML code of main page
+ */
 export default function render() {
 	return `
 		 <div class="header">

@@ -1,5 +1,13 @@
 'use strict';
+/**
+ * Sign up module
+ * @module ../components/Signup/Signup.js
+ */
 
+/**
+ * Rendering code of sign uo page
+ * @returns {string} HTML code of sign up page
+ */
 export default function render() {
     return `
         <div class="header">

@@ -1,6 +1,19 @@
 'use strict';
 
+/**
+ * API module
+ * @module ./services/API.js
+ */
+
+/** Class represents an API */
 class API {
+
+    /**
+     * Server request for registration
+     * @param {string} email
+     * @param {string} password
+     * @returns {Promise<any>} server response in json format
+     */
     async signupReq({email = '', password = ''} = {}) {
         const response = await fetch('/signup', {
             method: 'POST',
@@ -18,6 +31,12 @@ class API {
         return await response.json();
     }
 
+    /**
+     * Server request for authorization
+     * @param email
+     * @param password
+     * @returns {Promise<any>} server response in json format
+     */
     async loginReq({email = '', password = ''} = {}) {
         const response = await fetch('/login', {
             method: 'POST',
@@ -35,6 +54,12 @@ class API {
         return await response.json();
     }
 
+    /**
+     * Server request for creating profile page
+     * @param login
+     * @param session
+     * @returns {Promise<any>} json with HTTP status code and server response in json format
+     */
     async profileReq({login = '', session = ''} = {}) {
         const response = await fetch('/profile',{
             method: 'GET',
@@ -50,6 +75,10 @@ class API {
         }
     }
 
+    /**
+     * Server request for checking authorization
+     * @returns {Promise<any>} server response in json format
+     */
     async checkAuthReq() {
         const response = await fetch('/auth', {
             method: 'GET',

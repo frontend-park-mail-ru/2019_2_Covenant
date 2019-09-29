@@ -1,5 +1,14 @@
 'use strict';
 
+/**
+ * Login module
+ * @module ../components/Login/Login.js
+ */
+
+/**
+ * Rendering code of login page
+ * @returns {string} HTML code of login page
+ */
 function render() {
     return `
         <div class="header">
