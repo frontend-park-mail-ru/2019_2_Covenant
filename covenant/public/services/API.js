@@ -35,6 +35,22 @@ class API {
         return await response.json();
     }
 
+    async logoutReq() {
+        const response = await fetch('/logout', {
+            method: 'GET',
+            mode: 'cors',
+            credentials: 'include'
+        });
+
+        const data = await response.json();
+
+        return {
+            auth: false,
+            status: response.status,
+            ...data
+        }
+    }
+
     async profileReq() {
         const response = await fetch('/profile',{
             method: 'GET',

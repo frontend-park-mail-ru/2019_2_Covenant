@@ -108,9 +108,19 @@ function auth(successCallback, failCallback) {
     });
 }
 
+function onLogout(evt) {
+    API.logoutReq().then(response => {
+        console.log(response);
+        createMainPage();
+    }).catch(error => {
+        console.log(error);
+    });
+}
+
 const functions = {
     signup_link: () => auth(createProfile, createSignUp),
     login_link: () => auth(createProfile, createLogIn),
+    logout_link: onLogout,
     main_link: createMainPage,
     profile: () => auth(createProfile, createLogIn)
 };

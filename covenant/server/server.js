@@ -21,6 +21,7 @@ const baseImagePath = '../public/img/';
 
 app.use(morgan('dev'));
 app.use(body.json());
+app.use(express.json());
 
 app.use(cookies());
 const ids = {};
@@ -40,7 +41,7 @@ const ids = {};
     server.use((req, res, next) => {
         if (req.path === '/login' || req.path === '/signup' ||
             req.path === '/profile' && req.method === 'POST' ||
-            req.path === '/upload/avatar') {
+            req.path === '/upload/avatar' || req.path === '/logout') {
             next();
             return;
         }
@@ -58,6 +59,12 @@ const ids = {};
        res.status(200).json({auth: true, user: users_db[email]});
     });
 })(app);
+
+app.get('/logout', (req, res) => {
+    res.clearCookie('covenant');
+    res.clearCookie('authorized');
+    res.status(200).json({status: 'SUCCESS'});
+});
 
 app.post('/signup', (req, res) => {
     const password = req.body.password;
