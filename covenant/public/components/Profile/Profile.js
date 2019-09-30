@@ -110,7 +110,12 @@ export default class Profile {
 	            </li>
 	            <li class="header__list_avatar">
 	                <a href="" id="profile" class="header__list_avatar__link">
-	                    <img src="img/user.png" width="34" height="34" alt="user"/>
+	                    {{#avatar}}
+	                        <img src={{avatar}} width="34" height="34" alt="user"/>\
+	                    {{/avatar}}
+	                    {{^avatar}}
+	                        <img src="img/user.png" width="34" height="34" alt="user"/>\
+	                    {{/avatar}}
 	                </a>
 	            </li>
 	            <li class="header__list_name">
