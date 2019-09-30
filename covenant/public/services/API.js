@@ -66,6 +66,23 @@ class API {
         return await response.json();
     }
 
+    async uploadAvatarReq(file) {
+        const formData = new FormData();
+        formData.append('avatar', file);
+        formData.append('name', file.name);
+
+        const response = await fetch('/upload/avatar',{
+            method: 'POST',
+            mode: 'cors',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            },
+            body: file
+        });
+
+        return await response.json();
+    }
 
     async checkAuthReq() {
         const response = await fetch('/auth', {

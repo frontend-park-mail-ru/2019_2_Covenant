@@ -16,7 +16,7 @@ export default class Profile {
 		EventBus.publish('renderProfile', {});
 	}
 
-	onSave() {
+	onSave(evt) {
 		this.edit = false;
 
 		const name = document.getElementById('profile__name__input').value;
@@ -24,6 +24,18 @@ export default class Profile {
 			return;
 
 		API.profileSaveReq(name).then(response => {
+			console.log(response);
+			EventBus.publish('renderProfile', {});
+		}).catch(error => {
+			console.log(error);
+		});
+	}
+
+	onUploadAvatar(evt) {
+		const imageInput = document.getElementById('avatar_upload_input');
+		const file = imageInput.files[0];
+
+		API.uploadAvatarReq(file).then(response => {
 			console.log(response);
 			EventBus.publish('renderProfile', {});
 		}).catch(error => {
@@ -40,6 +52,11 @@ export default class Profile {
 		const saveInfo = document.getElementById('save_info');
 		if(saveInfo) {
 			saveInfo.addEventListener('click', (evt) => this.onSave(evt));
+		}
+
+		const avatarUpload = document.getElementById('avatar_upload_input');
+		if(avatarUpload) {
+			avatarUpload.addEventListener('change', (evt) => this.onUploadAvatar(evt));
 		}
 	}
 
@@ -68,7 +85,7 @@ export default class Profile {
 	renderAvatar() {
 		return `
 			<div class="avatar">
-				<input type="file" id="avatar_upload_input" name="image" accept="images/*" style="display:block; max-width: 200px"/>	
+				<input type="file" id="avatar_upload_input" name="image" accept=".jpg, .jpeg, .png" style="display:block; max-width: 200px"/>	
 				{{#avatar}}			
 					<img width="120" height="120" src={{avatar}} alt="user_profile" id="avatar_upload" style="display: block; cursor:pointer"/>
 				{{/avatar}}

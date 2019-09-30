@@ -3,6 +3,7 @@
 const  users_db = require('./users');
 
 const express = require('express');
+const fs = require('fs');
 const path = require('path');
 const body = require('body-parser');
 const cookies = require('cookie-parser');
@@ -15,6 +16,8 @@ const app = express();
 const staticPath = path.resolve(__dirname, '..', 'public/');
 app.use("/", express.static(staticPath));
 console.log(staticPath);
+
+const baseImagePath = '../public/img/';
 
 app.use(morgan('dev'));
 app.use(body.json());
@@ -36,7 +39,8 @@ const ids = {};
 (function checkAuth(server) {
     server.use((req, res, next) => {
         if (req.path === '/login' || req.path === '/signup' ||
-            req.path === '/profile' && req.method === 'POST') {
+            req.path === '/profile' && req.method === 'POST' ||
+            req.path === '/upload/avatar') {
             next();
             return;
         }
@@ -122,6 +126,29 @@ app.post('/profile', (req, res) => {
 
     users_db[email].username = name;
     return res.status(200).json({result: 'SUCCESS', user: name});
+});
+
+app.post('/upload/avatar', (req, res) => {
+    const id = req.cookies['covenant'];
+    const email = ids[id];
+
+    const file = req.body;
+    // const name = req.body.name;
+    console.log(req.body);
+
+    if (!id || !email) {
+        return res.status(400).json({error: 'Doesn\'t exist.'});
+    }
+
+    const imagePath = baseImagePath + 'example.png'; // need name
+    users_db[email].avatar =  imagePath;
+
+    fs.writeFile(imagePath, file, (err) => {
+        if (err) throw err;
+    });
+
+    return res.status(200).json({result: 'SUCCESS', avatar: imagePath});
+
 });
 
 app.listen(port, () => console.log(`server listen on port ${port}`));
