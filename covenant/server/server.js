@@ -18,7 +18,7 @@ const staticPath = path.resolve(__dirname, '..', 'public/');
 app.use("/", express.static(staticPath));
 console.log(staticPath);
 
-const baseImagePath = '../public/img/';
+const baseImagePath = path.resolve(staticPath, 'img');
 const upload = multer({dest: baseImagePath});
 
 app.use(morgan('dev'));
