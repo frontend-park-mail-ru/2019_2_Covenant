@@ -1,8 +1,12 @@
 'use strict';
 
 class API {
+    constructor(host) {
+        this.host = host;
+    }
+
     async signupReq({email = '', password = ''} = {}) {
-        const response = await fetch('/signup', {
+        const response = await fetch(`${this.host}/signup`, {
             method: 'POST',
             mode: 'cors',
             credentials: 'include',
@@ -19,7 +23,7 @@ class API {
     }
 
     async loginReq({email = '', password = ''} = {}) {
-        const response = await fetch('/login', {
+        const response = await fetch(`${this.host}/login`, {
             method: 'POST',
             mode: 'cors',
             credentials: 'include',
@@ -36,7 +40,7 @@ class API {
     }
 
     async logoutReq() {
-        const response = await fetch('/logout', {
+        const response = await fetch(`${this.host}/logout`, {
             method: 'GET',
             mode: 'cors',
             credentials: 'include'
@@ -52,7 +56,7 @@ class API {
     }
 
     async profileReq() {
-        const response = await fetch('/profile',{
+        const response = await fetch(`${this.host}/profile`,{
             method: 'GET',
             mode: 'cors',
             credentials: 'include',
@@ -67,7 +71,7 @@ class API {
     }
 
     async profileSaveReq(name) {
-        const response = await fetch('/profile',{
+        const response = await fetch(`${this.host}/profile`,{
             method: 'POST',
             mode: 'cors',
             credentials: 'include',
@@ -87,7 +91,7 @@ class API {
         formData.append('avatar', file);
         formData.append('name', file.name);
 
-        const response = await fetch('/upload/avatar',{
+        const response = await fetch(`${this.host}/upload/avatar`,{
             method: 'POST',
             mode: 'cors',
             credentials: 'include',
@@ -101,7 +105,7 @@ class API {
     }
 
     async checkAuthReq() {
-        const response = await fetch('/auth', {
+        const response = await fetch(`${this.host}/auth`, {
             method: 'GET',
             mode: 'cors',
             credentials: 'include'

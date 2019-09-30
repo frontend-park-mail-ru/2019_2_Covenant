@@ -1,0 +1,24 @@
+{
+  "version": 2,
+  "name": "covenant-backend",
+  "builds": [
+    { "src": "./server/server.js", "use": "@now/node-server" }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/server/server.js",
+      "methods": ["GET"]
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/server/server.js",
+      "methods": ["POST"]
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/server/server.js",
+      "methods": ["OPTIONS"]
+    }
+  ]
+}

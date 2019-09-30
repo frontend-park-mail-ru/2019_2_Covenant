@@ -4,7 +4,6 @@ const  users_db = require('./users');
 
 const express = require('express');
 const fs = require('fs');
-const path = require('path');
 const body = require('body-parser');
 const cookies = require('cookie-parser');
 const uuid = require('uuid');
@@ -13,11 +12,7 @@ const morgan = require('morgan');
 const port = 3000;
 const app = express();
 
-const staticPath = path.resolve(__dirname, '..', 'public/');
-app.use("/", express.static(staticPath));
-console.log(staticPath);
-
-const baseImagePath = '../public/img/';
+const baseImagePath = '../img/';
 
 app.use(morgan('dev'));
 app.use(body.json());
@@ -28,7 +23,7 @@ const ids = {};
 
 (function applyCORS(server) {
     server.use((req, res, next) => {
-        res.header('Access-Control-Allow-Origin', '*');
+        res.header('Access-Control-Allow-Origin', 'https://covenant-frontend.marshalityy.now.sh');
         res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
         res.header('Access-Control-Allow-Headers', 'Content-Type');
         res.header('Access-Control-Allow-Credentials', 'true');

@@ -6,7 +6,7 @@ import RendererModule from "./services/Renderer.js";
 import APIModule from "./services/API.js";
 import EventBus from "./services/PublisherSubscriber.js";
 
-const API = new APIModule();
+const API = new APIModule('https://covenant-backend.marshalityy.now.sh');
 const Renderer = new RendererModule();
 
 const application = document.getElementById('wrapper');
