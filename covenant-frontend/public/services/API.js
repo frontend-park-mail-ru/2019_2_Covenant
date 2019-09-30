@@ -95,9 +95,6 @@ class API {
             method: 'POST',
             mode: 'cors',
             credentials: 'include',
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            },
             body: formData
         });
 

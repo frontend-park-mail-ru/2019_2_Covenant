@@ -8,11 +8,14 @@ const body = require('body-parser');
 const cookies = require('cookie-parser');
 const uuid = require('uuid');
 const morgan = require('morgan');
+const multer = require('multer');
 
 const port = 3000;
 const app = express();
 
-const baseImagePath = '../img/';
+const staticPath = path.resolve(__dirname, '..', 'public/');
+const baseImagePath = path.resolve(staticPath, 'img');
+const upload = multer({dest: baseImagePath});
 
 app.use(morgan('dev'));
 app.use(body.json());
@@ -130,24 +133,19 @@ app.post('/profile', (req, res) => {
     return res.status(200).json({result: 'SUCCESS', user: name});
 });
 
-app.post('/upload/avatar', (req, res) => {
+app.post('/upload/avatar', upload.single('avatar'), (req, res) => {
     const id = req.cookies['covenant'];
     const email = ids[id];
 
-    const file = req.body;
-    // const name = req.body.name;
-    console.log(req.body);
+    const file = req.file;
+    console.log('File: ', file);
 
     if (!id || !email) {
         return res.status(400).json({error: 'Doesn\'t exist.'});
     }
 
-    const imagePath = baseImagePath + 'example.png'; // need name
-    users_db[email].avatar =  imagePath;
-
-    fs.writeFile(imagePath, file, (err) => {
-        if (err) throw err;
-    });
+    const imagePath = 'img/' + file.filename;
+    users_db[email].avatar = imagePath;
 
     return res.status(200).json({result: 'SUCCESS', avatar: imagePath});
 
