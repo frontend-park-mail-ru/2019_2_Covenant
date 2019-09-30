@@ -94,7 +94,7 @@ class API {
             headers: {
                 'Content-Type': 'multipart/form-data'
             },
-            body: file
+            body: formData
         });
 
         return await response.json();
