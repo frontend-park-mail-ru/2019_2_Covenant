@@ -1,7 +1,7 @@
 class Reference {
     /**
-     * @param {string} id reference identifier
-     * @param {boolean} removeRef indicates whether to remove id attribute from element on capture
+     * @param {string} id Reference identifier
+     * @param {boolean} removeRef Indicates whether to remove id attribute from element on capture. Default value: true
      */
     constructor(id, removeRef = true) {
         this._id = id;
@@ -10,7 +10,6 @@ class Reference {
 
     /**
      * Captures associated element from DOM. Returns captured element
-     *
      * @returns {HTMLElement}
      */
     capture() {
@@ -25,8 +24,7 @@ class Reference {
 
     /**
      * Called on successful capture of associated element from DOM
-     *
-     * @param {HTMLElement} ref captured element
+     * @param {HTMLElement} ref Captured element
      */
     onCapture(ref) {
         if (this._removeRef) {

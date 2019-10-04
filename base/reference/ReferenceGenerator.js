@@ -2,14 +2,16 @@ import Reference from './Reference.js';
 
 class ReferenceGenerator {
     constructor() {
-        /** @private {number} */
+        /** 
+         * Iterator. Increments on every create reference call
+         * @private {number}
+         */
         this._cursor = 0;
     }
 
     /**
      * Asks generator to create new reference. Returns created reference
-     *
-     * @returns {Reference} created reference
+     * @returns {Reference}
      */
     createReference() {
         return new Reference(this._generateId());
@@ -17,7 +19,6 @@ class ReferenceGenerator {
 
     /**
      * Transforms current id into string. Returns result
-     *
      * @returns {string}
      */
     _generateId() {
