@@ -7,18 +7,18 @@ class ReferenceGenerator {
     }
 
     /**
-     * Asks generator to create new reference
+     * Asks generator to create new reference. Returns created reference
      *
      * @returns {Reference} created reference
      */
-    requestReference() {
+    createReference() {
         return new Reference(this._generateId());
     }
 
     /**
-     * Transforms current id into string
+     * Transforms current id into string. Returns result
      *
-     * @returns {string} created string identificator
+     * @returns {string}
      */
     _generateId() {
         return String(this._cursor++);

@@ -9,9 +9,9 @@ class Reference {
     }
 
     /**
-     * Captures associated element from DOM
+     * Captures associated element from DOM. Returns captured element
      *
-     * @returns {HTMLElement} captured element
+     * @returns {HTMLElement}
      */
     capture() {
         const ref = document.getElementById(this._id);
