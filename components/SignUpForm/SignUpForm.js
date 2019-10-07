@@ -1,11 +1,11 @@
-const pug = require('pug');
+import template from './SignUpForm.pug';
 
 class SignUpFormComponent {
     /**
      * @returns {string}
      */
     render() {
-        return pug.compileFile('./SignUpForm.pug')();
+        return template();
     }
 }
 

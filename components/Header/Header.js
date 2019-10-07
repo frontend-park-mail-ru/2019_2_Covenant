@@ -1,11 +1,11 @@
-const pug = require('pug');
+import template from './Header.pug';
 
 class HeaderComponent {
     /**
      * @returns {string}
      */
     render() {
-        return pug.compileFile('./Header.pug')();
+        return template();
     }
 }
 
