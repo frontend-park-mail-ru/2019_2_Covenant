@@ -1,0 +1,40 @@
+.login {
+    width: 250px;
+    margin: auto;
+    font-family: var(--main-font);
+    color: var(--white);
+}
+
+.login__title {
+    font-weight: normal;
+    text-align: center;
+}
+
+.login__email_input, .login__password_input {
+    width: 100%;
+    height: 37px;
+    box-sizing: border-box;
+}
+
+.login__email_label, .login__password_label {
+    font-family: var(--main-font);
+    color: var(--white);
+    font-size: 10px;
+}
+
+.login__email, .login__password, .login__submit {
+    margin-bottom: 10px;
+}
+
+.login__submit_button {
+    width: 100%;
+    height: 42px;
+    border: none;
+    background-color: var(--red);
+    color: var(--white);
+}
+
+.login__forgot_password, .login__registration {
+    font-size: 10px;
+    color: var(--white);
+}
