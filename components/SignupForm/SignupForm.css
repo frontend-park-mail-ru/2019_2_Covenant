@@ -1,0 +1,51 @@
+.signup {
+    width: 250px;
+    margin: auto;
+    font-family: var(--main-font);
+    color: var(--white);
+}
+
+.signup__title {
+    font-weight: normal;
+    text-align: center;
+}
+
+.signup__email_input, .signup__password_input, .signup__repeat_password_input {
+    width: 100%;
+    height: 37px;
+    box-sizing: border-box;
+}
+
+.signup__email_label, .signup__password_label, .signup__repeat_password_label {
+    font-family: var(--main-font);
+    color: var(--white);
+    font-size: 10px;
+}
+
+.signup__email, .signup__password, .signup__submit {
+    margin-bottom: 10px;
+}
+
+.signup__repeat_password {
+    margin-bottom: 20px;
+}
+
+.signup__submit_button {
+    width: 100%;
+    height: 42px;
+    border: none;
+    background-color: var(--red);
+    color: var(--white);
+}
+
+.signup__social_label {
+    font-size: 10px;
+    color: var(--white);
+    text-align: center;
+}
+
+.signup_social_icons {
+    padding: 5px;
+    margin: auto;
+    width: 160px;
+}
