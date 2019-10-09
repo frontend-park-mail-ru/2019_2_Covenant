@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
     mode: 'production',
-    entry: './index.js',
+    entry: './index.ts',
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'index.js',
@@ -16,7 +16,11 @@ module.exports = {
             {
                 test: /\.pug$/,
                 use: 'pug-loader',
-            }
+            },
+            {
+                test: /\.ts$/,
+                use: 'ts-loader',
+            },
         ],
     },       
 }
