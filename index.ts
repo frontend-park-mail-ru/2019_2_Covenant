@@ -1,4 +1,3 @@
-import Updater from 'base/updater/Updater';
-import RAFUpdaterImpl from 'base/updater/implementations/RAFUpdaterImpl';
+import Application from 'base/application/Application';s
 
-window.u = new Updater(new RAFUpdaterImpl);
+const app = Application.instance;
