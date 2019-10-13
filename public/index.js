@@ -1,20 +1,15 @@
 'use strict';
 
-import Profile from "./components/Profile/Profile.js";
+import Profile from './components/Profile/Profile.js';
 
-import RendererModule from "./services/Renderer.js";
-import APIModule from "./services/API.js";
-import EventBus from "./services/PublisherSubscriber.js";
+import RendererModule from './services/Renderer.js';
+import APIModule from './services/API.js';
+import EventBus from './services/PublisherSubscriber.js';
 
 const API = new APIModule();
 const Renderer = new RendererModule();
 
 const application = document.getElementById('wrapper');
-
-const menuItems = {
-    signup: 'Sign-Up',
-    login: 'Log-In'
-};
 
 const components = {
     profile: null
@@ -34,6 +29,7 @@ function createProfile() {
         if(!components.profile)
             components.profile = new Profile();
 
+        // eslint-disable-next-line no-undef
         const page = Mustache.render(components.profile.render(), response.user);
         application.innerHTML = '';
         application.innerHTML = page;
@@ -67,7 +63,7 @@ function createSignUp() {
                 console.log(error);
             });
         } else {
-            alert("Passwords are not equal.");
+            alert('Passwords are not equal.');
         }
     });
 }
@@ -108,7 +104,7 @@ function auth(successCallback, failCallback) {
     });
 }
 
-function onLogout(evt) {
+function onLogout() {
     API.logoutReq().then(response => {
         console.log(response);
         createMainPage();
