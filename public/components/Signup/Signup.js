@@ -47,4 +47,4 @@ export default function render() {
         <div class="footer">
         </div>
     `;
-};
+}

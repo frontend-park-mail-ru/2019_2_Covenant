@@ -27,10 +27,14 @@
     "webpack-cli": "^3.3.9"
   },
   "dependencies": {
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.4",
     "express": "^4.17.1",
-    "fs": "0.0.1-security",
+    "morgan": "^1.9.1",
+    "multer": "^1.4.2",
     "pug": "^2.0.4",
     "pug-loader": "^2.4.0",
-    "ts-loader": "^6.2.0"
+    "ts-loader": "^6.2.0",
+    "uuid": "^3.3.3"
   }
 }

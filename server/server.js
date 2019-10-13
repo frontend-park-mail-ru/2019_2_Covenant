@@ -3,7 +3,6 @@
 const  users_db = require('./users');
 
 const express = require('express');
-const fs = require('fs');
 const path = require('path');
 const body = require('body-parser');
 const cookies = require('cookie-parser');

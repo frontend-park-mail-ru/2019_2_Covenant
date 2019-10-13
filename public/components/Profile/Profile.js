@@ -1,7 +1,7 @@
 'use strict';
 
-import EventBus from "../../services/PublisherSubscriber.js"
-import ApiModule from "../../services/API.js";
+import EventBus from '../../services/PublisherSubscriber.js';
+import ApiModule from '../../services/API.js';
 
 const API = new ApiModule();
 
@@ -11,16 +11,16 @@ export default class Profile {
 		this.edit = false;
 	}
 
-	onEdit(evt) {
+	onEdit() {
 		this.edit = true;
 		EventBus.publish('renderProfile', {});
 	}
 
-	onSave(evt) {
+	onSave() {
 		this.edit = false;
 
 		const name = document.getElementById('profile__name__input').value;
-		if(!name || name === "")
+		if(!name || name === '')
 			return;
 
 		API.profileSaveReq(name).then(response => {
@@ -31,7 +31,7 @@ export default class Profile {
 		});
 	}
 
-	onUploadAvatar(evt) {
+	onUploadAvatar() {
 		const imageInput = document.getElementById('avatar_upload_input');
 		const file = imageInput.files[0];
 
@@ -127,9 +127,9 @@ export default class Profile {
 	        <div class="container__profile">
 	            <div class="profile">
 	                ` + this.renderAvatar() +
-	                `<div class="info">`
-	                    + this.renderInfo() +
-	                    `<div class="info__buttons">
+					'<div class="info">'
+					+ this.renderInfo() +
+					`<div class="info__buttons">
 	                        <div class="info__buttons__shuffle">
 	                            <button class="btn__shuffle" type="button">
 	                                <img  class="btn__shuffle__img" src="img/play_dark.png" width="32" height="32" alt="play"/>
@@ -206,7 +206,5 @@ export default class Profile {
 	    <div class="footer">
 	    </div>
 	`;
-	};
-
-
+	}
 }
