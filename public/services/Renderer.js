@@ -2,7 +2,6 @@
 
 import LoginPage from '../components/Login/Login.js';
 import SignupPage from '../components/Signup/Signup.js';
-import Profile from '../components/Profile/Profile.js';
 import MainPage from '../components/Main/Main.js';
 
 export default class Renderer {
@@ -19,10 +18,5 @@ export default class Renderer {
     main() {
         const main = new MainPage();
         return main.render();
-    }
-
-    profile() {
-        const profile = new Profile();
-        return profile.render();
     }
 }

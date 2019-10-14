@@ -31,8 +31,7 @@ function createProfile() {
         if(!components.profile)
             components.profile = new Profile();
 
-        // eslint-disable-next-line no-undef
-        const page = Mustache.render(components.profile.render(), response.user);
+        const page = components.profile.render(response.user);
         application.innerHTML = '';
         application.innerHTML = page;
 
