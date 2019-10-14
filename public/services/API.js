@@ -1,56 +1,6 @@
 'use strict';
 
 class API {
-    async signupReq({email = '', password = ''} = {}) {
-        const response = await fetch('/signup', {
-            method: 'POST',
-            mode: 'cors',
-            credentials: 'include',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                'email': email,
-                'password': password,
-            })
-        });
-
-        return await response.json();
-    }
-
-    async loginReq({email = '', password = ''} = {}) {
-        const response = await fetch('/login', {
-            method: 'POST',
-            mode: 'cors',
-            credentials: 'include',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                'email': email,
-                'password': password
-            })
-        });
-
-        return await response.json();
-    }
-
-    async logoutReq() {
-        const response = await fetch('/logout', {
-            method: 'GET',
-            mode: 'cors',
-            credentials: 'include'
-        });
-
-        const data = await response.json();
-
-        return {
-            auth: false,
-            status: response.status,
-            ...data
-        }
-    }
-
     async profileReq() {
         const response = await fetch('/profile',{
             method: 'GET',

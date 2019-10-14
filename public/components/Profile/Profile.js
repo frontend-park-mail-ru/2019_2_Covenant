@@ -1,6 +1,6 @@
 'use strict';
 
-import EventBus from '../../services/PublisherSubscriber.js';
+import EventBus from '../../services/EventBus.js';
 import ApiModule from '../../services/API.js';
 
 const API = new ApiModule();
