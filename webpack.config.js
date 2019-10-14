@@ -2,11 +2,11 @@ const path = require('path');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 module.exports = {
-    mode: 'production',
-    entry: './index.ts',
+    mode: 'development',
+    entry: './public/index.js',
     output: {
         filename: 'bundle.js',
-        path: path.resolve(__dirname, 'dist'),
+        path:  __dirname +'/public/build',
     },
     module: {
         rules: [
@@ -24,11 +24,11 @@ module.exports = {
                 exclude: /node_modules/,
             },
         ],
-    },   
+    },
     resolve: {
         extensions: [ '.tsx', '.ts', '.js' ],
         plugins: [
             new TsconfigPathsPlugin(),
         ]
-    },    
-}
+    },
+};

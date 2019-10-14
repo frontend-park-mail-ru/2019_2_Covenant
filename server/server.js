@@ -40,9 +40,7 @@ const ids = {};
 
 (function checkAuth(server) {
     server.use((req, res, next) => {
-        if (req.path === '/login' || req.path === '/signup' ||
-            req.path === '/profile' && req.method === 'POST' ||
-            req.path === '/upload/avatar' || req.path === '/logout') {
+        if (req.path !== '/profile' && req.method !== 'GET') {
             next();
             return;
         }

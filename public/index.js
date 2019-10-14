@@ -4,9 +4,11 @@ import Profile from './components/Profile/Profile.js';
 
 import RendererModule from './services/Renderer.js';
 import APIModule from './services/API.js';
-import EventBus from './services/PublisherSubscriber.js';
+import EventBus from './services/EventBus.js';
+import HttpModule from './services/Http.js';
 
 const API = new APIModule();
+const Http = new HttpModule();
 const Renderer = new RendererModule();
 
 const application = document.getElementById('wrapper');
@@ -57,11 +59,13 @@ function createSignUp() {
         const repeat = signUpForm.elements['signup__repeat_password_input'].value;
 
         if (form.password === repeat) {
-            API.signupReq({...form}).then(response => {
-                console.log(response);
-            }).catch(error => {
-                console.log(error);
-            });
+            Http.fetchPost({
+               path: '/signup',
+               body: JSON.stringify({...form})
+            })
+            .then(response => response.json())
+            .then(commits => console.log(commits))
+            .catch(error => {console.log(error);});
         } else {
             alert('Passwords are not equal.');
         }
@@ -82,12 +86,13 @@ function createLogIn() {
             password: loginForm.elements['login__password_input'].value
         };
 
-        API.loginReq({...form}).then(response => {
-            console.log(response);
-            createProfile();
-        }).catch(error => {
-            console.log(error);
-        });
+        Http.fetchPost({
+            path: '/login',
+            body: JSON.stringify({...form})
+        })
+        .then(response => response.json())
+        .then(commits => {console.log(commits); createProfile();})
+        .catch(error => {console.log(error);});
     });
 }
 
@@ -105,10 +110,12 @@ function auth(successCallback, failCallback) {
 }
 
 function onLogout() {
-    API.logoutReq().then(response => {
+    Http.fetchGet({
+        path: '/logout'
+    }).then( response => {
         console.log(response);
         createMainPage();
-    }).catch(error => {
+    }).catch( error => {
         console.log(error);
     });
 }

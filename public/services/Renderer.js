@@ -1,21 +1,24 @@
 'use strict';
 
-import getLoginPage from '../components/Login/Login.js';
-import getSignupPage from '../components/Signup/Signup.js';
-import getMainPage from '../components/Main/Main.js';
+import LoginPage from '../components/Login/Login.js';
+import SignupPage from '../components/Signup/Signup.js';
 import Profile from '../components/Profile/Profile.js';
+import MainPage from '../components/Main/Main.js';
 
 export default class Renderer {
     login() {
-        return getLoginPage();
+        const login = new LoginPage();
+        return login.render();
     }
 
     signup() {
-        return getSignupPage();
+        const signup = new SignupPage();
+        return signup.render();
     }
 
     main() {
-        return getMainPage();
+        const main = new MainPage();
+        return main.render();
     }
 
     profile() {
