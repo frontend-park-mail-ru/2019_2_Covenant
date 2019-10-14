@@ -1,8 +1,12 @@
+/**
+ * Implementation of updater.
+ * Based on embedded browser function 'requestAnimationFrame'
+ */
 class RAFUpdaterImpl
 implements IUpdaterImpl {
     /** Identifier returned by requestAnimationFrame. Used to be able to cancel request */
     private _rafId: number;
-    /** Callback to be called on update */
+    /** Update callback */
     private _callback: () => void;
 
     constructor() {
