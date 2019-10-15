@@ -1,4 +1,9 @@
+import ReferenceGenerator from 'base/reference/ReferenceGenerator';
+
 class Application {
+    /** Used to generate unique references for nodes. Establishes connection between nodes and DOM elements */
+    readonly refGen = new ReferenceGenerator();
+
     /** The only lifecycle method. Returns the only instance */
     static get instance(): Application {
         if (!Application._instance) {
