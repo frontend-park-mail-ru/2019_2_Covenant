@@ -1,16 +1,9 @@
 'use strict';
 
-import EventBusModule from './services/EventBus.js';
-import Events from './services/Events.js';
 import RouterModule from './services/Router.js';
 
 const Router = new RouterModule();
-const EventBus = new EventBusModule();
-
-EventBus.subscribe(Events.ChangeRoute, Router.eventHandler);
-Router.popState();
-
-// window.onpopstate = Router.popState;
+Router.start();
 
 
 // function createProfile() {
