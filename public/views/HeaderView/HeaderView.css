@@ -10,9 +10,7 @@
 
 .header__list_home {
     float: left;
-    font-family: var(--logo-font);
-    font-size: 34px;
-    color: var(--white);
+
 }
 
 .header__list_login, .header__list_signup,
@@ -24,20 +22,29 @@
     color: var(--white);
 }
 
-.header__list_home__link {
-    display: block;
-    color: var(--white);
-    text-align: center;
-    padding: 5px 30px;
-    text-decoration: none;
+.btn_without_border {
+    border: none;
+    cursor: pointer;
 }
 
-.header__list_signup__link, .header__list_login__link {
+.header__list_home__btn {
+    font-family: var(--logo-font);
+    font-size: 34px;
+    color: var(--white);
+    background-color: var(--gray);
+    display: block;
+    text-align: center;
+    padding: 5px 30px;
+}
+
+.header__list_signup__btn, .header__list_login__btn {
     display: block;
     color: var(--white);
+    background-color: var(--gray);
     text-align: center;
     padding: 12px 30px;
-    text-decoration: none;
+    font-family: var(--main-font);
+    font-size: 20px;
 }
 
 .header__list_name__link {
