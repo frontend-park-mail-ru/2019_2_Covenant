@@ -38,26 +38,33 @@ const ids = {};
     });
 })(app);
 
-(function checkAuth(server) {
-    server.use((req, res, next) => {
-        if (req.path !== '/profile' && req.method !== 'GET') {
-            next();
-            return;
-        }
+const router = express.Router();
+router.get('*', (req, res) => {
+   res.sendFile(path.resolve(staticPath, 'index.html'));
+});
 
-       const id = req.cookies['covenant'];
-       const email = ids[id];
+app.use('/', router);
 
-       if (!id || !email) {
-           res.clearCookie('authorized');
-           res.status(401).json({error: "not authorized"});
-           return;
-       }
-
-       res.cookie('authorized', true);
-       res.status(200).json({auth: true, user: users_db[email]});
-    });
-})(app);
+// (function checkAuth(server) {
+//     server.use((req, res, next) => {
+//         if (req.path !== '/profile' && req.method !== 'GET') {
+//             next();
+//             return;
+//         }
+//
+//        const id = req.cookies['covenant'];
+//        const email = ids[id];
+//
+//        if (!id || !email) {
+//            res.clearCookie('authorized');
+//            res.status(401).json({error: "not authorized"});
+//            return;
+//        }
+//
+//        res.cookie('authorized', true);
+//        res.status(200).json({auth: true, user: users_db[email]});
+//     });
+// })(app);
 
 app.get('/logout', (req, res) => {
     res.clearCookie('covenant');

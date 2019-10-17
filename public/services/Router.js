@@ -10,6 +10,10 @@ import signupView from '../views/SignupView/SignupView.js';
 
 // Utils
 import Urls from './Urls.js';
+import Events from './Events';
+import EventBusModule from './EventBus';
+
+const EventBus = new EventBusModule();
 
 class Router {
 
@@ -24,24 +28,37 @@ class Router {
 		this.currentView.show();
 
 		this.eventHandler = this.eventHandler.bind(this);
+		EventBus.subscribe(Events.ChangeRoute, this.eventHandler);
 	}
 
-	changeUrl(newUrl, pushState = true) {
+	changeUrl(newUrl) {
 		this.currentView.hide();
 		this.currentView = this.routes[newUrl];
-		if (pushState)
-			window.history.pushState({}, this.currentView.title, newUrl);
-		this.currentView.show();
-	}
+		if (!this.currentView) {
+			newUrl = Urls.MainUrl;
+			this.currentView = this.routes[newUrl];
+		}
 
-	popState() {
-		this.changeUrl(window.location.pathname, false);
+		if (window.location.pathname !== newUrl) {
+			window.history.pushState(null, this.currentView.title, newUrl);
+		}
+
+		this.currentView.show();
 	}
 
 	eventHandler(event) {
 		this.changeUrl(event.newUrl);
 	}
 
+	start() {
+		window.addEventListener('popstate', () => {
+			const newUrl = window.location.pathname;
+			this.changeUrl(newUrl);
+		});
+
+		const newUrl = window.location.pathname;
+		this.changeUrl(newUrl);
+	}
 }
 
 export default Router;
