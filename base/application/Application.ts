@@ -1,8 +1,11 @@
 import ReferenceGenerator from 'base/reference/ReferenceGenerator';
+import EventBus from 'base/eventbus/EventBus';
 
 class Application {
     /** Used to generate unique references for nodes. Establishes connection between nodes and DOM elements */
-    readonly refGen = new ReferenceGenerator();
+    readonly referenceGenerator = new ReferenceGenerator();
+    /** Used to serve the whole application by publisher-subscriber service */
+    readonly eventBus = new EventBus();
 
     /** The only lifecycle method. Returns the only instance */
     static get instance(): Application {

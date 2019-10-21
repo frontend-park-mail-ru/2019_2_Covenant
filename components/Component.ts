@@ -12,7 +12,13 @@ extends Node {
         this._state = state;
     }
 
-    renderContent(): string {
+    construct() {
+        this._domElement = document.createElement('div');
+
+        this._domElement.innerHTML = this.renderContent();
+    }
+
+    protected renderContent(): string {
         return this._template(this._state);
     }
 }
