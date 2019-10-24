@@ -6,6 +6,8 @@ class Application {
     readonly referenceGenerator = new ReferenceGenerator();
     /** Used to serve the whole application by publisher-subscriber service */
     readonly eventBus = new EventBus();
+    /** */
+    readonly audioPlayer: IAudioPlayer;
 
     /** The only lifecycle method. Returns the only instance */
     static get instance(): Application {
