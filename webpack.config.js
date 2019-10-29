@@ -1,5 +1,6 @@
 const path = require('path');
-const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+const { TsConfigPathsPlugin } = require('awesome-typescript-loader');
+
 
 module.exports = {
     mode: 'development',
@@ -20,7 +21,7 @@ module.exports = {
             },
             {
                 test: /\.tsx?$/,
-                use: 'ts-loader',
+                use: 'awesome-typescript-loader',
                 exclude: /node_modules/,
             },
         ],
@@ -28,7 +29,7 @@ module.exports = {
     resolve: {
         extensions: [ '.tsx', '.ts', '.js' ],
         plugins: [
-            new TsconfigPathsPlugin(),
+            new TsConfigPathsPlugin(),
         ]
     },    
 }

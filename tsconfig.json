@@ -4,12 +4,16 @@
       "baseUrl": "./",
       "noImplicitAny": true,
       "module": "es6",
-      "target": "es5",
+      "target": "es6",
       "lib": [
         "es5",
         "es6",
         "dom"
       ],
       "allowJs": true
+    },
+
+    "awesomeTypescriptLoaderOptions": {
+      "useCache": true
     }
 }
