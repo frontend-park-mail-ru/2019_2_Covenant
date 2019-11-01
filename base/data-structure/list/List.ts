@@ -1,21 +1,4 @@
 /**
- * External interface of interaction with the node.
- * Forbids interfering with the order of nodes.
- * Can be used as external iterator
- */
-interface IListNode<T> {
-    /** Next element in the list. Read-only */
-    readonly next?: IListNode<T>;
-    /** Previous element in the list. Read-only */
-    readonly prev?: IListNode<T>;
-    /** Stored value */
-    value: T;
-
-    /** Indicates whether node placed in list. Read-only */
-    readonly inserted: boolean;
-}
-
-/**
  * Doubly linked list node.
  * Helper class for List
  */
@@ -45,9 +28,11 @@ implements IListNode<T> {
  * Uses ListNode helper class to store values
  */
 class List<T> {
+    /** First node in the list */
     private _head?: ListNode<T>;
+    /** Last node in the list */
     private _tail?: ListNode<T>;
-
+    /** Set of owned nodes */
     private _storage: Set<ListNode<T>> = new Set();
 
     /** First element in the list. Read-only */
@@ -194,23 +179,23 @@ class List<T> {
 
     /**
      * Inserts passed node before specified node in the list. Returns success of insertion
-     * @param neighbor Node in the list
+     * @param location Location node in the list
      * @param node Node to be inserted
      */
-    insertBefore(neighbor: ListNode<T>, node: ListNode<T>): boolean {
-        if (this.errorInsertionScenario(neighbor, node)) {
+    insertBefore(location: ListNode<T>, node: ListNode<T>): boolean {
+        if (this.errorInsertionScenario(location, node)) {
             return false;
         }
 
-        if (neighbor !== this._head) {
-            node.prev = neighbor.prev;
-            neighbor.prev.next = node;
+        if (location !== this._head) {
+            node.prev = location.prev;
+            location.prev.next = node;
         } else {
             this._head = node;
         }
         
-        node.next = neighbor;
-        neighbor.prev = node;
+        node.next = location;
+        location.prev = node;
 
         this._storage.add(node);
 
@@ -219,23 +204,23 @@ class List<T> {
 
     /**
      * Inserts passed node after specified node in the list. Returns success of insertion
-     * @param neighbor Node in the list
+     * @param location Location node in the list
      * @param node Node to be inserted
      */
-    insertAfter(neighbor: ListNode<T>, node: ListNode<T>): boolean {
-        if (this.errorInsertionScenario(neighbor, node)) {
+    insertAfter(location: ListNode<T>, node: ListNode<T>): boolean {
+        if (this.errorInsertionScenario(location, node)) {
             return false;
         }
 
-        if (neighbor !== this._tail) {
-            node.next = neighbor.next;
-            neighbor.next.prev = node;
+        if (location !== this._tail) {
+            node.next = location.next;
+            location.next.prev = node;
         } else {
             this._tail = node;
         }
         
-        node.prev = neighbor;
-        neighbor.next = node;
+        node.prev = location;
+        location.next = node;
 
         this._storage.add(node);
 
@@ -290,9 +275,13 @@ class List<T> {
         return {done: false};
     }
 
-    /** Scenario of checking if insertion is illegal. Returns illegality flag */
-    private errorInsertionScenario(neighbor: ListNode<T>, node: ListNode<T>): boolean {
-        return !this._storage.has(neighbor) || node.inserted;
+    /**
+     * Scenario of checking if insertion is illegal. Returns illegality flag
+     * @param location Location node in the list
+     * @param node Node to be inserted
+     */
+    private errorInsertionScenario(location: ListNode<T>, node: ListNode<T>): boolean {
+        return !this._storage.has(location) || node.inserted;
     }
 }
 
