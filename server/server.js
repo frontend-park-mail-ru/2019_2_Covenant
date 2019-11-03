@@ -39,8 +39,12 @@ const ids = {};
 })(app);
 
 const router = express.Router();
-router.get('*', (req, res) => {
-   res.sendFile(path.resolve(staticPath, 'index.html'));
+// temporary fix cause server is now on localhost
+const urls = ['/login', '/signup', '/profile'];
+urls.forEach((url) => {
+    router.get(url, (req, res) => {
+        res.sendFile(path.resolve(staticPath, 'index.html'));
+    });
 });
 
 app.use('/', router);
@@ -66,13 +70,13 @@ app.use('/', router);
 //     });
 // })(app);
 
-app.get('/logout', (req, res) => {
+app.get('/api/logout', (req, res) => {
     res.clearCookie('covenant');
     res.clearCookie('authorized');
     res.status(200).json({status: 'SUCCESS'});
 });
 
-app.post('/signup', (req, res) => {
+app.post('/api/signup', (req, res) => {
     const password = req.body.password;
     const email = req.body.email;
 
@@ -86,7 +90,7 @@ app.post('/signup', (req, res) => {
 
     const id = uuid();
     ids[id] = email;
-    const user = {email, password};
+    const user = {email, password, username: email, avatar: '', originalAvatar: 'img/user_profile.png'};
     users_db[email] = user;
 
     res.cookie('covenant', id, {expires: new Date(Date.now() + 1000 * 60 * 60 * 24)});
@@ -95,7 +99,7 @@ app.post('/signup', (req, res) => {
     res.status(201).json({user});
 });
 
-app.post('/login', (req, res) => {
+app.post('/api/login', (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
 
@@ -113,10 +117,10 @@ app.post('/login', (req, res) => {
     res.cookie('covenant', id, {expires: new Date(Date.now() + 1000 * 60 * 60 * 24)});
     res.cookie('authorized', true);
 
-    return res.status(200).json({result: 'SUCCESS', user: users_db[email].username});
+    return res.status(200).json({result: 'SUCCESS', user: users_db[email]});
 });
 
-app.get('/profile', (req, res) => {
+app.get('/api/profile', (req, res) => {
     const id = req.cookies['covenant'];
     const email = ids[id];
 
@@ -127,7 +131,7 @@ app.get('/profile', (req, res) => {
     return res.status(200).json({result: 'SUCCESS', user: users_db[email]});
 });
 
-app.post('/profile', (req, res) => {
+app.post('/api/profile', (req, res) => {
     const id = req.cookies['covenant'];
     const email = ids[id];
 
@@ -138,10 +142,10 @@ app.post('/profile', (req, res) => {
     }
 
     users_db[email].username = name;
-    return res.status(200).json({result: 'SUCCESS', user: name});
+    return res.status(200).json({result: 'SUCCESS', user: users_db[email]});
 });
 
-app.post('/upload/avatar', upload.single('avatar'), (req, res) => {
+app.post('/api/upload/avatar', upload.single('avatar'), (req, res) => {
     const id = req.cookies['covenant'];
     const email = ids[id];
 

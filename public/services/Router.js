@@ -2,11 +2,13 @@
 import MainController from '../controllers/MainController.js';
 import LoginController from '../controllers/LoginController.js';
 import SignupController from '../controllers/SignupController.js';
+import ProfileController from '../controllers/ProfileController';
 
 // Views
 import mainView from '../views/MainView/MainView.js';
 import loginView from '../views/LoginView/LoginView.js';
 import signupView from '../views/SignupView/SignupView.js';
+import profileView from '../views/ProfileView/ProfileView';
 
 // Utils
 import Urls from './Urls.js';
@@ -23,16 +25,16 @@ class Router {
 		this.routes[Urls.MainUrl] = new MainController(mainView);
 		this.routes[Urls.LoginUrl] = new LoginController(loginView);
 		this.routes[Urls.SignupUrl] = new SignupController(signupView);
-
-		this.currentView = this.routes[Urls.MainUrl];
-		this.currentView.show();
+		this.routes[Urls.ProfileUrl]= new ProfileController(profileView);
 
 		this.eventHandler = this.eventHandler.bind(this);
 		EventBus.subscribe(Events.ChangeRoute, this.eventHandler);
 	}
 
 	changeUrl(newUrl) {
-		this.currentView.hide();
+		if (this.currentView)
+			this.currentView.hide();
+
 		this.currentView = this.routes[newUrl];
 		if (!this.currentView) {
 			newUrl = Urls.MainUrl;

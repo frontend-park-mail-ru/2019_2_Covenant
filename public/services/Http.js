@@ -1,8 +1,8 @@
-'use strict';
+import { SERVER_API_PATH } from './Settings';
 
 class Http {
 	constructor(){
-		this.baseUrl = 'http://localhost:3000';
+		this.baseUrl = SERVER_API_PATH;
 	}
 
 	fetchGet({ path }) {
@@ -35,7 +35,7 @@ class Http {
 			obj.body = body;
 		}
 
-		return fetch(path, obj);
+		return fetch(`${this.baseUrl}${path}`, obj);
 	}
 }
 
