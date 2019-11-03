@@ -42,5 +42,11 @@
     color: var(--white);
 }
 
+.login__email_error, .login__password_error {
+    font-size: 10px;
+    color: var(--white);
+    margin-bottom: 3px;
+}
+
 
 /*----------------Login end--------------------*/

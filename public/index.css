@@ -1,6 +1,6 @@
-@import url('components/Profile/Profile.css');
-@import url('views/LoginView/LoginView.css');
-@import url('views/SignupView/SignupView.css');
+@import url('views/ProfileView/ProfileView.css');
+@import url('components/SignupForm/SignupForm.css');
+@import url('components/LoginForm/LoginForm.css');
 @import url('views/HeaderView/HeaderView.css');
 
 * {

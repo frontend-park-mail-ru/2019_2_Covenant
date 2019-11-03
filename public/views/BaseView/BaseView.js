@@ -4,8 +4,6 @@ class BaseView {
 		parent.appendChild(this.element);
 
 		this.templateFunc = templateFunc;
-
-		this.type = 'baseView';
 	}
 
 	show()
@@ -22,6 +20,10 @@ class BaseView {
 
 	onShow() {}
 	onHide() {}
+
+	updateView(data) {
+		this.element.innerHTML = this.templateFunc(data);
+	}
 }
 
 export default BaseView;
