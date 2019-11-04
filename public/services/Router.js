@@ -6,8 +6,6 @@ import ProfileController from '../controllers/ProfileController';
 
 // Views
 import mainView from '../views/MainView/MainView.js';
-import loginView from '../views/LoginView/LoginView.js';
-import signupView from '../views/SignupView/SignupView.js';
 import profileView from '../views/ProfileView/ProfileView';
 
 // Utils
@@ -23,8 +21,8 @@ class Router {
 
 		this.routes = {};
 		this.routes[Urls.MainUrl] = new MainController(mainView);
-		this.routes[Urls.LoginUrl] = new LoginController(loginView);
-		this.routes[Urls.SignupUrl] = new SignupController(signupView);
+		this.routes[Urls.LoginUrl] = new LoginController(mainView);
+		this.routes[Urls.SignupUrl] = new SignupController(mainView);
 		this.routes[Urls.ProfileUrl]= new ProfileController(profileView);
 
 		this.eventHandler = this.eventHandler.bind(this);

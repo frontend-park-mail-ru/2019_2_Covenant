@@ -1,6 +1,6 @@
-include ../HeaderView/HeaderView.pug
+div(class="header" id="header")
 
-div(class="container")
+div(class="container" id="container")
 	div(class="container__profile")
 		if user
 			div(class="profile")
@@ -46,4 +46,4 @@ div(class="container")
 							label(class="tab__label" for="tab-"+index) #{tab.name}
 							div(class="tab-content") #{tab.text}
 
-include ../FooterView/FooterView.pug
+div(class="footer")

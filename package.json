@@ -20,8 +20,13 @@
   },
   "homepage": "https://github.com/frontend-park-mail-ru/2019_2_Covenant#readme",
   "devDependencies": {
+    "@babel/cli": "^7.6.4",
+    "@babel/core": "^7.6.4",
+    "@babel/node": "^7.6.3",
+    "@babel/preset-env": "^7.6.3",
     "@typescript-eslint/eslint-plugin": "^2.3.1",
     "@typescript-eslint/parser": "^2.3.1",
+    "babel-loader": "^8.0.6",
     "eslint": "^6.4.0",
     "typescript": "^3.6.3",
     "webpack": "^4.41.0",

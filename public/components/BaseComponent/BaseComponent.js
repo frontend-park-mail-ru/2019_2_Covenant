@@ -13,7 +13,10 @@ class BaseComponent {
 	render(parentId) {
 		const parent = document.getElementById(parentId);
 		parent.append(this.currentElement);
+		this.onRender();
 	}
+
+	onRender() {}
 }
 
 export default BaseComponent;

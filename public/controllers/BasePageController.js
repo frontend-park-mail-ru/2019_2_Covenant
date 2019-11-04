@@ -1,6 +1,5 @@
 import BaseController from './BaseController.js';
-import Link from '../components/Link/Link.js';
-import Urls from '../services/Urls.js';
+import Header from '../components/Header/Header';
 
 class BasePageController extends BaseController {
 	constructor(view) {
@@ -8,15 +7,8 @@ class BasePageController extends BaseController {
 	}
 
 	onShow() {
-		this.createHeaderButtons();
-	}
-
-	onHide() {}
-
-	createHeaderButtons() {
-		new Link('signup_link', 'click', Urls.SignupUrl);
-		new Link('login_link', 'click', Urls.LoginUrl);
-		new Link('main_link', 'click', Urls.MainUrl);
+		const header = new Header();
+		header.render('header');
 	}
 }
 

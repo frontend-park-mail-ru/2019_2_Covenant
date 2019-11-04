@@ -5,7 +5,7 @@ import Urls from '../../services/Urls';
 const eventBus = new EventBus();
 
 class Link {
-	constructor(elementId, eventType, route) {
+	constructor({elementId= '', eventType = 'click', route = '/'} = {}) {
 		this.element = document.getElementById(elementId);
 		this.route = route;
 
