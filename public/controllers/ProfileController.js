@@ -1,5 +1,10 @@
-import BasePageController from './BasePageController';
 import UserModel from '../models/UserModel';
+import Events from '../services/Events';
+import EventBusModule from '../services/EventBus';
+import BasePageController from './BasePageController';
+import Avatar from '../components/Avatar/Avatar';
+
+const EventBus = new EventBusModule();
 
 class ProfileController extends BasePageController {
 	constructor(view) {
@@ -27,33 +32,43 @@ class ProfileController extends BasePageController {
 
 		this.onEdit = this.onEdit.bind(this);
 		this.onSave = this.onSave.bind(this);
+		this.onUploadAvatar = this.onUploadAvatar.bind(this);
 	}
 
 	onShow() {
 		super.onShow();
 
-		const self = this;
+		this.mountProfile();
+		this.mountAvatar();
+	}
 
-		UserModel.getProfile()
-		.then(response => {
-			self.page.user = response.user;
-			self.updateProfile(self.page);
-			self.createHandlers();
-		})
-		.catch(error => {
-			console.log(error);
+	mountAvatar() {
+		const avatar = new Avatar({
+			width: 120,
+			height: 120,
+			accept: '.jpg, .jpeg, .png',
+			onUpload: this.onUploadAvatar
 		});
+		avatar.render('avatar');
+	}
+
+	mountProfile() {
+		UserModel.getProfile()
+			.then(response => {
+				this.page.user = response.user;
+				EventBus.publish(Events.UpdateUser, response.user);
+
+				this.createHandlers();
+			})
+			.catch(error => {
+				console.log(error);
+			});
 	}
 
 	createHandlers() {
 		const editInfo = document.getElementById('edit_pencil');
 		if (editInfo) {
 			editInfo.addEventListener('click', this.onEdit);
-		}
-
-		const avatarUpload = document.getElementById('avatar_upload_input');
-		if(avatarUpload) {
-			avatarUpload.addEventListener('change', this.onUploadAvatar);
 		}
 	}
 
@@ -88,23 +103,14 @@ class ProfileController extends BasePageController {
 		});
 	}
 
-	onUploadAvatar() {
-		const self = this;
-		const imageInput = document.getElementById('avatar_upload_input');
-		const file = imageInput.files[0];
-
+	onUploadAvatar(file) {
 		UserModel.uploadAvatar(file)
 		.then(response => {
-			console.log(response);
-			self.page.user.avatar = response.avatar;
-			self.updateProfile(self.page);
+			this.page.user.avatar = response.avatar;
+			EventBus.publish(Events.UpdateUser, this.page.user);
 		}).catch(error => {
 			console.log(error);
 		});
-	}
-
-	updateProfile(data) {
-		this.view.updateView(data);
 	}
 }
 

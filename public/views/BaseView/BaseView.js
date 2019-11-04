@@ -20,10 +20,6 @@ class BaseView {
 
 	onShow() {}
 	onHide() {}
-
-	updateView(data) {
-		this.element.innerHTML = this.templateFunc(data);
-	}
 }
 
 export default BaseView;
