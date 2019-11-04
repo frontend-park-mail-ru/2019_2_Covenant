@@ -1,6 +1,7 @@
 
 const Events = {
-	ChangeRoute: 'changeRoute'
+	ChangeRoute: 'changeRoute',
+	UpdateUser: 'updateUser'
 };
 
 export default Events;

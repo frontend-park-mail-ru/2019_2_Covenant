@@ -1,5 +1,5 @@
 import BaseComponent from '../BaseComponent/BaseComponent';
-import template from '../SignupForm/SignupForm.pug';
+import template from './SignupForm.pug';
 import Input from '../Input/Input';
 import SessionModel from '../../models/SessionModel';
 import Events from '../../services/Events';

@@ -8,11 +8,6 @@
     padding: 0;
 }
 
-p {
-    color: green;
-    font-weight: bold;
-}
-
 html {
     position:relative; min-height:100%;
 }

@@ -2,15 +2,10 @@ div(class="header" id="header")
 
 div(class="container" id="container")
 	div(class="container__profile")
-		if user
-			div(class="profile")
-				div(class="avatar")
-					input(type="file" id="avatar_upload_input" name="image" accept=".jpg, .jpeg, .png" style="display:block; max-width: 200px")
-					if user.avatar !== ''
-						img(width="120" height="120" src=user.avatar alt="user_profile" id="avatar_upload" style="display: block; cursor:pointer")
-					else
-						img(width="120" height="120" src="img/user_profile.png" alt="user_profile" id="avatar_upload" style="display: block; cursor:pointer")
+		div(class="profile")
+			div(class="avatar" id="avatar")
 
+			if user
 				div(class="info")
 					if !edit
 						div(class="info__user")

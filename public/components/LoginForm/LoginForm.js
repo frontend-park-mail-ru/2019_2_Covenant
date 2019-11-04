@@ -1,4 +1,4 @@
-import template from '../LoginForm/LoginForm.pug';
+import template from './LoginForm.pug';
 import EventBusModule from '../../services/EventBus';
 import SessionModel from '../../models/SessionModel';
 import Events from '../../services/Events';
@@ -51,8 +51,8 @@ class LoginForm extends BaseComponent {
 		};
 
 		SessionModel.login(form)
-			.then(commits => {
-				console.log(commits);
+			.then(response => {
+				console.log(response);
 
 				EventBus.publish(Events.ChangeRoute, {newUrl: Urls.ProfileUrl});
 			})
