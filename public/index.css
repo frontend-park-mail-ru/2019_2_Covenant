@@ -1,7 +1,7 @@
 @import url('views/ProfileView/ProfileView.css');
 @import url('components/SignupForm/SignupForm.css');
 @import url('components/LoginForm/LoginForm.css');
-@import url('views/HeaderView/HeaderView.css');
+@import url('components/Header/Header.css');
 
 * {
     margin: 0;
@@ -43,6 +43,11 @@ html {
 }
 
 /*----------------frame start--------------------*/
+.header {
+    background: var(--gray);
+    position: absolute;
+    width: 100%;
+}
 
 .container {
     display: flex;
