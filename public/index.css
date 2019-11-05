@@ -2,6 +2,7 @@
 @import url('components/SignupForm/SignupForm.css');
 @import url('components/LoginForm/LoginForm.css');
 @import url('components/Header/Header.css');
+@import url('components/EditableField/EditableField.css');
 
 * {
     margin: 0;
