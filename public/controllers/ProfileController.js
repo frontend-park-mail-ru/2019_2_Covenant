@@ -3,6 +3,7 @@ import Events from '../services/Events';
 import EventBusModule from '../services/EventBus';
 import BasePageController from './BasePageController';
 import Avatar from '../components/Avatar/Avatar';
+import EditableField from '../components/EditableField/EditableField';
 
 const EventBus = new EventBusModule();
 
@@ -25,12 +26,10 @@ class ProfileController extends BasePageController {
 		];
 
 		this.page = {
-			edit: false,
 			tabs: tabs,
 			user: null
 		};
 
-		this.onEdit = this.onEdit.bind(this);
 		this.onSave = this.onSave.bind(this);
 		this.onUploadAvatar = this.onUploadAvatar.bind(this);
 	}
@@ -40,6 +39,7 @@ class ProfileController extends BasePageController {
 
 		this.mountProfile();
 		this.mountAvatar();
+		this.mountEditableName();
 	}
 
 	mountAvatar() {
@@ -57,47 +57,29 @@ class ProfileController extends BasePageController {
 			.then(response => {
 				this.page.user = response.user;
 				EventBus.publish(Events.UpdateUser, response.user);
-
-				this.createHandlers();
 			})
 			.catch(error => {
 				console.log(error);
 			});
 	}
 
-	createHandlers() {
-		const editInfo = document.getElementById('edit_pencil');
-		if (editInfo) {
-			editInfo.addEventListener('click', this.onEdit);
-		}
+	mountEditableName() {
+		const editableField = new EditableField({
+			onSave: this.onSave
+		});
+		editableField.render('info-user');
 	}
 
-	createSaveHandler() {
-		const saveInfo = document.getElementById('save_info');
-		if(saveInfo) {
-			saveInfo.addEventListener('click', this.onSave);
-		}
-	}
-
-	onEdit() {
-		this.page.edit = true;
-		this.updateProfile(this.page);
-		this.createSaveHandler();
-	}
-
-	onSave() {
-		const self = this;
-		self.page.edit = false;
-
-		const name = document.getElementById('profile__name__input').value;
+	onSave(fieldValue) {
+		const name = fieldValue;
 		if(!name || name === '')
 			return;
 
 		UserModel.updateProfile(name)
 		.then(response => {
 			console.log(response);
-			self.page.user = response.user;
-			self.updateProfile(self.page);
+			this.page.user = response.user;
+			EventBus.publish(Events.UpdateUser, response.user);
 		}).catch(error => {
 			console.log(error);
 		});

@@ -21,22 +21,6 @@
 
 }
 
-.info__user__name {
-    display: inline-block;
-    padding: 10px;
-    font-family: var(--main-font);
-    font-size: 38px;
-    color: var(--white);
-}
-
-.info__user__edit, .info__user__save {
-    display: inline-block;
-}
-
-.info__user__edit__img {
-    cursor: pointer;
-}
-
 .info__buttons {
 
 }
