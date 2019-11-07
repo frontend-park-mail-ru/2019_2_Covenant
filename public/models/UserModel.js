@@ -13,7 +13,7 @@ class UserModel {
 	updateProfile(name) {
 		return Http.fetchPost({
 			path: '/profile',
-			body: JSON.stringify({'name': name})
+			body: JSON.stringify({'nickname': name})
 		})
 		.then(response => response.json());
 	}
@@ -23,7 +23,7 @@ class UserModel {
 		formData.append('avatar', file);
 		formData.append('name', file.name);
 
-		return fetch('/api/upload/avatar', {
+		return fetch('/api/v1/avatar', {
 			method: 'POST',
 			credentials: 'include',
 			mode: 'cors',

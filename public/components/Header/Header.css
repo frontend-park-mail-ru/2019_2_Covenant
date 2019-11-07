@@ -49,11 +49,21 @@
     text-decoration: none;
 }
 
-.header__list_avatar__link,
+.header__list_avatar__link {
+    display: block;
+    color: var(--white);
+    text-align: center;
+    padding: 5px 10px;
+    text-decoration: none;
+}
+
 .header__list_logout__link {
     display: block;
     color: var(--white);
     text-align: center;
     padding: 5px 10px;
     text-decoration: none;
+    background-color: var(--gray);
+    border: none;
+    cursor: pointer;
 }

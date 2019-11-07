@@ -44,6 +44,11 @@ class LoginForm extends BaseComponent {
 		return valid;
 	}
 
+	setFormError(text) {
+		const submitError = document.getElementsByClassName('login__error')[0];
+		submitError.innerText = text;
+	}
+
 	submit() {
 		const form = {
 			email: this.emailInput.value,
@@ -52,9 +57,11 @@ class LoginForm extends BaseComponent {
 
 		SessionModel.login(form)
 			.then(response => {
-				console.log(response);
-
-				EventBus.publish(Events.ChangeRoute, {newUrl: Urls.ProfileUrl});
+				if (response.error) {
+					this.setFormError(response.error);
+				} else {
+					EventBus.publish(Events.ChangeRoute, {newUrl: Urls.ProfileUrl});
+				}
 			})
 			.catch(error => {
 				console.log(error);

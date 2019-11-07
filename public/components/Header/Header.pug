@@ -10,7 +10,7 @@ ul(class="header__list")
             button(id="login_link" class="header__list_login__btn btn_without_border" type="button") Log In
     else
         li(class="header__list_logout")
-            a(href="" id="logout_link" class="header__list_logout__link")
+            button(type="button" id="logout_link" class="header__list_logout__link")
                 img(src="img/logout.png" width="34" height="34" alt="logout")
         li(class="header__list_avatar")
             a(href="" id="profile_avatar" class="header__list_avatar__link")
@@ -19,4 +19,4 @@ ul(class="header__list")
                 else
                     img(src="img/user.png" width="34" height="34" alt="user")
         li(class="header__list_name")
-            a(href="" id="profile_name" class="header__list_name__link") #{user.username}
+            a(href="" id="profile_name" class="header__list_name__link") #{user.nickname}

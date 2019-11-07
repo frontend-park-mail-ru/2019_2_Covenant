@@ -1,13 +1,15 @@
 import UserModel from '../models/UserModel';
 import Events from '../services/Events';
 import EventBusModule from '../services/EventBus';
-import BasePageController from './BasePageController';
 import Avatar from '../components/Avatar/Avatar';
 import EditableField from '../components/EditableField/EditableField';
+import BaseController from "./BaseController";
+import Header from "../components/Header/Header";
+import Urls from "../services/Urls";
 
 const EventBus = new EventBusModule();
 
-class ProfileController extends BasePageController {
+class ProfileController extends BaseController {
 	constructor(view) {
 		super(view);
 		this.title = 'Profile Page';
@@ -35,11 +37,28 @@ class ProfileController extends BasePageController {
 	}
 
 	onShow() {
-		super.onShow();
+		UserModel.getProfile().then(response =>
+		{
+			if (response.error) {
+				EventBus.publish(Events.ChangeRoute, Urls.LoginUrl);
+			} else {
+				this.mountHeader();
+				this.mountAvatar();
+				this.mountEditableName();
 
-		this.mountProfile();
-		this.mountAvatar();
-		this.mountEditableName();
+				EventBus.publish(Events.UpdateUser, response.body);
+
+				console.log(response);
+			}
+		})
+		.catch(error => {
+			console.log(error);
+		});
+	}
+
+	mountHeader() {
+		const header = new Header();
+		header.render('header');
 	}
 
 	mountAvatar() {
@@ -50,17 +69,6 @@ class ProfileController extends BasePageController {
 			onUpload: this.onUploadAvatar
 		});
 		avatar.render('avatar');
-	}
-
-	mountProfile() {
-		UserModel.getProfile()
-			.then(response => {
-				this.page.user = response.user;
-				EventBus.publish(Events.UpdateUser, response.user);
-			})
-			.catch(error => {
-				console.log(error);
-			});
 	}
 
 	mountEditableName() {
@@ -77,9 +85,10 @@ class ProfileController extends BasePageController {
 
 		UserModel.updateProfile(name)
 		.then(response => {
-			console.log(response);
-			this.page.user = response.user;
-			EventBus.publish(Events.UpdateUser, response.user);
+			if (!response.error) {
+				this.page.user = response.body;
+				EventBus.publish(Events.UpdateUser, response.body);
+			}
 		}).catch(error => {
 			console.log(error);
 		});
@@ -88,7 +97,7 @@ class ProfileController extends BasePageController {
 	onUploadAvatar(file) {
 		UserModel.uploadAvatar(file)
 		.then(response => {
-			this.page.user.avatar = response.avatar;
+			this.page.user.avatar = response.body;
 			EventBus.publish(Events.UpdateUser, this.page.user);
 		}).catch(error => {
 			console.log(error);

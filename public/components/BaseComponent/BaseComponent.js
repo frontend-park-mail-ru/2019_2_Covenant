@@ -25,9 +25,11 @@ class BaseComponent {
 		this.parentId = parentId;
 
 		const parent = document.getElementById(parentId);
-		parent.innerHTML = '';
-		parent.append(this.currentElement);
-		this.onRender();
+		if (parent) {
+			parent.innerHTML = '';
+			parent.append(this.currentElement);
+			this.onRender();
+		}
 	}
 
 	onRender() {}

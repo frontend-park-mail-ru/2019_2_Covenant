@@ -1,2 +1,2 @@
 
-export const SERVER_API_PATH = 'http://localhost:3000/api';
+export const SERVER_API_PATH = 'http://back.covenant.fun:8000/api/v1';

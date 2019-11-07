@@ -75,15 +75,25 @@ class SignUpForm extends  BaseComponent {
 		return valid;
 	}
 
+	setFormError(text) {
+		const submitError = document.getElementsByClassName('signup__submit_error')[0];
+		submitError.innerText = text;
+	}
+
 	submit() {
 		const form = {
 			email: this.emailInput.value,
-			password: this.passwordInput.value
+			password: this.passwordInput.value,
+			nickname: this.emailInput.value
 		};
 
 		SessionModel.signUp(form)
-			.then(() => {
-				EventBus.publish(Events.ChangeRoute, { newUrl: Urls.ProfileUrl });
+			.then(response => {
+				if (response.error) {
+					this.setFormError(response.error);
+				} else {
+					EventBus.publish(Events.ChangeRoute, { newUrl: Urls.ProfileUrl });
+				}
 			})
 			.catch(error => {
 				console.log(error);

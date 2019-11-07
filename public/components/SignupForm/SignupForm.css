@@ -53,7 +53,8 @@
     width: 160px;
 }
 
-.signup__email_error, .signup__password_error,  .signup__repeat_error{
+.signup__email_error, .signup__password_error,
+.signup__repeat_error, .signup__submit_error {
     font-size: 10px;
     color: var(--white);
     margin-bottom: 3px;

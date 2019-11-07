@@ -4,6 +4,7 @@ import Link from '../Link/Link';
 import Urls from '../../services/Urls';
 import EventBusModule from '../../services/EventBus';
 import Events from '../../services/Events';
+import SessionModel from "../../models/SessionModel";
 
 const EventBus = new EventBusModule();
 
@@ -23,6 +24,32 @@ class Header extends BaseComponent {
 
 	updateUser(data) {
 		this.update({ user: data});
+		this.addProfileLink();
+		this.addLogoutHandler();
+	}
+
+	addProfileLink() {
+		new Link({elementId: 'profile_name', eventType: 'click', route: Urls.ProfileUrl});
+		new Link({elementId: 'profile_avatar', eventType: 'click', route: Urls.ProfileUrl});
+	}
+
+	addLogoutHandler() {
+		const btn = document.getElementById('logout_link');
+		if (btn) {
+			btn.addEventListener('click', () => {
+				SessionModel.logOut()
+				.then(response => {
+					if (response.error) {
+						console.log(response.error);
+					} else {
+						EventBus.publish(Events.ChangeRoute, Urls.MainUrl);
+					}
+				})
+				.catch(error => {
+					console.log(error);
+				})
+			});
+		}
 	}
 }
 

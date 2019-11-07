@@ -42,7 +42,7 @@
     color: var(--white);
 }
 
-.login__email_error, .login__password_error {
+.login__email_error, .login__password_error, .login__error {
     font-size: 10px;
     color: var(--white);
     margin-bottom: 3px;
