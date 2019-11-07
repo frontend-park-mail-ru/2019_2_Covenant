@@ -1,4 +1,4 @@
 interface IAudioTrack {
-    /** Duration of track in seconds */
-    readonly duration: number;
+    /** Path to audio source */
+    readonly url: string;
 }
