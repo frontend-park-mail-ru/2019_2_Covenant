@@ -20,6 +20,14 @@ class Http {
 		});
 	}
 
+	fetchDelete({ path, body }) {
+		return this.fetchRequest({
+			method: 'DELETE',
+			path: path,
+			body: body
+		});
+	}
+
 	fetchRequest( { path = '/',
 				method = 'GET',
 				body = null }) {

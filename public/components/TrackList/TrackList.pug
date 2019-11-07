@@ -1,0 +1,13 @@
+div(class="track-list-container" id="track-container")
+    h1(class="track-list-container__title") Popular Tracks
+    ul(class="track-list col-2")
+        each track in tracks
+            li
+                div(class="track-container")
+                    div(class="track-container__inner")
+                        div(class="track__avatar")
+                            img(class="track__avatar__img" src="img/dance.jpg" width="34" height="34" alt="track")
+                        div(class="track__name__block")
+                            div(class="track__name") #{track.name}
+                            div(class="track__artist") #{track.artist}
+                        div(class="track__duration pull-right") #{track.duration}

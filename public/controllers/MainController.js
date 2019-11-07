@@ -3,6 +3,7 @@ import UserModel from "../models/UserModel";
 import Header from "../components/Header/Header";
 import EventBusModule from '../services/EventBus';
 import Events from '../services/Events';
+import TrackList from "../components/TrackList/TrackList";
 
 const EventBus = new EventBusModule();
 
@@ -14,11 +15,14 @@ class MainController extends BaseController {
 	}
 
 	onShow() {
+		const header = new Header();
+		header.render('header');
+
+		const trackList = new TrackList();
+		trackList.render('container');
+
 		UserModel.getProfile().then(response =>
 		{
-			const header = new Header();
-			header.render('header');
-
 			if (response.error) {
 
 			} else {

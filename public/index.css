@@ -3,6 +3,7 @@
 @import url('components/LoginForm/LoginForm.css');
 @import url('components/Header/Header.css');
 @import url('components/EditableField/EditableField.css');
+@import url('components/TrackList/TrackList.css');
 
 * {
     margin: 0;
@@ -27,6 +28,7 @@ html {
     --gray: #171717;
     --light-gray: #262626;
     --soft-gray: #383838;
+    --very-light-gray: #f8f8f8;
     --white: #FFFFFF;
     --red: #FF473A;
     --fb-color: #3B5998;
