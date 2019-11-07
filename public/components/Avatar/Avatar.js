@@ -26,10 +26,10 @@ class Avatar extends BaseComponent {
 	}
 
 	updateAvatar(data) {
-		if (data.avatar === ''){
-			this.state.data.src = data.originalAvatar;
-		} else {
+		if (!data.avatar.includes(SERVER_ROOT)) {
 			this.state.data.src = `${SERVER_ROOT}${data.avatar}`;
+		} else {
+			this.state.data.src = data.avatar;
 		}
 
 		this.update(this.state);

@@ -24,7 +24,9 @@ class Header extends BaseComponent {
 	}
 
 	updateUser(data) {
-		data.avatar = `${SERVER_ROOT}${data.avatar}`;
+		if (!data.avatar.includes(SERVER_ROOT)){
+			data.avatar = `${SERVER_ROOT}${data.avatar}`;
+		}
 		this.update({ user: data});
 		this.addProfileLink();
 		this.addLogoutHandler();

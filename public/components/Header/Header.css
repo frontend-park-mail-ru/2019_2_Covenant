@@ -44,6 +44,7 @@
 .header__list_name__link {
     display: block;
     color: var(--white);
+    background-color: var(--gray);
     text-align: center;
     padding: 12px 10px;
     text-decoration: none;
@@ -52,6 +53,7 @@
 .header__list_avatar__link {
     display: block;
     color: var(--white);
+    background-color: var(--gray);
     text-align: center;
     padding: 5px 10px;
     text-decoration: none;
