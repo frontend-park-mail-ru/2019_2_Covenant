@@ -2,6 +2,7 @@ import BaseComponent from '../BaseComponent/BaseComponent';
 import template from './Avatar.pug';
 import EventBusModule from '../../services/EventBus';
 import Events from '../../services/Events';
+import { SERVER_ROOT } from "../../services/Settings";
 
 const EventBus = new EventBusModule();
 
@@ -28,7 +29,7 @@ class Avatar extends BaseComponent {
 		if (data.avatar === ''){
 			this.state.data.src = data.originalAvatar;
 		} else {
-			this.state.data.src = data.avatar;
+			this.state.data.src = `${SERVER_ROOT}${data.avatar}`;
 		}
 
 		this.update(this.state);
