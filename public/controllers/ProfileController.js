@@ -97,7 +97,7 @@ class ProfileController extends BaseController {
 	onUploadAvatar(file) {
 		UserModel.uploadAvatar(file)
 		.then(response => {
-			this.page.user.avatar = response.body;
+			this.page.user = response.body;
 			EventBus.publish(Events.UpdateUser, this.page.user);
 		}).catch(error => {
 			console.log(error);

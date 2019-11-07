@@ -1,4 +1,5 @@
 import HttpModule from '../services/Http';
+import { SERVER_API_PATH } from '../services/Settings';
 
 const Http = new HttpModule();
 
@@ -23,7 +24,7 @@ class UserModel {
 		formData.append('avatar', file);
 		formData.append('name', file.name);
 
-		return fetch('/api/v1/avatar', {
+		return fetch(`${SERVER_API_PATH}/avatar`, {
 			method: 'POST',
 			credentials: 'include',
 			mode: 'cors',

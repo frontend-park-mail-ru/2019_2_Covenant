@@ -97,3 +97,7 @@ html {
 }
 
 /*----------------icons end--------------------*/
+
+.clickable {
+    cursor: pointer;
+}

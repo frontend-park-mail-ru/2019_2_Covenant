@@ -5,6 +5,7 @@ import Urls from '../../services/Urls';
 import EventBusModule from '../../services/EventBus';
 import Events from '../../services/Events';
 import SessionModel from "../../models/SessionModel";
+import { SERVER_ROOT } from "../../services/Settings";
 
 const EventBus = new EventBusModule();
 
@@ -23,6 +24,7 @@ class Header extends BaseComponent {
 	}
 
 	updateUser(data) {
+		data.avatar = `${SERVER_ROOT}${data.avatar}`;
 		this.update({ user: data});
 		this.addProfileLink();
 		this.addLogoutHandler();
