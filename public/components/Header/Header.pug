@@ -1,0 +1,22 @@
+ul(class="header__list")
+    li(class="header__list_home")
+        button(id="main_link" class="header__list_home__btn btn_without_border" type="button") Covenant
+
+    if !user
+        li(class="header__list_signup")
+            button(id="signup_link" class="header__list_signup__btn btn_without_border" type="button") Sign Up
+
+        li(class="header__list_login")
+            button(id="login_link" class="header__list_login__btn btn_without_border" type="button") Log In
+    else
+        li(class="header__list_logout")
+            button(type="button" id="logout_link" class="header__list_logout__link")
+                img(src="img/logout.png" width="34" height="34" alt="logout")
+        li(class="header__list_avatar")
+            button(type="button" id="profile_avatar" class="btn_without_border header__list_avatar__link")
+                if user.avatar !== ''
+                    img(src=user.avatar width="34" height="34" alt="user")
+                else
+                    img(src="img/user.png" width="34" height="34" alt="user")
+        li(class="header__list_name")
+            button(type="button" id="profile_name" class="btn_without_border header__list_name__link") #{user.nickname}

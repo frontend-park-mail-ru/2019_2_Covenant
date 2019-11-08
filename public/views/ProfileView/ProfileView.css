@@ -1,0 +1,119 @@
+.container__profile {
+    width: 1076px;
+    margin: auto;
+}
+
+.profile {
+    margin-bottom: 20px;
+}
+
+.avatar {
+    display: inline-block;
+    padding: 0 20px;
+}
+
+.info {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.info__user {
+
+}
+
+.info__buttons {
+
+}
+.info__buttons__shuffle {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 10px;
+}
+
+.info__buttons__settings {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.btn__shuffle, .btn__settings {
+    background-color: var(--soft-gray);
+    border-radius: 15px;
+    border: none;
+}
+
+.btn__shuffle__label {
+    padding: 5px 30px 5px 5px;
+    vertical-align: middle;
+    font-family: var(--main-font);
+    font-size: 24px;
+    text-align: center;
+    color: var(--white);
+}
+
+.btn__shuffle__img, .btn__shuffle__settings {
+    vertical-align: middle;
+    padding: 5px;
+}
+
+.profile__tracks {
+    overflow-y: scroll;
+    height: 250px;
+}
+
+/*----------------tabs start--------------------*/
+.music {
+    padding: 30px 0 0 20px;
+}
+
+.tabs {
+    list-style-type: none;
+    position: relative;
+}
+.tabs:after {
+    content: "";
+    clear: both;
+    display: block;
+    height: 120px;
+}
+.tab__label {
+    font-family: var(--main-font);
+    color: var(--white);
+}
+
+.tabs li {
+    float: left;
+}
+.tabs li > input {
+    display: none;
+}
+.tabs li > label {
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    padding: 5px 20px;
+    cursor: pointer;
+}
+.tabs li:last-child > label {
+    border-right-width: 1px;
+}
+.tabs .tab-content {
+    display: none;
+    position: absolute;
+    left: 0;
+    padding: 20px;
+    border-top: 1px solid #999;
+    height: 120px;
+    overflow-y: auto;
+    font-family: var(--main-font);
+    color: var(--white);
+}
+
+.tabs li > input:checked + label {
+    background-color: #999;
+}
+
+.tabs li > input:checked ~ .tab-content {
+    display: block;
+}
+
+/*----------------tabs end--------------------*/

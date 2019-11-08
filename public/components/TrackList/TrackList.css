@@ -1,0 +1,99 @@
+.track-list-container {
+    font-family: var(--main-font);
+    color: var(--white);
+    margin: 60px auto 60px auto;
+    width: 60%;
+    height: max-content;
+}
+
+.track-list-container__left {
+    float: left;
+    font-family: var(--main-font);
+    color: var(--white);
+    width: 100%;
+    height: max-content;
+}
+
+.col-2 {
+    column-count: 2;
+}
+
+.track-list {
+    list-style-type: none;
+}
+
+.track-list-container__title {
+    width: 100%;
+    padding-bottom: 10px;
+    font-weight: bolder;
+    color: var(--very-light-gray);
+}
+
+.track-container {
+    height: 40px;
+    margin-bottom: 15px;
+}
+
+.track-container__inner {
+
+}
+
+.track__avatar {
+    display: inline-block;
+}
+
+.track__name__block {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.track__name {
+    display: block;
+    vertical-align: top;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.track__artist {
+    display: block;
+    vertical-align: top;
+    font-size: 16px;
+    margin-left: 10px;
+}
+
+.track__duration, .track__like {
+    display: inline-block;
+    vertical-align: center;
+}
+
+.pull-right {
+    float: right;
+    margin-right: 10px;
+}
+
+
+.track__like_btn {
+    text-decoration: none;
+    background-color: var(--gray);
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    vertical-align: top;
+}
+
+.track__avatar_img {
+    border-radius: 3px;
+    width: 34px;
+    height: 34px;
+    background: url("../../img/dance.jpg") no-repeat center/contain;
+}
+
+.track__avatar_img:hover {
+    background: url("../../img/play_dark.png") no-repeat center/contain;
+}
+
+.track__pause_img {
+    width: 34px;
+    height: 34px;
+    background: url("../../img/pause.png") no-repeat center/contain;
+}
