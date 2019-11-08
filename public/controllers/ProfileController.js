@@ -6,6 +6,8 @@ import EditableField from '../components/EditableField/EditableField';
 import BaseController from "./BaseController";
 import Header from "../components/Header/Header";
 import Urls from "../services/Urls";
+import TrackList from "../components/TrackList/TrackList";
+import TrackModel from "../models/TrackModel";
 
 const EventBus = new EventBusModule();
 
@@ -31,6 +33,7 @@ class ProfileController extends BaseController {
 				this.mountHeader();
 				this.mountAvatar();
 				this.mountEditableName();
+				this.mountTracks();
 
 				EventBus.publish(Events.UpdateUser, response.body);
 
@@ -62,6 +65,28 @@ class ProfileController extends BaseController {
 			onSave: this.onSave
 		});
 		editableField.render('info-user');
+	}
+
+	mountTracks() {
+		TrackModel.favourites()
+		.then(response => {
+			if (!response.error) {
+				const tracks = response.body;
+
+				const trackList = new TrackList({
+					containerClasssName: 'track-list-container__left',
+					title: 'My favourites',
+					tracks: tracks
+				});
+				trackList.render('profile__tracks');
+
+			} else {
+				console.log(response.error);
+			}
+		})
+		.catch(error => {
+			console.log(error);
+		});
 	}
 
 	onSave(fieldValue) {

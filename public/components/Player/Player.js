@@ -12,13 +12,16 @@ class Player {
 	}
 
 	play(url) {
-		this.audioTrack = new Audio(`${SERVER_ROOT}${url}`);
+		if (!this.audioTrack) {
+			this.audioTrack = new Audio(`${SERVER_ROOT}${url}`);
+		}
 		this.audioTrack.play();
 	}
 
 	pause() {
-		if (this.audioTrack) {}
-		this.audioTrack.pause();
+		if (this.audioTrack) {
+			this.audioTrack.pause();
+		}
 	}
 }
 

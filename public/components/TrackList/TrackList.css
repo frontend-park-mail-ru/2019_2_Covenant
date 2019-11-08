@@ -6,6 +6,14 @@
     height: max-content;
 }
 
+.track-list-container__left {
+    float: left;
+    font-family: var(--main-font);
+    color: var(--white);
+    width: 100%;
+    height: max-content;
+}
+
 .col-2 {
     column-count: 2;
 }

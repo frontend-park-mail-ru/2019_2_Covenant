@@ -4,7 +4,7 @@
 }
 
 .profile {
-
+    margin-bottom: 20px;
 }
 
 .avatar {
@@ -56,7 +56,8 @@
 }
 
 .profile__tracks {
-
+    overflow-y: scroll;
+    height: 250px;
 }
 
 /*----------------tabs start--------------------*/

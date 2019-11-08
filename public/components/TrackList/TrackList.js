@@ -4,8 +4,12 @@ import TrackModel from "../../models/TrackModel";
 import Player from "../Player/Player";
 
 class TrackList extends BaseComponent{
-	constructor() {
+	constructor({ containerClasssName = 'track-list-container',
+		          title = 'Track List',
+	              tracks = [] } = {}) {
 		const state = {
+			containerClasssName: containerClasssName,
+			title: title,
 			tracks: [],
 			favs: null
 		};
@@ -18,25 +22,18 @@ class TrackList extends BaseComponent{
 		this.playTrack = this.playTrack.bind(this);
 		this.pauseTrack = this.pauseTrack.bind(this);
 
-		this.loadTracks();
+		this.setTracks(tracks);
 		this.loadFavourites();
 	}
 
-	loadTracks() {
-		TrackModel.popular()
-		.then(response => {
-			if (!response.error) {
-				const tracks = response.body;
-				this.convertDuration(tracks);
-				this.state.tracks = tracks;
-				this.updateState();
-			} else {
-				console.log(response.error);
-			}
-		})
-		.catch(error => {
-			console.log(error);
-		});
+	onRender() {
+		this.setHandlers();
+	}
+
+	setTracks(tracks) {
+		this.convertDuration(tracks);
+		this.state.tracks = tracks;
+		this.updateState();
 	}
 
 	loadFavourites() {
@@ -102,24 +99,28 @@ class TrackList extends BaseComponent{
 	}
 
 	playTrack(track) {
+		Player.play(track.path);
+
 		const index = this.state.tracks.indexOf(track);
 		this.state.tracks[index].isPlaying = true;
 		this.updateState();
-
-		Player.play(track.path);
 	}
 
 	pauseTrack(track) {
+		Player.pause();
+
 		const index = this.state.tracks.indexOf(track);
 		this.state.tracks[index].isPlaying = false;
 		this.updateState();
-
-		Player.pause(track.path);
 	}
 
 	updateState() {
 		this.update(this.state);
 
+		this.setHandlers();
+	}
+
+	setHandlers() {
 		this.setHandlersForTracks({ className: 'like', handler: this.addToFavourites });
 		this.setHandlersForTracks({ className: 'dislike', handler: this.removeFromFavourites });
 		this.setHandlersForTracks({ className: 'avatar_img', handler: this.playTrack });

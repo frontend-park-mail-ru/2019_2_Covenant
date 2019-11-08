@@ -1,5 +1,6 @@
-div(class="track-list-container" id="track-container")
-    h1(class="track-list-container__title") Popular Tracks
+div(class=containerClasssName id="track-container")
+    if title !== ''
+        h1(class="track-list-container__title") #{title}
     ul(class="track-list col-2")
         each track in tracks
             li
