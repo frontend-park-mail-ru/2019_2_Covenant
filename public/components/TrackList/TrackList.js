@@ -13,6 +13,7 @@ class TrackList extends BaseComponent{
 		this.state = state;
 		this.checkFavourite = this.checkFavourite.bind(this);
 		this.addToFavourites = this.addToFavourites.bind(this);
+		this.removeFromFavourites = this.removeFromFavourites.bind(this);
 
 		this.loadTracks();
 		this.loadFavourites();
@@ -70,6 +71,24 @@ class TrackList extends BaseComponent{
 		});
 	}
 
+	removeFromFavourites(favouriteTrack) {
+		TrackModel.removeFromFavourites(favouriteTrack.id)
+		.then(response => {
+			if (!response.error) {
+				const fav = this.state.favs.find(item =>  {
+					return item.id === favouriteTrack.id;
+				});
+				const favIndex = this.state.favs.indexOf(fav);
+				this.state.favs.splice(favIndex, 1);
+
+				this.updateState();
+			}
+		})
+		.catch(error => {
+			console.log(error);
+		});
+	}
+
 	convertDuration(tracks) {
 		tracks.map(track => {
 			const durationStr = track.duration;
@@ -81,7 +100,22 @@ class TrackList extends BaseComponent{
 
 	updateState() {
 		this.update(this.state);
-		this.addHandlers();
+
+		this.setHandlersForTracks({ className: 'like', handler: this.addToFavourites});
+		this.setHandlersForTracks({ className: 'dislike', handler: this.removeFromFavourites});
+	}
+
+	setHandlersForTracks({className = '', handler = () => {}}) {
+		const btns = document.getElementsByName(className);
+		btns.forEach(btn => {
+			const id = +btn.id;
+			btn.addEventListener('click', () => {
+				const track = this.state.tracks.find(item =>  { return item.id === id; } );
+				if (track) {
+					handler(track);
+				}
+			});
+		});
 	}
 
 	addHandlers() {
