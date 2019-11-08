@@ -1,6 +1,7 @@
 import BaseComponent from "../BaseComponent/BaseComponent";
 import template from '../TrackList/TrackList.pug';
 import TrackModel from "../../models/TrackModel";
+import Player from "../Player/Player";
 
 class TrackList extends BaseComponent{
 	constructor() {
@@ -14,6 +15,8 @@ class TrackList extends BaseComponent{
 		this.checkFavourite = this.checkFavourite.bind(this);
 		this.addToFavourites = this.addToFavourites.bind(this);
 		this.removeFromFavourites = this.removeFromFavourites.bind(this);
+		this.playTrack = this.playTrack.bind(this);
+		this.pauseTrack = this.pauseTrack.bind(this);
 
 		this.loadTracks();
 		this.loadFavourites();
@@ -98,11 +101,29 @@ class TrackList extends BaseComponent{
 		})
 	}
 
+	playTrack(track) {
+		const index = this.state.tracks.indexOf(track);
+		this.state.tracks[index].isPlaying = true;
+		this.updateState();
+
+		Player.play(track.path);
+	}
+
+	pauseTrack(track) {
+		const index = this.state.tracks.indexOf(track);
+		this.state.tracks[index].isPlaying = false;
+		this.updateState();
+
+		Player.pause(track.path);
+	}
+
 	updateState() {
 		this.update(this.state);
 
-		this.setHandlersForTracks({ className: 'like', handler: this.addToFavourites});
-		this.setHandlersForTracks({ className: 'dislike', handler: this.removeFromFavourites});
+		this.setHandlersForTracks({ className: 'like', handler: this.addToFavourites });
+		this.setHandlersForTracks({ className: 'dislike', handler: this.removeFromFavourites });
+		this.setHandlersForTracks({ className: 'avatar_img', handler: this.playTrack });
+		this.setHandlersForTracks({ className: 'pause_img', handler: this.pauseTrack });
 	}
 
 	setHandlersForTracks({className = '', handler = () => {}}) {
@@ -113,19 +134,6 @@ class TrackList extends BaseComponent{
 				const track = this.state.tracks.find(item =>  { return item.id === id; } );
 				if (track) {
 					handler(track);
-				}
-			});
-		});
-	}
-
-	addHandlers() {
-		const likesBtn = document.getElementsByName('like');
-		likesBtn.forEach(likeBtn => {
-			const id = +likeBtn.id;
-			likeBtn.addEventListener('click', () => {
-				const track = this.state.tracks.find(item =>  { return item.id === id; } );
-				if (track) {
-					this.addToFavourites(track);
 				}
 			});
 		});

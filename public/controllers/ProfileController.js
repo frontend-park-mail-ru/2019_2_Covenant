@@ -14,21 +14,7 @@ class ProfileController extends BaseController {
 		super(view);
 		this.title = 'Profile Page';
 
-		const info = 'Lorem ipsum dolor sit amet, ' +
-			'consectetur adipisicing elit, sed do eiusmod tempor incididunt ' +
-			'ut labore et dolore magna aliqua.';
-
-		const tabs = [
-			{ name: 'Tracks', text: info },
-			{ name: 'History', text: info },
-			{ name: 'Albums', text: info },
-			{ name: 'Artists', text: info },
-			{ name: 'Playlists', text: info },
-			{ name: 'Friends', text: info }
-		];
-
 		this.page = {
-			tabs: tabs,
 			user: null
 		};
 

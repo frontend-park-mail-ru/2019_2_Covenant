@@ -6,7 +6,10 @@ div(class="track-list-container" id="track-container")
                 div(class="track-container")
                     div(class="track-container__inner")
                         div(class="track__avatar")
-                            img(class="track__avatar__img" src="img/dance.jpg" width="34" height="34" alt="track")
+                            if !track.isPlaying
+                                div(class="track__avatar_img clickable" id=track.id name="avatar_img")
+                            else
+                                div(class="track__pause_img clickable" id=track.id name="pause_img")
                         div(class="track__name__block")
                             div(class="track__name") #{track.name}
                             div(class="track__artist") #{track.artist}

@@ -64,10 +64,6 @@
 }
 
 
-.track__avatar__img {
-    border-radius: 3px;
-}
-
 .track__like_btn {
     text-decoration: none;
     background-color: var(--gray);
@@ -75,4 +71,21 @@
     cursor: pointer;
     border-radius: 10px;
     vertical-align: top;
+}
+
+.track__avatar_img {
+    border-radius: 3px;
+    width: 34px;
+    height: 34px;
+    background: url("../../img/dance.jpg") no-repeat center/contain;
+}
+
+.track__avatar_img:hover {
+    background: url("../../img/play_dark.png") no-repeat center/contain;
+}
+
+.track__pause_img {
+    width: 34px;
+    height: 34px;
+    background: url("../../img/pause.png") no-repeat center/contain;
 }

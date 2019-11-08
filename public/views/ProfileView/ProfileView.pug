@@ -16,17 +16,5 @@ div(class="container" id="container")
 					div(class="info__buttons__settings")
 						button(class="btn__settings" type="button")
 							img(class="btn__shuffle__settings" src="img/settings_dark.png" width="32" height="32" alt="settings")
-
-		if tabs
-			div(class="music")
-				ul(class="tabs")
-					each tab, index in tabs
-						li
-							if index === 0
-								input(type="radio" name="tabs" id="tab-"+index checked)
-							else
-								input(type="radio" name="tabs" id="tab-"+index)
-							label(class="tab__label" for="tab-"+index) #{tab.name}
-							div(class="tab-content") #{tab.text}
-
+			div(class="profile__tracks" id="profile__tracks")
 div(class="footer")
