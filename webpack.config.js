@@ -1,5 +1,6 @@
 const path = require('path');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
     mode: 'development',
@@ -8,8 +9,25 @@ module.exports = {
         filename: 'bundle.js',
         path:  __dirname +'/public/build',
     },
+    plugins: [
+        new ExtractTextPlugin('bundle.css')
+    ],
     module: {
         rules: [
+            {
+                test: /\.scss$/,
+                use: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: ['css-loader', 'sass-loader']
+                })
+            },
+            {
+                test: /\.(png|jpeg|jpg|ttf)$/,
+                use: [
+                    { loader: 'url-loader', options: { limit: 8192 } }
+                    // limit => file.size =< 8192 bytes ? DataURI : File
+                ]
+            },
             {
                 test: /\.js$/,
                 exclude: /node_modules/,

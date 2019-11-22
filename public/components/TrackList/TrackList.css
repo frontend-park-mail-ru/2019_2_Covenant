@@ -85,15 +85,15 @@
     border-radius: 3px;
     width: 34px;
     height: 34px;
-    background: url("../../img/dance.jpg") no-repeat center/contain;
+    background: url("./dance.jpg") no-repeat center/contain;
 }
 
 .track__avatar_img:hover {
-    background: url("../../img/play_dark.png") no-repeat center/contain;
+    background: url("play_dark.png") no-repeat center/contain;
 }
 
 .track__pause_img {
     width: 34px;
     height: 34px;
-    background: url("../../img/pause.png") no-repeat center/contain;
+    background: url("pause.png") no-repeat center/contain;
 }
