@@ -1,15 +1,13 @@
 import UserModel from '../models/UserModel';
 import Events from '../services/Events';
-import EventBusModule from '../services/EventBus';
+import EventBus from '../services/EventBus';
 import Avatar from '../components/Avatar/Avatar';
 import EditableField from '../components/EditableField/EditableField';
-import BaseController from "./BaseController";
-import Header from "../components/Header/Header";
-import Urls from "../services/Urls";
-import TrackList from "../components/TrackList/TrackList";
-import TrackModel from "../models/TrackModel";
-
-const EventBus = new EventBusModule();
+import BaseController from './BaseController';
+import Header from '../components/Header/Header';
+import Urls from '../services/Urls';
+import TrackList from '../components/TrackList/TrackList';
+import TrackModel from '../models/TrackModel';
 
 class ProfileController extends BaseController {
 	constructor(view) {

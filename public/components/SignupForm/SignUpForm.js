@@ -4,9 +4,7 @@ import Input from '../Input/Input';
 import SessionModel from '../../models/SessionModel';
 import Events from '../../services/Events';
 import Urls from '../../services/Urls';
-import EventBusModule from '../../services/EventBus';
-
-const EventBus = new EventBusModule();
+import EventBus from '../../services/EventBus';
 
 class SignUpForm extends  BaseComponent {
 	constructor() {

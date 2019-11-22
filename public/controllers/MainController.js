@@ -1,12 +1,10 @@
 import BaseController from './BaseController';
-import UserModel from "../models/UserModel";
-import Header from "../components/Header/Header";
-import EventBusModule from '../services/EventBus';
+import UserModel from '../models/UserModel';
+import Header from '../components/Header/Header';
+import EventBus from '../services/EventBus';
 import Events from '../services/Events';
-import TrackList from "../components/TrackList/TrackList";
-import TrackModel from "../models/TrackModel";
-
-const EventBus = new EventBusModule();
+import TrackList from '../components/TrackList/TrackList';
+import TrackModel from '../models/TrackModel';
 
 class MainController extends BaseController {
 	constructor(view){

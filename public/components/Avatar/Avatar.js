@@ -1,10 +1,8 @@
 import BaseComponent from '../BaseComponent/BaseComponent';
 import template from './Avatar.pug';
-import EventBusModule from '../../services/EventBus';
+import EventBus from '../../services/EventBus';
 import Events from '../../services/Events';
-import { SERVER_ROOT } from "../../services/Settings";
-
-const EventBus = new EventBusModule();
+import { SERVER_ROOT } from '../../services/Settings';
 
 class Avatar extends BaseComponent {
 	constructor({width = 100, height = 100, src = 'img/user_profile.png', alt = 'avatar', onUpload = {}, accept='.png' } = {}) {

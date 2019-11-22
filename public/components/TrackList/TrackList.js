@@ -1,12 +1,10 @@
-import BaseComponent from "../BaseComponent/BaseComponent";
+import BaseComponent from '../BaseComponent/BaseComponent';
 import template from '../TrackList/TrackList.pug';
-import TrackModel from "../../models/TrackModel";
-import Player from "../Player/Player";
+import TrackModel from '../../models/TrackModel';
+import Player from '../Player/Player';
 
 class TrackList extends BaseComponent{
-	constructor({ containerClasssName = 'track-list-container',
-		          title = 'Track List',
-	              tracks = [] } = {}) {
+	constructor({ containerClasssName = 'track-list-container',  title = 'Track List', tracks = [] } = {}) {
 		const state = {
 			containerClasssName: containerClasssName,
 			title: title,

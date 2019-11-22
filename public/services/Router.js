@@ -11,9 +11,7 @@ import profileView from '../views/ProfileView/ProfileView';
 // Utils
 import Urls from './Urls.js';
 import Events from './Events';
-import EventBusModule from './EventBus';
-
-const EventBus = new EventBusModule();
+import EventBus from './EventBus';
 
 class Router {
 

@@ -1,12 +1,10 @@
 import template from './LoginForm.pug';
-import EventBusModule from '../../services/EventBus';
+import EventBus from '../../services/EventBus';
 import SessionModel from '../../models/SessionModel';
 import Events from '../../services/Events';
 import Urls from '../../services/Urls';
 import BaseComponent from '../BaseComponent/BaseComponent';
 import Input from '../Input/Input';
-
-const EventBus = new EventBusModule();
 
 class LoginForm extends BaseComponent {
 	constructor() {

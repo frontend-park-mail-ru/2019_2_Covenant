@@ -1,9 +1,7 @@
 import BaseComponent from '../BaseComponent/BaseComponent';
 import template from './EditableField.pug';
-import EventBusModule from '../../services/EventBus';
+import EventBus from '../../services/EventBus';
 import Events from '../../services/Events';
-
-const EventBus = new EventBusModule();
 
 class EditableField extends BaseComponent {
 	constructor({onSave = {}} = () => {} ) {

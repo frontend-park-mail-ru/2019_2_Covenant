@@ -2,12 +2,10 @@ import BaseComponent from '../BaseComponent/BaseComponent';
 import template from './Header.pug';
 import Link from '../Link/Link';
 import Urls from '../../services/Urls';
-import EventBusModule from '../../services/EventBus';
+import EventBus from '../../services/EventBus';
 import Events from '../../services/Events';
-import SessionModel from "../../models/SessionModel";
-import { SERVER_ROOT } from "../../services/Settings";
-
-const EventBus = new EventBusModule();
+import SessionModel from '../../models/SessionModel';
+import { SERVER_ROOT } from '../../services/Settings';
 
 class Header extends BaseComponent {
 	constructor() {

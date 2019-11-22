@@ -1,4 +1,4 @@
-import { SERVER_ROOT } from "../../services/Settings";
+import { SERVER_ROOT } from '../../services/Settings';
 
 class Player {
 	constructor() {

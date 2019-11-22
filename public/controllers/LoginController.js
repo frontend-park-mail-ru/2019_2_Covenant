@@ -1,12 +1,10 @@
 import LoginForm from '../components/LoginForm/LoginForm';
-import BaseController from "./BaseController";
-import UserModel from "../models/UserModel";
-import Header from "../components/Header/Header";
-import EventBusModule from '../services/EventBus';
+import BaseController from './BaseController';
+import UserModel from '../models/UserModel';
+import Header from '../components/Header/Header';
+import EventBus from '../services/EventBus';
 import Events from '../services/Events';
 import Urls from '../services/Urls';
-
-const EventBus = new EventBusModule();
 
 
 class LoginController extends  BaseController {
