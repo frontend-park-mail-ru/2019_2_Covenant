@@ -9,7 +9,7 @@ import ContentController from '../controllers/ContentController';
 import mainView from '../views/MainView/MainView.js';
 import profileView from '../views/ProfileView/ProfileView';
 import homeView from '../views/HomeView/HomeView';
-
+import emptyView from '../views/EmptyView/EmptyView';
 
 // Utils
 import Urls from './Urls.js';
@@ -22,8 +22,8 @@ class Router {
 
 		this.routes = {};
 		this.routes[Urls.MainUrl] = new MainController(mainView);
-		this.routes[Urls.LoginUrl] = new LoginController(mainView);
-		this.routes[Urls.SignupUrl] = new SignupController(mainView);
+		this.routes[Urls.LoginUrl] = new LoginController(emptyView);
+		this.routes[Urls.SignupUrl] = new SignupController(emptyView);
 		this.routes[Urls.ProfileUrl]= new ProfileController(profileView);
 		this.routes[Urls.Home] = new ContentController(homeView);
 

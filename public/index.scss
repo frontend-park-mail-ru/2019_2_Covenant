@@ -150,3 +150,74 @@
     cursor: pointer;
     font-weight: bold;
 }
+
+
+/******************* form start *******************/
+
+.form_background {
+    height: 100vh;
+    display: flex;
+    background-color: #00000022;
+    color: $font-color;
+}
+
+.form_wrapper {
+    margin: auto;
+    background-color: var(--form_bg);
+    border-radius: 50px;
+    padding: 5vh 15px;
+    display: flex;
+    align-items: center; /* horizontal */
+    justify-content: center; /* vertical */
+}
+
+$body_gradient_left: #7200D0;
+$body_gradient_right: #C800C1;
+$form_bg: #ffffff;
+$input_bg: #E5E5E5;
+$input_hover: #eaeaea;
+$submit_bg: #1FCC44;
+$submit_hover: #40e263;
+$icon_color: #6b6b6b;
+
+.form_inner {
+    width: 500px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 20px;
+    padding: 20% 20%;
+    background-color: #ffffff;
+    border-radius: 50px;
+}
+
+.input_label {
+    font-size: 14px;
+}
+
+.input_container:hover {
+    background-color: $input_hover;
+}
+
+.input_container {
+    height: 60px;
+    width: 100%;
+    border-bottom: solid 1px #1F2F5B;
+}
+
+.input_field {
+    /* customize the input tag with lighter font and some padding*/
+    color: $icon_color;
+    background-color: inherit;
+    width: 90%;
+    border: none;
+    font-size: 1.3rem;
+    font-weight: 400;
+    outline: none;
+}
+.text-center {
+    text-align: center;
+}
+
+
+
+/******************* form end *******************/

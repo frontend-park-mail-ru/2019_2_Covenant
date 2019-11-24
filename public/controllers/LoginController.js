@@ -1,7 +1,6 @@
 import LoginForm from '../components/LoginForm/LoginForm';
 import BaseController from './BaseController';
 import UserModel from '../models/UserModel';
-import Header from '../components/Header/Header';
 import EventBus from '../services/EventBus';
 import Events from '../services/Events';
 import Urls from '../services/Urls';
@@ -15,11 +14,8 @@ class LoginController extends  BaseController {
 	}
 
 	onShow() {
-		const header = new Header();
-		header.render('header');
-
 		const form = new LoginForm();
-		form.render('container');
+		form.render('body');
 
 		UserModel.getProfile().then(response =>
 		{

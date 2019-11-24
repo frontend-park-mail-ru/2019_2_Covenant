@@ -10,18 +10,19 @@ class LoginForm extends BaseComponent {
 	constructor() {
 		super(template);
 
+		this.handlerSubmit();
+	}
+
+	onRender() {
 		this.emailInput = new Input({
-			inputClass: 'login__email_input',
-			errorClass: 'login__email_error',
-			component: this.element
-		});
-		this.passwordInput = new Input({
-			inputClass: 'login__password_input',
-			errorClass: 'login__password_error',
-			component: this.element
+			inputId: 'login__email_input',
+			errorId: 'login__email_error'
 		});
 
-		this.handlerSubmit();
+		this.passwordInput = new Input({
+			inputId: 'login__password_input',
+			errorId: 'login__password_error'
+		});
 	}
 
 	isValid() {
@@ -42,11 +43,6 @@ class LoginForm extends BaseComponent {
 		return valid;
 	}
 
-	setFormError(text) {
-		const submitError = document.getElementsByClassName('login__error')[0];
-		submitError.innerText = text;
-	}
-
 	submit() {
 		const form = {
 			email: this.emailInput.value,
@@ -56,7 +52,7 @@ class LoginForm extends BaseComponent {
 		SessionModel.login(form)
 			.then(response => {
 				if (response.error) {
-					this.setFormError(response.error);
+					console.log(response.error);
 				} else {
 					EventBus.publish(Events.ChangeRoute, {newUrl: Urls.ProfileUrl});
 				}

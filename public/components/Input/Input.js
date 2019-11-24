@@ -1,8 +1,8 @@
 
 class Input {
-	constructor({inputClass = '', errorClass = '', component = null} = {}) {
-		this.input =  component.getElementsByClassName(inputClass)[0];
-		this.error = component.getElementsByClassName(errorClass)[0];
+	constructor({inputId = '', errorId = ''} = {}) {
+		this.input =  document.getElementById(inputId);
+		this.error = document.getElementById(errorId);
 	}
 
 	get value() {
@@ -10,11 +10,15 @@ class Input {
 	}
 
 	setError(text) {
-		this.error.innerText = text;
+		if (this.error) {
+			this.error.innerText = text;
+		}
 	}
 
 	clearError() {
-		this.error.innerText = '';
+		if (this.error) {
+			this.error.innerText = '';
+		}
 	}
 }
 

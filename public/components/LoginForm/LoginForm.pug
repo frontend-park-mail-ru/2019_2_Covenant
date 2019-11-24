@@ -1,20 +1,11 @@
-form(class="login" id="login-form")
-    h1(class="login__title") Log In
-
-    div(class="login__email")
-        label(class="login__email_label" for="login__email_input") E-mail
-        input(class="login__email_input" id="login__email_input" name="login__email_input" type="text")
-        div(class="login__email_error" id="error__email")
-
-    div(class="login__password")
-        label(class="login__password_label" for="login__password_input") Password
-        input(class="login__password_input" id="login__password_input" name="login__password_input" type="password")
-        div(class="login__password_error" id="error__password")
-
-    div(class="login__submit")
-        button(class="login__submit_button" type="submit") Log In
-        div(class="login__error" id="error__submit")
-
-    div(class="login__addition")
-        a(class="login__forgot_password" href="#") Forgot your password?
-        a(class="login__registration" href="#") Don’t have an account?
+form(class="form_wrapper")
+    div(class="form_inner")
+        h1(class="text-center")="Log In"
+        div(class="input_container")
+            label(for="login__email_input" class="input_label")="Email"
+            input(class="input_field" type="email" name="Email" id="login__email_input")
+        div(class="input_container")
+            label(for="login__password_input" class="input_label")="Password"
+            input(class="input_field" type="password" name="Password" id="login__password_input")
+        button(type="submit" class="form_btn")="Log In"
+        span(class="link" id="no-account-link")="Don't have an account?"
