@@ -1,0 +1,21 @@
+div(class="menu")
+    div(class="menu-title")
+        div(class="menu-title__img")
+            img(class="logo" src="img/record.png" alt="img")
+        div(class="menu-title__label")="Covenant"
+    ul(class="menu-list")
+        each item in defaultMenuItems
+            li(class="menu-list__item")
+                div(class="menu-list__img")
+                    img(class="menu-list__img-inner" src=item.imgPath alt="img")
+                div(class="menu-list__label" id=item.id)=item.title
+
+        if (userMenuItems.length !== 0)
+            li(class="menu-list__item")
+                div(class="menu-list__separator")="Your Collection"
+
+            each item in userMenuItems
+                li(class="menu-list__item")
+                    div(class="menu-list__img")
+                        img(class="menu-list__img-inner" src=item.imgPath alt="img")
+                    div(class="menu-list__label" id=item.id)=item.title

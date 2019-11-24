@@ -3,10 +3,13 @@ import MainController from '../controllers/MainController.js';
 import LoginController from '../controllers/LoginController.js';
 import SignupController from '../controllers/SignupController.js';
 import ProfileController from '../controllers/ProfileController';
+import ContentController from '../controllers/ContentController';
 
 // Views
 import mainView from '../views/MainView/MainView.js';
 import profileView from '../views/ProfileView/ProfileView';
+import homeView from '../views/HomeView/HomeView';
+
 
 // Utils
 import Urls from './Urls.js';
@@ -22,6 +25,7 @@ class Router {
 		this.routes[Urls.LoginUrl] = new LoginController(mainView);
 		this.routes[Urls.SignupUrl] = new SignupController(mainView);
 		this.routes[Urls.ProfileUrl]= new ProfileController(profileView);
+		this.routes[Urls.Home] = new ContentController(homeView);
 
 		this.eventHandler = this.eventHandler.bind(this);
 		EventBus.subscribe(Events.ChangeRoute, this.eventHandler);

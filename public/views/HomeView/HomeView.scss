@@ -1,0 +1,35 @@
+@import "../../vars";
+
+.wrapper {
+  height: calc(100vh - 80px);
+  background-color: $background-color;
+  overflow-y: auto;
+}
+
+.content-container {
+  background-color: $background-accent-color;
+  border-radius: $border-radius-content 0 0 0;
+  width: calc(100% - 250px);
+  margin-left: auto;
+}
+
+.content-container-grid {
+  display: grid;
+  grid-template-rows: [header] $header-height [body] auto;
+}
+
+.player {
+  height: 80px;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  background-color: $player-color;
+  border-top: $border-color solid 1px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.player-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}

@@ -5,15 +5,16 @@
 @import url('components/EditableField/EditableField.css');
 @import url('components/TrackList/TrackList.css');
 @import "components/Menu/Menu";
+@import "components/Home/AlbumList/AlbumList";
+@import "views/HomeView/HomeView";
 @import "vars";
 
 * {
     margin: 0;
     padding: 0;
-}
-
-html {
-    position:relative; min-height:100%;
+    font-family: $font, sans-serif;
+    text-decoration: none;
+    box-sizing: border-box;
 }
 
 @font-face {
