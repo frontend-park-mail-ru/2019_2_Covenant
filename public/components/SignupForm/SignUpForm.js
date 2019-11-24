@@ -10,24 +10,23 @@ class SignUpForm extends  BaseComponent {
 	constructor() {
 		super(template);
 
+		this.handlerSubmit();
+	}
+
+	onRender() {
 		this.emailInput = new Input({
-			inputClass: 'signup__email_input',
-			errorClass: 'signup__email_error',
-			component: this.element
+			inputId: 'signup__email_input'
+		});
+		this.nicknameInput = new Input({
+			inputId: 'signup__nick_input'
 		});
 		this.passwordInput = new Input({
-			inputClass: 'signup__password_input',
-			errorClass: 'signup__password_error',
-			component: this.element
+			inputId: 'signup__password_input'
 		});
 
 		this.repeatPasswordInput = new Input({
-			inputClass: 'signup__repeat_password_input',
-			errorClass: 'signup__repeat_error',
-			component: this.element
+			inputId: 'signup__repeat_password_input'
 		});
-
-		this.handlerSubmit();
 	}
 
 	handlerSubmit() {
@@ -45,6 +44,7 @@ class SignUpForm extends  BaseComponent {
 
 	clearErrors() {
 		this.emailInput.clearError();
+		this.nicknameInput.clearError();
 		this.passwordInput.clearError();
 		this.repeatPasswordInput.clearError();
 	}
@@ -54,9 +54,15 @@ class SignUpForm extends  BaseComponent {
 
 		const emailValid = this.emailInput.value !== '';
 		const passwordValid = this.passwordInput.value !== '';
+		const nickValid = this.nicknameInput.value !== '';
 		const repeatValid = this.passwordInput.value === this.repeatPasswordInput.value;
 		if (!emailValid) {
 			this.emailInput.setError('Please input your email.');
+			valid = false;
+		}
+
+		if (!nickValid) {
+			this.nicknameInput.setError('Please input your nickname.');
 			valid = false;
 		}
 
@@ -73,22 +79,24 @@ class SignUpForm extends  BaseComponent {
 		return valid;
 	}
 
+	/*
 	setFormError(text) {
 		const submitError = document.getElementsByClassName('signup__submit_error')[0];
 		submitError.innerText = text;
 	}
+	*/
 
 	submit() {
 		const form = {
 			email: this.emailInput.value,
 			password: this.passwordInput.value,
-			nickname: this.emailInput.value
+			nickname: this.nicknameInput.value
 		};
 
 		SessionModel.signUp(form)
 			.then(response => {
 				if (response.error) {
-					this.setFormError(response.error);
+					console.log(response.error);
 				} else {
 					EventBus.publish(Events.ChangeRoute, { newUrl: Urls.ProfileUrl });
 				}
