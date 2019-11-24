@@ -14,6 +14,11 @@ class NewHeader extends BaseComponent {
 		EventBus.subscribe(Events.UpdateUser, this.updateUser);
 	}
 
+	onRender() {
+		new Link({elementId: 'signup_link', eventType: 'click', route: Urls.SignupUrl});
+		new Link({elementId: 'login_link', eventType: 'click', route: Urls.LoginUrl});
+	}
+
 	updateUser(data) {
 		if (!data.avatar.includes(SERVER_ROOT)){
 			data.avatar = `${SERVER_ROOT}${data.avatar}`;

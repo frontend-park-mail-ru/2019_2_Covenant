@@ -8,10 +8,10 @@ div(class="header header-grid")
 	div(class="header__user-container")
 		if (!user)
 			div(class="header__link-container")
-				div(class="header__link")="Sign Up"
-				div(class="header__link")="Log In"
+				div(class="header__link" id="signup_link")="Sign Up"
+				div(class="header__link" id="login_link")="Log In"
 		else
 			div(class="header__user-container-inner")
-				div(class="user-nickname pr-10")="Adam Brody"
+				div(class="user-nickname pr-10" id="profile_name")=user.nickname
 				div(class="user-logo")
-					img(class="user-logo__img" src="img/brody.png" alt="img")
+					img(class="user-logo__img" src=user.avatar alt="img" id="profile_avatar")
