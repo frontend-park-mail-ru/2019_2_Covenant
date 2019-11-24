@@ -1,5 +1,6 @@
 import BaseController from './BaseController';
 import Menu from '../components/Menu/Menu';
+import NewHeader from '../components/NewHeader/NewHeader';
 
 class ContentController extends BaseController {
     constructor(view) {
@@ -7,11 +8,16 @@ class ContentController extends BaseController {
     }
 
     onShow() {
+
+        const header = new NewHeader();
+        header.render('header');
+
         const menu = new Menu();
-        menu.render('wrapper');
-        // menu
-        // header
-        // content: albumList,
+        menu.render('menu');
+
+    }
+
+    renderContent() {
 
     }
 }

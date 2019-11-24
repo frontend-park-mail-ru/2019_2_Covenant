@@ -1,0 +1,101 @@
+@import "../../vars";
+
+.header {
+  grid-row: header;
+  height: 100%;
+}
+
+.header__link-container {
+  display: flex;
+  flex-direction: row-reverse;
+  height: 100%;
+  align-items: center;
+  padding-right: $padding-right-content;
+}
+
+.header__link {
+  margin-left: 30px;
+  font-size: 18px;
+  color: $accent-color;
+  cursor: pointer;
+}
+
+.header-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.header__search-container {
+  grid-column: 1/4;
+  height: 100%;
+}
+
+.header__search-container-inner {
+  padding-left: $padding-left-content;
+  padding-right: 30px;
+  width: 100%;
+}
+
+.search {
+  height: 40px;
+  background-color: $content-color;
+  width: 100%;
+  border: $border-color solid 1px;
+  border-radius: 40px;
+
+  &__img-container {
+  }
+
+  &__img {
+    width: 20px;
+    height: 20px;
+  }
+
+  &__input {
+    outline: none;
+    background-color: transparent;
+    padding-right: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: none;
+    float: left;
+    text-align: left;
+    width: 100%;
+    font-size: 16px;
+    height: 100%;
+    display: table-cell;
+    vertical-align: middle;
+  }
+}
+
+.header__user-container {
+  grid-column: 4/6;
+}
+
+.header__user-container-inner {
+  float: right;
+  padding-right: $padding-right-content;
+  display: table;
+  height: 100%;
+}
+
+.user-nickname {
+  font-size: 18px;
+  vertical-align:middle;
+  display:table-cell;
+  text-align:justify;
+  padding-right: 15px;
+  cursor: pointer;
+}
+
+.user-logo {
+  vertical-align:middle;
+  display:table-cell;
+
+  &__img {
+    width: 40px;
+    height: 40px;
+    vertical-align: middle;
+    cursor: pointer;
+  }
+}

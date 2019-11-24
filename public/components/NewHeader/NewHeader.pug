@@ -1,0 +1,17 @@
+div(class="header header-grid")
+	div(class="header__search-container table")
+		div(class="header__search-container-inner table-cell")
+			div(class="search table")
+				div(class="seach__img-container table-cell")
+					img(class="search__img" src="img/search-purple.png" alt="img")
+				input(class="search__input" type="text" placeholder="Search")
+	div(class="header__user-container")
+		if (!user)
+			div(class="header__link-container")
+				div(class="header__link")="Sign Up"
+				div(class="header__link")="Log In"
+		else
+			div(class="header__user-container-inner")
+				div(class="user-nickname pr-10")="Adam Brody"
+				div(class="user-logo")
+					img(class="user-logo__img" src="img/brody.png" alt="img")

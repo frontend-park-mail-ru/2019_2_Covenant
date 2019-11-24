@@ -9,13 +9,21 @@
 .content-container {
   background-color: $background-accent-color;
   border-radius: $border-radius-content 0 0 0;
-  width: calc(100% - 250px);
+  width: calc(100vw - 250px);
+  height: 100%;
   margin-left: auto;
 }
 
 .content-container-grid {
   display: grid;
   grid-template-rows: [header] $header-height [body] auto;
+}
+
+.content {
+  grid-row: body;
+  background-color: $content-color;
+  border-radius: $border-radius-content 0 0 0;
+  width: 100%;
 }
 
 .player {
