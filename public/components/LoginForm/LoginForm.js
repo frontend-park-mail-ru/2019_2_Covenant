@@ -5,6 +5,7 @@ import Events from '../../services/Events';
 import Urls from '../../services/Urls';
 import BaseComponent from '../BaseComponent/BaseComponent';
 import Input from '../Input/Input';
+import Link from '../Link/Link';
 
 class LoginForm extends BaseComponent {
 	constructor() {
@@ -23,6 +24,8 @@ class LoginForm extends BaseComponent {
 			inputId: 'login__password_input',
 			errorId: 'login__password_error'
 		});
+
+		new Link({elementId: 'no-account-link', eventType: 'click', route: Urls.SignupUrl});
 	}
 
 	isValid() {

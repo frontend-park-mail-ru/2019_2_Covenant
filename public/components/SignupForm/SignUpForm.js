@@ -5,6 +5,7 @@ import SessionModel from '../../models/SessionModel';
 import Events from '../../services/Events';
 import Urls from '../../services/Urls';
 import EventBus from '../../services/EventBus';
+import Link from '../Link/Link';
 
 class SignUpForm extends  BaseComponent {
 	constructor() {
@@ -27,6 +28,8 @@ class SignUpForm extends  BaseComponent {
 		this.repeatPasswordInput = new Input({
 			inputId: 'signup__repeat_password_input'
 		});
+
+		new Link({elementId: 'login_link', eventType: 'click', route: Urls.LoginUrl});
 	}
 
 	handlerSubmit() {
