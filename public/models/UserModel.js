@@ -11,10 +11,10 @@ class UserModel {
 		.then(response => response.json());
 	}
 
-	updateProfile(name) {
+	updateProfile({email = '', nickname = '', password = '' } = {}) {
 		return Http.fetchPost({
 			path: '/profile',
-			body: JSON.stringify({'nickname': name})
+			body: JSON.stringify({'nickname': nickname, 'email': email, 'password': password})
 		})
 		.then(response => response.json());
 	}
