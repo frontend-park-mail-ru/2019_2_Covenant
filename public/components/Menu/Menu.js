@@ -2,6 +2,8 @@ import BaseComponent from '../BaseComponent/BaseComponent';
 import EventBus from '../../services/EventBus';
 import Events from '../../services/Events';
 import template from './Menu.pug';
+import Link from '../Link/Link';
+import Urls from '../../services/Urls';
 
 class Menu extends BaseComponent {
 	constructor() {
@@ -49,7 +51,7 @@ class Menu extends BaseComponent {
 	}
 
 	onRender() {
-
+		new Link({elementId: 'main_link', eventType: 'click', route: Urls.MainUrl});
     }
 }
 

@@ -48,17 +48,17 @@ class ProfileController extends BaseController {
 	// }
 
 	onShow() {
-		const header = new NewHeader();
-		header.render('header');
-
-		const menu = new Menu();
-		menu.render('menu');
-
 		UserModel.getProfile()
 		.then(response => {
 			if (response.error) {
-				EventBus.publish(Events.ChangeRoute, Urls.LoginUrl);
+				EventBus.publish(Events.ChangeRoute, {newUrl: Urls.LoginUrl});
 			} else {
+				const header = new NewHeader();
+				header.render('header');
+
+				const menu = new Menu();
+				menu.render('menu');
+
 				const profile = new Profile();
 				profile.render('user-info');
 

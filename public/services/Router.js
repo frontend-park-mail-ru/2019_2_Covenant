@@ -21,11 +21,10 @@ class Router {
 	constructor() {
 
 		this.routes = {};
-		this.routes[Urls.MainUrl] = new MainController(mainView);
+		this.routes[Urls.MainUrl] = new ContentController(homeView);
 		this.routes[Urls.LoginUrl] = new LoginController(emptyView);
 		this.routes[Urls.SignupUrl] = new SignupController(emptyView);
 		this.routes[Urls.ProfileUrl]= new ProfileController(profileView);
-		this.routes[Urls.Home] = new ContentController(homeView);
 
 		this.eventHandler = this.eventHandler.bind(this);
 		EventBus.subscribe(Events.ChangeRoute, this.eventHandler);

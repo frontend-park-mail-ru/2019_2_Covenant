@@ -3,8 +3,7 @@ const Urls = {
 	MainUrl: '/',
 	LoginUrl: '/login',
 	SignupUrl: '/signup',
-	ProfileUrl: '/profile',
-	Home: '/home'
+	ProfileUrl: '/profile'
 };
 
 export default Urls;

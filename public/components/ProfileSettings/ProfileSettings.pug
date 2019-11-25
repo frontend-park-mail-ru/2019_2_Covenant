@@ -1,27 +1,28 @@
 div
 	h1(class="tabs__title")="Settings"
-	div(class="settings-container")
-		div(class="settings-name")
-			div(class="input-container")
-				label(class="input-container__label" for="settings-email")="Email"
-				input(type="email" class="input-container__input" id="settings-email" value="marshalityy@gmail.com")
-			div(class="input-container")
-				label(class="input-container__label" for="settings-nickname")="Nickname"
-				input(type="email" class="input-container__input" id="settings-nickname" value="adam228")
-			div(class="input-container")
-				button(type="button" class="settings-btn")="Update"
-			div(class="input-container")
-				input(type="checkbox")
-				label(class="checkbox__label")="Private Account"
-		div(class="settings-password")
-			div(class="input-container")
-				label(class="input-container__label" for="settings-password")="Old password"
-				input(type="email" class="input-container__input" id="settings-password")
-			div(class="input-container")
-				label(class="input-container__label" for="settings-new-password")="New password"
-				input(type="email" class="input-container__input" id="settings-new-password")
-			div(class="input-container")
-				label(class="input-container__label" for="settings-repeat-password")="Repeat password"
-				input(type="email" class="input-container__input" id="settings-repeat-password")
-			div(class="input-container")
-				button(type="button" class="settings-btn")="Save"
+	if (user)
+		div(class="settings-container")
+			div(class="settings-name")
+				div(class="input-container")
+					label(class="input-container__label" for="settings-email")="Email"
+					input(type="email" class="input-container__input" id="settings-email" value=user.email)
+				div(class="input-container")
+					label(class="input-container__label" for="settings-nickname")="Nickname"
+					input(type="email" class="input-container__input" id="settings-nickname" value=user.nickname)
+				div(class="input-container")
+					button(type="button" class="settings-btn")="Update"
+				div(class="input-container")
+					input(type="checkbox")
+					label(class="checkbox__label")="Private Account"
+			div(class="settings-password")
+				div(class="input-container")
+					label(class="input-container__label" for="settings-password")="Old password"
+					input(type="email" class="input-container__input" id="settings-password")
+				div(class="input-container")
+					label(class="input-container__label" for="settings-new-password")="New password"
+					input(type="email" class="input-container__input" id="settings-new-password")
+				div(class="input-container")
+					label(class="input-container__label" for="settings-repeat-password")="Repeat password"
+					input(type="email" class="input-container__input" id="settings-repeat-password")
+				div(class="input-container")
+					button(type="button" class="settings-btn")="Save"
