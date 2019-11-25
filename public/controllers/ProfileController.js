@@ -8,6 +8,10 @@ import Header from '../components/Header/Header';
 import Urls from '../services/Urls';
 import TrackList from '../components/TrackList/TrackList';
 import TrackModel from '../models/TrackModel';
+import NewHeader from '../components/NewHeader/NewHeader';
+import Menu from '../components/Menu/Menu';
+import Profile from '../components/Profile/Profile';
+import ProfileSettings from '../components/ProfileSettings/ProfileSettings';
 
 class ProfileController extends BaseController {
 	constructor(view) {
@@ -22,30 +26,51 @@ class ProfileController extends BaseController {
 		this.onUploadAvatar = this.onUploadAvatar.bind(this);
 	}
 
+	// onShow() {
+	// 	UserModel.getProfile().then(response =>
+	// 	{
+	// 		if (response.error) {
+	// 			EventBus.publish(Events.ChangeRoute, Urls.LoginUrl);
+	// 		} else {
+	// 			this.mountHeader();
+	// 			this.mountAvatar();
+	// 			this.mountEditableName();
+	// 			this.mountTracks();
+	//
+	// 			EventBus.publish(Events.UpdateUser, response.body);
+	//
+	// 			console.log(response);
+	// 		}
+	// 	})
+	// 	.catch(error => {
+	// 		console.log(error);
+	// 	});
+	// }
+
 	onShow() {
-		UserModel.getProfile().then(response =>
-		{
+		const header = new NewHeader();
+		header.render('header');
+
+		const menu = new Menu();
+		menu.render('menu');
+
+		UserModel.getProfile()
+		.then(response => {
 			if (response.error) {
 				EventBus.publish(Events.ChangeRoute, Urls.LoginUrl);
 			} else {
-				this.mountHeader();
-				this.mountAvatar();
-				this.mountEditableName();
-				this.mountTracks();
+				const profile = new Profile();
+				profile.render('user-info');
+
+				const settings = new ProfileSettings();
+				settings.render('user-tabs');
 
 				EventBus.publish(Events.UpdateUser, response.body);
-
-				console.log(response);
 			}
 		})
 		.catch(error => {
 			console.log(error);
 		});
-	}
-
-	mountHeader() {
-		const header = new Header();
-		header.render('header');
 	}
 
 	mountAvatar() {
