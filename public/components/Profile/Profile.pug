@@ -2,8 +2,7 @@ div
 	h1(class="title")="Profile"
 	div(class="user-info__inner")
 		if (user)
-			div(class="user-info__aside")
-				img(class="user-info__aside-img" src=user.avatar alt="")
+			div(class="user-info__aside" id="avatar")
 			div(class="user-info__main")
 				div(class="user-info__main-nick")=`@${user.nickname}`
 				div(class="user-info__main-email")=user.email

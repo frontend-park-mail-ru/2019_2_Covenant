@@ -11,10 +11,6 @@ class ContentController extends BaseController {
     }
 
     onShow() {
-
-        const header = new NewHeader();
-        header.render('header');
-
         const menu = new Menu();
         menu.render('menu');
 
@@ -22,6 +18,9 @@ class ContentController extends BaseController {
         .then(response => {
             console.log(response);
             if (!response.error) {
+                const header = new NewHeader();
+                header.render('header');
+
                 EventBus.publish(Events.UpdateUser, response.body);
             }
         })

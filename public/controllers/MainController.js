@@ -1,6 +1,5 @@
 import BaseController from './BaseController';
 import UserModel from '../models/UserModel';
-import Header from '../components/Header/Header';
 import EventBus from '../services/EventBus';
 import Events from '../services/Events';
 import TrackList from '../components/TrackList/TrackList';
