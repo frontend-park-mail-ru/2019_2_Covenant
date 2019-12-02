@@ -5,8 +5,8 @@ import Urls from '../../../services/Urls';
 import BaseComponent from '../../BaseComponent/BaseComponent';
 
 class AdminBaseComponent extends BaseComponent {
-	constructor(template) {
-		super(template);
+	constructor(template, data) {
+		super(template, data);
 
 		this.renderCallback = this.renderCallback.bind(this);
 	}

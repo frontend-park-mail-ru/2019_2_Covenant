@@ -1,20 +1,21 @@
 import template from './Menu.pug';
 
-import AdminBaseComponent from '../AdminBaseComponent/AdminBaseComponent';
 import Link from '../../Link/Link';
 import Urls from '../../../services/Urls';
+import BaseComponent from '../../BaseComponent/BaseComponent';
 
-class Menu extends AdminBaseComponent {
+class Menu extends BaseComponent {
 	constructor() {
 		const initialState = {
 			items: []
 		};
-		super(template);
+		super(template, initialState);
 
 		this.state = initialState;
+		this.renderItems();
 	}
 
-	renderCallback() {
+	renderItems() {
 		this.state.items = this.getItems();
 		this.update(this.state);
 

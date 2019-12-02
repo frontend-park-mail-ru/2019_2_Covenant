@@ -1,12 +1,10 @@
 // Controllers
-import MainController from '../controllers/MainController.js';
 import LoginController from '../controllers/LoginController.js';
 import SignupController from '../controllers/SignupController.js';
 import ProfileController from '../controllers/ProfileController';
 import ContentController from '../controllers/ContentController';
 
 // Views
-import mainView from '../views/MainView/MainView.js';
 import profileView from '../views/ProfileView/ProfileView';
 import homeView from '../views/HomeView/HomeView';
 import emptyView from '../views/EmptyView/EmptyView';
@@ -15,6 +13,7 @@ import emptyView from '../views/EmptyView/EmptyView';
 import Urls from './Urls.js';
 import Events from './Events';
 import EventBus from './EventBus';
+import {AdminArtistsController} from '../controllers/AdminController';
 
 class Router {
 
@@ -25,6 +24,8 @@ class Router {
 		this.routes[Urls.LoginUrl] = new LoginController(emptyView);
 		this.routes[Urls.SignupUrl] = new SignupController(emptyView);
 		this.routes[Urls.ProfileUrl]= new ProfileController(profileView);
+
+		this.routes[Urls.AdminArtists] = new AdminArtistsController();
 
 		this.eventHandler = this.eventHandler.bind(this);
 		EventBus.subscribe(Events.ChangeRoute, this.eventHandler);

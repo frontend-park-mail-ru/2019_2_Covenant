@@ -24,17 +24,17 @@ const Urls = {
 	FriendUrl: '/user',
 
 	//Admin
-	AdminGenres: '/admin/genre-list',
-	AdminArtists: '/admin/artist-list',
-	AdminAlbums: '/admin/album-list',
-	AdminTracks: '/admin/track-list',
-	AdminCollections: '/admin/collection-list',
+	AdminGenres: '/genre-list',
+	AdminArtists: '/artist-list',
+	AdminAlbums: '/album-list',
+	AdminTracks: '/track-list',
+	AdminCollections: '/collection-list',
 
-	AdminGenreEditor: '/admin/genre-editor',
-	AdminArtistEditor: '/admin/artist-editor',
-	AdminAlbumEdtior: '/admin/album-editor',
-	AdminTrackEditor: '/admin/track-editor',
-	AdminCollectionEditor: '/admin/collection-editor'
+	AdminGenreEditor: '/genre-editor',
+	AdminArtistEditor: '/artist-editor',
+	AdminAlbumEdtior: '/album-editor',
+	AdminTrackEditor: '/track-editor',
+	AdminCollectionEditor: '/collection-editor'
 
 };
 

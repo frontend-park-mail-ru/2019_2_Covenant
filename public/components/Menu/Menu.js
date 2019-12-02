@@ -76,6 +76,7 @@ class Menu extends BaseComponent {
 
 	onRender() {
 		new Link({elementId: 'main_link', eventType: 'click', route: Urls.MainUrl});
+		new Link({elementId: 'admin-artists-link', eventType: 'click', route: Urls.AdminArtists});
     }
 }
 
