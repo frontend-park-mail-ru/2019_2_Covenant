@@ -1,0 +1,23 @@
+div
+    div(class="admin-header admin-header-area")
+        h3(class="admin-header_h3")="Artists"
+        a(class="btn btn_add")
+            div="Add an artist"
+    div(class="admin-content-area")
+        if columns && dataSource
+            table(class="admin-table")
+                tr
+                    each column in columns
+                        th(class=column.className)=column.title
+                each item in dataSource
+                    tr
+                        each column in columns
+                            if (column.title === 'Actions')
+                                td
+                                    div(class="actions")
+                                        div(class="btn btn_row")
+                                            img(alt="edit-icon" src="img/admin/edit.png")
+                                        div(class="btn btn_row")
+                                            img(alt="delete-icon" src="img/admin/delete.png")
+                            else
+                                td #{item[column.dataIndex]}

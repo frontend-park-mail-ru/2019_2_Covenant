@@ -1,6 +1,7 @@
 import BaseController from './BaseController';
 import adminView from '../views/AdminView/AdminView';
 import Menu from '../components/Admin/Menu/Menu';
+import ArtistList from '../components/Admin/Lists/ArtistList/ArtistList';
 
 class AdminController extends BaseController {
 	constructor(view, component) {
@@ -12,13 +13,16 @@ class AdminController extends BaseController {
 	onShow() {
 		const menu = new Menu();
 		menu.render('admin-nav');
+
+		const component = this.adminComponent;
+		component.render('admin-nav-aside');
 	}
 
 }
 
 export class AdminArtistsController extends AdminController {
 	constructor() {
-		super(adminView, {});
+		super(adminView, new ArtistList());
 	}
 
 	onShow() {

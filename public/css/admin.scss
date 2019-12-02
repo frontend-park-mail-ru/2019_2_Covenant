@@ -82,21 +82,26 @@ $admin-dark-back-color: #0F0F1F;
   height: 35px;
   margin: auto;
   text-decoration: none;
-  text-align: center;
   font-size: 21px;
   background: #242639;
   border-radius: 15px;
   transition: 0.2s;
-  padding-top: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .btn_add:hover { transform: scale(1.05) }
 .btn_add:active {
   background: #0F0F1F;
 }
 
-table {
+.admin-table {
   border-collapse: collapse;
   width: 100%;
+}
+
+.actions {
+  text-align: left;
 }
 
 th {
@@ -111,7 +116,7 @@ th {
 td {
   height: 50px;
   text-align: left;
-  font-size: 20px;
+  font-size: 16px;
   background: #FFFFFF;
   border-top: 1px solid #E5E8EC;
   padding: 8px;
@@ -130,6 +135,7 @@ table th:first-child {
   text-align: center;
 }
 .btn_row {
+  margin-right: 10px;
   display: inline-block;
   width: 40px;
   height: 40px;
@@ -187,6 +193,7 @@ a {
 .nav-aside {
   background-color: $admin-back-color;
   height: 100vh;
+  overflow-y: auto;
 }
 
 .admin-header-area {
@@ -283,3 +290,21 @@ a {
 
 
 /** main start **/
+
+
+/**** artist list start ****/
+
+.list_header_num {
+  width: 10%;
+}
+
+.list_header_name {
+  width: 70%;
+}
+
+.list_header_btn {
+  width: 20%;
+}
+
+
+/**** artist list end ****/
