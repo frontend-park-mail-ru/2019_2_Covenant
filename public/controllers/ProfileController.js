@@ -23,27 +23,6 @@ class ProfileController extends BaseController {
 		this.onSave = this.onSave.bind(this);
 	}
 
-	// onShow() {
-	// 	UserModel.getProfile().then(response =>
-	// 	{
-	// 		if (response.error) {
-	// 			EventBus.publish(Events.ChangeRoute, Urls.LoginUrl);
-	// 		} else {
-	// 			this.mountHeader();
-	// 			this.mountAvatar();
-	// 			this.mountEditableName();
-	// 			this.mountTracks();
-	//
-	// 			EventBus.publish(Events.UpdateUser, response.body);
-	//
-	// 			console.log(response);
-	// 		}
-	// 	})
-	// 	.catch(error => {
-	// 		console.log(error);
-	// 	});
-	// }
-
 	onShow() {
 		UserModel.getProfile()
 		.then(response => {
@@ -63,35 +42,6 @@ class ProfileController extends BaseController {
 				settings.render('user-tabs');
 
 				EventBus.publish(Events.UpdateUser, response.body);
-			}
-		})
-		.catch(error => {
-			console.log(error);
-		});
-	}
-
-	mountEditableName() {
-		const editableField = new EditableField({
-			onSave: this.onSave
-		});
-		editableField.render('info-user');
-	}
-
-	mountTracks() {
-		TrackModel.favourites()
-		.then(response => {
-			if (!response.error) {
-				const tracks = response.body;
-
-				const trackList = new TrackList({
-					containerClasssName: 'track-list-container__left',
-					title: 'My favourites',
-					tracks: tracks
-				});
-				trackList.render('profile__tracks');
-
-			} else {
-				console.log(response.error);
 			}
 		})
 		.catch(error => {

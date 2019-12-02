@@ -4,7 +4,7 @@ import EventBus from '../../services/EventBus';
 import Events from '../../services/Events';
 
 class EditableField extends BaseComponent {
-	constructor({onSave = {}} = () => {} ) {
+	constructor({onSave = {}} = () => {}) {
 		let state = {
 			edit: false
 		};
@@ -42,7 +42,7 @@ class EditableField extends BaseComponent {
 
 	addSaveHandler() {
 		const saveInfo = document.getElementById('save_info');
-		if(saveInfo) {
+		if (saveInfo) {
 			saveInfo.addEventListener('click', () => {
 				const name = document.getElementById('profile__name__input').value;
 
@@ -55,4 +55,4 @@ class EditableField extends BaseComponent {
 	}
 }
 
-export default  EditableField;
+export default EditableField;

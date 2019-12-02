@@ -4,17 +4,19 @@ import Events from '../../services/Events';
 import template from './Menu.pug';
 import Link from '../Link/Link';
 import Urls from '../../services/Urls';
+import {UserRole} from '../../models/UserModel';
 
 class Menu extends BaseComponent {
 	constructor() {
 		const initialState = {
 			defaultMenuItems: [],
-			userMenuItems: []
+			userMenuItems: [],
+			adminMenuItems: []
 		};
 		super(template, initialState);
 		this.state = initialState;
-		this.renderUserMenuItems = this.renderUserMenuItems.bind(this);
-		EventBus.subscribe(Events.UpdateUser, this.renderUserMenuItems);
+		this.updateUser = this.updateUser.bind(this);
+		EventBus.subscribe(Events.UpdateUser, this.updateUser);
 
 		this.renderDefaultMenuItems();
 	}
@@ -40,6 +42,23 @@ class Menu extends BaseComponent {
 		];
 	}
 
+	getAdminMenuItems() {
+		return [
+			{title: 'Artists', imgPath: 'img/micro.png', id: 'admin-artists-link'},
+			{title: 'Albums', imgPath: 'img/music-folder.png', id: 'admin-albums-link'},
+			{title: 'Tracks', imgPath: 'img/musical-note.png', id: 'admin-tracks-link'}
+		];
+	}
+
+	updateUser(user) {
+		// TODO: fix this later
+		if (user.role === UserRole.Admin || user.nickname === 'krulex98@mail.ru') {
+			this.renderAdminMenuItems();
+		} else {
+			this.renderUserMenuItems();
+		}
+	}
+
 	renderDefaultMenuItems() {
 		this.state.defaultMenuItems = this.getDefaultMenuItems();
 		this.update(this.state);
@@ -48,6 +67,11 @@ class Menu extends BaseComponent {
 	renderUserMenuItems() {
         this.state.userMenuItems = this.getUserMenuItems();
         this.update(this.state);
+	}
+
+	renderAdminMenuItems() {
+		this.state.adminMenuItems = this.getAdminMenuItems();
+		this.update(this.state);
 	}
 
 	onRender() {

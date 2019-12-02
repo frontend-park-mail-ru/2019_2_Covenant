@@ -1,21 +1,30 @@
 div(class="menu")
-    div(class="menu-title")
-        div(class="menu-title__img")
-            img(class="logo" src="img/record.png" alt="img")
-        div(class="menu-title__label" id="main_link")="Covenant"
-    ul(class="menu-list")
-        each item in defaultMenuItems
-            li(class="menu-list__item")
-                div(class="menu-list__img")
-                    img(class="menu-list__img-inner" src=item.imgPath alt="img")
-                div(class="menu-list__label" id=item.id)=item.title
+	div(class="menu-title")
+		div(class="menu-title__img")
+			img(class="logo" src="img/record.png" alt="img")
+		div(class="menu-title__label" id="main_link")="Covenant"
+	ul(class="menu-list")
+		each item in defaultMenuItems
+			li(class="menu-list__item")
+				div(class="menu-list__img")
+					img(class="menu-list__img-inner" src=item.imgPath alt="img")
+				div(class="menu-list__label" id=item.id)=item.title
 
-        if (userMenuItems.length !== 0)
-            li(class="menu-list__item")
-                div(class="menu-list__separator")="Your Collection"
+		if (userMenuItems.length !== 0)
+			li(class="menu-list__item")
+				div(class="menu-list__separator")="Your Collection"
 
-            each item in userMenuItems
-                li(class="menu-list__item")
-                    div(class="menu-list__img")
-                        img(class="menu-list__img-inner" src=item.imgPath alt="img")
-                    div(class="menu-list__label" id=item.id)=item.title
+			each item in userMenuItems
+				li(class="menu-list__item")
+					div(class="menu-list__img")
+						img(class="menu-list__img-inner" src=item.imgPath alt="img")
+					div(class="menu-list__label" id=item.id)=item.title
+		if (adminMenuItems.length !== 0)
+			li(class="menu-list__item")
+				div(class="menu-list__separator")="Admin Settings"
+
+			each item in adminMenuItems
+				li(class="menu-list__item")
+					div(class="menu-list__img")
+						img(class="menu-list__img-inner" src=item.imgPath alt="img")
+					div(class="menu-list__label" id=item.id)=item.title

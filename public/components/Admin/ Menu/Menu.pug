@@ -1,0 +1,15 @@
+div(class="nav")
+    div(class="nav_menu")
+        a
+            div(class="nav_menu_item nav_menu_home")
+                img(alt="home-icon" src="../img/home.png")
+        a
+            div(class="nav_menu_item nav_menu_account")
+                img(alt="account-icon" src="../img/account.png")
+        a
+            div(class="nav_menu_item nav_menu_exit")
+                img(alt="exit-icon" src="../img/exit.png")
+    div(class="nav_list")
+        each item in items:
+            a(id=item.id)
+                div=item.title

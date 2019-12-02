@@ -1,4 +1,3 @@
-
 class BaseComponent {
 	constructor(templateFunc, data = null) {
 		this.parentId = null;

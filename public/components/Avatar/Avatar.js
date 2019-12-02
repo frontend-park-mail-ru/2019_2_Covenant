@@ -2,11 +2,11 @@ import BaseComponent from '../BaseComponent/BaseComponent';
 import template from './Avatar.pug';
 import EventBus from '../../services/EventBus';
 import Events from '../../services/Events';
-import { SERVER_ROOT } from '../../services/Settings';
+import {SERVER_ROOT} from '../../services/Settings';
 
 class Avatar extends BaseComponent {
-	constructor({width = 100, height = 100, src = 'img/user_profile.png', alt = 'avatar', onUpload = {}, accept='.png' } = {}) {
-		const state = {data: {width: width, height: height, src: src, alt: alt, accept: accept} };
+	constructor({width = 100, height = 100, src = 'img/user_profile.png', alt = 'avatar', onUpload = {}, accept = '.png'} = {}) {
+		const state = {data: {width: width, height: height, src: src, alt: alt, accept: accept}};
 		super(template, state);
 		this.state = state;
 
@@ -18,8 +18,10 @@ class Avatar extends BaseComponent {
 
 	onRender() {
 		const input = document.getElementById('avatar_upload_input');
-		if(input) {
-			input.addEventListener('change', () => { this.onUpload(input.files[0]); });
+		if (input) {
+			input.addEventListener('change', () => {
+				this.onUpload(input.files[0]);
+			});
 		}
 	}
 

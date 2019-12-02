@@ -3,6 +3,11 @@ import { SERVER_API_PATH } from '../services/Settings';
 
 const Http = new HttpModule();
 
+export const UserRole = {
+	User: 0,
+	Admin: 1
+};
+
 class UserModel {
 	getProfile() {
 		return Http.fetchGet({

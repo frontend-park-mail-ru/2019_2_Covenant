@@ -1,9 +1,9 @@
 div
-    if !edit
-        label(class="info__user__name")= user == null ? '' : user.nickname
-        div(class="info__user__edit")
-            img(id="edit_pencil" class="info__user__edit__img" src="img/edit.png" width="32" height="32" alt="edit")
-    else
-        input(type="text" id="profile__name__input" value= user == null ? '' : user.nickname )
-        div(class="info__user__save")
-            img(id="save_info" class="info__user__edit__img" src="img/save.png" width="32" height="32" alt="save")
+	if !edit
+		label(class="info__user__name")= user == null ? '' : user.nickname
+		div(class="info__user__edit")
+			img(id="edit_pencil" class="info__user__edit__img" src="img/edit.png" width="32" height="32" alt="edit")
+	else
+		input(type="text" id="profile__name__input" value= user == null ? '' : user.nickname )
+		div(class="info__user__save")
+			img(id="save_info" class="info__user__edit__img" src="img/save.png" width="32" height="32" alt="save")
