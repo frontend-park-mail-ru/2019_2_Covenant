@@ -251,6 +251,7 @@ a {
 }
 
 .nav_list-item {
+  transition: .3s;
   cursor: pointer;
   margin-bottom: 5px;
   display: flex;

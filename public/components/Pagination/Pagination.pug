@@ -1,0 +1,12 @@
+ul(class="pagination-container")
+	li(class="pagination__item")
+		div(class="pagination__item-link" id="prev-btn")="<"
+	if (items)
+		each item in items
+			li(class="pagination__item")
+				if (item.pageNumber === current)
+					div(class="pagination__item-link pagination__current") #{item.pageNumber + 1}
+				else
+					div(class="pagination__item-link" id=`pagination-item-${item.pageNumber}`) #{item.pageNumber + 1}
+	li(class="pagination__item")
+		div(class="pagination__item-link" id="next-btn")=">"

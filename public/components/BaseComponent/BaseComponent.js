@@ -32,6 +32,8 @@ class BaseComponent {
 	}
 
 	onRender() {}
+
+	onDestroy() {}
 }
 
 export default BaseComponent;
