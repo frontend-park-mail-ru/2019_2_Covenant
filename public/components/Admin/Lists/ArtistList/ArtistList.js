@@ -1,6 +1,9 @@
 import BaseComponent from '../../../BaseComponent/BaseComponent';
 import template from './ArtistList.pug';
 import Pagination from '../../../Pagination/Pagination';
+import EventBus from '../../../../services/EventBus';
+import Events from '../../../../services/Events';
+import Urls from '../../../../services/Urls';
 
 class ArtistList extends BaseComponent {
 	constructor() {
@@ -18,6 +21,8 @@ class ArtistList extends BaseComponent {
 		this.state.dataSource = this.getDataWithPagination(5, 0);
 		this.pagination = this.initPagination();
 		this.update(this.state);
+
+		this.editorPath = Urls.AdminArtistEditor;
 	}
 
 	getColumns() {
@@ -85,7 +90,8 @@ class ArtistList extends BaseComponent {
 	}
 
 	editHandler(evt) {
-		console.log(evt.currentTarget.dataset);
+		const id = evt.currentTarget.dataset.id;
+		EventBus.publish(Events.ChangeRoute, {newUrl: this.editorPath.replace(/:\w+/, id)});
 	}
 
 	deleteHandler(evt) {

@@ -3,13 +3,24 @@ $admin-dark-back-color: #0F0F1F;
 
 /** edit start **/
 
-.edit {
+.form-edit {
   margin-bottom: 40px;
-}
 
-.edit > label {
-  margin-bottom: 20px;
-  display: block;
+  &__container {
+    margin-bottom: 10px;
+  }
+
+  &__label {
+    margin-bottom: 5px;
+    font-size: 20px;
+    display: block;
+  }
+
+  &__input {
+    display: block;
+    height: 32px;
+    font-size: 18px;
+  }
 }
 
 .edit_input {
@@ -46,16 +57,14 @@ $admin-dark-back-color: #0F0F1F;
 .btn_save {
   background: #242639;
   color: #FFFFFF;
-  font-family: Verdana, sans-serif;
-  border-width: 0;
+  border: none;
+  margin-right: 10px;
 }
 
 .btn_cancel {
   background: #83869A;
   color: #000000;
-  padding-top: 7px;
-  height: 32px;
-  text-align: center;
+  border: none;
 }
 
 .btn_down {

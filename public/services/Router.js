@@ -19,9 +19,7 @@ import {AdminArtistsController} from '../controllers/AdminController';
 import {AdminArtistEditorController} from '../controllers/AdminController';
 
 class Router {
-
 	constructor() {
-
 		this.routes = [];
 		this.register(Urls.MainUrl, new ContentController(homeView));
 		this.register(Urls.LoginUrl, new LoginController(emptyView));
@@ -81,6 +79,17 @@ class Router {
 			pattern: new RegExp('^'+ url.replace(/:\w+/, '(\\w+)')+'$'),
 			controller: controller
 		});
+	}
+
+	getUrlParams() {
+		let params = [];
+		this.routes.forEach(route => {
+			let res = window.location.pathname.match(route.pattern);
+			if (res) {
+				params = res;
+			}
+		});
+		return params;
 	}
 }
 

@@ -2,7 +2,6 @@
 
 import './index.scss';
 
-import RouterModule from './services/Router.js';
+import Router from './services/Router.js';
 
-const Router = new RouterModule();
-Router.start();
+(new Router()).start();
