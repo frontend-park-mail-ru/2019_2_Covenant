@@ -15,11 +15,10 @@ div
                             if (column.title === 'Actions')
                                 td
                                     div(class="actions")
-                                        div(class="btn btn_row")
-                                            img(alt="edit-icon" src="img/admin/edit.png")
-                                        div(class="btn btn_row")
-                                            img(alt="delete-icon" src="img/admin/delete.png")
+                                        button(class="edit-btn btn_row" name="edit-btn" data-id=item.id)
+                                            img(alt="edit-icon" src="/img/admin/edit.png")
+                                        button(class="edit-btn btn_row" name="delete-btn" data-id=item.id)
+                                            img(alt="delete-icon" src="/img/admin/delete.png")
                             else
                                 td #{item[column.dataIndex]}
-
             div(id="pagination")

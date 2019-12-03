@@ -2,6 +2,7 @@ import BaseController from './BaseController';
 import adminView from '../views/AdminView/AdminView';
 import Menu from '../components/Admin/Menu/Menu';
 import ArtistList from '../components/Admin/Lists/ArtistList/ArtistList';
+import ArtistEditor from '../components/Admin/Editors/ArtistEditor/ArtistEditor';
 
 class AdminController extends BaseController {
 	constructor(view, component) {
@@ -24,9 +25,11 @@ export class AdminArtistsController extends AdminController {
 	constructor() {
 		super(adminView, new ArtistList());
 	}
+}
 
-	onShow() {
-		super.onShow();
+export class AdminArtistEditorController extends AdminController {
+	constructor() {
+		super(adminView, new ArtistEditor());
 	}
 }
 

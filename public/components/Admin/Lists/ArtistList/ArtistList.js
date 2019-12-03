@@ -10,10 +10,12 @@ class ArtistList extends BaseComponent {
 		};
 		super(template);
 		this.getDataWithPagination = this.getDataWithPagination.bind(this);
+		this.editHandler = this.editHandler.bind(this);
+		this.deleteHandler = this.deleteHandler.bind(this);
 
 		this.state = initialState;
 		this.state.columns = this.getColumns();
-		this.state.dataSource = this.getDataWithPagination(5, 5);
+		this.state.dataSource = this.getDataWithPagination(5, 0);
 		this.pagination = this.initPagination();
 		this.update(this.state);
 	}
@@ -54,6 +56,8 @@ class ArtistList extends BaseComponent {
 	onRender() {
 		this.pagination.onDestroy();
 		this.pagination.render('pagination');
+
+		this.addActionHandlers();
 	}
 
 	initPagination() {
@@ -66,6 +70,26 @@ class ArtistList extends BaseComponent {
 				this.update(this.state);
 			}
 		});
+	}
+
+	addActionHandlers() {
+		const editBtns = document.getElementsByName('edit-btn');
+		editBtns.forEach(btn => {
+			btn.addEventListener('click', this.editHandler);
+		});
+
+		const delBtns = document.getElementsByName('delete-btn');
+		delBtns.forEach(btn => {
+			btn.addEventListener('click', this.deleteHandler);
+		});
+	}
+
+	editHandler(evt) {
+		console.log(evt.currentTarget.dataset);
+	}
+
+	deleteHandler(evt) {
+		console.log(evt.currentTarget.dataset);
 	}
 }
 

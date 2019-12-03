@@ -1,0 +1,12 @@
+div
+	div(class="admin-header admin-header-area")
+		h3(class="admin-header_h3")="Edit artist"
+	div(class="admin-content-area")
+		form(class="edit" enctype="multipart/form-data")
+			label="Name"
+				input(class="edit_input" type="text" name="name")
+			label="Upload image of artist:"
+				input(class="upload_file" type="file" name="file")
+			button(class="eidt-btn btn_save" type="submit")="Save"
+			a(href="../admin_artists/admin_artists.html")
+				div(class="edit-btn btn_cancel")="Cancel"

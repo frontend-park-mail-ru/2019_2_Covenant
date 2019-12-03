@@ -26,13 +26,16 @@ $admin-dark-back-color: #0F0F1F;
   border-radius: 5px;
 }
 
-.btn {
+.edit-btn {
   display: inline-block;
   width: 100px;
   height: 40px;
   font-size: 20px;
   border-radius: 15px;
   transition: 0.2s;
+  cursor: pointer;
+  background-color: white;
+  outline: none;
 }
 
 .btn:hover {

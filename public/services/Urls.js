@@ -1,4 +1,3 @@
-
 const Urls = {
 	MainUrl: '/',
 	LoginUrl: '/login',
@@ -16,12 +15,12 @@ const Urls = {
 	FeedUrl: '/feed',
 
 	//WithId
-	CollectionUrl: '/collection',
-	GenreUrl: '/genre',
-	AlbumURl: '/album',
-	ArtistUrl: '/artist',
-	PlaylistUrl: '/playlist',
-	FriendUrl: '/user',
+	CollectionUrl: '/collection/:id',
+	GenreUrl: '/genre/:id',
+	AlbumURl: '/album/:id',
+	ArtistUrl: '/artist/:id',
+	PlaylistUrl: '/playlist/:id',
+	FriendUrl: '/user/:id',
 
 	//Admin
 	AdminGenres: '/genre-list',
@@ -30,11 +29,11 @@ const Urls = {
 	AdminTracks: '/track-list',
 	AdminCollections: '/collection-list',
 
-	AdminGenreEditor: '/genre-editor',
-	AdminArtistEditor: '/artist-editor',
-	AdminAlbumEdtior: '/album-editor',
-	AdminTrackEditor: '/track-editor',
-	AdminCollectionEditor: '/collection-editor'
+	AdminGenreEditor: '/genre-editor/:id',
+	AdminArtistEditor: '/artist-editor/:id',
+	AdminAlbumEdtior: '/album-editor/:id',
+	AdminTrackEditor: '/track-editor/:id',
+	AdminCollectionEditor: '/collection-editor/:id'
 
 };
 
