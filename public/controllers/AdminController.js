@@ -17,7 +17,7 @@ class AdminController extends BaseController {
 		const menu = new Menu();
 		menu.render('admin-nav');
 
-		const component = this.adminComponent;
+		const component = new this.adminComponent();
 		component.render('admin-nav-aside');
 	}
 
@@ -25,25 +25,25 @@ class AdminController extends BaseController {
 
 export class AdminArtistsController extends AdminController {
 	constructor() {
-		super(adminView, new ArtistList());
+		super(adminView, ArtistList);
 	}
 }
 
 export class AdminArtistEditorController extends AdminController {
 	constructor() {
-		super(adminView, new ArtistEditor());
+		super(adminView, ArtistEditor);
 	}
 }
 
 export class AdminAlbumsController extends AdminController {
 	constructor() {
-		super(adminView, new AlbumList());
+		super(adminView, AlbumList);
 	}
 }
 
 export class AdminAlbumEditorController extends AdminController {
 	constructor() {
-		super(adminView, new AlbumEditor());
+		super(adminView, AlbumEditor);
 	}
 }
 

@@ -3,7 +3,7 @@ import template from '../TrackList/TrackList.pug';
 import TrackModel from '../../models/TrackModel';
 import Player from '../Player/Player';
 
-class TrackList extends BaseComponent{
+class TrackList extends BaseComponent {
 	constructor({ containerClasssName = 'track-list-container',  title = 'Track List', tracks = [] } = {}) {
 		const state = {
 			containerClasssName: containerClasssName,
@@ -93,7 +93,7 @@ class TrackList extends BaseComponent{
 			const arr = durationStr.split(':');
 			track.duration = `${arr[1]}:${arr[2]}`;
 			return track;
-		})
+		});
 	}
 
 	playTrack(track) {

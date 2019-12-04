@@ -22,6 +22,11 @@ class Pagination extends BaseComponent {
 		this.getPages();
 	}
 
+	setTotal(total) {
+		this.state.total = total;
+		this.getPages();
+	}
+
 	onRender() {
 		this.addHandlers();
 	}

@@ -4,6 +4,7 @@ import Pagination from '../../../Pagination/Pagination';
 import EventBus from '../../../../services/EventBus';
 import Events from '../../../../services/Events';
 import Urls from '../../../../services/Urls';
+import ArtistModel from '../../../../models/ArtistModel';
 
 class ArtistList extends BaseComponent {
 	constructor() {
@@ -12,17 +13,18 @@ class ArtistList extends BaseComponent {
 			dataSource: []
 		};
 		super(template);
-		this.getDataWithPagination = this.getDataWithPagination.bind(this);
-		this.editHandler = this.editHandler.bind(this);
-		this.deleteHandler = this.deleteHandler.bind(this);
-
-		this.state = initialState;
-		this.state.columns = this.getColumns();
-		this.state.dataSource = this.getDataWithPagination(5, 0);
-		this.pagination = this.initPagination();
-		this.update(this.state);
 
 		this.editorPath = Urls.AdminArtistEditor;
+		this.countPerPage = 10;
+		this.itemsName = 'artists';
+		this.state = initialState;
+		this.state.columns = this.getColumns();
+		this.pagination = this.initPagination();
+		this.baseLoadItems(this.countPerPage);
+
+		this.editHandler = this.editHandler.bind(this);
+		this.deleteHandler = this.deleteHandler.bind(this);
+		this.createItemHandler = this.createItemHandler.bind(this);
 	}
 
 	getColumns() {
@@ -44,18 +46,22 @@ class ArtistList extends BaseComponent {
 		];
 	}
 
-	getDataWithPagination(count, offset) {
-		let list = [];
-		for (let i = 0; i < 11; i++){
-			list.push(
-				{id: 1, name: 'Imagine Dragons'},
-				{id: 2, name: 'Asammuel'}
-			);
-		}
-		let start = 0 + offset;
-		let end = start + count > list.length ? list.length : start + count;
-		list = list.slice(start, end);
-		return list;
+	loadItems(count, offset) {
+		return ArtistModel.getArtists(count, offset);
+	}
+
+	baseLoadItems(count, offset = 0) {
+		this.loadItems(count, offset)
+			.then(response => {
+				this.state.dataSource.total = response.body.total;
+				this.state.dataSource.items = response.body[this.itemsName];
+
+				this.pagination.setTotal(response.body.total);
+				this.update(this.state);
+			})
+			.catch(error => {
+				console.log(error);
+			});
 	}
 
 	onRender() {
@@ -67,12 +73,10 @@ class ArtistList extends BaseComponent {
 
 	initPagination() {
 		return new Pagination({
-			total: 22,
-			count: 5,
+			total: 0,
+			count: this.countPerPage,
 			onChange: (pageNumber) => {
-				console.log(`current page ${pageNumber}`);
-				this.state.dataSource = this.getDataWithPagination(5, 5 * pageNumber);
-				this.update(this.state);
+				this.baseLoadItems(this.countPerPage, this.countPerPage * pageNumber);
 			}
 		});
 	}
@@ -87,6 +91,11 @@ class ArtistList extends BaseComponent {
 		delBtns.forEach(btn => {
 			btn.addEventListener('click', this.deleteHandler);
 		});
+
+		const createBtn = document.getElementById('create-item-btn');
+		if (createBtn) {
+			createBtn.addEventListener('click', this.createItemHandler);
+		}
 	}
 
 	editHandler(evt) {
@@ -96,6 +105,11 @@ class ArtistList extends BaseComponent {
 
 	deleteHandler(evt) {
 		console.log(evt.currentTarget.dataset);
+	}
+
+	createItemHandler() {
+		const id = -1;
+		EventBus.publish(Events.ChangeRoute, {newUrl: this.editorPath.replace(/:\w+/, id)});
 	}
 }
 

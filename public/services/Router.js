@@ -82,7 +82,7 @@ class Router {
 
 	register(url, controller) {
 		this.routes.push({
-			pattern: new RegExp('^'+ url.replace(/:\w+/, '(\\w+)')+'$'),
+			pattern: new RegExp('^'+ url.replace(/:\w+/, '(-?\\d+)')+'$'),
 			controller: controller
 		});
 	}

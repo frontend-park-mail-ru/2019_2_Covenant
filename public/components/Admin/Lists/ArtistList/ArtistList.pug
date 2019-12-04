@@ -1,7 +1,7 @@
 div
     div(class="admin-header admin-header-area")
         h3(class="admin-header_h3")="Artists"
-        a(class="btn btn_add")
+        a(class="btn btn_add" id="create-item-btn")
             div="Add an artist"
     div(class="admin-content-area")
         if columns && dataSource
@@ -9,7 +9,7 @@ div
                 tr
                     each column in columns
                         th(class=column.className)=column.title
-                each item in dataSource
+                each item in dataSource.items
                     tr
                         each column in columns
                             if (column.title === 'Actions')
