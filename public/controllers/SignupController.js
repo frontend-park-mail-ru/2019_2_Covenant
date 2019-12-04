@@ -8,8 +8,6 @@ import Urls from '../services/Urls';
 class SignupController extends BaseController {
 	constructor(view) {
 		super(view);
-
-		this.title = 'Signup Page';
 	}
 
 	onShow() {

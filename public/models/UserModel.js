@@ -16,10 +16,25 @@ class UserModel {
 		.then(response => response.json());
 	}
 
-	updateProfile({email = '', nickname = '', password = '' } = {}) {
-		return Http.fetchPost({
+	updateProfileInfo({email = '', nickname = '' } = {}) {
+		return Http.fetchPut({
 			path: '/profile',
-			body: JSON.stringify({'nickname': nickname, 'email': email, 'password': password})
+			body: JSON.stringify({'nickname': nickname, 'email': email})
+		})
+		.then(response => response.json());
+	}
+
+	updateProfilePassword({
+			oldPassword = '',
+			password = '',
+			passwordConfirm = ''} = {}) {
+		return Http.fetchPost({
+			path: '/profile/password',
+			body: JSON.stringify({
+				'old_password': oldPassword,
+				'password': password,
+				'password_confirmation': passwordConfirm
+			})
 		})
 		.then(response => response.json());
 	}
@@ -29,7 +44,7 @@ class UserModel {
 		formData.append('avatar', file);
 		formData.append('name', file.name);
 
-		return fetch(`${SERVER_API_PATH}/avatar`, {
+		return fetch(`${SERVER_API_PATH}/profile/avatar`, {
 			method: 'POST',
 			credentials: 'include',
 			mode: 'cors',

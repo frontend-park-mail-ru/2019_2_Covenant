@@ -15,7 +15,11 @@ import emptyView from '../views/EmptyView/EmptyView';
 import Urls from './Urls.js';
 import Events from './Events';
 import EventBus from './EventBus';
-import {AdminArtistsController} from '../controllers/AdminController';
+import {
+	AdminAlbumEditorController,
+	AdminAlbumsController,
+	AdminArtistsController
+} from '../controllers/AdminController';
 import {AdminArtistEditorController} from '../controllers/AdminController';
 
 class Router {
@@ -27,6 +31,8 @@ class Router {
 		this.register(Urls.ProfileUrl, new ProfileController(profileView));
 		this.register(Urls.AdminArtistEditor, new AdminArtistEditorController());
 		this.register(Urls.AdminArtists, new AdminArtistsController());
+		this.register(Urls.AdminAlbums, new AdminAlbumsController());
+		this.register(Urls.AdminAlbumEdtior, new AdminAlbumEditorController());
 
 		this.eventHandler = this.eventHandler.bind(this);
 		EventBus.subscribe(Events.ChangeRoute, this.eventHandler);

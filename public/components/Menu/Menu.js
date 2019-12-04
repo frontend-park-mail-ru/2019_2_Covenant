@@ -51,8 +51,7 @@ class Menu extends BaseComponent {
 	}
 
 	updateUser(user) {
-		// TODO: fix this later
-		if (user.role === UserRole.Admin || user.nickname === 'krulex98@mail.ru') {
+		if (user.role === UserRole.Admin) {
 			this.renderAdminMenuItems();
 		} else {
 			this.renderUserMenuItems();
@@ -77,6 +76,7 @@ class Menu extends BaseComponent {
 	onRender() {
 		new Link({elementId: 'main_link', eventType: 'click', route: Urls.MainUrl});
 		new Link({elementId: 'admin-artists-link', eventType: 'click', route: Urls.AdminArtists});
+		new Link({elementId: 'admin-albums-link', eventType: 'click', route: Urls.AdminAlbums});
     }
 }
 

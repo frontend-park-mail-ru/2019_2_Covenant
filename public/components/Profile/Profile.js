@@ -54,7 +54,7 @@ class Profile extends BaseComponent {
 	onUploadAvatar(file) {
 		UserModel.uploadAvatar(file)
 			.then(response => {
-				EventBus.publish(Events.UpdateUser, response.body);
+				EventBus.publish(Events.UpdateUser, response.body.user);
 			}).catch(error => {
 			console.log(error);
 		});

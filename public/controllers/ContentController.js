@@ -21,7 +21,7 @@ class ContentController extends BaseController {
         .then(response => {
             console.log(response);
             if (!response.error) {
-                EventBus.publish(Events.UpdateUser, response.body);
+                EventBus.publish(Events.UpdateUser, response.body.user);
             }
         })
         .catch(error => {

@@ -40,11 +40,11 @@ class ProfileSettings extends BaseComponent {
 		const updateBtn = document.getElementById('btn-update-profile');
 		if (updateBtn) {
 			updateBtn.addEventListener('click', () => {
-				UserModel.updateProfile({
+				UserModel.updateProfileInfo({
 					nickname: this.nicknameInput.value,
 					email: this.emailInput.value
 				}).then(response => {
-					EventBus.publish(Events.UpdateUser, response.body);
+					EventBus.publish(Events.UpdateUser, response.body.user);
 				}).catch(error => {
 					console.log(error);
 				});
@@ -54,8 +54,10 @@ class ProfileSettings extends BaseComponent {
 		const saveBtn = document.getElementById('btn-save-profile');
 		if (saveBtn) {
 			saveBtn.addEventListener('click', () => {
-				UserModel.updateProfile({
-					password: this.passwordInput.value
+				UserModel.updateProfilePassword({
+					oldPassword: this.oldPasswordInput.value,
+					password: this.passwordInput.value,
+					passwordConfirm: this.repeatPasswordInput.value
 				}).then(response => {
 					console.log(response);
 				}).catch(error => {

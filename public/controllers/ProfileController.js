@@ -1,11 +1,8 @@
 import UserModel from '../models/UserModel';
 import Events from '../services/Events';
 import EventBus from '../services/EventBus';
-import EditableField from '../components/EditableField/EditableField';
 import BaseController from './BaseController';
 import Urls from '../services/Urls';
-import TrackList from '../components/TrackList/TrackList';
-import TrackModel from '../models/TrackModel';
 import NewHeader from '../components/NewHeader/NewHeader';
 import Menu from '../components/Menu/Menu';
 import Profile from '../components/Profile/Profile';
@@ -14,7 +11,6 @@ import ProfileSettings from '../components/ProfileSettings/ProfileSettings';
 class ProfileController extends BaseController {
 	constructor(view) {
 		super(view);
-		this.title = 'Profile Page';
 
 		this.page = {
 			user: null
@@ -41,7 +37,7 @@ class ProfileController extends BaseController {
 				const settings = new ProfileSettings();
 				settings.render('user-tabs');
 
-				EventBus.publish(Events.UpdateUser, response.body);
+				EventBus.publish(Events.UpdateUser, response.body.user);
 			}
 		})
 		.catch(error => {
@@ -58,7 +54,7 @@ class ProfileController extends BaseController {
 		.then(response => {
 			if (!response.error) {
 				this.page.user = response.body;
-				EventBus.publish(Events.UpdateUser, response.body);
+				EventBus.publish(Events.UpdateUser, response.body.user);
 			}
 		}).catch(error => {
 			console.log(error);

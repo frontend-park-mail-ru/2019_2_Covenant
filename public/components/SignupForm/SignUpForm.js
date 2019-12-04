@@ -93,6 +93,7 @@ class SignUpForm extends  BaseComponent {
 		const form = {
 			email: this.emailInput.value,
 			password: this.passwordInput.value,
+			password_confirmation: this.repeatPasswordInput.value,
 			nickname: this.nicknameInput.value
 		};
 

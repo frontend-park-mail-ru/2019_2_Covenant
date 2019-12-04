@@ -20,6 +20,14 @@ class Http {
 		});
 	}
 
+	fetchPut({ path, body }) {
+		return this.fetchRequest({
+			method: 'PUT',
+			path: path,
+			body: body
+		});
+	}
+
 	fetchDelete({ path, body }) {
 		return this.fetchRequest({
 			method: 'DELETE',

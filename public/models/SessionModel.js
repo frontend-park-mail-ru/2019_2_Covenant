@@ -5,7 +5,7 @@ const Http = new HttpModule();
 class SessionModel {
 	login(form) {
 		return Http.fetchPost({
-			path: '/login',
+			path: '/session',
 			body: JSON.stringify({...form})
 		})
 		.then(response => response.json());
@@ -13,15 +13,15 @@ class SessionModel {
 
 	signUp(form) {
 		return Http.fetchPost({
-			path: '/signup',
+			path: '/users',
 			body: JSON.stringify({...form})
 		})
 		.then(response => response.json());
 	}
 
 	logOut() {
-		return Http.fetchGet({
-			path: '/logout'
+		return Http.fetchDelete({
+			path: '/session'
 		})
 		.then(response => response.json());
 	}

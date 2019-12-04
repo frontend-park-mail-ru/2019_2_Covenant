@@ -3,6 +3,8 @@ import adminView from '../views/AdminView/AdminView';
 import Menu from '../components/Admin/Menu/Menu';
 import ArtistList from '../components/Admin/Lists/ArtistList/ArtistList';
 import ArtistEditor from '../components/Admin/Editors/ArtistEditor/ArtistEditor';
+import AlbumList from '../components/Admin/Lists/AlbumList/AlbumList';
+import AlbumEditor from '../components/Admin/Editors/AlbumEditor/AlbumEditor';
 
 class AdminController extends BaseController {
 	constructor(view, component) {
@@ -35,21 +37,19 @@ export class AdminArtistEditorController extends AdminController {
 
 export class AdminAlbumsController extends AdminController {
 	constructor() {
-		super(adminView, {});
+		super(adminView, new AlbumList());
 	}
+}
 
-	onShow() {
-		super.onShow();
+export class AdminAlbumEditorController extends AdminController {
+	constructor() {
+		super(adminView, new AlbumEditor());
 	}
 }
 
 export class AdminTracksController extends AdminController {
 	constructor() {
 		super(adminView, {});
-	}
-
-	onShow() {
-		super.onShow();
 	}
 }
 

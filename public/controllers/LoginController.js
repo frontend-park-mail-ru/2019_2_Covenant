@@ -9,8 +9,6 @@ import Urls from '../services/Urls';
 class LoginController extends  BaseController {
 	constructor(view) {
 		super(view);
-
-		this.title = 'Login Page';
 	}
 
 	onShow() {
