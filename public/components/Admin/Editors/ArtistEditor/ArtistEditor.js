@@ -8,7 +8,7 @@ class ArtistEditor extends ItemEditor {
 	constructor() {
 		const initialValues = {
 			id: -1,
-			name: 'John',
+			name: '',
 			file: ''
 		};
 		super({
@@ -16,34 +16,27 @@ class ArtistEditor extends ItemEditor {
 			backPath: Urls.AdminArtists,
 			title: 'Edit artist',
 			item: initialValues,
+			itemName: 'artist',
 			template: template
 		});
 	}
 
-	loadItem() {
-		const pattern = new RegExp('^' + this.path.replace(/:\w+/, '(-?\\d+)') + '$');
-		const url = window.location.pathname;
-		const params = url.match(pattern);
-		const id = params[1];
-
-		if (id > 0) {
-			// need request
-			return {};
-		}
-
-		return {
-			id: -1,
-			name: '',
-			file: ''
-		};
+	loadItem(id) {
+		return ArtistModel.getArtist(id);
 	}
-
 
 	onRender() {
 		super.onRender();
 
 		this.nameInput = new Input({
 			inputId: 'artist-name-input'
+		});
+	}
+
+	onUpdate() {
+		return ArtistModel.updateArtist({
+			id: this.state.item.id,
+			name: this.nameInput.value
 		});
 	}
 

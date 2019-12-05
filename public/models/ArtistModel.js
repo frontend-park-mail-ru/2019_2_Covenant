@@ -11,6 +11,13 @@ class ArtistModel {
 		.then(response => response.json());
 	}
 
+	getArtist(id) {
+		return Http.fetchGet({
+			path: `/artists/${id}`
+		})
+		.then(response => response.json());
+	}
+
 	deleteArtist(id) {
 		return Http.fetchDelete({
 			path: `/artists/${id}`
@@ -18,9 +25,12 @@ class ArtistModel {
 		.then(response => response.json());
 	}
 
-	updateArtist(id) {
+	updateArtist({
+		id = '',
+		name = '' }) {
 		return Http.fetchPut({
-			path: `/artists/${id}`
+			path: `/artists/${id}`,
+			body: JSON.stringify({name: name})
 		})
 		.then(response => response.json());
 	}
