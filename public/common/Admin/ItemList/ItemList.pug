@@ -1,8 +1,8 @@
 div
     div(class="admin-header admin-header-area")
-        h3(class="admin-header_h3")="Artists"
+        h3(class="admin-header_h3")=title
         a(class="btn btn_add" id="create-item-btn")
-            div="Add an artist"
+            div=addCaption
     div(class="admin-content-area")
         if columns && dataSource
             table(class="admin-table")
