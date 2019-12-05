@@ -21,10 +21,6 @@ class Menu extends BaseComponent {
 	renderItems() {
 		this.state.items = this.getItems();
 		this.update(this.state);
-
-		this.state.items.forEach(item => {
-			new Link({elementId: item.id, eventType: 'click', route: item.route});
-		});
 	}
 
 	getItems() {
@@ -36,6 +32,10 @@ class Menu extends BaseComponent {
 	}
 
 	onRender() {
+		this.state.items.forEach(item => {
+			new Link({elementId: item.id, eventType: 'click', route: item.route});
+		});
+
 		new Link({elementId: 'home-link', eventType: 'click', route: Urls.MainUrl});
 		new Link({elementId: 'profile-link', eventType: 'click', route: Urls.ProfileUrl});
 

@@ -1,20 +1,23 @@
-import BaseComponent from '../../../BaseComponent/BaseComponent';
-import template from './ArtistEditor.pug';
 import Urls from '../../../../services/Urls';
-import EventBus from '../../../../services/EventBus';
-import Events from '../../../../services/Events';
 import ArtistModel from '../../../../models/ArtistModel';
 import Input from '../../../Input/Input';
+import ItemEditor from '../../../../common/Admin/ItemEditor/ItemEditor';
+import template from './ArtistEditor.pug';
 
-class ArtistEditor extends BaseComponent {
+class ArtistEditor extends ItemEditor {
 	constructor() {
-		super(template);
-
-		this.path = Urls.AdminArtistEditor;
-		this.backPath = Urls.AdminArtists;
-
-		this.saveHandler = this.saveHandler.bind(this);
-		this.cancelHandler = this.cancelHandler.bind(this);
+		const initialValues = {
+			id: -1,
+			name: 'John',
+			file: ''
+		};
+		super({
+			path: Urls.AdminArtistEditor,
+			backPath: Urls.AdminArtists,
+			title: 'Edit artist',
+			item: initialValues,
+			template: template
+		});
 	}
 
 	loadItem() {
@@ -35,40 +38,17 @@ class ArtistEditor extends BaseComponent {
 		};
 	}
 
+
 	onRender() {
-		this.item = this.loadItem();
+		super.onRender();
 
 		this.nameInput = new Input({
 			inputId: 'artist-name-input'
 		});
-
-		this.addSaveHandler();
-		this.addCancelHandler();
 	}
 
-	addSaveHandler() {
-		const btn = document.getElementById('save-btn');
-		btn.addEventListener('click', this.saveHandler);
-	}
-
-	addCancelHandler() {
-		const btn = document.getElementById('cancel-btn');
-		btn.addEventListener('click', this.cancelHandler);
-	}
-
-	saveHandler() {
-		ArtistModel.createArtist(this.nameInput.value)
-		.then(response => {
-			console.log(response);
-			EventBus.publish(Events.ChangeRoute, {newUrl: this.backPath});
-		})
-		.catch(error => {
-			console.log(error);
-		});
-	}
-
-	cancelHandler() {
-		EventBus.publish(Events.ChangeRoute, {newUrl: this.backPath});
+	onSave() {
+		return ArtistModel.createArtist(this.nameInput.value);
 	}
 }
 

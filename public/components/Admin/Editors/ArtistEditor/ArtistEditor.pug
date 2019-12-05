@@ -1,13 +1,9 @@
-div
-	div(class="admin-header admin-header-area")
-		h3(class="admin-header_h3")="Edit artist"
-	div(class="admin-content-area")
-		form(class="form-edit")
-			div(class="form-edit__container")
-				label(class="form-edit__label")="Name"
-				input(class="form-edit__input" type="text" name="name" id='artist-name-input')
-			div(class="form-edit__container")
-				label(class="form-edit__label")="Upload image of artist:"
-				input(class="form-edit__input" type="file" name="file")
-			button(class="edit-btn btn_save" type="button" id="save-btn")="Save"
-			button(class="edit-btn btn_cancel" type="button" id="cancel-btn")="Cancel"
+extends ../../../../common/Admin/ItemEditor/ItemEditor
+
+block content
+	div(class="form-edit__container")
+		label(class="form-edit__label")="Name"
+		input(class="form-edit__input" type="text" name="name" id='artist-name-input' value=item.name)
+	div(class="form-edit__container")
+		label(class="form-edit__label")="Upload image of artist:"
+		input(class="form-edit__input" type="file" name="file" value=item.file)
