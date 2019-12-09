@@ -3,6 +3,8 @@ import ItemEditor from '../../../../common/Admin/ItemEditor/ItemEditor';
 import Urls from '../../../../services/Urls';
 import Input from '../../../Input/Input';
 import AlbumModel from '../../../../models/AlbumModel';
+import Autocomplete from '../../../../common/Autocomplete/Autocomplete';
+import SearchModel from '../../../../models/SearchModel';
 
 class AlbumEditor extends ItemEditor {
 	constructor() {
@@ -20,6 +22,9 @@ class AlbumEditor extends ItemEditor {
 			itemName: 'album',
 			template: template
 		});
+
+		this.onSave = this.onSave.bind(this);
+		this.onUpdate = this.onUpdate.bind(this);
 	}
 
 	loadItem(id) {
@@ -28,6 +33,12 @@ class AlbumEditor extends ItemEditor {
 
 	onRender() {
 		super.onRender();
+
+		this.artistAutocomplete = new Autocomplete({
+			loadItems: this.loadArtists,
+			itemsName: 'artists'
+		});
+		this.artistAutocomplete.render('artist-autocomplete-id');
 
 		this.nameInput = new Input({
 			inputId: 'album-name-input'
@@ -44,11 +55,17 @@ class AlbumEditor extends ItemEditor {
 	}
 
 	onSave() {
+		const artist = this.artistAutocomplete.value;
+
 		return AlbumModel.createAlbum({
-			artistId: '',
-			name: '',
-			year: ''
+			artistId: artist.id,
+			name: this.nameInput.value,
+			year: '2019-01-01'
 		});
+	}
+
+	loadArtists(text) {
+		return SearchModel.search(text);
 	}
 }
 

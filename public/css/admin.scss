@@ -7,7 +7,7 @@ $admin-dark-back-color: #0F0F1F;
   margin-bottom: 40px;
 
   &__container {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
   }
 
   &__label {
@@ -16,10 +16,17 @@ $admin-dark-back-color: #0F0F1F;
     display: block;
   }
 
+  &__input-container {
+    width: 400px;
+  }
+
   &__input {
     display: block;
-    height: 32px;
     font-size: 18px;
+    border: none;
+    outline: none;
+    width: 100%;
+    padding: 10px;
   }
 }
 

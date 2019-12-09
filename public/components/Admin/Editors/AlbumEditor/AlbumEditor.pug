@@ -3,4 +3,8 @@ extends ../../../../common/Admin/ItemEditor/ItemEditor
 block content
 	div(class="form-edit__container")
 		label(class="form-edit__label")="Name"
-		input(class="form-edit__input" type="text" name="name" id='album-name-input' value=item.name)
+		div(class="form-edit__input-container")
+			input(class="form-edit__input" type="text" name="name" id='album-name-input' value=item.name)
+	div(class="form-edit__container")
+		label(class="form-edit__label")="Artist"
+		div(id="artist-autocomplete-id")

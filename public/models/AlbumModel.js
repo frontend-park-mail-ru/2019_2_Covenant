@@ -22,8 +22,9 @@ class AlbumModel {
 		name = '',
 		year = '' } = {}) {
 		return Http.fetchPost({
-			path: `artists/${artistId}/albums`,
+			path: `/artists/${artistId}/albums`,
 			body: JSON.stringify({
+				artistId: artistId,
 				name: name,
 				year: year
 			})
