@@ -31,6 +31,14 @@ class BaseComponent {
 		}
 	}
 
+	hide() {
+		const parent = document.getElementById(this.parentId);
+		if (parent) {
+			parent.innerHTML = '';
+			this.onDestroy();
+		}
+	}
+
 	onRender() {}
 
 	onDestroy() {}

@@ -4,7 +4,7 @@
 import LoginController from '../controllers/LoginController.js';
 import SignupController from '../controllers/SignupController.js';
 import ProfileController from '../controllers/ProfileController';
-import ContentController from '../controllers/ContentController';
+import ContentController, {PlayListsController} from '../controllers/ContentController';
 
 // Views
 import profileView from '../views/ProfileView/ProfileView';
@@ -25,14 +25,17 @@ import {AdminArtistEditorController} from '../controllers/AdminController';
 class Router {
 	constructor() {
 		this.routes = [];
-		this.register(Urls.MainUrl, new ContentController(homeView));
+		this.register(Urls.MainUrl, new ContentController());
 		this.register(Urls.LoginUrl, new LoginController(emptyView));
 		this.register(Urls.SignupUrl, new SignupController(emptyView));
 		this.register(Urls.ProfileUrl, new ProfileController(profileView));
+
 		this.register(Urls.AdminArtistEditor, new AdminArtistEditorController());
 		this.register(Urls.AdminArtists, new AdminArtistsController());
 		this.register(Urls.AdminAlbums, new AdminAlbumsController());
 		this.register(Urls.AdminAlbumEdtior, new AdminAlbumEditorController());
+
+		this.register(Urls.PlaylistsUrl, new PlayListsController());
 
 		this.eventHandler = this.eventHandler.bind(this);
 		EventBus.subscribe(Events.ChangeRoute, this.eventHandler);

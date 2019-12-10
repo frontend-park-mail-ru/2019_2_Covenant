@@ -9,6 +9,8 @@
 @import "components/NewHeader/NewHeader";
 @import "components/Profile/Profile";
 @import "components/ProfileSettings/ProfileSettings";
+@import "components/Content/Playlists/Playlists";
+@import "components/Content/Playlists/PlaylistPopup/PlaylistPopup";
 @import "components/Pagination/Pagination";
 @import "views/HomeView/HomeView";
 @import "css/admin";
@@ -50,11 +52,6 @@
 }
 
 /*----------------frame start--------------------*/
-//.header {
-//    background: var(--gray);
-//    position: absolute;
-//    width: 100%;
-//}
 
 .container {
     display: flex;
@@ -68,6 +65,13 @@
     width: 100%;
     height: 35px;
     background: var(--gray);
+}
+
+.title {
+    margin-bottom: 10px;
+    color: $font-color;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 /*----------------frame end--------------------*/

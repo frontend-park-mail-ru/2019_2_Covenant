@@ -4,10 +4,14 @@ import NewHeader from '../components/NewHeader/NewHeader';
 import UserModel from '../models/UserModel';
 import EventBus from '../services/EventBus';
 import Events from '../services/Events';
+import homeView from '../views/HomeView/HomeView';
+import Playlists from '../components/Content/Playlists/Playlists';
 
 class ContentController extends BaseController {
-    constructor(view) {
-        super(view);
+    constructor(component) {
+        super(homeView);
+
+        this.component = component;
     }
 
     onShow() {
@@ -22,16 +26,20 @@ class ContentController extends BaseController {
             console.log(response);
             if (!response.error) {
                 EventBus.publish(Events.UpdateUser, response.body.user);
+
+                const content = new this.component();
+                content.render('content');
             }
         })
         .catch(error => {
             console.log(error);
         });
-
     }
+}
 
-    renderContent() {
-
+export class PlayListsController extends ContentController {
+    constructor() {
+        super(Playlists);
     }
 }
 

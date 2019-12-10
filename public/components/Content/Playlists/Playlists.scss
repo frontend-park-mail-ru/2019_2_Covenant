@@ -1,0 +1,63 @@
+@import '../../../vars';
+
+.content-cards {
+  margin: 30px 0 30px $padding-left-content;
+}
+
+.cards-container {
+
+}
+
+.card-item {
+  &__container {
+	display: inline-block;
+	vertical-align: top;
+	margin-bottom: 20px;
+	margin-right: 20px;
+  }
+
+  &__container:hover {
+	transform: scale(1.05);
+  }
+
+  &__img {
+	cursor: pointer;
+	margin-bottom: 10px;
+  }
+
+  &__img-inner {
+	border-radius: 10px;
+	width: 160px;
+	height: 160px;
+	transition: .3s;
+  }
+
+  &__img-new {
+	background-color: $accent-color;
+	opacity: .5;
+  }
+
+  &__title {
+	font-size: 18px;
+	margin-bottom: 5px;
+	transition: .3s;
+  }
+
+  &__subtitle {
+	font-size: 14px;
+	color: $font-light-color;
+	transition: .3s;
+  }
+}
+
+.plus-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  &__img {
+	width: 50px;
+	height: 50px;
+  }
+}
