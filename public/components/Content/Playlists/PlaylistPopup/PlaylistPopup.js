@@ -39,7 +39,7 @@ class PlaylistPopup extends  BaseComponent {
 	}
 
 	checkValid() {
-
+		// TODO check if not empty
 	}
 
 	saveHandler() {

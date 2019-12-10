@@ -5,6 +5,7 @@ import PlaylistModel from '../../../models/PlaylistModel';
 import EventBus from '../../../services/EventBus';
 import Events from '../../../services/Events';
 import {SERVER_ROOT} from '../../../services/Settings';
+import ConfirmationDialog from '../../../common/ConfirmationDialog/ConfirmationDialog';
 
 class Playlists extends BaseComponent {
 	constructor() {
@@ -41,11 +42,41 @@ class Playlists extends BaseComponent {
 	addHandlers() {
 		const createBtn = document.getElementById('create-playlist-btn');
 		createBtn.addEventListener('click', this.createPlaylistHandler);
+
+		this.addDeleteHandlers();
 	}
 
 	createPlaylistHandler() {
 		const popup = new PlaylistPopup();
 		popup.render('popup');
+	}
+
+	addDeleteHandlers() {
+		this.state.items.forEach(item => {
+			const deleteBtn = document.getElementById(`delete-playlist-btn-${item.id}`);
+			deleteBtn.addEventListener('click', () => { this.deletePlaylistHandler(item.id)});
+		});
+	}
+
+	deletePlaylist(id) {
+		PlaylistModel.deletePlaylist(id)
+		.then(response => {
+			if (!response.error) {
+				this.loadItems();
+			}
+		})
+		.catch(error => {
+			console.log(error);
+		});
+	}
+
+	deletePlaylistHandler(id) {
+		const dialog = new ConfirmationDialog({
+			successCallback: () => {
+				this.deletePlaylist(id);
+			}
+		});
+		dialog.render('popup');
 	}
 
 	// temporary fix TODO: need NGINX
