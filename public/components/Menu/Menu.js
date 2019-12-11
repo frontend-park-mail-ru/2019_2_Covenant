@@ -23,38 +23,37 @@ class Menu extends BaseComponent {
 
 	getDefaultMenuItems() {
 		return [
-			{title: 'Home', imgPath: 'img/home.png', id: 'menu-home-link'},
-			{title: 'Collections', imgPath: 'img/playlist.png', id: 'menu-collections-link'},
-			{title: 'Genres', imgPath: 'img/musical-note.png', id: 'menu-genres-link'},
-			{title: 'Albums', imgPath: 'img/music-folder.png', id: 'menu-albums-link'},
-			{title: 'Artists', imgPath: 'img/micro.png', id: 'menu-artists-link'},
-			{title: 'Search', imgPath: 'img/search-gray.png', id: 'menu-search-link'}
+			{title: 'Home', imgPath: 'img/home.png', id: 'menu-home-link', route: Urls.MainUrl},
+			{title: 'Collections', imgPath: 'img/playlist.png', id: 'menu-collections-link', route: Urls.CollectionsUrl},
+			{title: 'Albums', imgPath: 'img/music-folder.png', id: 'menu-albums-link', route: Urls.ALbumsUrl},
+			{title: 'Artists', imgPath: 'img/micro.png', id: 'menu-artists-link', route: Urls.ArtistsUrl},
+			{title: 'Search', imgPath: 'img/search-gray.png', id: 'menu-search-link', route: Urls.SearchUrl}
 		];
 	}
 
 	getUserMenuItems() {
 		return [
-			{title: 'History', imgPath: 'img/history.png', id: 'menu-history-link'},
-			{title: 'Favourite', imgPath: 'img/fav.png', id: 'menu-fav-link'},
-			{title: 'Playlists', imgPath: 'img/playlists.png', id: 'menu-playlists-link'},
-			{title: 'Friends', imgPath: 'img/friends.png', id: 'menu-friends-link'},
-			{title: 'Feed', imgPath: 'img/feed.png', id: 'menu-feed-link'},
+			{title: 'Favourite', imgPath: 'img/fav.png', id: 'menu-fav-link', route: Urls.FavouritesUrl},
+			{title: 'Playlists', imgPath: 'img/playlists.png', id: 'menu-playlists-link', route: Urls.PlaylistsUrl},
+			{title: 'Followers', imgPath: 'img/friends.png', id: 'menu-followers-link', route: Urls.Followers},
+			{title: 'Following', imgPath: 'img/friends.png', id: 'menu-following-link', route: Urls.Following}
+			// {title: 'Feed', imgPath: 'img/feed.png', id: 'menu-feed-link'},
 		];
 	}
 
 	getAdminMenuItems() {
 		return [
-			{title: 'Artists', imgPath: 'img/micro.png', id: 'admin-artists-link'},
-			{title: 'Albums', imgPath: 'img/music-folder.png', id: 'admin-albums-link'},
-			{title: 'Tracks', imgPath: 'img/musical-note.png', id: 'admin-tracks-link'}
+			{title: 'Collections', imgPath: 'img/playlist.png', id: 'admin-collections-link', route: Urls.AdminCollections},
+			{title: 'Artists', imgPath: 'img/micro.png', id: 'admin-artists-link', route: Urls.AdminArtists},
+			{title: 'Albums', imgPath: 'img/music-folder.png', id: 'admin-albums-link', route: Urls.AdminAlbums},
+			{title: 'Tracks', imgPath: 'img/musical-note.png', id: 'admin-tracks-link', route: Urls.AdminTracks}
 		];
 	}
 
 	updateUser(user) {
+		this.renderUserMenuItems();
 		if (user.role === UserRole.Admin) {
 			this.renderAdminMenuItems();
-		} else {
-			this.renderUserMenuItems();
 		}
 	}
 
@@ -74,9 +73,14 @@ class Menu extends BaseComponent {
 	}
 
 	onRender() {
-		new Link({elementId: 'main_link', eventType: 'click', route: Urls.MainUrl});
-		new Link({elementId: 'admin-artists-link', eventType: 'click', route: Urls.AdminArtists});
-		new Link({elementId: 'admin-albums-link', eventType: 'click', route: Urls.AdminAlbums});
+		let items = [];
+		items.push(...this.state.defaultMenuItems);
+		items.push(...this.state.userMenuItems);
+		items.push(...this.state.adminMenuItems);
+
+		items.forEach(item => {
+			new Link({elementId: item.id, eventType: 'click', route: item.route});
+		});
     }
 }
 

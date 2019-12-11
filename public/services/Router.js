@@ -4,11 +4,14 @@
 import LoginController from '../controllers/LoginController.js';
 import SignupController from '../controllers/SignupController.js';
 import ProfileController from '../controllers/ProfileController';
-import ContentController, {PlayListsController} from '../controllers/ContentController';
+import {
+	AlbumsController, ArtistsController,
+	CollectionsController, FavouriteController, FollowersController, FollowingController, HomeController,
+	PlayListsController, SearchController
+} from '../controllers/ContentController';
 
 // Views
 import profileView from '../views/ProfileView/ProfileView';
-import homeView from '../views/HomeView/HomeView';
 import emptyView from '../views/EmptyView/EmptyView';
 
 // Utils
@@ -18,24 +21,39 @@ import EventBus from './EventBus';
 import {
 	AdminAlbumEditorController,
 	AdminAlbumsController,
-	AdminArtistsController
+	AdminArtistsController,
+	AdminCollectionEditorController,
+	AdminCollectionsController,
+	AdminTrackEditorController,
+	AdminTracksController
 } from '../controllers/AdminController';
 import {AdminArtistEditorController} from '../controllers/AdminController';
 
 class Router {
 	constructor() {
 		this.routes = [];
-		this.register(Urls.MainUrl, new ContentController());
+		this.register(Urls.MainUrl, new HomeController());
 		this.register(Urls.LoginUrl, new LoginController(emptyView));
 		this.register(Urls.SignupUrl, new SignupController(emptyView));
 		this.register(Urls.ProfileUrl, new ProfileController(profileView));
+		this.register(Urls.CollectionsUrl, new CollectionsController());
+		this.register(Urls.ALbumsUrl, new AlbumsController());
+		this.register(Urls.ArtistsUrl, new ArtistsController());
+		this.register(Urls.SearchUrl, new SearchController());
 
-		this.register(Urls.AdminArtistEditor, new AdminArtistEditorController());
 		this.register(Urls.AdminArtists, new AdminArtistsController());
+		this.register(Urls.AdminArtistEditor, new AdminArtistEditorController());
 		this.register(Urls.AdminAlbums, new AdminAlbumsController());
 		this.register(Urls.AdminAlbumEdtior, new AdminAlbumEditorController());
+		this.register(Urls.AdminTracks, new AdminTracksController());
+		this.register(Urls.AdminTrackEditor, new AdminTrackEditorController());
+		this.register(Urls.AdminCollections, new AdminCollectionsController());
+		this.register(Urls.AdminCollectionEditor, new AdminCollectionEditorController());
 
 		this.register(Urls.PlaylistsUrl, new PlayListsController());
+		this.register(Urls.FavouritesUrl, new FavouriteController());
+		this.register(Urls.Followers, new FollowersController());
+		this.register(Urls.Following, new FollowingController());
 
 		this.eventHandler = this.eventHandler.bind(this);
 		EventBus.subscribe(Events.ChangeRoute, this.eventHandler);

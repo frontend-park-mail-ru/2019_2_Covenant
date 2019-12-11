@@ -3,7 +3,7 @@ import HttpModule from '../services/Http';
 const Http = new HttpModule();
 
 class TrackModel {
-	popular() {
+	getPopular() {
 		return Http.fetchGet({
 			path: '/tracks/popular'
 		})

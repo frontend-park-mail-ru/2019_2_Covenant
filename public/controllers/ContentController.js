@@ -6,8 +6,16 @@ import EventBus from '../services/EventBus';
 import Events from '../services/Events';
 import homeView from '../views/HomeView/HomeView';
 import Playlists from '../components/Content/Playlists/Playlists';
+import Home from '../components/Content/Home/Home';
+import Collections from '../components/Content/Collections/Collections';
+import Albums from '../components/Content/Albums/Albums';
+import Artists from '../components/Content/Artists/Artists';
+import Search from '../components/Content/Search/Search';
+import Favourites from '../components/Content/Favourites/Favourites';
+import Followers from '../components/Content/Followers/Followers';
+import Following from '../components/Content/Following/Following';
 
-class ContentController extends BaseController {
+export default class ContentController extends BaseController {
     constructor(component) {
         super(homeView);
 
@@ -37,10 +45,56 @@ class ContentController extends BaseController {
     }
 }
 
+export class HomeController extends ContentController {
+    constructor() {
+        super(Home);
+    }
+}
+
+export class CollectionsController extends ContentController {
+    constructor() {
+        super(Collections);
+    }
+}
+
+export class AlbumsController extends ContentController {
+    constructor() {
+        super(Albums);
+    }
+}
+
+export class ArtistsController extends ContentController {
+    constructor() {
+        super(Artists);
+    }
+}
+
+export class SearchController extends ContentController {
+    constructor() {
+        super(Search);
+    }
+}
+
 export class PlayListsController extends ContentController {
     constructor() {
         super(Playlists);
     }
 }
 
-export default ContentController;
+export class FavouriteController extends ContentController {
+    constructor() {
+        super(Favourites);
+    }
+}
+
+export class FollowersController extends ContentController {
+    constructor() {
+        super(Followers);
+    }
+}
+
+export class FollowingController extends ContentController {
+    constructor() {
+        super(Following);
+    }
+}

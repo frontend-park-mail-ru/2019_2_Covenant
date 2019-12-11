@@ -2,7 +2,7 @@ div
     div(class="admin-header admin-header-area")
         h3(class="admin-header_h3")=title
         a(class="btn btn_add" id="create-item-btn")
-            div=addCaption
+            div(class="btn_add-inner")=addCaption
     div(class="admin-content-area")
         if columns && dataSource
             table(class="admin-table")

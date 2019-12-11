@@ -25,6 +25,7 @@ class Menu extends BaseComponent {
 
 	getItems() {
 		return [
+			{title: 'Collections', id: 'collections-id', route: Urls.AdminCollections},
 			{title: 'Artists', id: 'artists-id', route: Urls.AdminArtists},
 			{title: 'Albums', id: 'albums-id', route: Urls.AdminAlbums},
 			{title: 'Tracks', id: 'tracks-id', route: Urls.AdminTracks}

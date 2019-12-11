@@ -97,7 +97,6 @@ $admin-dark-back-color: #0F0F1F;
 
 .btn_add {
   color: #FFFFFF;
-  width: 170px;
   height: 35px;
   margin: auto;
   text-decoration: none;
@@ -108,10 +107,15 @@ $admin-dark-back-color: #0F0F1F;
   display: flex;
   justify-content: center;
   align-items: center;
+  white-space: nowrap;
 }
 .btn_add:hover { transform: scale(1.05) }
 .btn_add:active {
   background: #0F0F1F;
+}
+
+.btn_add-inner {
+  margin: 15px;
 }
 
 .admin-table {

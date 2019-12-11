@@ -11,12 +11,6 @@ import ProfileSettings from '../components/ProfileSettings/ProfileSettings';
 class ProfileController extends BaseController {
 	constructor(view) {
 		super(view);
-
-		this.page = {
-			user: null
-		};
-
-		this.onSave = this.onSave.bind(this);
 	}
 
 	onShow() {
@@ -41,22 +35,6 @@ class ProfileController extends BaseController {
 			}
 		})
 		.catch(error => {
-			console.log(error);
-		});
-	}
-
-	onSave(fieldValue) {
-		const name = fieldValue;
-		if(!name || name === '')
-			return;
-
-		UserModel.updateProfile(name)
-		.then(response => {
-			if (!response.error) {
-				this.page.user = response.body;
-				EventBus.publish(Events.UpdateUser, response.body.user);
-			}
-		}).catch(error => {
 			console.log(error);
 		});
 	}
