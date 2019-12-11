@@ -6,12 +6,16 @@
   overflow-y: auto;
 }
 
+.wrapper-grid {
+  display: grid;
+  grid-template-columns: [menu] 250px [content] calc(100% - 250px);
+}
+
 .content-container {
+  grid-column: content;
   background-color: $background-accent-color;
   border-radius: $border-radius-content 0 0 0;
-  width: calc(100vw - 250px);
   height: 100%;
-  margin-left: auto;
 }
 
 .content-container-grid {
