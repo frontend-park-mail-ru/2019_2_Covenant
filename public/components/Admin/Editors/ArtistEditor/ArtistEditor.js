@@ -3,13 +3,15 @@ import ArtistModel from '../../../../models/ArtistModel';
 import Input from '../../../Input/Input';
 import ItemEditor from '../../../../common/Admin/ItemEditor/ItemEditor';
 import template from './ArtistEditor.pug';
+import {SERVER_ROOT} from '../../../../services/Settings';
+import File from '../../../../common/Kit/File/File';
 
 class ArtistEditor extends ItemEditor {
 	constructor() {
 		const initialValues = {
 			id: -1,
 			name: '',
-			file: ''
+			photo: ''
 		};
 		super({
 			path: Urls.AdminArtistEditor,
@@ -19,6 +21,9 @@ class ArtistEditor extends ItemEditor {
 			itemName: 'artist',
 			template: template
 		});
+
+		this.onSave = this.onSave.bind(this);
+		this.onUpdate = this.onUpdate.bind(this);
 	}
 
 	loadItem(id) {
@@ -31,6 +36,10 @@ class ArtistEditor extends ItemEditor {
 		this.nameInput = new Input({
 			inputId: 'artist-name-input'
 		});
+
+		const photo = this.state.item ? this.getFilePath() : null;
+		this.photoInput = new File({src: photo, accept: '.jpeg, .jpg, .png'});
+		this.photoInput.render('artist-file-container');
 	}
 
 	onUpdate() {
@@ -41,7 +50,22 @@ class ArtistEditor extends ItemEditor {
 	}
 
 	onSave() {
-		return ArtistModel.createArtist(this.nameInput.value);
+		return ArtistModel.createArtist({
+			name: this.nameInput.value,
+			file: this.photoInput.value
+		});
+	}
+
+	getFilePath() {
+		let photoPath = this.state.item.photo;
+		if (photoPath === '') {
+			return null;
+		}
+
+		if (!photoPath.includes(SERVER_ROOT)) {
+			photoPath = `${SERVER_ROOT}${photoPath}`;
+		}
+		return photoPath;
 	}
 }
 

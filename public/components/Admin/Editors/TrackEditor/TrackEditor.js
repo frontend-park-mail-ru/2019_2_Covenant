@@ -1,6 +1,11 @@
 import ItemEditor from '../../../../common/Admin/ItemEditor/ItemEditor';
 import template from './TrackEditor.pug';
 import Urls from '../../../../services/Urls';
+import Autocomplete from '../../../../common/Autocomplete/Autocomplete';
+import SearchModel from '../../../../models/SearchModel';
+import Input from '../../../Input/Input';
+import File from '../../../../common/Kit/File/File';
+import TrackModel from '../../../../models/TrackModel';
 
 class TrackEditor extends ItemEditor {
 	constructor() {
@@ -18,6 +23,39 @@ class TrackEditor extends ItemEditor {
 			item: initialValues,
 			itemName: 'track',
 			template: template
+		});
+
+		this.onSave = this.onSave.bind(this);
+	}
+
+	onRender() {
+		super.onRender();
+
+		this.albumAutocomplete = new Autocomplete({
+			loadItems: this.loadAlbums,
+			itemsName: 'albums'
+		});
+		this.albumAutocomplete.render('album-autocomplete-id');
+
+		this.nameInput = new Input({
+			inputId: 'track-name-input'
+		});
+
+		this.fileInput = new File({asButton: true, accept: '.mp3, .wav, .flac'});
+		this.fileInput.render('track-file-container');
+	}
+
+	loadAlbums(text) {
+		return SearchModel.search(text);
+	}
+
+	onSave() {
+		const album = this.albumAutocomplete.value;
+
+		return TrackModel.createTrack({
+			id: album.id,
+			name: this.nameInput.value,
+			file: this.fileInput.value
 		});
 	}
 }

@@ -1,0 +1,10 @@
+if !asButton
+	div(class="file-uploader"  id="file-uploader-id" style=src !== null ? `background: url(${src}) no-repeat center/contain`: "")
+		span
+			input(type="file" style="display: none" id="file-input-id" accept=accept)
+			div
+				img(class="file-uploader__img" src="/img/plus_gray.png" alt="")
+				div(class="file-uploader__text")="Upload"
+else
+	div
+		input(class="form-edit__input" type="file" name="file" id="file-input-id" accept=accept)

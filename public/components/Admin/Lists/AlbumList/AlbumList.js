@@ -16,23 +16,28 @@ class AlbumList extends ItemList {
 		return [
 			{
 				title: '#',
-				dataIndex: 'id',
-				className: 'list_header_num'
+				dataIndex: 'id'
 			},
 			{
 				title: 'Name',
-				dataIndex: 'name',
-				className: 'list_header_name'
+				dataIndex: 'name'
 			},
 			{
-				title: 'Actions',
-				className: 'list_header_btn'
+				title: 'Artist name',
+				dataIndex: 'artist'
+			},
+			{
+				title: 'Actions'
 			}
 		];
 	}
 
 	loadItems(count, offset) {
 		return AlbumModel.getAlbums(count, offset);
+	}
+
+	deleteItem(id) {
+		return AlbumModel.deleteAlbum(id);
 	}
 }
 

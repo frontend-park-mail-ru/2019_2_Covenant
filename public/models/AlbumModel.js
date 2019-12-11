@@ -1,4 +1,5 @@
 import HttpModule from '../services/Http';
+import {SERVER_API_PATH} from '../services/Settings';
 
 const Http = new HttpModule();
 
@@ -20,7 +21,8 @@ class AlbumModel {
 	createAlbum({
 		artistId = '',
 		name = '',
-		year = '' } = {}) {
+		year = '',
+		file = '' } = {}) {
 		return Http.fetchPost({
 			path: `/artists/${artistId}/albums`,
 			body: JSON.stringify({
@@ -28,6 +30,23 @@ class AlbumModel {
 				name: name,
 				year: year
 			})
+		})
+		.then(response => response.json())
+		.then(response => {
+			const id = response.body.album.id;
+			return this.uploadPhoto(id, file);
+		});
+	}
+
+	uploadPhoto(id, file) {
+		const formData = new FormData();
+		formData.append('file', file);
+
+		return fetch(`${SERVER_API_PATH}/albums/${id}/photo`, {
+			method: 'PUT',
+			credentials: 'include',
+			mode: 'cors',
+			body: formData
 		})
 		.then(response => response.json());
 	}

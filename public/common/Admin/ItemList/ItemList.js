@@ -97,13 +97,26 @@ class ItemList extends BaseComponent {
 	}
 
 	deleteHandler(evt) {
-		// todo
-		console.log(evt.currentTarget.dataset);
+		const id = evt.currentTarget.dataset.id;
+		this.deleteItem(id)
+		.then(response => {
+			if (!response.error) {
+				const current = this.pagination.currentPage;
+				this.baseLoadItems(this.countPerPage, current * this.countPerPage);
+			}
+		})
+		.catch(error => {
+			console.log(error);
+		});
 	}
 
 	createItemHandler() {
 		const id = -1;
 		EventBus.publish(Events.ChangeRoute, {newUrl: this.editorPath.replace(/:\w+/, id)});
+	}
+
+	deleteItem(id) {
+		throw new Error('Delete item should be overridden.');
 	}
 }
 

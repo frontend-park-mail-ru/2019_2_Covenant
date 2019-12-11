@@ -1,12 +1,30 @@
 import HttpModule from '../services/Http';
+import {SERVER_API_PATH} from '../services/Settings';
 
 const Http = new HttpModule();
 
 class ArtistModel {
-	createArtist(name) {
+	createArtist({name = '', file = ''} = {}) {
 		return Http.fetchPost({
 			path: '/artists',
 			body: JSON.stringify({name: name})
+		})
+		.then(response => response.json())
+		.then(response => {
+			const id = response.body.artist.id;
+			return this.uploadPhoto(id, file);
+		});
+	}
+
+	uploadPhoto(id, file) {
+		const formData = new FormData();
+		formData.append('file', file);
+
+		return fetch(`${SERVER_API_PATH}/artists/${id}/photo`, {
+			method: 'PUT',
+			credentials: 'include',
+			mode: 'cors',
+			body: formData
 		})
 		.then(response => response.json());
 	}

@@ -5,6 +5,8 @@ import Input from '../../../Input/Input';
 import AlbumModel from '../../../../models/AlbumModel';
 import Autocomplete from '../../../../common/Autocomplete/Autocomplete';
 import SearchModel from '../../../../models/SearchModel';
+import File from '../../../../common/Kit/File/File';
+import {SERVER_ROOT} from '../../../../services/Settings';
 
 class AlbumEditor extends ItemEditor {
 	constructor() {
@@ -12,7 +14,7 @@ class AlbumEditor extends ItemEditor {
 			id: -1,
 			artistId: -1,
 			name: '',
-			file: ''
+			photo: ''
 		};
 		super({
 			path: Urls.AdminAlbumEdtior,
@@ -43,6 +45,14 @@ class AlbumEditor extends ItemEditor {
 		this.nameInput = new Input({
 			inputId: 'album-name-input'
 		});
+
+		this.yearInput = new Input({
+			inputId: 'album-year-input'
+		});
+
+		const photo = this.state.item ? this.getFilePath() : null;
+		this.photoInput = new File({src: photo, accept: '.jpeg, .jpg, .png'});
+		this.photoInput.render('album-file-container');
 	}
 
 	onUpdate() {
@@ -60,12 +70,25 @@ class AlbumEditor extends ItemEditor {
 		return AlbumModel.createAlbum({
 			artistId: artist.id,
 			name: this.nameInput.value,
-			year: '2019-01-01'
+			year: this.yearInput.value,
+			file: this.photoInput.value
 		});
 	}
 
 	loadArtists(text) {
 		return SearchModel.search(text);
+	}
+
+	getFilePath() {
+		let photoPath = this.state.item.photo;
+		if (photoPath === '') {
+			return null;
+		}
+
+		if (!photoPath.includes(SERVER_ROOT)) {
+			photoPath = `${SERVER_ROOT}${photoPath}`;
+		}
+		return photoPath;
 	}
 }
 

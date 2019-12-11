@@ -121,6 +121,10 @@ class Pagination extends BaseComponent {
 
 		this.state.onChange(this.state.current);
 	}
+
+	get currentPage() {
+		return this.state.current;
+	}
 }
 
 export default Pagination;

@@ -34,6 +34,10 @@ class ArtistList extends ItemList {
 	loadItems(count, offset) {
 		return ArtistModel.getArtists(count, offset);
 	}
+
+	deleteItem(id) {
+		return ArtistModel.deleteArtist(id);
+	}
 }
 
 export default ArtistList;

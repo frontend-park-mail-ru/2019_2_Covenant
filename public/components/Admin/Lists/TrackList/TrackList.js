@@ -24,11 +24,11 @@ class TrackList extends ItemList {
 			},
 			{
 				title: 'Artist name',
-				dataIndex: 'artist.name'
+				dataIndex: 'artist'
 			},
 			{
 				title: 'Album name',
-				dataIndex: 'album.name'
+				dataIndex: 'album'
 			},
 			{
 				title: 'Actions'
