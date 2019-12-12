@@ -3,12 +3,14 @@ import template from './Home.pug';
 import AlbumModel from '../../../models/AlbumModel';
 import {SERVER_ROOT} from '../../../services/Settings';
 import TrackModel from '../../../models/TrackModel';
+import ArtistModel from '../../../models/ArtistModel';
 
 class Home extends BaseComponent {
 	constructor() {
 		const initialState = {
 			albums: [],
-			tracks: []
+			tracks: [],
+			artists: []
 		};
 		super(template, initialState);
 
@@ -16,9 +18,7 @@ class Home extends BaseComponent {
 		this.loadData();
 	}
 
-	onRender() {
-
-	}
+	onRender() {}
 
 	loadData() {
 		AlbumModel.getAlbums(15, 0)
@@ -33,12 +33,24 @@ class Home extends BaseComponent {
 			console.log(error);
 		});
 
-		TrackModel.getPopular(10, 0)
+		TrackModel.getPopular(12, 0)
 		.then(response => {
 			if (!response.error) {
 				this.state.tracks = response.body.tracks;
 				this.setServerRoot('tracks');
 				this.formatDuration();
+				this.update(this.state);
+			}
+		})
+		.catch(error => {
+			console.log(error);
+		});
+
+		ArtistModel.getArtists(4, 0)
+		.then(response => {
+			if (!response.error) {
+				this.state.artists = response.body.artists;
+				this.setServerRoot('artists');
 				this.update(this.state);
 			}
 		})
