@@ -35,7 +35,7 @@ class TrackList extends BaseComponent {
 	}
 
 	loadFavourites() {
-		TrackModel.favourites()
+		TrackModel.favourites(20, 0)
 		.then(response => {
 			if (!response.error) {
 				this.state.favs = response.body;

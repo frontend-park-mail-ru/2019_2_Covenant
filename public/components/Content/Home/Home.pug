@@ -1,1 +1,15 @@
 div(class="home")
+	div(class="home__albums-container")
+		h3="Popular Albums"
+		ul(class="hs no-scrollbar")
+			if albums.length > 0
+				each album in albums
+					div(class="home__album-item")
+						div(class="album-item__img")
+							img(src=album.photo alt="" class="album-item__img-inner")
+							span(class="album-item__close" id="album-additions-btn-"+album.id) &times
+						div(class="album-item__title")=album.name
+						div(class="album-item__subtitle")=album.artist
+			li(class="home__album-item")="test"
+	div(class="home__tracks-container")
+	div(class="home__artists-container")

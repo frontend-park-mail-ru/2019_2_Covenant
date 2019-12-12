@@ -26,9 +26,9 @@ class TrackModel {
 		.then(response => response.json());
 	}
 
-	favourites() {
+	favourites(count, offset) {
 		return Http.fetchGet({
-			path: '/tracks/favourite'
+			path: `/tracks/favourite?count=${count}&offset=${offset}`
 		})
 		.then(response => response.json());
 	}
