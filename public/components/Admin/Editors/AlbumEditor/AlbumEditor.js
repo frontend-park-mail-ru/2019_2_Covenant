@@ -37,8 +37,7 @@ class AlbumEditor extends ItemEditor {
 		super.onRender();
 
 		this.artistAutocomplete = new Autocomplete({
-			loadItems: this.loadArtists,
-			itemsName: 'artists'
+			loadItems: this.loadArtists
 		});
 		this.artistAutocomplete.render('artist-autocomplete-id');
 
@@ -76,7 +75,9 @@ class AlbumEditor extends ItemEditor {
 	}
 
 	loadArtists(text) {
-		return SearchModel.search(text);
+		return SearchModel.search(text).then(response => {
+			return response.body.artists;
+		});
 	}
 
 	getFilePath() {

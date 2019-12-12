@@ -4,13 +4,22 @@ import template from './Autocomplete.pug';
 class Autocomplete extends BaseComponent {
 	constructor({
 		loadItems = () => {},
-		itemsName = '' }) {
-		super(template);
+		containerClassName = 'autocomplete',
+		inputClassName = 'autocomplete-input',
+		onLoad = () => {},
+		onClose = () => {} }) {
+		const props = {
+			containerClassName: containerClassName,
+			inputClassName: inputClassName
+		};
+
+		super(template, props);
 
 		this.currentFocus = 0;
 		this.selectedObject = null;
 		this.loadItems = loadItems;
-		this.itemsName = itemsName;
+		this.onLoad = onLoad;
+		this.onClose = onClose;
 
 		this.loadItems = this.loadItems.bind(this);
 	}
@@ -20,7 +29,7 @@ class Autocomplete extends BaseComponent {
 	}
 
 	onRender() {
-		this.createAutocomplete(document.getElementById('myInput'));
+		this.createAutocomplete(document.getElementById('autocomplete-id'));
 
 		document.addEventListener('click', (e) => {
 			this.closeAllLists(e.target);
@@ -42,8 +51,10 @@ class Autocomplete extends BaseComponent {
 			input.parentNode.appendChild(a);
 
 			this.loadItems(val)
-				.then(response => {
-					const items = response.body[this.itemsName];
+				.then(items => {
+					if (items.length > 0) {
+						this.onLoad();
+					}
 
 					for (i = 0; i < items.length; i++) {
 						b = document.createElement('DIV');
@@ -113,6 +124,7 @@ class Autocomplete extends BaseComponent {
 				items[i].parentNode.removeChild(items[i]);
 			}
 		}
+		this.onClose();
 	}
 }
 

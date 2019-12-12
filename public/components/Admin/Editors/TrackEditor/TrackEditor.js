@@ -32,8 +32,7 @@ class TrackEditor extends ItemEditor {
 		super.onRender();
 
 		this.albumAutocomplete = new Autocomplete({
-			loadItems: this.loadAlbums,
-			itemsName: 'albums'
+			loadItems: this.loadAlbums
 		});
 		this.albumAutocomplete.render('album-autocomplete-id');
 
@@ -46,7 +45,10 @@ class TrackEditor extends ItemEditor {
 	}
 
 	loadAlbums(text) {
-		return SearchModel.search(text);
+		return SearchModel.search(text)
+			.then(response => {
+				return response.body.albums;
+			});
 	}
 
 	onSave() {

@@ -5,6 +5,7 @@ import Events from '../../services/Events';
 import {SERVER_ROOT} from '../../services/Settings';
 import Link from '../Link/Link';
 import Urls from '../../services/Urls';
+import SearchAutocomplete from '../SearchAutocomplete/SearchAutocomplete';
 
 class NewHeader extends BaseComponent {
 	constructor() {
@@ -17,6 +18,9 @@ class NewHeader extends BaseComponent {
 	onRender() {
 		new Link({elementId: 'signup_link', eventType: 'click', route: Urls.SignupUrl});
 		new Link({elementId: 'login_link', eventType: 'click', route: Urls.LoginUrl});
+
+		this.searchAutocomplete = new SearchAutocomplete();
+		this.searchAutocomplete.render('search-container-id');
 	}
 
 	updateUser(data) {
