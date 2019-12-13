@@ -1,0 +1,11 @@
+div(class="albums-container")
+	div(class="headline dark size-20")=title
+	ul(class="hs no-scrollbar")
+		if albums.length > 0
+			each album in albums
+				div(class="album-item")
+					div(class="album-item__img")
+						img(src=album.photo alt="" class="album-item__img-inner")
+						span(class="album-item__close" id="album-additions-btn-" + album.id) &times
+					div(class="album-item__title")=album.name
+					div(class="album-item__subtitle")=album.artist

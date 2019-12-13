@@ -12,8 +12,11 @@
 @import "components/Content/Playlists/Playlists";
 @import "components/Content/Playlists/PlaylistPopup/PlaylistPopup";
 @import "common/ConfirmationDialog/ConfirmationDialog";
+@import "components/Content/Search/Search";
 @import "components/Content/Home/Home";
 @import "components/Pagination/Pagination";
+@import "components/Lists/TrackList/TrackList";
+@import "components/Lists/AlbumScroll/AlbumScroll";
 @import "common/Kit/File/File";
 @import "views/HomeView/HomeView";
 @import "css/admin";
@@ -140,6 +143,23 @@
 
 .pr {
     padding-right: $padding-right-content;
+}
+
+.mb-10 {
+    margin-bottom: 10px;
+}
+
+.mr-10 {
+    margin-right: 10px;
+}
+
+
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+.mr-20 {
+    margin-right: 20px;
 }
 
 .link {

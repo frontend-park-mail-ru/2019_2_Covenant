@@ -39,7 +39,6 @@ class Router {
 		this.register(Urls.CollectionsUrl, new CollectionsController());
 		this.register(Urls.ALbumsUrl, new AlbumsController());
 		this.register(Urls.ArtistsUrl, new ArtistsController());
-		this.register(Urls.SearchUrl, new SearchController());
 
 		this.register(Urls.AdminArtists, new AdminArtistsController());
 		this.register(Urls.AdminArtistEditor, new AdminArtistEditorController());
@@ -49,6 +48,7 @@ class Router {
 		this.register(Urls.AdminTrackEditor, new AdminTrackEditorController());
 		this.register(Urls.AdminCollections, new AdminCollectionsController());
 		this.register(Urls.AdminCollectionEditor, new AdminCollectionEditorController());
+		this.registerRegexp(new RegExp('^'+ Urls.SearchUrl + '(\\?s=?(\\w+))?$'), new SearchController());
 
 		this.register(Urls.PlaylistsUrl, new PlayListsController());
 		this.register(Urls.FavouritesUrl, new FavouriteController());
@@ -102,21 +102,14 @@ class Router {
 	}
 
 	register(url, controller) {
-		this.routes.push({
-			pattern: new RegExp('^'+ url.replace(/:\w+/, '(-?\\d+)')+'$'),
-			controller: controller
-		});
+		this.registerRegexp(new RegExp('^'+ url.replace(/:\w+/, '(-?\\d+)')+'$'), controller);
 	}
 
-	getUrlParams() {
-		let params = [];
-		this.routes.forEach(route => {
-			let res = window.location.pathname.match(route.pattern);
-			if (res) {
-				params = res;
-			}
+	registerRegexp(regExp, controller) {
+		this.routes.push({
+			pattern: regExp,
+			controller: controller
 		});
-		return params;
 	}
 }
 

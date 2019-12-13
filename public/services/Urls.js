@@ -26,7 +26,6 @@ const Urls = {
 	AdminTracks: '/track-list',
 	AdminCollections: '/collection-list',
 
-	AdminGenreEditor: '/genre-editor/:id',
 	AdminArtistEditor: '/artist-editor/:id',
 	AdminAlbumEdtior: '/album-editor/:id',
 	AdminTrackEditor: '/track-editor/:id',

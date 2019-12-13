@@ -4,6 +4,8 @@ import AlbumModel from '../../../models/AlbumModel';
 import {SERVER_ROOT} from '../../../services/Settings';
 import TrackModel from '../../../models/TrackModel';
 import ArtistModel from '../../../models/ArtistModel';
+import TrackList from '../../Lists/TrackList/TrackList';
+import AlbumScroll from '../../Lists/AlbumScroll/AlbumScroll';
 
 class Home extends BaseComponent {
 	constructor() {
@@ -18,7 +20,17 @@ class Home extends BaseComponent {
 		this.loadData();
 	}
 
-	onRender() {}
+	onRender() {
+		const albumList = new AlbumScroll({
+			albums: this.state.albums
+		});
+		albumList.render('home-album-list-id');
+
+		const trackList = new TrackList({
+			tracks: this.state.tracks
+		});
+		trackList.render('home-track-list-id');
+	}
 
 	loadData() {
 		AlbumModel.getAlbums(15, 0)
@@ -37,9 +49,6 @@ class Home extends BaseComponent {
 		.then(response => {
 			if (!response.error) {
 				this.state.tracks = response.body.tracks;
-				this.setServerRoot('tracks');
-				this.formatDuration();
-				this.update(this.state);
 			}
 		})
 		.catch(error => {
@@ -64,13 +73,6 @@ class Home extends BaseComponent {
 			if (!item.photo.includes(SERVER_ROOT)) {
 				item.photo = `${SERVER_ROOT}${item.photo}`;
 			}
-		});
-	}
-
-	formatDuration() {
-		this.state.tracks.forEach(track => {
-			const time = track.duration.split(':');
-			track.duration = `${time[1]}:${time[2]}`;
 		});
 	}
 }

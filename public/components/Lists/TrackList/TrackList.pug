@@ -1,0 +1,21 @@
+div
+	div(class="headline dark size-20")="Tracks"
+	div(class="headline light size-14")="View all"
+	ul(class="tracks-list")
+		if tracks.length > 0
+			each track in tracks
+				li(class="tracks-list__item")
+					div(class="track__avatar-container")
+						div(class="track__avatar")
+							img(class="track__avatar-img" src=track.photo alt="")
+					div(class="track__name-container")
+						div(class="track__name")
+							div(class="track__title")=track.name
+							div(class="track__subtitle")=track.artist
+
+					div(class="track__like-container")
+						button(class="track__like")
+							img(class="track__like-btn" src="/img/heart.png" alt="")
+
+					div(class="track__duration-container")
+						div(class="track__duration")=track.duration

@@ -1,0 +1,14 @@
+div(class="search-container")
+	div(class="headline dark size-20 mb-10")="Search"
+	if tracks.length > 0
+		div
+			div(id="search-tracks-container-id")
+	if albums.length > 0
+		div
+			div(id="search-albums-container-id")
+	if artists.length > 0
+		div
+			div(id="search-artists-container-id")
+	if 	albums.length === 0 && artists.length === 0 && tracks.length === 0
+		div
+			h2="Nothing found yet."

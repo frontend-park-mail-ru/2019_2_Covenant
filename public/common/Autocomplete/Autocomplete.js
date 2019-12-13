@@ -7,6 +7,7 @@ class Autocomplete extends BaseComponent {
 		containerClassName = 'autocomplete',
 		inputClassName = 'autocomplete-input',
 		onLoad = () => {},
+		onSelect = (text) => {},
 		onClose = () => {} }) {
 		const props = {
 			containerClassName: containerClassName,
@@ -19,6 +20,7 @@ class Autocomplete extends BaseComponent {
 		this.selectedObject = null;
 		this.loadItems = loadItems;
 		this.onLoad = onLoad;
+		this.onSelect = onSelect;
 		this.onClose = onClose;
 
 		this.loadItems = this.loadItems.bind(this);
@@ -67,6 +69,7 @@ class Autocomplete extends BaseComponent {
 							const element = e.currentTarget;
 							inp.value =  element.getElementsByTagName('input')[0].value;
 							this.selectedObject = item;
+							this.onSelect(val);
 							this.closeAllLists();
 						});
 						a.appendChild(b);
