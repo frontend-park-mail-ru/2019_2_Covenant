@@ -27,7 +27,7 @@ class TrackList extends BaseComponent {
 
 	formatDuration() {
 		this.state.tracks.forEach(track => {
-			const time = track.duration.split(':');
+			const time = track.duration.replace('Z', '').split(':');
 			track.duration = `${time[1]}:${time[2]}`;
 		});
 	}
