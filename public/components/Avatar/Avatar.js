@@ -5,7 +5,7 @@ import Events from '../../services/Events';
 import {SERVER_ROOT} from '../../services/Settings';
 
 class Avatar extends BaseComponent {
-	constructor({width = 100, height = 100, src = 'img/user_profile.png', alt = 'avatar', onUpload = {}, accept = '.png'} = {}) {
+	constructor({width = 100, height = 100, src = 'static/img/user_profile.png', alt = 'avatar', onUpload = {}, accept = '.png'} = {}) {
 		const state = {data: {width: width, height: height, src: src, alt: alt, accept: accept}};
 		super(template, state);
 		this.state = state;

@@ -29,19 +29,3 @@
   border-radius: $border-radius-content 0 0 0;
   width: 100%;
 }
-
-.player {
-  height: 80px;
-  position: fixed;
-  width: 100%;
-  bottom: 0;
-  background-color: $player-color;
-  border-top: $border-color solid 1px;
-  padding-left: 50px;
-  padding-right: 50px;
-}
-
-.player-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-}

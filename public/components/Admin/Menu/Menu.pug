@@ -1,11 +1,11 @@
 div(class="nav")
     div(class="nav_menu")
         div(class="nav_menu_item nav_menu_home" id="home-link")
-            img(alt="home-icon" src="/img/admin/home.png")
+            img(alt="home-icon" src="/static/img/admin/home.png")
         div(class="nav_menu_item nav_menu_account" id="profile-link")
-            img(alt="account-icon" src="/img/admin/account.png")
+            img(alt="account-icon" src="/static/img/admin/account.png")
         div(class="nav_menu_item nav_menu_exit" id="logout-link")
-            img(alt="exit-icon" src="/img/admin/exit.png")
+            img(alt="exit-icon" src="/static/img/admin/exit.png")
     div(class="nav_list")
         each item in items
             div(id=item.id class="nav_list-item")=item.title

@@ -23,30 +23,30 @@ class Menu extends BaseComponent {
 
 	getDefaultMenuItems() {
 		return [
-			{title: 'Home', imgPath: 'img/home.png', id: 'menu-home-link', route: Urls.MainUrl},
-			{title: 'Collections', imgPath: 'img/playlist.png', id: 'menu-collections-link', route: Urls.CollectionsUrl},
-			{title: 'Albums', imgPath: 'img/music-folder.png', id: 'menu-albums-link', route: Urls.ALbumsUrl},
-			{title: 'Artists', imgPath: 'img/micro.png', id: 'menu-artists-link', route: Urls.ArtistsUrl},
-			{title: 'Search', imgPath: 'img/search-gray.png', id: 'menu-search-link', route: Urls.SearchUrl}
+			{title: 'Home', imgPath: 'static/img/home.png', id: 'menu-home-link', route: Urls.MainUrl},
+			{title: 'Collections', imgPath: 'static/img/playlist.png', id: 'menu-collections-link', route: Urls.CollectionsUrl},
+			{title: 'Albums', imgPath: 'static/img/music-folder.png', id: 'menu-albums-link', route: Urls.ALbumsUrl},
+			{title: 'Artists', imgPath: 'static/img/micro.png', id: 'menu-artists-link', route: Urls.ArtistsUrl},
+			{title: 'Search', imgPath: 'static/img/search-gray.png', id: 'menu-search-link', route: Urls.SearchUrl}
 		];
 	}
 
 	getUserMenuItems() {
 		return [
-			{title: 'Favourite', imgPath: 'img/fav.png', id: 'menu-fav-link', route: Urls.FavouritesUrl},
-			{title: 'Playlists', imgPath: 'img/playlists.png', id: 'menu-playlists-link', route: Urls.PlaylistsUrl},
-			{title: 'Followers', imgPath: 'img/friends.png', id: 'menu-followers-link', route: Urls.Followers},
-			{title: 'Following', imgPath: 'img/friends.png', id: 'menu-following-link', route: Urls.Following}
-			// {title: 'Feed', imgPath: 'img/feed.png', id: 'menu-feed-link'},
+			{title: 'Favourite', imgPath: 'static/img/fav.png', id: 'menu-fav-link', route: Urls.FavouritesUrl},
+			{title: 'Playlists', imgPath: 'static/img/playlists.png', id: 'menu-playlists-link', route: Urls.PlaylistsUrl},
+			{title: 'Followers', imgPath: 'static/img/friends.png', id: 'menu-followers-link', route: Urls.Followers},
+			{title: 'Following', imgPath: 'static/img/friends.png', id: 'menu-following-link', route: Urls.Following}
+			// {title: 'Feed', imgPath: 'static/img/feed.png', id: 'menu-feed-link'},
 		];
 	}
 
 	getAdminMenuItems() {
 		return [
-			{title: 'Collections', imgPath: 'img/playlist.png', id: 'admin-collections-link', route: Urls.AdminCollections},
-			{title: 'Artists', imgPath: 'img/micro.png', id: 'admin-artists-link', route: Urls.AdminArtists},
-			{title: 'Albums', imgPath: 'img/music-folder.png', id: 'admin-albums-link', route: Urls.AdminAlbums},
-			{title: 'Tracks', imgPath: 'img/musical-note.png', id: 'admin-tracks-link', route: Urls.AdminTracks}
+			{title: 'Collections', imgPath: 'static/img/playlist.png', id: 'admin-collections-link', route: Urls.AdminCollections},
+			{title: 'Artists', imgPath: 'static/img/micro.png', id: 'admin-artists-link', route: Urls.AdminArtists},
+			{title: 'Albums', imgPath: 'static/img/music-folder.png', id: 'admin-albums-link', route: Urls.AdminAlbums},
+			{title: 'Tracks', imgPath: 'static/img/musical-note.png', id: 'admin-tracks-link', route: Urls.AdminTracks}
 		];
 	}
 

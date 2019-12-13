@@ -1,28 +1,10 @@
-import { SERVER_ROOT } from '../../services/Settings';
+import BaseComponent from '../BaseComponent/BaseComponent';
+import template from './Player.pug';
 
-class Player {
+class Player extends BaseComponent {
 	constructor() {
-		if (Player.instance)
-			return Player.instance;
-
-		this.url = '';
-		this.audioTrack = null;
-		Player.instance = this;
-		return this;
-	}
-
-	play(url) {
-		if (!this.audioTrack) {
-			this.audioTrack = new Audio(`${SERVER_ROOT}${url}`);
-		}
-		this.audioTrack.play();
-	}
-
-	pause() {
-		if (this.audioTrack) {
-			this.audioTrack.pause();
-		}
+		super(template);
 	}
 }
 
-export default new Player();
+export default Player;

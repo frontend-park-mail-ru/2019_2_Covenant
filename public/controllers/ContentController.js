@@ -14,6 +14,7 @@ import Search from '../components/Content/Search/Search';
 import Favourites from '../components/Content/Favourites/Favourites';
 import Followers from '../components/Content/Followers/Followers';
 import Following from '../components/Content/Following/Following';
+import Player from '../components/Player/Player';
 
 export default class ContentController extends BaseController {
     constructor(component) {
@@ -29,14 +30,17 @@ export default class ContentController extends BaseController {
         const menu = new Menu();
         menu.render('menu');
 
+        const content = new this.component();
+        content.render('content');
+
+        const player = new Player();
+        player.render('player-id');
+
         UserModel.getProfile()
         .then(response => {
             console.log(response);
             if (!response.error) {
                 EventBus.publish(Events.UpdateUser, response.body.user);
-
-                const content = new this.component();
-                content.render('content');
             }
         })
         .catch(error => {

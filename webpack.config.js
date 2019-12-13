@@ -1,15 +1,18 @@
-const path = require('path');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     mode: 'development',
     entry: './public/index.js',
     output: {
         filename: 'bundle.js',
-        path:  __dirname +'/public/build',
+        path:  __dirname +'/build',
     },
     plugins: [
-        new ExtractTextPlugin('bundle.css')
+        new ExtractTextPlugin('bundle.css'),
+        new CopyPlugin([
+            { from: 'public/img', to: 'img' },
+        ]),
     ],
     module: {
         rules: [

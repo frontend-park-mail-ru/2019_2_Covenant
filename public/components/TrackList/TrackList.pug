@@ -18,9 +18,9 @@ div(class=containerClasssName id="track-container")
 							div(class="track__like pull-right")
 								if checkFavourite(track)
 									button(type="button" name="dislike" class="track__like_btn" id=track.id)
-										img(class="clickable" src="img/heart_fill.png" width="20" height="20" alt="like")
+										img(class="clickable" src="static/img/heart_fill.png" width="20" height="20" alt="like")
 								else
 									button(type="button" name="like" class="track__like_btn" id=track.id)
-										img(class="clickable" src="img/heart.png" width="20" height="20" alt="like")
+										img(class="clickable" src="static/img/heart.png" width="20" height="20" alt="like")
 
 						div(class="track__duration pull-right") #{track.duration}

@@ -49,6 +49,7 @@ class Home extends BaseComponent {
 		.then(response => {
 			if (!response.error) {
 				this.state.tracks = response.body.tracks;
+				this.update(this.state);
 			}
 		})
 		.catch(error => {
