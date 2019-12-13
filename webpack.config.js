@@ -1,5 +1,9 @@
+const isProd = process.env.NODE_ENV === 'production';
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const CopyPlugin = require('copy-webpack-plugin');
+const webpack = require('webpack');
+
+console.log(`Is Production: ${isProd}`);
 
 module.exports = {
     mode: 'development',
@@ -13,6 +17,10 @@ module.exports = {
         new CopyPlugin([
             { from: 'public/img', to: 'img' },
         ]),
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV': JSON.stringify(isProd ? 'production' : 'development'),
+            'process.env.SERVER_HOST': JSON.stringify(isProd ? '' : 'https://covenant.fun'),
+        }),
     ],
     module: {
         rules: [
