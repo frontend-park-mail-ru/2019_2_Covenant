@@ -33,34 +33,21 @@ class Home extends BaseComponent {
 	}
 
 	loadData() {
-		AlbumModel.getAlbums(15, 0)
+		const albums = AlbumModel.getAlbums(15, 0);
+		const tracks = TrackModel.getPopular(12, 0);
+		const artists = ArtistModel.getArtists(4, 0);
+
+		Promise.all([albums, tracks, artists])
 		.then(response => {
 			if (!response.error) {
-				this.state.albums = response.body.albums;
+				this.state.albums = response[0].body.albums;
 				this.setServerRoot('albums');
-				this.update(this.state);
-			}
-		})
-		.catch(error => {
-			console.log(error);
-		});
 
-		TrackModel.getPopular(12, 0)
-		.then(response => {
-			if (!response.error) {
-				this.state.tracks = response.body.tracks;
-				this.update(this.state);
-			}
-		})
-		.catch(error => {
-			console.log(error);
-		});
+				this.state.tracks = response[1].body.tracks;
 
-		ArtistModel.getArtists(4, 0)
-		.then(response => {
-			if (!response.error) {
-				this.state.artists = response.body.artists;
+				this.state.artists = response[2].body.artists;
 				this.setServerRoot('artists');
+
 				this.update(this.state);
 			}
 		})

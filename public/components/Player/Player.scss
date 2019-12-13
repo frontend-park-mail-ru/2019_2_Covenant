@@ -9,11 +9,17 @@
   border-top: $border-color solid 1px;
   padding-left: 50px;
   padding-right: 50px;
+
+  &__column {
+    display: inline-block;
+    vertical-align: top;
+  }
 }
 
 .player-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  height: 100%;
 }
 
 .player__info {

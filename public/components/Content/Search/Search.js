@@ -57,7 +57,6 @@ class Search extends BaseComponent {
 		albumList.render('search-albums-container-id');
 
 		const trackList = new TrackList({
-			containerClassName: '',
 			tracks: this.state.tracks
 		});
 		trackList.render('search-tracks-container-id');
