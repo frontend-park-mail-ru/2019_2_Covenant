@@ -4,7 +4,7 @@ const { TsConfigPathsPlugin } = require('awesome-typescript-loader');
 
 module.exports = {
     mode: 'development',
-    entry: './index.ts',
+    entry: './index.js',
     output: {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'dist'),
@@ -30,6 +30,10 @@ module.exports = {
         extensions: [ '.tsx', '.ts', '.js' ],
         plugins: [
             new TsConfigPathsPlugin(),
-        ]
+        ],
+        alias: {
+            'audioplayer': path.resolve(__dirname, 'audio-system/audioplayer'),
+            'data-structure': path.resolve(__dirname, 'audio-system/data-structure'),
+        }
     },    
 }
