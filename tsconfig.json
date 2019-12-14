@@ -10,7 +10,10 @@
         "es6",
         "dom"
       ],
-      "allowJs": true
+      "allowJs": true,
+      "urls": {
+        "base": "./"
+      }
     },
 
     "awesomeTypescriptLoaderOptions": {
