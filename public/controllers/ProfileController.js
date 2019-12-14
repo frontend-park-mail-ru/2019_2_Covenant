@@ -7,6 +7,7 @@ import NewHeader from '../components/NewHeader/NewHeader';
 import Menu from '../components/Menu/Menu';
 import Profile from '../components/Profile/Profile';
 import ProfileSettings from '../components/ProfileSettings/ProfileSettings';
+import Player from '../components/Player/Player';
 
 class ProfileController extends BaseController {
 	constructor(view) {
@@ -24,6 +25,9 @@ class ProfileController extends BaseController {
 
 				const menu = new Menu();
 				menu.render('menu');
+
+				const player = new Player();
+				player.render('player-id');
 
 				const profile = new Profile();
 				profile.render('user-info');

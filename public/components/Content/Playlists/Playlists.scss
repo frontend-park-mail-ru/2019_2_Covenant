@@ -120,6 +120,10 @@ div.card-item__img:hover span.card-item__dots {visibility: visible;}
 	padding: 10px 15px;
 	border-bottom: 1px solid rgba(0,0,0,0.2);
   }
+
+  &__item:hover {
+	font-weight: bold;
+  }
 }
 
 .border-bottom {
