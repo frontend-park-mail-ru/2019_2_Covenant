@@ -68,4 +68,5 @@ typings/
 
 #other
 build/
-
+dist/
+.awcache/
