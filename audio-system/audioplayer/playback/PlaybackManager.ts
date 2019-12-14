@@ -6,6 +6,7 @@ import { IAudioTrack } from 'audioplayer/player';
  */
 export class PlaybackManager {
     private _audioElement: HTMLAudioElement;
+    private _currentTrack: IAudioTrack;
     private _playIntention: boolean;
 
     private _endedCallback: () => void;
@@ -17,6 +18,10 @@ export class PlaybackManager {
         this.ended = this.ended.bind(this);
 
         this.subscribeEvents();
+    }
+
+    get current(): IAudioTrack {
+        return this._currentTrack;
     }
 
     get isPlaying(): boolean {
@@ -53,6 +58,7 @@ export class PlaybackManager {
     }
 
     load(track: IAudioTrack) {
+        this._currentTrack = track;
         this._audioElement.src = track.url;
     }
 

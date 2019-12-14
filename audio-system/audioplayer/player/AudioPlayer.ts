@@ -36,6 +36,13 @@ export class AudioPlayer {
         return this._playback.isPlaying;
     }
 
+    /**
+     * Currently playing track.
+     */
+    get currentPlayback(): IAudioTrack {
+        return this._playback.current;
+    }
+
     /** 
      * Indicates whether playback is shuffled.
      */
