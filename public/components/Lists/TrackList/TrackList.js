@@ -1,10 +1,16 @@
 import BaseComponent from '../../BaseComponent/BaseComponent';
 import template from './TrackList.pug';
-import {SERVER_ROOT} from '../../../services/Settings';
+import {formatDurationForArray, formatServerRootForArray} from '../../../services/Utils';
 
 class TrackList extends BaseComponent {
-	constructor({tracks = []}) {
+	constructor({tracks = [],
+		trackClassName = 'track-list col-2',
+		withTitle= true,
+		withIndexes = false} = {}) {
 		const initialState = {
+			withTitle: withTitle,
+			withIndexes: withIndexes,
+			tracksClassName: trackClassName,
 			tracks: []
 		};
 		super(template, initialState);
@@ -12,24 +18,9 @@ class TrackList extends BaseComponent {
 		this.state = initialState;
 		this.state.tracks = tracks;
 
-		this.setServerRoot('tracks');
-		this.formatDuration();
+		formatServerRootForArray(this.state.tracks);
+		formatDurationForArray(this.state.tracks);
 		this.update(this.state);
-	}
-
-	setServerRoot(arrayName) {
-		this.state[arrayName].forEach(item => {
-			if (!item.photo.includes(SERVER_ROOT)) {
-				item.photo = `${SERVER_ROOT}${item.photo}`;
-			}
-		});
-	}
-
-	formatDuration() {
-		this.state.tracks.forEach(track => {
-			const time = track.duration.replace('Z', '').split(':');
-			track.duration = `${time[1]}:${time[2]}`;
-		});
 	}
 
 	onRender() {
@@ -42,7 +33,6 @@ class TrackList extends BaseComponent {
 			}
 		});
 	}
-
 }
 
 export default TrackList;

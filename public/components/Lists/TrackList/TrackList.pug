@@ -1,13 +1,18 @@
 div
-	div(class="headline dark size-20")="Tracks"
-	div(class="headline light size-14")="View all"
-	ul(class="tracks-list")
+	if withTitle
+		div(class="headline dark size-20")="Tracks"
+		div(class="headline light size-14")="View all"
+	ul(class=tracksClassName)
 		if tracks.length > 0
-			each track in tracks
+			each track, index in tracks
 				li(class="tracks-list__item")
 					div(class="track__avatar-container")
-						div(class="track__avatar")
-							img(class="track__avatar-img" src=track.photo alt="" id=`track-avatar-play-${track.id}`)
+						if withIndexes
+							div(class="track__avatar" style="width: 40px")
+								div(class="track__index")=index+1
+						else
+							div(class="track__avatar")
+								img(class="track__avatar-img" src=track.photo alt="" id=`track-avatar-play-${track.id}`)
 					div(class="track__name-container")
 						div(class="track__name")
 							div(class="track__title")=track.name

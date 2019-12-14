@@ -4,6 +4,10 @@
   color: $font-color;
 }
 
+.accent {
+  color: $accent-color;
+}
+
 .light {
   color: $font-light-color;
 }
@@ -23,11 +27,14 @@
   margin-right: 10px;
   height: 30px;
   font-weight: bold;
+
+  &__block {
+	display: block !important;
+  }
 }
 
 .tracks-list {
   list-style-type: none;
-  columns: 2;
   column-gap: 30px;
 
   &__item {
@@ -35,6 +42,10 @@
 	height: 50px;
 	margin-bottom: 20px;
   }
+}
+
+.col-2 {
+  columns: 2;
 }
 
 .track {
@@ -81,6 +92,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	height: 100%;
   }
 
   &__name {
@@ -137,4 +149,13 @@
 	justify-content: center;
   }
 
+  &__index-container {
+	height: 100%;
+	width: 40px;
+  }
+
+  &__index {
+	font-size: 24px;
+	color: $font-light-color;
+  }
 }

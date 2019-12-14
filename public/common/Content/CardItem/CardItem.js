@@ -6,7 +6,6 @@ class CardItem extends BaseComponent {
 			item: null
 		};
 		super(props.template, initialState);
-
 		this.path = props.path;
 
 		this.state = initialState;
@@ -32,6 +31,7 @@ class CardItem extends BaseComponent {
 						...this.state.item
 					};
 				});
+				this.onLoadItem();
 				this.update(this.state);
 			})
 			.catch(error => {
@@ -42,6 +42,8 @@ class CardItem extends BaseComponent {
 	loadItem() {
 		throw new Error('Should be overridden.');
 	}
+
+	onLoadItem() {}
 }
 
 export default CardItem;

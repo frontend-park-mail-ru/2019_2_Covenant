@@ -1,7 +1,13 @@
 div(class="content-inner")
-	h3="Album"
-	if item
-		h2=item.album.name
-		div=`Total songs: ${item.amount_of_tracks}`
-		each track in item.tracks
-			div=track.name
+	div(class="headline dark size-20")="Album"
+	div(class="album-container")
+		if item
+			div(class="album-container__photo-container")
+				div(class="album-aside")
+					img(src=item.album.photo alt="" class="album-aside__photo")
+				div(class="headline light size-14")=`${item.amount_of_tracks} songs`
+			div(class="album-container__tracks-container")
+				div(class="headline headline__block dark size-20")=item.album.name
+				div(class="headline headline__block accent size-20")=item.album.artist
+				div(class="headline headline__block light size-14")=item.album.year
+				div(id="album-track-list-id")
