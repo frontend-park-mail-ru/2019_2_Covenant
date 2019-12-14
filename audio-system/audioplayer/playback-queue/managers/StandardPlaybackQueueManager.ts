@@ -1,11 +1,13 @@
-import PlaybackQueue from 'player/audioplayer/playback-queue/queues/PlaybackQueue';
-import List from 'player/data-structure/list/List';
+import { PlaybackQueue } from 'audioplayer/playback-queue/queues';
+import { IPlaybackQueueManager } from './IPlaybackQueueManager';
+import { IAudioTrack } from 'audioplayer/player';
+import { List } from 'data-structure/list';
 
 /**
  * Standard playback queue manager.
- * Serves regular playback queue
+ * Serves regular playback queue.
  */
-class StandardPlaybackQueueManager
+export class StandardPlaybackQueueManager
 implements IPlaybackQueueManager {
     /** Regular playback queue */
     private _queue: PlaybackQueue;
@@ -84,5 +86,3 @@ implements IPlaybackQueueManager {
         this._queue.clear();
     }
 }
-
-export default StandardPlaybackQueueManager;

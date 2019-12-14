@@ -1,10 +1,11 @@
-import List from 'player/data-structure/list/List';
+import { List, IListNode } from 'data-structure/list';
+import { IAudioTrack } from 'audioplayer/player';
 
 /**
  * Represents playback queue.
  * Based on list data structure
  */
-class PlaybackQueue {
+export class PlaybackQueue {
     ahead: List<IAudioTrack>;
     current?: IListNode<IAudioTrack>;
     behind: List<IAudioTrack>;

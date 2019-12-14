@@ -1,3 +1,6 @@
+import { IListNode } from './IListNode';
+import { IListNodeChain } from './IListNodeChain';
+
 /**
  * Doubly linked list node.
  * Helper class for List
@@ -75,7 +78,7 @@ implements IListNodeChain<T> {
  * Doubly linked list data structure.
  * Uses ListNode helper class to store values
  */
-class List<T> {
+export class List<T> {
     /**
      * Wraps passed value in new node and returns it
      * @param value Value to wrap
@@ -493,5 +496,3 @@ class List<T> {
         this._tail = chain.tail;
     }
 }
-
-export default List;

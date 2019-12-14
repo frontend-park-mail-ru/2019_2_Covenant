@@ -1,5 +1,5 @@
 /**
- * Looping rule enum
+ * Looping rule enum.
  */
 export enum Looping {
     none,

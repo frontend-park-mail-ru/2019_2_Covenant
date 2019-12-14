@@ -1,12 +1,16 @@
-import StandardPlaybackQueueManager from 'player/audioplayer/playback-queue/managers/StandardPlaybackQueueManager';
-import ShufflePlaybackQueueManager from 'player/audioplayer/playback-queue/managers/ShufflePlaybackQueueManager';
+import { IAudioTrack } from 'audioplayer/player';
+import {
+    StandardPlaybackQueueManager,
+    ShufflePlaybackQueueManager,
+    IPlaybackQueueManager
+} from 'audioplayer/playback-queue/managers';
 
 /**
  * Master playback queue manager.
  * Uses Standard and Shuffle playback queue managers as slaves.
- * Delegates job to slaves
+ * Delegates job to slaves.
  */
-class PlaybackQueueManager
+export class PlaybackQueueManager
 implements IPlaybackQueueManager {
     /** Standard playback queue manager. Used in regular mode */
     private _standard: StandardPlaybackQueueManager;
@@ -75,5 +79,3 @@ implements IPlaybackQueueManager {
         this._current.clear();
     }
 }
-
-export default PlaybackQueueManager;

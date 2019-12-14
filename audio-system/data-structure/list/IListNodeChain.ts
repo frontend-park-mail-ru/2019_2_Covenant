@@ -1,8 +1,10 @@
+import { IListNode } from './IListNode';
+
 /**
  * External interface of interaction with the chain of nodes.
  * Forbids interfering with the order of nodes
  */
-interface IListNodeChain<T> {
+export interface IListNodeChain<T> {
     /** First node in the chain. Read-only */
     readonly head: IListNode<T>;
     /** Last node in the chain. Read-only */

@@ -1,14 +1,15 @@
-import PlaybackQueue from 'player/audioplayer/playback-queue/queues/PlaybackQueue';
-import ListNodePlaybackQueue from 'player/audioplayer/playback-queue/queues/ListNodePlaybackQueue';
-import shuffle from 'player/data-structure/array/shuffle';
-import List from 'player/data-structure/list/List';
+import { PlaybackQueue, ListNodePlaybackQueue } from 'audioplayer/playback-queue/queues';
+import { IPlaybackQueueManager } from './IPlaybackQueueManager';
+import { IAudioTrack } from 'audioplayer/player';
+import { shuffle } from 'data-structure/array';
+import { List } from 'data-structure/list';
 
 /**
  * Shuffle playback queue manager.
  * Serves shuffle playback queue.
  * Maintains syncronization with regular queue
  */
-class ShufflePlaybackQueueManager
+export class ShufflePlaybackQueueManager
 implements IPlaybackQueueManager {
     /** Regular playback queue */
     private _regular: PlaybackQueue;
@@ -104,5 +105,3 @@ implements IPlaybackQueueManager {
         this._shuffle.clear();
     }
 }
-
-export default ShufflePlaybackQueueManager;

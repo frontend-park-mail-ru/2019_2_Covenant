@@ -1,7 +1,9 @@
+import { IAudioTrack } from 'audioplayer/player';
+
 /**
  * Interface of object that manages playback queue
  */
-interface IPlaybackQueueManager {
+export interface IPlaybackQueueManager {
     readonly size: number;
 
     /**

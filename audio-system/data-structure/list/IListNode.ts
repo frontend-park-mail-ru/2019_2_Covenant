@@ -3,7 +3,7 @@
  * Forbids interfering with the order of nodes.
  * Can be used as external iterator
  */
-interface IListNode<T> {
+export interface IListNode<T> {
     /** Next element in the list. Read-only */
     readonly next?: IListNode<T>;
     /** Previous element in the list. Read-only */

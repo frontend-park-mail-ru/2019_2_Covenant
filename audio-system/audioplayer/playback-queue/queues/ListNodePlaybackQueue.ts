@@ -1,12 +1,13 @@
-import List from 'player/data-structure/list/List';
+import { List, IListNode } from 'data-structure/list';
+import { IAudioTrack } from 'audioplayer/player';
 
 /**
  * Represents playback queue.
  * Based on list data structure.
  * Wraps nodes of another list to be able perform quick
- * insert/delete operations of that list
+ * insert/delete operations of that list.
  */
-class ListNodePlaybackQueue {
+export class ListNodePlaybackQueue {
     ahead: List<IListNode<IAudioTrack>>;
     current?: IListNode<IListNode<IAudioTrack>>;
     behind: List<IListNode<IAudioTrack>>;
@@ -36,5 +37,3 @@ class ListNodePlaybackQueue {
         delete this.current;
     }
 }
-
-export default ListNodePlaybackQueue;

@@ -1,8 +1,8 @@
 /**
- * Shuffles original passed array. Returns it
- * @param array Array to shuffle
+ * Shuffles original passed array. Returns it.
+ * @param array Array to shuffle.
  */
-function shuffle<T>(array: T[]): T[] {
+export function shuffle<T>(array: T[]): T[] {
     let size = array.length;
 
     while (size) {
@@ -13,5 +13,3 @@ function shuffle<T>(array: T[]): T[] {
 
     return array;
 }
-
-export default shuffle;

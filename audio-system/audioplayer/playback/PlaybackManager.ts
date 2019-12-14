@@ -1,8 +1,10 @@
+import { IAudioTrack } from 'audioplayer/player';
+
 /**
  * Represents playback control class.
  * Based on HTML audio tag
  */
-class PlaybackManager {
+export class PlaybackManager {
     private _audioElement: HTMLAudioElement;
     private _playIntention: boolean;
 
@@ -17,6 +19,10 @@ class PlaybackManager {
         this.subscribeEvents();
     }
 
+    get isPlaying(): boolean {
+        return !this._audioElement.paused;
+    }
+
     /** Volume of playback */
     get volume(): number {
         return this._audioElement.volume;
@@ -24,6 +30,14 @@ class PlaybackManager {
 
     set volume(value: number) {
         this._audioElement.volume = value;
+    }
+
+    get position(): number {
+        return this._audioElement.currentTime;
+    }
+
+    get normalizedPosition(): number {
+        return this._audioElement.currentTime / this._audioElement.duration;
     }
 
     /** Callback to be called on playback ended */
@@ -88,5 +102,3 @@ class PlaybackManager {
         this._endedCallback();
     }
 }
-
-export default PlaybackManager;
