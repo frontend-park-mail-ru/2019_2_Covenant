@@ -1,9 +1,13 @@
 import BaseComponent from '../BaseComponent/BaseComponent';
 import template from './Player.pug';
+import {AudioPlayer, Looping} from '../../../audio-system/audioplayer';
 
 class Player extends BaseComponent {
 	constructor() {
 		super(template);
+
+		const audioPlayer = new AudioPlayer(Looping.none);
+		debugger;
 	}
 
 	onRender() {

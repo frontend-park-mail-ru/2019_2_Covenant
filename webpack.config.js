@@ -2,6 +2,7 @@ const isProd = process.env.NODE_ENV === 'production';
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const CopyPlugin = require('copy-webpack-plugin');
 const webpack = require('webpack');
+const path = require('path');
 
 console.log(`Is Production: ${isProd}`);
 
@@ -55,10 +56,19 @@ module.exports = {
                         presets: ['@babel/preset-env']
                     }
                 }
-            }
+            },
+            {
+                test: /\.tsx?$/,
+                use: 'ts-loader',
+                exclude: /node_modules/,
+            },
         ],
     },
     resolve: {
-        extensions: [ '.js' ]
+        extensions: [ '.tsx', '.ts', '.js' ],
+        alias: {
+            'audioplayer': path.resolve(__dirname, 'audio-system/audioplayer'),
+            'data-structure': path.resolve(__dirname, 'audio-system/data-structure'),
+        }
     },
 };
