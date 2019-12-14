@@ -8,5 +8,5 @@ div(class="albums-container")
 						img(src=album.photo alt="" class="album-item__img-inner")
 						span(class="album-item__dots")
 							img(class="album-item__dots-size" src="static/img/dots.png" alt="" id=`album-additions-btn-${album.id}`)
-					div(class="album-item__title")=album.name
-					div(class="album-item__subtitle")=album.artist
+					div(class="album-item__title" id=`scroll-album-title-${album.id}`)=album.name
+					div(class="album-item__subtitle" id=`scroll-album-artist-title-${album.artist_id}`)=album.artist

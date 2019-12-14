@@ -1,0 +1,7 @@
+div(class="content-inner")
+	h3="Album"
+	if item
+		h2=item.album.name
+		div=`Total songs: ${item.amount_of_tracks}`
+		each track in item.tracks
+			div=track.name

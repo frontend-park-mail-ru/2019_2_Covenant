@@ -1,6 +1,9 @@
 import BaseComponent from '../../BaseComponent/BaseComponent';
 import template from './AlbumScroll.pug';
 import {SERVER_ROOT} from '../../../services/Settings';
+import EventBus from '../../../services/EventBus';
+import Events from '../../../services/Events';
+import Urls from '../../../services/Urls';
 
 class AlbumScroll extends BaseComponent {
 	constructor({albums = [], title = 'Albums'} ={}) {
@@ -22,6 +25,33 @@ class AlbumScroll extends BaseComponent {
 				item.photo = `${SERVER_ROOT}${item.photo}`;
 			}
 		});
+	}
+
+	onRender() {
+		this.addAlbumHandlers();
+		this.addArtistHandlers();
+	}
+
+	addAlbumHandlers() {
+		this.state.albums.forEach(album => {
+			const albumRef = document.getElementById(`scroll-album-title-${album.id}`);
+			if (!albumRef) { return; }
+			albumRef.addEventListener('click', () => {
+				console.log(Urls.AlbumURl.replace(/:\w+/, album.id));
+				EventBus.publish(Events.ChangeRoute, {newUrl: Urls.AlbumURl.replace(/:\w+/, album.id)});
+			});
+		});
+	}
+
+	addArtistHandlers() {
+		this.state.albums.forEach(album => {
+			const artistRef = document.getElementById(`scroll-album-artist-title-${album.artist_id}`);
+			if (!artistRef) { return; }
+			artistRef.addEventListener('click', () => {
+				EventBus.publish(Events.ChangeRoute, {newUrl: `${Urls.ArtistsUrl}/${album.id}`});
+			});
+		});
+
 	}
 }
 

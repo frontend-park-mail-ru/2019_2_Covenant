@@ -15,6 +15,7 @@ import Favourites from '../components/Content/Favourites/Favourites';
 import Followers from '../components/Content/Followers/Followers';
 import Following from '../components/Content/Following/Following';
 import Player from '../components/Player/Player';
+import Album from '../components/Content/Album/Album';
 
 export default class ContentController extends BaseController {
     constructor(component) {
@@ -100,5 +101,11 @@ export class FollowersController extends ContentController {
 export class FollowingController extends ContentController {
     constructor() {
         super(Following);
+    }
+}
+
+export class AlbumController extends ContentController {
+    constructor() {
+        super(Album);
     }
 }

@@ -73,6 +73,14 @@ class AlbumModel {
 		})
 		.then(response => response.json());
 	}
+
+	getTracks(id) {
+		return Http.fetchGet({
+			path: `/albums/${id}/tracks`
+		})
+		.then(response => response.json());
+	}
+
 }
 
 export default new AlbumModel();

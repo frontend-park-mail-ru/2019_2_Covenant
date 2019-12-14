@@ -5,6 +5,7 @@ import LoginController from '../controllers/LoginController.js';
 import SignupController from '../controllers/SignupController.js';
 import ProfileController from '../controllers/ProfileController';
 import {
+	AlbumController,
 	AlbumsController, ArtistsController,
 	CollectionsController, FavouriteController, FollowersController, FollowingController, HomeController,
 	PlayListsController, SearchController
@@ -54,6 +55,7 @@ class Router {
 		this.register(Urls.FavouritesUrl, new FavouriteController());
 		this.register(Urls.Followers, new FollowersController());
 		this.register(Urls.Following, new FollowingController());
+		this.register(Urls.AlbumURl, new AlbumController());
 
 		this.eventHandler = this.eventHandler.bind(this);
 		EventBus.subscribe(Events.ChangeRoute, this.eventHandler);
