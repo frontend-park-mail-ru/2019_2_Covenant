@@ -8,11 +8,12 @@ div
 				li(class="tracks-list__item")
 					div(class="track__avatar-container")
 						if withIndexes
-							div(class="track__avatar" style="width: 40px")
-								div(class="track__index")=index+1
+							div(class="track__avatar")
+								div(class="track__avatar-img")=index+1
 						else
 							div(class="track__avatar")
-								img(class="track__avatar-img" src=track.photo alt="" id=`track-avatar-play-${track.id}`)
+								div(class="track__avatar-img" style=`background: url(${track.photo}) no-repeat center/cover;` id=`track-avatar-play-${track.id}`)
+									img(class="track__arrow" src='/static/img/play-arrow.png' alt="")
 					div(class="track__name-container")
 						div(class="track__name")
 							div(class="track__title")=track.name

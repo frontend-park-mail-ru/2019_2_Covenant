@@ -81,8 +81,8 @@
   }
 
   &__dots-size {
-	width: 30px;
-	height: 30px;
+	width: 20px;
+	height: 20px;
   }
 }
 
@@ -114,6 +114,7 @@ div.card-item__img:hover span.card-item__dots {visibility: visible;}
   min-width: 160px;
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
   border-radius: 10px;
+  right: 0;
 
   &__item {
 	color: $font-color;

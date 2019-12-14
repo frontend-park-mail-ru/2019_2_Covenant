@@ -48,18 +48,18 @@ implements IPlaybackQueueManager {
     deactivate() {
         const node = this._shuffle.current;
         if (node) {
-            this._regular.setPositionNode(node.value)
+            this._regular.setPositionNode(node.value);
         }
 
         this._shuffle.clear();
     }
 
     setTrack(track: IAudioTrack): void {
-        throw new Error("Method not implemented.");
+        throw new Error('Method not implemented.');
     }
 
     setPlaylist(playlist: IAudioTrack[], head: number): void {
-        throw new Error("Method not implemented.");
+        throw new Error('Method not implemented.');
     }
 
     enqueueBefore(...tracks: IAudioTrack[]): void {

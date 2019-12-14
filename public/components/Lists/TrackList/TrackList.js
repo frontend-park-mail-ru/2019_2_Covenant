@@ -18,7 +18,8 @@ class TrackList extends BaseComponent {
 		this.state = initialState;
 		this.state.tracks = tracks;
 
-		formatServerRootForArray(this.state.tracks);
+		formatServerRootForArray(this.state.tracks, 'photo');
+		formatServerRootForArray(this.state.tracks, 'path');
 		formatDurationForArray(this.state.tracks);
 		this.update(this.state);
 	}

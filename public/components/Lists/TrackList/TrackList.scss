@@ -82,13 +82,34 @@
 	width: 50px;
 	height: 50px;
 	cursor: pointer;
+	font-size: 24px;
+	color: $font-light-color;
+	transition: .3s;
   }
 
   &__avatar-img:hover {
 	transform: scale(1.05);
   }
 
+  &__arrow {
+	width: 28px;
+	height: 28px;
+	padding: 11px;
+	box-sizing: initial;
+	background: rgba(60, 60, 60, 0.6);
+	border-radius: 5px;
+  }
+
+  &__avatar-img .track__arrow {
+	display: none;
+  }
+
+  &__avatar-img:hover .track__arrow {
+	display: block;
+  }
+
   &__avatar {
+	width: 50px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -154,8 +175,4 @@
 	width: 40px;
   }
 
-  &__index {
-	font-size: 24px;
-	color: $font-light-color;
-  }
 }

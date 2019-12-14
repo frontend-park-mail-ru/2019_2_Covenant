@@ -1,16 +1,17 @@
 div(class="player-grid")
 	div(class="player__info")
-		div(class="player__column mr-10")
-			div(class="player__column-container")
-				img(class="player__track-logo" src="/static/img/track.png" alt="")
-		div(class="player__column mr-10")
-			div(class="player__column-name")
-				div(class="track-name")="Bleeding out"
-				div(class="artist-name")="Imagine Dragons"
-		div(class="player__column")
-			div(class="player__column-container")
-				button(class="track__like")
-					img(class="track__like-btn" src="/static/img/heart.png" alt="")
+		if item
+			div(class="player__column mr-10")
+				div(class="player__column-container")
+					img(class="player__track-logo" src=item.photo alt="")
+			div(class="player__column mr-10")
+				div(class="player__column-name")
+					div(class="track-name")=item.name
+					div(class="artist-name")=item.artist
+			div(class="player__column")
+				div(class="player__column-container")
+					button(class="track__like")
+						img(class="track__like-btn" src="/static/img/heart.png" alt="")
 	div(class="player__control")
 		div(class="player__control-block")
 			div(class="controls")

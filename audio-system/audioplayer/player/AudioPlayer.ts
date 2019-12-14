@@ -1,7 +1,7 @@
-import { PlaybackQueueManager } from 'audioplayer/playback-queue/managers';
-import { PlaybackManager } from 'audioplayer/playback/PlaybackManager';
-import { IAudioTrack } from 'audioplayer/player/IAudioTrack';
-import { Looping } from 'audioplayer/playback/Looping';
+import {PlaybackQueueManager} from 'audioplayer/playback-queue/managers';
+import {PlaybackManager} from 'audioplayer/playback/PlaybackManager';
+import {IAudioTrack} from 'audioplayer/player/IAudioTrack';
+import {Looping} from 'audioplayer/playback/Looping';
 
 /**
  * AudioPlayer class represents audio
@@ -17,6 +17,7 @@ export class AudioPlayer {
     private _playbackQueue: PlaybackQueueManager;
     /** @private */
     private _queued: boolean;
+    private static instance: AudioPlayer;
 
     /**
      * Creates AudioPlayer instance.
@@ -27,6 +28,13 @@ export class AudioPlayer {
         this._playback = new PlaybackManager();
         this._queued = false;
         this.looping = loopingRule;
+    }
+
+    static getInstance(): AudioPlayer {
+        if (!AudioPlayer.instance) {
+            AudioPlayer.instance = new AudioPlayer(Looping.none);
+        }
+        return AudioPlayer.instance;
     }
 
     /** 

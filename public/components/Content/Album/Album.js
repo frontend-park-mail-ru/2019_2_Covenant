@@ -22,7 +22,7 @@ class Album extends CardItem {
 	}
 
 	onLoadItem() {
-		formatServerRoot(this.state.item.album);
+		formatServerRoot(this.state.item.album, 'photo');
 		formatYear(this.state.item.album);
 
 		this.trackList = new TrackList({

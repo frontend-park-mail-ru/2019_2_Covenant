@@ -6,6 +6,8 @@ import TrackModel from '../../../models/TrackModel';
 import ArtistModel from '../../../models/ArtistModel';
 import TrackList from '../../Lists/TrackList/TrackList';
 import AlbumScroll from '../../Lists/AlbumScroll/AlbumScroll';
+import EventBus from '../../../services/EventBus';
+import Events from '../../../services/Events';
 
 class Home extends BaseComponent {
 	constructor() {
@@ -47,6 +49,8 @@ class Home extends BaseComponent {
 
 				this.state.artists = response[2].body.artists;
 				this.setServerRoot('artists');
+
+				EventBus.publish(Events.UpdateTracksQueue, {tracks: this.state.tracks});
 
 				this.update(this.state);
 			}

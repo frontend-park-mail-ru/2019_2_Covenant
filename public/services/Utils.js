@@ -1,14 +1,14 @@
 import {SERVER_ROOT} from './Settings';
 
-export const formatServerRootForArray = (items) => {
+export const formatServerRootForArray = (items, property) => {
 	items.forEach(item => {
-		formatServerRoot(item);
+		formatServerRoot(item, property);
 	});
 };
 
-export const formatServerRoot = (item) => {
-	if (item.photo  && !item.photo.includes(SERVER_ROOT)) {
-		item.photo = `${SERVER_ROOT}${item.photo}`;
+export const formatServerRoot = (item, property) => {
+	if (item[property]  && !item[property].includes(SERVER_ROOT)) {
+		item[property] = `${SERVER_ROOT}${item[property]}`;
 	}
 };
 
