@@ -18,3 +18,8 @@ player.setPlaylist([
     {url: '/Users/jason/Desktop/Dead by April - Incomparable 2011/12 - Lost.mp3'},
     {url: '/Users/jason/Desktop/Dead by April - Incomparable 2011/13 - Last Goodbye.mp3'},
 ], 0);
+
+player.onTimeUpdate = () => {
+    console.log(`Posititon: ${player.position}`);
+    console.log(`Normalized position: ${player.normalizedPosition}`);
+}

@@ -10,14 +10,11 @@ export class PlaybackManager {
     private _playIntention: boolean;
 
     private _endedCallback: () => void;
+    private _timeUpdateCallback: () => void;
 
     constructor() {
         this._audioElement = document.createElement('audio');
-
-        this.ready = this.ready.bind(this);
-        this.ended = this.ended.bind(this);
-
-        this.subscribeEvents();
+        this._audioElement.addEventListener('loadeddata', this.ready.bind(this));
     }
 
     get current(): IAudioTrack {
@@ -51,10 +48,28 @@ export class PlaybackManager {
     }
 
     set onEnded(callback: () => void) {
-        if (!callback) {
-            callback = () => {};
+        if (callback) {
+            this.subscribeEvent('ended', callback);
+        } else {
+            this.unsubscribeEvent('ended', callback);
         }
+
         this._endedCallback = callback;
+    }
+
+    /** Callback to be called on time updates */
+    get onTimeUpdate(): () => void {
+        return this._timeUpdateCallback;
+    }
+
+    set onTimeUpdate(callback: () => void) {
+        if (callback) {
+            this.subscribeEvent('timeupdate', callback);
+        } else {
+            this.unsubscribeEvent('timeupdate', callback);
+        }
+
+        this._timeUpdateCallback = callback;
     }
 
     load(track: IAudioTrack) {
@@ -86,25 +101,18 @@ export class PlaybackManager {
         this._audioElement.currentTime = value * this._audioElement.duration;
     }
 
-    private subscribeEvents() {
-        this._audioElement.addEventListener('loadeddata', this.ready);
-        this._audioElement.addEventListener('ended', this.ended);
+    private subscribeEvent(event: string, callback: () => void) {
+        this._audioElement.addEventListener(event, callback);
     }
 
-    private unsubscribeEvents() {
-        this._audioElement.removeEventListener('loadeddata', this.ready);
-        this._audioElement.removeEventListener('ended', this.ended);
+    private unsubscribeEvent(event: string, callback: () => void) {
+        this._audioElement.removeEventListener(event, callback);
     }
 
-    /** Internal event. Happens when playback is ready to be played */
+    /** Internal event. Happens when playback is ready to be played. */
     private ready() {
         if (this._playIntention) {
             this._audioElement.play();
         }
-    }
-
-    /** Internal event. Happens when playback is ended */
-    private ended() {
-        this._endedCallback();
     }
 }

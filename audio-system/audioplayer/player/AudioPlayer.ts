@@ -120,6 +120,17 @@ export class AudioPlayer {
     }
 
     /**
+     * Time update event. Occurs on playback changes its position.
+     */
+    get onTimeUpdate(): () => void {
+        return this._playback.onTimeUpdate;
+    }
+
+    set onTimeUpdate(callback: () => void) {
+        this._playback.onTimeUpdate = callback;
+    }
+
+    /**
      * Starts playback.
      */
     play(): void {
