@@ -112,6 +112,12 @@
   &__like-btn {
 	width: 20px;
 	height: 20px;
+	cursor: pointer;
+	transition: .2s;
+  }
+
+  &__like-btn:hover {
+	transform: scale(1.2);
   }
 
   &__duration {
