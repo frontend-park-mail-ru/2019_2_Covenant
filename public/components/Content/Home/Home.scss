@@ -76,6 +76,12 @@
     font-size: 20px;
     font-weight: bold;
     color: $font-color;
+    cursor: pointer;
+  }
+
+  &__name-label:hover {
+    transform: scale(1.05);
+    text-decoration: underline;
   }
 }
 

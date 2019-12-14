@@ -11,6 +11,11 @@ div(class="content-cards")
 				div(class="card-item__container")
 					div(class="card-item__img")
 						img(src=item.photo alt="" class="card-item__img-inner")
-						span(class="card-item__close" id="delete-playlist-btn-"+item.id) &times
+						span(class="card-item__dots" id=`card-additions-btn-${item.id}`)
+							div(class="dropdown")
+								img(class="album-item__dots-size" src="static/img/dots.png" alt="")
+								div(class="dropdown-content")
+									p="Hello World!"
+
 					div(class="card-item__title card-item__fix-width")=item.name
 					div(class="card-item__subtitle card-item__fix-width")=item.description

@@ -7,7 +7,7 @@ div
 				li(class="tracks-list__item")
 					div(class="track__avatar-container")
 						div(class="track__avatar")
-							img(class="track__avatar-img" src=track.photo alt="")
+							img(class="track__avatar-img" src=track.photo alt="" id=`track-avatar-play-${track.id}`)
 					div(class="track__name-container")
 						div(class="track__name")
 							div(class="track__title")=track.name

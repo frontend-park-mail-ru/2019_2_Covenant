@@ -52,7 +52,6 @@ ul {
 .album-item {
   &__img {
 	position: relative;
-	cursor: pointer;
 	margin-bottom: 10px;
   }
 
@@ -73,26 +72,37 @@ ul {
 	font-size: 18px;
 	margin-bottom: 5px;
 	transition: .3s;
+	cursor: pointer;
+  }
+
+  &__title:hover {
+	text-decoration: underline;
   }
 
   &__subtitle {
 	font-size: 14px;
 	color: $font-light-color;
 	transition: .3s;
-  }
-
-  &__close {
-	position: absolute;
-	color: $font-light-color;
-	right: 6px;
-	font-size: 28px;
-	font-weight: bold;
-  }
-
-  &__close:hover,
-  &__close:focus {
-	color: $font-color;
-	text-decoration: none;
 	cursor: pointer;
   }
+
+  &__subtitle:hover {
+	text-decoration: underline;
+  }
+
+  &__dots {
+	position: absolute;
+	color: $font-light-color;
+	right: 5px;
+	top: 10px;
+	cursor: pointer;
+  }
+
+  &__dots-size {
+	width: 30px;
+	height: 30px;
+  }
 }
+
+div.album-item__img span.album-item__dots {visibility: hidden;}
+div.album-item__img:hover span.album-item__dots {visibility: visible;}

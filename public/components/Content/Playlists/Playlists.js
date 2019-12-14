@@ -37,6 +37,7 @@ class Playlists extends BaseComponent {
 
 	onRender() {
 		this.addHandlers();
+		// TODO additional dots with dropdown: remove and share playlist
 	}
 
 	addHandlers() {
@@ -54,7 +55,9 @@ class Playlists extends BaseComponent {
 	addDeleteHandlers() {
 		this.state.items.forEach(item => {
 			const deleteBtn = document.getElementById(`delete-playlist-btn-${item.id}`);
-			deleteBtn.addEventListener('click', () => { this.deletePlaylistHandler(item.id)});
+			if (deleteBtn) {
+				deleteBtn.addEventListener('click', () => { this.deletePlaylistHandler(item.id)});
+			}
 		});
 	}
 
@@ -79,7 +82,6 @@ class Playlists extends BaseComponent {
 		dialog.render('popup');
 	}
 
-	// temporary fix TODO: need NGINX
 	setServerRoot() {
 		this.state.items.forEach(item => {
 			if (!item.photo.includes(SERVER_ROOT)) {

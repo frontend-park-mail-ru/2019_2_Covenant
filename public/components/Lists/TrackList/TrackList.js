@@ -32,6 +32,17 @@ class TrackList extends BaseComponent {
 		});
 	}
 
+	onRender() {
+		this.state.tracks.forEach(track => {
+			const avatar = document.getElementById(`track-avatar-play-${track.id}`);
+			if (avatar) {
+				avatar.addEventListener('click', () => {
+					console.log('track avatar click');
+				});
+			}
+		});
+	}
+
 }
 
 export default TrackList;

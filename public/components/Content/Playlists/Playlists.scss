@@ -71,7 +71,24 @@
 	text-decoration: none;
 	cursor: pointer;
   }
+
+  &__dots {
+	position: absolute;
+	color: $font-light-color;
+	right: 5px;
+	top: 10px;
+	cursor: pointer;
+  }
+
+  &__dots-size {
+	width: 30px;
+	height: 30px;
+  }
 }
+
+div.card-item__img span.card-item__dots {visibility: hidden;}
+div.card-item__img:hover span.card-item__dots {visibility: visible;}
+
 
 .plus-button {
   display: flex;
@@ -83,4 +100,23 @@
 	width: 50px;
 	height: 50px;
   }
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
 }

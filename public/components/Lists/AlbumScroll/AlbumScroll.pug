@@ -6,6 +6,7 @@ div(class="albums-container")
 				div(class="album-item")
 					div(class="album-item__img")
 						img(src=album.photo alt="" class="album-item__img-inner")
-						span(class="album-item__close" id="album-additions-btn-" + album.id) &times
+						span(class="album-item__dots")
+							img(class="album-item__dots-size" src="static/img/dots.png" alt="" id=`album-additions-btn-${album.id}`)
 					div(class="album-item__title")=album.name
 					div(class="album-item__subtitle")=album.artist
