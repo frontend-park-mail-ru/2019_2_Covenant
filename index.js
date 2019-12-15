@@ -3,6 +3,17 @@ import { AudioPlayer, Looping } from './audio-system/audioplayer';
 let player = new AudioPlayer(Looping.queue);
 
 Object.defineProperty(window, 'player', {value: player});
+
+
+player.onTimeUpdate = () => {
+    console.log(`Posititon: ${player.position}`);
+    console.log(`Normalized position: ${player.normalizedPosition}`);
+};
+
+player.onTrackChanged = () => {
+    console.log(`Track changed: ${player.currentPlayback.url}`)
+};
+
 player.setPlaylist([
     {url: '/Users/jason/Desktop/Dead by April - Incomparable 2011/01 - Dreaming.mp3'},
     {url: '/Users/jason/Desktop/Dead by April - Incomparable 2011/02 - Real & True.mp3'},
@@ -18,8 +29,3 @@ player.setPlaylist([
     {url: '/Users/jason/Desktop/Dead by April - Incomparable 2011/12 - Lost.mp3'},
     {url: '/Users/jason/Desktop/Dead by April - Incomparable 2011/13 - Last Goodbye.mp3'},
 ], 0);
-
-player.onTimeUpdate = () => {
-    console.log(`Posititon: ${player.position}`);
-    console.log(`Normalized position: ${player.normalizedPosition}`);
-}
