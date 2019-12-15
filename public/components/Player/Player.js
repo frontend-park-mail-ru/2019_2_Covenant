@@ -4,7 +4,6 @@ import {AudioPlayer} from '../../../audio-system/audioplayer';
 import EventBus from '../../services/EventBus';
 import Events from '../../services/Events';
 import {formatServerRootForArray} from '../../services/Utils';
-import {SERVER_ROOT} from '../../services/Settings';
 
 class Player extends BaseComponent {
 	constructor() {
@@ -93,6 +92,10 @@ class Player extends BaseComponent {
 		this.state.item = this.audioPlayer.currentPlayback;
 		EventBus.publish(Events.TrackChange, this.state.item);
 		this.update(this.state);
+
+		if (!this.audioPlayer.isPlaying) {
+			this.audioPlayer.play();
+		}
 
 		const btn = document.getElementById('player-control-btn');
 		btn.src = '/static/img/pause.png';

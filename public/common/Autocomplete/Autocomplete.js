@@ -65,7 +65,10 @@ class Autocomplete extends BaseComponent {
 					for (i = 0; i < items.length; i++) {
 						b = document.createElement('DIV');
 						const name = items[i][this.propertyName] || items[i].name, item = items[i];
-						const index = name.toLowerCase().indexOf(val.toLowerCase());
+						let index = name.toLowerCase().indexOf(val.toLowerCase());
+						if (index < 0) {
+							index = 0;
+						}
 						const before = name.substr(0, index), after = name.substr(index + val.length, name.length);
 						b.innerHTML = `${before}<strong>${name.substr(index, val.length)}</strong>${after}`;
 						b.innerHTML += `<input type='hidden' value='${items[i].name}'>`;

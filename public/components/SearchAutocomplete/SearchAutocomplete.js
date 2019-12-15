@@ -49,7 +49,7 @@ class SearchAutocomplete extends BaseComponent {
 				}
 
 				if (response.body.user) {
-					items.push(response.body.user);
+					items.push(...response.body.user);
 				}
 
 				return items;
