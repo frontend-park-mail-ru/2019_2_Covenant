@@ -28,6 +28,7 @@ export class ListNodePlaybackQueue {
         if (this.behind.size) {
             this.ahead.mergeList(this.behind, false);
         }
+        delete this.current;
     } 
 
     clear() {
