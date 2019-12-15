@@ -29,6 +29,7 @@ import {
 	AdminTracksController
 } from '../controllers/AdminController';
 import {AdminArtistEditorController} from '../controllers/AdminController';
+import AnotherProfileController from '../controllers/AnotherProfileController';
 
 class Router {
 	constructor() {
@@ -36,7 +37,8 @@ class Router {
 		this.register(Urls.MainUrl, new HomeController());
 		this.register(Urls.LoginUrl, new LoginController(emptyView));
 		this.register(Urls.SignupUrl, new SignupController(emptyView));
-		this.register(Urls.ProfileUrl, new ProfileController(profileView));
+		this.registerRegexp(new RegExp('^' + Urls.ProfileUrl + '(\\?tab=\\w+)?$'), new ProfileController());
+		this.registerRegexp(new RegExp('^' + Urls.ProfileUrl + '(/\\w+)(\\?tab=\\w+)?$'), new AnotherProfileController());
 		this.register(Urls.CollectionsUrl, new CollectionsController());
 		this.register(Urls.ALbumsUrl, new AlbumsController());
 		this.register(Urls.ArtistsUrl, new ArtistsController());

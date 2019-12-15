@@ -8,39 +8,54 @@ import Menu from '../components/Menu/Menu';
 import Profile from '../components/Profile/Profile';
 import ProfileSettings from '../components/ProfileSettings/ProfileSettings';
 import Player from '../components/Player/Player';
+import profileView from '../views/ProfileView/ProfileView';
 
 class ProfileController extends BaseController {
-	constructor(view) {
-		super(view);
+	constructor() {
+		super(profileView);
 	}
 
 	onShow() {
 		UserModel.getProfile()
 		.then(response => {
-			if (response.error) {
-				EventBus.publish(Events.ChangeRoute, {newUrl: Urls.LoginUrl});
-			} else {
-				const header = new NewHeader();
-				header.render('header');
-
-				const menu = new Menu();
-				menu.render('menu');
-
-				const player = new Player();
-				player.render('player-id');
-
-				const profile = new Profile();
-				profile.render('user-info');
-
-				const settings = new ProfileSettings();
-				settings.render('user-tabs');
-
-				EventBus.publish(Events.UpdateUser, response.body.user);
+			if (response.error || response.message) {
+				EventBus.publish(Events.ChangeRoute, {newUrl: Urls.MainUrl});
+				return;
 			}
+			this.renderContent();
+			this.renderProfileComponents();
+			const user = response.body.user;
+			EventBus.publish(Events.UpdateUser, user);
 		})
 		.catch(error => {
 			console.log(error);
 		});
+	}
+
+	renderContent() {
+		const header = new NewHeader();
+		header.render('header');
+
+		const menu = new Menu();
+		menu.render('menu');
+
+		const player = new Player();
+		player.render('player-id');
+	}
+
+	renderProfileComponents() {
+		this.profile = new Profile({
+			eventName: Events.UpdateUser
+		});
+		this.profile.render('user-info');
+
+		this.settings = new ProfileSettings();
+		this.settings.render('user-tabs');
+	}
+
+	onHide() {
+		this.profile.onDestroy();
+		this.settings.onDestroy();
 	}
 }
 

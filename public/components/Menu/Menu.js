@@ -51,6 +51,10 @@ class Menu extends BaseComponent {
 	}
 
 	updateUser(user) {
+		if (user.anotherProfile) {
+			return;
+		}
+
 		this.renderUserMenuItems();
 		if (user.role === UserRole.Admin) {
 			this.renderAdminMenuItems();

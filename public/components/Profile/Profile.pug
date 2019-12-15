@@ -1,9 +1,10 @@
 div
 	h1(class="title")="Profile"
 	div(class="user-info__inner")
-		if (user)
+		if user
 			div(class="user-info__aside" id="avatar")
 			div(class="user-info__main")
 				div(class="user-info__main-nick")=`@${user.nickname}`
 				div(class="user-info__main-email")=user.email
-				div(class="user-info__main-logout" id="logout_link")="Log Out"
+				if !anotherProfile
+					div(class="user-info__main-logout" id="logout_link")="Log Out"

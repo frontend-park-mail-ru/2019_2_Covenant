@@ -5,50 +5,40 @@ import Events from '../../services/Events';
 import SessionModel from '../../models/SessionModel';
 import Urls from '../../services/Urls';
 import UserModel from '../../models/UserModel';
-import Avatar from '../Avatar/Avatar';
+import {formatServerRoot} from '../../services/Utils';
+import File from '../../common/Kit/File/File';
 
 class Profile extends BaseComponent {
-	constructor() {
-		super(template);
+	constructor({anotherProfile = false, eventName = ''} = {}) {
+		const initialState = {
+			anotherProfile: anotherProfile,
+			eventName: eventName,
+			user: null
+		};
+		super(template, initialState);
+		this.state = initialState;
 
 		this.updateUser = this.updateUser.bind(this);
 		this.onUploadAvatar = this.onUploadAvatar.bind(this);
-		EventBus.subscribe(Events.UpdateUser, this.updateUser);
+		EventBus.subscribe(eventName, this.updateUser);
 	}
 
 	onRender() {
-		this.mountAvatar();
+		const photo = this.state.user ? this.state.user.avatar : null;
+		this.photoInput = new File({
+			src: photo,
+			accept: '.jpeg, .jpg, .png',
+			disabled: this.state.anotherProfile ? 'disabled' : null
+		});
+		this.photoInput.render('avatar');
 
-		const logoutLink = document.getElementById('logout_link');
-		if (logoutLink) {
-			logoutLink.addEventListener('click', () => {
-				SessionModel.logOut()
-				.then(response => {
-					if (response.error) {
-						console.log(response.error);
-					} else {
-						EventBus.publish(Events.ChangeRoute, {newUrl: Urls.MainUrl});
-					}
-				})
-				.catch(error => {
-					console.log(error);
-				});
-			});
-		}
+		this.addLogoutHandler();
 	}
 
 	updateUser(data) {
-		this.update({user: data});
-	}
-
-	mountAvatar() {
-		const avatar = new Avatar({
-			width: 150,
-			height: 150,
-			accept: '.jpg, .jpeg, .png',
-			onUpload: this.onUploadAvatar
-		});
-		avatar.render('avatar');
+		formatServerRoot(data, 'avatar');
+		this.state.user = data;
+		this.update(this.state);
 	}
 
 	onUploadAvatar(file) {
@@ -58,6 +48,30 @@ class Profile extends BaseComponent {
 			}).catch(error => {
 			console.log(error);
 		});
+	}
+
+	addLogoutHandler() {
+		const logoutLink = document.getElementById('logout_link');
+		if (logoutLink) {
+			logoutLink.addEventListener('click', () => {
+				SessionModel.logOut()
+					.then(response => {
+						if (response.error) {
+							console.log(response.error);
+						} else {
+							EventBus.publish(Events.ChangeRoute, {newUrl: Urls.MainUrl});
+						}
+					})
+					.catch(error => {
+						console.log(error);
+					});
+			});
+		}
+
+	}
+
+	onDestroy() {
+		EventBus.unSubscribe(this.state.eventName, this.updateUser);
 	}
 }
 

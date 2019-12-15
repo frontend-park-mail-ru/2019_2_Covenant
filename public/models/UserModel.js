@@ -16,6 +16,13 @@ class UserModel {
 		.then(response => response.json());
 	}
 
+	getProfileByNickname(nickname) {
+		return Http.fetchGet({
+			path: `/users/${nickname}`
+		})
+		.then(response => response.json());
+	}
+
 	updateProfileInfo({email = '', nickname = '' } = {}) {
 		return Http.fetchPut({
 			path: '/profile',
@@ -41,11 +48,11 @@ class UserModel {
 
 	uploadAvatar(file) {
 		const formData = new FormData();
-		formData.append('avatar', file);
+		formData.append('file', file);
 		formData.append('name', file.name);
 
 		return fetch(`${SERVER_API_PATH}/profile/avatar`, {
-			method: 'POST',
+			method: 'PUT',
 			credentials: 'include',
 			mode: 'cors',
 			body: formData

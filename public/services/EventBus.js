@@ -16,6 +16,13 @@ class EventBus {
 		this.channels[name].push(listener);
 	}
 
+	unSubscribe(name, listener) {
+		if (this.channels[name]) {
+			const index = this.channels[name].indexOf(listener);
+			this.channels[name].splice(index, 1);
+		}
+	}
+
 	publish(name, data){
 		const channel = this.channels[name];
 		if (!channel || !channel.length) {

@@ -70,6 +70,10 @@ class ProfileSettings extends BaseComponent {
 	updateUser(data) {
 		this.update({user: data});
 	}
+
+	onDestroy() {
+		EventBus.unSubscribe(Events.UpdateUser, this.updateUser);
+	}
 }
 
 export default ProfileSettings;

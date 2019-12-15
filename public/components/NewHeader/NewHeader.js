@@ -24,6 +24,10 @@ class NewHeader extends BaseComponent {
 	}
 
 	updateUser(data) {
+		if (data.anotherProfile) {
+			return;
+		}
+
 		if (!data.avatar.includes(SERVER_ROOT)){
 			data.avatar = `${SERVER_ROOT}${data.avatar}`;
 		}
