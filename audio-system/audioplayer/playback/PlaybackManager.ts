@@ -50,10 +50,10 @@ export class PlaybackManager {
     }
 
     set onEnded(callback: () => void) {
+        this._audioElement.removeEventListener('ended', this._endedCallback);
+
         if (callback) {
             this._audioElement.addEventListener('ended', callback);
-        } else {
-            this._audioElement.removeEventListener('ended', this._endedCallback);
         }
 
         this._endedCallback = callback;
@@ -65,10 +65,10 @@ export class PlaybackManager {
     }
 
     set onTimeUpdate(callback: () => void) {
+        this._audioElement.removeEventListener('timeupdate', this._timeUpdateCallback);
+
         if (callback) {
             this._audioElement.addEventListener('timeupdate', callback);
-        } else {
-            this._audioElement.removeEventListener('timeupdate', this._timeUpdateCallback);
         }
 
         this._timeUpdateCallback = callback;
