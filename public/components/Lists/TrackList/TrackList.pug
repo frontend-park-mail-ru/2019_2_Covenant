@@ -4,24 +4,5 @@ div
 		div(class="headline light size-14")="View all"
 	ul(class=tracksClassName)
 		if tracks.length > 0
-			each track, index in tracks
-				li(class="tracks-list__item")
-					div(class="track__avatar-container")
-						if withIndexes
-							div(class="track__avatar")
-								div(class="track__avatar-img")=index+1
-						else
-							div(class="track__avatar")
-								div(class="track__avatar-img" style=`background: url(${track.photo}) no-repeat center/cover;` id=`track-avatar-play-${track.id}`)
-									img(class="track__arrow" src='/static/img/play-arrow.png' alt="")
-					div(class="track__name-container")
-						div(class="track__name")
-							div(class="track__title")=track.name
-							div(class="track__subtitle")=track.artist
-
-					div(class="track__like-container")
-						button(class="track__like")
-							img(class="track__like-btn" src="/static/img/heart.png" alt="")
-
-					div(class="track__duration-container")
-						div(class="track__duration")=track.duration
+			each track in tracks
+				li(class="tracks-list__item" id=`track-item-${track.id}`)

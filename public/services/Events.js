@@ -6,7 +6,8 @@ const Events = {
 	UpdateFavourites: 'updateFavourites',
 	UpdatePlaylists: 'updatePlaylists',
 	UpdateTrack: 'updateTrack',
-	UpdateTracksQueue: 'updateTracksQueue'
+	UpdateTracksQueue: 'updateTracksQueue',
+	TrackChange: 'trackChange'
 };
 
 export default Events;

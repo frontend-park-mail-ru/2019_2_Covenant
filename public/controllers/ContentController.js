@@ -34,8 +34,10 @@ export default class ContentController extends BaseController {
         const content = new this.component();
         content.render('content');
 
-        const player = new Player();
-        player.render('player-id');
+        this.content = content;
+
+        this.player = Player.getInstance();
+        this.player.render('player-id');
 
         UserModel.getProfile()
         .then(response => {
@@ -47,6 +49,10 @@ export default class ContentController extends BaseController {
         .catch(error => {
             console.log(error);
         });
+    }
+
+    onHide() {
+        this.content.onDestroy();
     }
 }
 

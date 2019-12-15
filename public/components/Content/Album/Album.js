@@ -23,6 +23,7 @@ class Album extends CardItem {
 
 	onLoadItem() {
 		formatServerRoot(this.state.item.album, 'photo');
+		this.setAlbumPhotoToTracks();
 		formatYear(this.state.item.album);
 
 		this.trackList = new TrackList({
@@ -37,6 +38,16 @@ class Album extends CardItem {
 		if (this.trackList) {
 			this.trackList.render('album-track-list-id');
 		}
+	}
+
+	onDestroy() {
+		this.trackList.onDestroy();
+	}
+
+	setAlbumPhotoToTracks() {
+		this.state.item.tracks.forEach(track => {
+			track.photo = this.state.item.album.photo;
+		});
 	}
 }
 

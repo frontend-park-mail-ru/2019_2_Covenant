@@ -55,8 +55,8 @@ class AnotherProfileController extends BaseController {
 		const menu = new Menu();
 		menu.render('menu');
 
-		const player = new Player();
-		player.render('player-id');
+		this.player = Player.getInstance();
+		this.player.render('player-id');
 	}
 
 

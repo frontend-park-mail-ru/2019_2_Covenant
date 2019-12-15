@@ -104,8 +104,20 @@
 	display: none;
   }
 
+  &__avatar-img .track__index {
+	display: block;
+  }
+
   &__avatar-img:hover .track__arrow {
 	display: block;
+  }
+
+  &__avatar-img:hover .track__index {
+	display: none;
+  }
+
+  &__index {
+	text-align: center;
   }
 
   &__avatar {

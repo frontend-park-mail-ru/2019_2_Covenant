@@ -1,13 +1,11 @@
 import BaseComponent from '../../BaseComponent/BaseComponent';
 import template from './Home.pug';
 import AlbumModel from '../../../models/AlbumModel';
-import {SERVER_ROOT} from '../../../services/Settings';
 import TrackModel from '../../../models/TrackModel';
 import ArtistModel from '../../../models/ArtistModel';
 import TrackList from '../../Lists/TrackList/TrackList';
 import AlbumScroll from '../../Lists/AlbumScroll/AlbumScroll';
-import EventBus from '../../../services/EventBus';
-import Events from '../../../services/Events';
+import {formatServerRootForArray} from '../../../services/Utils';
 
 class Home extends BaseComponent {
 	constructor() {
@@ -28,10 +26,10 @@ class Home extends BaseComponent {
 		});
 		albumList.render('home-album-list-id');
 
-		const trackList = new TrackList({
+		this.trackList = new TrackList({
 			tracks: this.state.tracks
 		});
-		trackList.render('home-track-list-id');
+		this.trackList.render('home-track-list-id');
 	}
 
 	loadData() {
@@ -43,15 +41,9 @@ class Home extends BaseComponent {
 		.then(response => {
 			if (!response.error) {
 				this.state.albums = response[0].body.albums;
-				this.setServerRoot('albums');
-
 				this.state.tracks = response[1].body.tracks;
-
 				this.state.artists = response[2].body.artists;
-				this.setServerRoot('artists');
-
-				EventBus.publish(Events.UpdateTracksQueue, {tracks: this.state.tracks});
-
+				formatServerRootForArray(this.state.artists, 'photo');
 				this.update(this.state);
 			}
 		})
@@ -60,12 +52,8 @@ class Home extends BaseComponent {
 		});
 	}
 
-	setServerRoot(arrayName) {
-		this.state[arrayName].forEach(item => {
-			if (!item.photo.includes(SERVER_ROOT)) {
-				item.photo = `${SERVER_ROOT}${item.photo}`;
-			}
-		});
+	onDestroy() {
+		this.trackList.onDestroy();
 	}
 }
 

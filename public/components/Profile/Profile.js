@@ -28,7 +28,8 @@ class Profile extends BaseComponent {
 		this.photoInput = new File({
 			src: photo,
 			accept: '.jpeg, .jpg, .png',
-			disabled: this.state.anotherProfile ? 'disabled' : null
+			disabled: this.state.anotherProfile ? 'disabled' : null,
+			onUpload: this.onUploadAvatar
 		});
 		this.photoInput.render('avatar');
 

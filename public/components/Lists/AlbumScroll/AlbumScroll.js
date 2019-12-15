@@ -1,9 +1,9 @@
 import BaseComponent from '../../BaseComponent/BaseComponent';
 import template from './AlbumScroll.pug';
-import {SERVER_ROOT} from '../../../services/Settings';
 import EventBus from '../../../services/EventBus';
 import Events from '../../../services/Events';
 import Urls from '../../../services/Urls';
+import {formatServerRootForArray} from '../../../services/Utils';
 
 class AlbumScroll extends BaseComponent {
 	constructor({albums = [], title = 'Albums'} ={}) {
@@ -15,16 +15,8 @@ class AlbumScroll extends BaseComponent {
 
 		this.state = initialState;
 		this.state.albums = albums;
-		this.setServerRoot('albums');
+		formatServerRootForArray(this.state.albums,'photo');
 		this.update(this.state);
-	}
-
-	setServerRoot(arrayName) {
-		this.state[arrayName].forEach(item => {
-			if (!item.photo.includes(SERVER_ROOT)) {
-				item.photo = `${SERVER_ROOT}${item.photo}`;
-			}
-		});
 	}
 
 	onRender() {

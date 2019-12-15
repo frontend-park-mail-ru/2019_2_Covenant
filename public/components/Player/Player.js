@@ -1,32 +1,39 @@
 import BaseComponent from '../BaseComponent/BaseComponent';
 import template from './Player.pug';
-import {AudioPlayer, Looping} from '../../../audio-system/audioplayer';
+import {AudioPlayer} from '../../../audio-system/audioplayer';
 import EventBus from '../../services/EventBus';
 import Events from '../../services/Events';
 import {formatServerRootForArray} from '../../services/Utils';
+import {SERVER_ROOT} from '../../services/Settings';
 
 class Player extends BaseComponent {
 	constructor() {
 		const initialState = {
 			item: null,
-			duration: 0,
-			isPlaying: false
+			duration: 0
 		};
 		super(template, initialState);
 
-		this.state = initialState;
-		this.audioPlayer = AudioPlayer.getInstance();
-		this.state.item = this.audioPlayer.currentPlayback;
-		this.update(this.state);
+		this.prevHandler = this.prevHandler.bind(this);
+		this.controlHandler = this.controlHandler.bind(this);
+		this.nextHandler = this.nextHandler.bind(this);
 
 		this.setTracksToQueue = this.setTracksToQueue.bind(this);
-		EventBus.subscribe(Events.UpdateTracksQueue, this.setTracksToQueue);
+		this.onTrackChanged = this.onTrackChanged.bind(this);
 
-		this.shuffleHandler = this.shuffleHandler.bind(this);
-		this.prevHandler = this.prevHandler.bind(this);
-		this.playHandler = this.playHandler.bind(this);
-		this.nextHandler = this.nextHandler.bind(this);
-		this.repeatHandler = this.repeatHandler.bind(this);
+		this.state = initialState;
+		this.tracks = [];
+		this.audioPlayer = AudioPlayer.getInstance();
+		this.audioPlayer.onTrackChanged = this.onTrackChanged;
+
+		EventBus.subscribe(Events.UpdateTracksQueue, this.setTracksToQueue);
+	}
+
+	static getInstance() {
+		if (!Player.instance) {
+			Player.instance = new Player();
+		}
+		return Player.instance;
 	}
 
 	onRender() {
@@ -34,52 +41,44 @@ class Player extends BaseComponent {
 	}
 
 	addHandlers() {
-		const shuffleBtn = document.getElementById('player-shuffle-btn');
-		shuffleBtn.addEventListener('click', this.shuffleHandler);
-
 		const prevBtn = document.getElementById('player-prev-btn');
 		prevBtn.addEventListener('click', this.prevHandler);
 
-		const playBtn = document.getElementById('player-play-btn');
-		playBtn.addEventListener('click', this.playHandler);
+		const playBtn = document.getElementById('player-control-btn');
+		playBtn.addEventListener('click', this.controlHandler);
 
 		const nextBtn = document.getElementById('player-next-btn');
 		nextBtn.addEventListener('click', this.nextHandler);
-
-		const repeatBtn = document.getElementById('player-repeat-btn');
-		repeatBtn.addEventListener('click', this.repeatHandler);
-	}
-
-	shuffleHandler() {
-		console.log('shuffle');
-		this.audioPlayer.shuffle = true;
-		this.updateCurrent();
 	}
 
 	prevHandler() {
-		console.log('prev');
 		this.audioPlayer.switchPrev();
-		this.updateCurrent();
 	}
 
 	nextHandler() {
-		console.log('next');
 		this.audioPlayer.switchNext();
-		this.updateCurrent();
 	}
 
-	playHandler() {
-		console.log('play');
+	controlHandler() {
+		const btn = document.getElementById('player-control-btn');
+
+		if (this.audioPlayer.isPlaying) {
+			this.audioPlayer.pause();
+			btn.src = '/static/img/triangle.png';
+			return;
+		}
+
 		this.audioPlayer.play();
-	}
-
-	repeatHandler() {
-		console.log('repeat');
-		this.audioPlayer.looping = Looping.queue;
-		this.updateCurrent();
+		btn.src = '/static/img/pause.png';
 	}
 
 	setTracksToQueue(object) {
+		const equals = this.isEqualQueues(object.tracks);
+		if (equals) {
+			return;
+		}
+
+		this.tracks = object.tracks;
 		formatServerRootForArray(object.tracks, 'photo');
 		formatServerRootForArray(object.tracks, 'path');
 		object.tracks.forEach(track => {
@@ -88,16 +87,34 @@ class Player extends BaseComponent {
 		this.audioPlayer.setPlaylist(object.tracks);
 
 		this.state.item = this.audioPlayer.currentPlayback;
-		this.update(this.state);
 	}
 
-	setPauseButton() {
-
-	}
-
-	updateCurrent() {
+	onTrackChanged() {
 		this.state.item = this.audioPlayer.currentPlayback;
+		EventBus.publish(Events.TrackChange, this.state.item);
 		this.update(this.state);
+
+		const btn = document.getElementById('player-control-btn');
+		btn.src = '/static/img/pause.png';
+	}
+
+	isEqualQueues(queue) {
+		if (this.tracks.length === 0) {
+			return false;
+		}
+
+		if (queue.length !== this.tracks.length) {
+			return false;
+		}
+
+		let result = true;
+		for (let i = 0; i < this.tracks.length; i++) {
+			if (this.tracks[i].id !== queue[i].id) {
+				result = false;
+				break;
+			}
+		}
+		return result;
 	}
 }
 
