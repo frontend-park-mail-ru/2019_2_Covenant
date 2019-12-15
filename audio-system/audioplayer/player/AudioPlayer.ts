@@ -139,6 +139,17 @@ export class AudioPlayer {
     }
 
     /**
+     * Track changed event. Occurs on playback changes.
+     */
+    get onTrackChanged(): () => void {
+        return this._playback.onTrackChanged;
+    }
+
+    set onTrackChanged(callback: () => void) {
+        this._playback.onTrackChanged = callback;
+    }
+
+    /**
      * Starts playback.
      */
     play(): void {

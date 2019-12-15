@@ -11,6 +11,7 @@ export class PlaybackManager {
 
     private _endedCallback: () => void;
     private _timeUpdateCallback: () => void;
+    private _trackChangedCallback: () => void;
 
     constructor() {
         this._audioElement = document.createElement('audio');
@@ -39,7 +40,8 @@ export class PlaybackManager {
     }
 
     get normalizedPosition(): number {
-        return this._audioElement.currentTime / this._audioElement.duration;
+        const pos = this._audioElement.currentTime / this._audioElement.duration;
+        return pos ? pos : 0;
     }
 
     /** Callback to be called on playback ended */
@@ -48,10 +50,10 @@ export class PlaybackManager {
     }
 
     set onEnded(callback: () => void) {
+        this._audioElement.removeEventListener('ended', this._endedCallback);
+
         if (callback) {
-            this.subscribeEvent('ended', callback);
-        } else {
-            this.unsubscribeEvent('ended', callback);
+            this._audioElement.addEventListener('ended', callback);
         }
 
         this._endedCallback = callback;
@@ -63,18 +65,30 @@ export class PlaybackManager {
     }
 
     set onTimeUpdate(callback: () => void) {
+        this._audioElement.removeEventListener('timeupdate', this._timeUpdateCallback);
+
         if (callback) {
-            this.subscribeEvent('timeupdate', callback);
-        } else {
-            this.unsubscribeEvent('timeupdate', callback);
+            this._audioElement.addEventListener('timeupdate', callback);
         }
 
         this._timeUpdateCallback = callback;
     }
 
+    get onTrackChanged(): () => void {
+        return this._trackChangedCallback;
+    }
+
+    set onTrackChanged(callback: () => void) {
+        this._trackChangedCallback = callback;
+    }
+
     load(track: IAudioTrack) {
         this._currentTrack = track;
         this._audioElement.src = track.url;
+
+        if (this._trackChangedCallback) {
+            this._trackChangedCallback();
+        }
     }
 
     play() {
@@ -99,14 +113,6 @@ export class PlaybackManager {
         }
 
         this._audioElement.currentTime = value * this._audioElement.duration;
-    }
-
-    private subscribeEvent(event: string, callback: () => void) {
-        this._audioElement.addEventListener(event, callback);
-    }
-
-    private unsubscribeEvent(event: string, callback: () => void) {
-        this._audioElement.removeEventListener(event, callback);
     }
 
     /** Internal event. Happens when playback is ready to be played. */
