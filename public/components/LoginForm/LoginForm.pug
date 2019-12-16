@@ -4,8 +4,11 @@ form(class="form_wrapper")
 		div(class="input_container")
 			label(for="login__email_input" class="input_label")="Email"
 			input(class="input_field" type="email" name="Email" id="login__email_input")
+			div(class="input__error" id="email-error-id")
 		div(class="input_container")
 			label(for="login__password_input" class="input_label")="Password"
 			input(class="input_field" type="password" name="Password" id="login__password_input")
+			div(class="input__error" id="password-error-id")
 		button(type="submit" class="form_btn")="Log In"
+		div(class="submit__error" id="submit-error-id")
 		span(class="link" id="no-account-link")="Don't have an account?"

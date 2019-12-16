@@ -16,17 +16,25 @@ class SignUpForm extends  BaseComponent {
 
 	onRender() {
 		this.emailInput = new Input({
-			inputId: 'signup__email_input'
+			inputId: 'signup__email_input',
+			errorId: 'email-error-id'
 		});
 		this.nicknameInput = new Input({
-			inputId: 'signup__nick_input'
+			inputId: 'signup__nick_input',
+			errorId: 'nickname-error-id'
 		});
 		this.passwordInput = new Input({
-			inputId: 'signup__password_input'
+			inputId: 'signup__password_input',
+			errorId: 'password-error-id'
 		});
 
 		this.repeatPasswordInput = new Input({
-			inputId: 'signup__repeat_password_input'
+			inputId: 'signup__repeat_password_input',
+			errorId: 'repeat-error-id'
+		});
+
+		this.submitBtn = new Input({
+			errorId: 'submit-error-id'
 		});
 
 		new Link({elementId: 'login_link', eventType: 'click', route: Urls.LoginUrl});
@@ -50,6 +58,7 @@ class SignUpForm extends  BaseComponent {
 		this.nicknameInput.clearError();
 		this.passwordInput.clearError();
 		this.repeatPasswordInput.clearError();
+		this.submitBtn.clearError();
 	}
 
 	isValid() {
@@ -60,34 +69,27 @@ class SignUpForm extends  BaseComponent {
 		const nickValid = this.nicknameInput.value !== '';
 		const repeatValid = this.passwordInput.value === this.repeatPasswordInput.value;
 		if (!emailValid) {
-			this.emailInput.setError('Please input your email.');
+			this.emailInput.setError('Please input your email');
 			valid = false;
 		}
 
 		if (!nickValid) {
-			this.nicknameInput.setError('Please input your nickname.');
+			this.nicknameInput.setError('Please input your nickname');
 			valid = false;
 		}
 
 		if (!passwordValid) {
-			this.passwordInput.setError('Please input your password.');
+			this.passwordInput.setError('Please input your password');
 			valid = false;
 		}
 
 		if (!repeatValid) {
-			this.repeatPasswordInput.setError('Password are not the same.');
+			this.repeatPasswordInput.setError('Password are not the same');
 			valid = false;
 		}
 
 		return valid;
 	}
-
-	/*
-	setFormError(text) {
-		const submitError = document.getElementsByClassName('signup__submit_error')[0];
-		submitError.innerText = text;
-	}
-	*/
 
 	submit() {
 		const form = {
@@ -100,7 +102,7 @@ class SignUpForm extends  BaseComponent {
 		SessionModel.signUp(form)
 			.then(response => {
 				if (response.error) {
-					console.log(response.error);
+					this.submitBtn.setError(response.error);
 				} else {
 					EventBus.publish(Events.ChangeRoute, { newUrl: Urls.ProfileUrl });
 				}

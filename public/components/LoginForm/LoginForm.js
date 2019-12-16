@@ -17,12 +17,16 @@ class LoginForm extends BaseComponent {
 	onRender() {
 		this.emailInput = new Input({
 			inputId: 'login__email_input',
-			errorId: 'login__email_error'
+			errorId: 'email-error-id'
 		});
 
 		this.passwordInput = new Input({
 			inputId: 'login__password_input',
-			errorId: 'login__password_error'
+			errorId: 'password-error-id'
+		});
+
+		this.submitError =  new Input({
+			errorId: 'submit-error-id'
 		});
 
 		new Link({elementId: 'no-account-link', eventType: 'click', route: Urls.SignupUrl});
@@ -55,7 +59,7 @@ class LoginForm extends BaseComponent {
 		SessionModel.login(form)
 			.then(response => {
 				if (response.error) {
-					console.log(response.error);
+					this.submitError.setError(response.error);
 				} else {
 					EventBus.publish(Events.ChangeRoute, {newUrl: Urls.ProfileUrl});
 				}
@@ -68,6 +72,7 @@ class LoginForm extends BaseComponent {
 	clearErrors() {
 		this.emailInput.clearError();
 		this.passwordInput.clearError();
+		this.submitError.clearError();
 	}
 
 	handlerSubmit() {

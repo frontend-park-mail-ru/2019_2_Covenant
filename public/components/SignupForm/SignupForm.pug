@@ -4,14 +4,19 @@ form(class="form_wrapper")
 		div(class="input_container")
 			label(for="signup__email_input" class="input_label")="Email"
 			input(class="input_field" type="email" name="Email" id="signup__email_input")
+			div(class="input__error" id="email-error-id")
 		div(class="input_container")
 			label(for="signup__nick_input" class="input_label")="Nickname"
 			input(class="input_field" type="text" id="signup__nick_input")
+			div(class="input__error" id="nickname-error-id")
 		div(class="input_container")
 			label(for="signup__password_input" class="input_label")="Password"
 			input(class="input_field" type="password" id="signup__password_input")
+			div(class="input__error" id="password-error-id")
 		div(class="input_container")
 			label(for="signup__repeat_password_input" class="input_label")="Repeat password"
 			input(class="input_field" type="password" id="signup__repeat_password_input")
+			div(class="input__error" id="repeat-error-id")
 		button(type="submit" class="form_btn")="Sign Up"
+		div(class="submit__error" id="submit-error-id")
 		span(class="link" id="login_link")="Already have an account?"
