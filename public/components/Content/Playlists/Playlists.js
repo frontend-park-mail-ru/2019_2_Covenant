@@ -4,8 +4,8 @@ import PlaylistPopup from './PlaylistPopup/PlaylistPopup';
 import PlaylistModel from '../../../models/PlaylistModel';
 import EventBus from '../../../services/EventBus';
 import Events from '../../../services/Events';
-import {SERVER_ROOT} from '../../../services/Settings';
 import ConfirmationDialog from '../../../common/ConfirmationDialog/ConfirmationDialog';
+import {formatServerRootForArray} from '../../../services/Utils';
 
 class Playlists extends BaseComponent {
 	constructor() {
@@ -15,7 +15,6 @@ class Playlists extends BaseComponent {
 		};
 		super(template, initialState);
 		this.loadItems = this.loadItems.bind(this);
-		this.setServerRoot = this.setServerRoot.bind(this);
 
 		this.state = initialState;
 		this.loadItems();
@@ -27,7 +26,7 @@ class Playlists extends BaseComponent {
 		PlaylistModel.getPlaylists(20, 0)
 		.then(response => {
 			this.state.items = response.body.playlists;
-			this.setServerRoot();
+			formatServerRootForArray(this.state.items, 'photo');
 			this.update(this.state);
 		})
 		.catch(error => {
@@ -37,7 +36,6 @@ class Playlists extends BaseComponent {
 
 	onRender() {
 		this.addHandlers();
-		// TODO additional dots with dropdown: remove and share playlist
 	}
 
 	addHandlers() {
@@ -80,14 +78,6 @@ class Playlists extends BaseComponent {
 			}
 		});
 		dialog.render('popup');
-	}
-
-	setServerRoot() {
-		this.state.items.forEach(item => {
-			if (!item.photo.includes(SERVER_ROOT)) {
-				item.photo = `${SERVER_ROOT}${item.photo}`;
-			}
-		});
 	}
 }
 

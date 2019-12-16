@@ -35,7 +35,7 @@ class AnotherProfileController extends BaseController {
 
 		UserModel.getProfileByNickname(nick)
 			.then(response => {
-				if (response.error || response.message) {
+				if (response.error) {
 					EventBus.publish(Events.ChangeRoute, {newUrl: Urls.MainUrl});
 					return;
 				}

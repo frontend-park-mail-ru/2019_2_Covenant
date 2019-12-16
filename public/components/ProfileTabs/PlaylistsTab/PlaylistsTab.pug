@@ -1,0 +1,11 @@
+ddiv(class="tab-grid")
+	div(class="tab-grid__column")
+		each item in items
+			div(class="tab-grid__item")
+				div(class="track__avatar-container")
+					div(class="track__avatar")
+						div(class="track__avatar-img" style=`background: url(${item.photo}) no-repeat center/cover;` id=`track-avatar-control-${item.id}`)
+				div(class="track__name-container")
+					div(class="track__name")
+						div(class="track__title" id=`playlist-href-${item.id}`)=item.name
+						div(class="track__subtitle")=`${item.description}`

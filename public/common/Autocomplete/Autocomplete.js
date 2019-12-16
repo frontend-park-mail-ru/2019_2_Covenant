@@ -9,7 +9,7 @@ class Autocomplete extends BaseComponent {
 		propertyName = 'name',
 		placeholder = 'Search',
 		onLoad = () => {},
-		onSelect = (text) => {},
+		onSelect = () => {},
 		onClose = () => {} }) {
 		const props = {
 			containerClassName: containerClassName,

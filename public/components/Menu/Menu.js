@@ -24,7 +24,7 @@ class Menu extends BaseComponent {
 	getDefaultMenuItems() {
 		return [
 			{title: 'Home', imgPath: '/static/img/home.png', id: 'menu-home-link', route: Urls.MainUrl},
-			{title: 'Collections', imgPath: '/static/img/playlist.png', id: 'menu-collections-link', route: Urls.CollectionsUrl},
+			// {title: 'Collections', imgPath: '/static/img/playlist.png', id: 'menu-collections-link', route: Urls.CollectionsUrl},
 			{title: 'Albums', imgPath: '/static/img/music-folder.png', id: 'menu-albums-link', route: Urls.ALbumsUrl},
 			{title: 'Artists', imgPath: '/static/img/micro.png', id: 'menu-artists-link', route: Urls.ArtistsUrl},
 			{title: 'Search', imgPath: '/static/img/search-gray.png', id: 'menu-search-link', route: Urls.SearchUrl}
@@ -33,17 +33,17 @@ class Menu extends BaseComponent {
 
 	getUserMenuItems() {
 		return [
-			{title: 'Favourite', imgPath: '/static/img/fav.png', id: 'menu-fav-link', route: Urls.FavouritesUrl},
-			{title: 'Playlists', imgPath: '/static/img/playlists.png', id: 'menu-playlists-link', route: Urls.PlaylistsUrl},
-			{title: 'Followers', imgPath: '/static/img/friends.png', id: 'menu-followers-link', route: Urls.Followers},
-			{title: 'Following', imgPath: '/static/img/friends.png', id: 'menu-following-link', route: Urls.Following}
+			{title: 'Favourite', imgPath: '/static/img/fav.png', id: 'menu-fav-link', route: '/profile?tab=Favourite'},
+			{title: 'Playlists', imgPath: '/static/img/playlists.png', id: 'menu-playlists-link', route: '/playlists'},
+			{title: 'Followers', imgPath: '/static/img/friends.png', id: 'menu-followers-link', route: '/profile?tab=Followers'},
+			{title: 'Following', imgPath: '/static/img/friends.png', id: 'menu-following-link', route: '/profile?tab=Following'}
 			// {title: 'Feed', imgPath: '/static/img/feed.png', id: 'menu-feed-link'},
 		];
 	}
 
 	getAdminMenuItems() {
 		return [
-			{title: 'Collections', imgPath: '/static/img/playlist.png', id: 'admin-collections-link', route: Urls.AdminCollections},
+			// {title: 'Collections', imgPath: '/static/img/playlist.png', id: 'admin-collections-link', route: Urls.AdminCollections},
 			{title: 'Artists', imgPath: '/static/img/micro.png', id: 'admin-artists-link', route: Urls.AdminArtists},
 			{title: 'Albums', imgPath: '/static/img/music-folder.png', id: 'admin-albums-link', route: Urls.AdminAlbums},
 			{title: 'Tracks', imgPath: '/static/img/musical-note.png', id: 'admin-tracks-link', route: Urls.AdminTracks}

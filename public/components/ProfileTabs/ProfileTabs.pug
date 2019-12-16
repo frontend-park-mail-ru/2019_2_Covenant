@@ -1,0 +1,9 @@
+div
+	ul(class="tabs-header")
+		each tab in tabs
+			if tab.name === currentTabName
+				li(class="tabs-header__item tabs-header__active" id=tab.id )=tab.name
+			else
+				li(class="tabs-header__item" id=tab.id )=tab.name
+	div(class="tabs-content" id="tabs-content")
+

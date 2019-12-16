@@ -15,7 +15,7 @@ div(class="content-cards")
 							div(class="dropdown")
 								img(class="card-item__dots-size" src="static/img/dots_white.png" alt="")
 								div(class="dropdown-content")
-									p(class="dropdown-content__item")="Remove playlist"
+									p(class="dropdown-content__item" id=`delete-playlist-btn-${item.id}`)="Remove playlist"
 									p(class="dropdown-content__item border-bottom")="Share playlist"
 					div(class="card-item__title card-item__fix-width")=item.name
 					div(class="card-item__subtitle card-item__fix-width")=item.description

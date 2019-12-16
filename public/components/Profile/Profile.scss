@@ -46,4 +46,18 @@
   &__main-logout:hover {
     text-decoration: underline;
   }
+
+  &__follow-btn {
+    border-radius: 20px;
+    padding: 10px 30px;
+    font-size: 18px;
+  }
+}
+
+.btn-accent {
+  background-color: $accent-color;
+}
+
+.btn-light {
+  background-color: $font-light-color;
 }

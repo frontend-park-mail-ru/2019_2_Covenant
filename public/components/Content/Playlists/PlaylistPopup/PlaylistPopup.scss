@@ -86,3 +86,20 @@
   text-decoration: none;
   cursor: pointer;
 }
+
+.popup__select-btn {
+  padding: 10px 20px;
+  background-color: $accent-color;
+  color: white;
+  font-size: 18px;
+  border-radius: 20px;
+}
+
+.popup {
+  &__select-row {
+    display: flex;
+    margin: 20px 100px;
+    justify-content: space-around;
+    align-items: center;
+  }
+}

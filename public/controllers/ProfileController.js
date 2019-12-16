@@ -6,9 +6,9 @@ import Urls from '../services/Urls';
 import NewHeader from '../components/NewHeader/NewHeader';
 import Menu from '../components/Menu/Menu';
 import Profile from '../components/Profile/Profile';
-import ProfileSettings from '../components/ProfileSettings/ProfileSettings';
 import Player from '../components/Player/Player';
 import profileView from '../views/ProfileView/ProfileView';
+import ProfileTabs from '../components/ProfileTabs/ProfileTabs';
 
 class ProfileController extends BaseController {
 	constructor() {
@@ -49,13 +49,23 @@ class ProfileController extends BaseController {
 		});
 		this.profile.render('user-info');
 
-		this.settings = new ProfileSettings();
-		this.settings.render('user-tabs');
+		this.tabs = new ProfileTabs(this.getTabFromUrl());
+		this.tabs.render('user-tabs');
+	}
+
+	getTabFromUrl() {
+		const pattern = new RegExp('^' + Urls.ProfileUrl + '(\\?tab=(\\w+))?$');
+		const url = `${window.location.pathname}${window.location.search}`;
+		const params = url.match(pattern);
+		if (!params) {
+			return 'Settings';
+		}
+		return params[2];
 	}
 
 	onHide() {
 		this.profile.onDestroy();
-		this.settings.onDestroy();
+		this.tabs.onDestroy();
 	}
 }
 

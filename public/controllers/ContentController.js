@@ -31,13 +31,11 @@ export default class ContentController extends BaseController {
         const menu = new Menu();
         menu.render('menu');
 
-        const content = new this.component();
-        content.render('content');
-
-        this.content = content;
-
         this.player = Player.getInstance();
         this.player.render('player-id');
+
+        this.content = new this.component();
+        this.content.render('content');
 
         UserModel.getProfile()
         .then(response => {

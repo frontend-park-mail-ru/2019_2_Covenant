@@ -1,0 +1,10 @@
+div(class="overlay")
+	div(class="popup-container")
+		span(class="close" id="popup-close-btn") &times
+		h2(class="text-center")="Select playlist"
+		each item in items
+			div(class="popup__field-container popup__select-row")
+				div(class="headline dark size-20")=item.name
+				button(class="btn popup__select-btn" id=`popup-select-btn-${item.id}`) Select
+		div(class="popup__btn-row")
+			button(type="button" class="btn-default popup-btn" id="popup-cancel-btn")="Cancel"

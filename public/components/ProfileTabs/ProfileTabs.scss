@@ -1,0 +1,22 @@
+@import '../../vars';
+
+.tabs-header {
+  list-style: none;
+  margin-bottom: 20px;
+
+  &__item {
+	display: inline-block;
+	font-weight: bold;
+	margin-right: 50px;
+	font-size: 20px;
+	cursor: pointer;
+  }
+
+  &__active {
+	color: $accent-color;
+  }
+
+  &__item:hover {
+	color: $accent-color;
+  }
+}

@@ -7,9 +7,10 @@
 @import "components/Home/AlbumList/AlbumList";
 @import "components/NewHeader/NewHeader";
 @import "components/Profile/Profile";
-@import "components/ProfileSettings/ProfileSettings";
+@import "components/ProfileTabs/ProfileSettings/ProfileSettings";
 @import "components/Content/Playlists/Playlists";
 @import "components/Content/Playlists/PlaylistPopup/PlaylistPopup";
+@import "components/ProfileTabs/ProfileTabs";
 @import "common/ConfirmationDialog/ConfirmationDialog";
 @import "components/Content/Search/Search";
 @import "components/Content/Home/Home";
@@ -191,6 +192,8 @@
 
 .btn {
     cursor: pointer;
+    border: none;
+    outline: none;
 }
 
 

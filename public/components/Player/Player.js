@@ -61,6 +61,10 @@ class Player extends BaseComponent {
 	controlHandler() {
 		const btn = document.getElementById('player-control-btn');
 
+		if (!this.audioPlayer.currentPlayback) {
+			return;
+		}
+
 		if (this.audioPlayer.isPlaying) {
 			this.audioPlayer.pause();
 			btn.src = '/static/img/triangle.png';

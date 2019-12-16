@@ -1,6 +1,5 @@
 import EventBus from '../../services/EventBus.js';
 import Events from '../../services/Events.js';
-import Urls from '../../services/Urls';
 
 class Link {
 	constructor({elementId= '', eventType = 'click', route = '/'} = {}) {
@@ -14,11 +13,7 @@ class Link {
 
 	handler() {
 		const path = this.route;
-		const check = Object.keys(Urls).find(key => Urls[key] === path);
-		if (check)
-			EventBus.publish(Events.ChangeRoute, { newUrl:  path});
-		else
-			throw new Error('Unknown route in Link');
+		EventBus.publish(Events.ChangeRoute, { newUrl:  path});
 	}
 }
 

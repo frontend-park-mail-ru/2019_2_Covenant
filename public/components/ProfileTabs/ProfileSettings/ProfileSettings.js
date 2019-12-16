@@ -1,9 +1,9 @@
-import BaseComponent from '../BaseComponent/BaseComponent';
+import BaseComponent from '../../BaseComponent/BaseComponent';
 import template from './ProfileSettings.pug';
-import EventBus from '../../services/EventBus';
-import Events from '../../services/Events';
-import Input from '../Input/Input';
-import UserModel from '../../models/UserModel';
+import EventBus from '../../../services/EventBus';
+import Events from '../../../services/Events';
+import Input from '../../Input/Input';
+import UserModel from '../../../models/UserModel';
 
 class ProfileSettings extends BaseComponent {
 	constructor() {
