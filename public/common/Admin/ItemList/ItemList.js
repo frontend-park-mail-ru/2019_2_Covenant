@@ -5,16 +5,19 @@ import Events from '../../../services/Events';
 import template from './ItemList.pug';
 
 class ItemList extends BaseComponent {
-
 	constructor({
 		editorPath = '',
 		addCaption = '',
 		title = '',
-		itemsName = ''
+		itemsName = '',
+		editBtn = true,
+		deleteBtn = true
 	} = {}) {
 		const initialState = {
 			addCaption: addCaption,
-			title: title
+			title: title,
+			editBtn: editBtn,
+			deleteBtn: deleteBtn
 		};
 		super(template, initialState);
 

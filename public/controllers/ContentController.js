@@ -8,12 +8,12 @@ import homeView from '../views/HomeView/HomeView';
 import Playlists from '../components/Content/Playlists/Playlists';
 import Home from '../components/Content/Home/Home';
 import Collections from '../components/Content/Collections/Collections';
-import Albums from '../components/Content/Albums/Albums';
 import Artists from '../components/Content/Artists/Artists';
 import Search from '../components/Content/Search/Search';
 import Player from '../components/Player/Player';
 import Album from '../components/Content/Album/Album';
 import Playlist from '../components/Content/Playlist/Playlist';
+import AlbumList from '../components/Lists/AlbumList/AlbumList';
 
 export default class ContentController extends BaseController {
     constructor(component) {
@@ -66,7 +66,7 @@ export class CollectionsController extends ContentController {
 
 export class AlbumsController extends ContentController {
     constructor() {
-        super(Albums);
+        super(AlbumList);
     }
 }
 

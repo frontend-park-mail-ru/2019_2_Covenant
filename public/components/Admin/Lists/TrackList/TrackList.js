@@ -8,7 +8,8 @@ class TrackList extends ItemList {
 			editorPath: Urls.AdminTrackEditor,
 			addCaption: 'Add a track',
 			title: 'Tracks',
-			itemsName: 'tracks'
+			itemsName: 'tracks',
+			editBtn: false
 		});
 	}
 
