@@ -1,22 +1,10 @@
 import BaseComponent from '../../common/BaseComponent/BaseComponent';
 import template from './ProfileTabs.pug';
-import ProfileSettings from './ProfileSettings/ProfileSettings';
-import FollowingTab from './FollowingTab/FollowingTab';
-import FollowersTab from './FollowersTab/FollowersTab';
-import FavouritesTab from './FavouritesTab/FavouritesTab';
-import PlaylistsTab from './PlaylistsTab/PlaylistsTab';
-
 
 class ProfileTabs extends BaseComponent {
-	constructor(currentTabName) {
+	constructor(currentTabName, tabs) {
 		const initialState = {
-			tabs: [
-				{name: 'Playlists', id: 'tab-playlists-id', component: new PlaylistsTab()},
-				{name: 'Favourite', id: 'tab-favourite-id', component: new FavouritesTab()},
-				{name: 'Followers', id: 'tab-followers-id', component: new FollowersTab()},
-				{name: 'Following', id: 'tab-following-id', component: new FollowingTab()},
-				{name: 'Settings',  id: 'tab-settings-id', component: new ProfileSettings()}
-			],
+			tabs: tabs,
 			currentTab: null,
 			currentTabName: currentTabName,
 			user: null

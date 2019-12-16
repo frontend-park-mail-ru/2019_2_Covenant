@@ -8,6 +8,10 @@ import Profile from '../components/Profile/Profile';
 import NewHeader from '../components/NewHeader/NewHeader';
 import Menu from '../components/Menu/Menu';
 import Player from '../components/Player/Player';
+import ProfileTabs from '../components/ProfileTabs/ProfileTabs';
+import PlaylistsTab from '../components/ProfileTabs/PlaylistsTab/PlaylistsTab';
+import FollowersTab from '../components/ProfileTabs/FollowersTab/FollowersTab';
+import FollowingTab from '../components/ProfileTabs/FollowingTab/FollowingTab';
 
 class AnotherProfileController extends BaseController {
 	constructor() {
@@ -62,6 +66,22 @@ class AnotherProfileController extends BaseController {
 		this.player.render('player-id');
 	}
 
+	getProfileTabs() {
+		return [
+			{name: 'Playlists', id: 'tab-playlists-id', component: new PlaylistsTab({
+					eventName: Events.UpdateAnotherUser,
+					loadItems: (user) => {return UserModel.getPlaylists(user.id, 20, 0);}
+				})},
+			{name: 'Followers', id: 'tab-followers-id', component: new FollowersTab({
+					eventName: Events.UpdateAnotherUser,
+					loadItems: (user) => {return UserModel.getSubscriptions(user.id, 20, 0);}
+				})},
+			{name: 'Following', id: 'tab-following-id', component: new FollowingTab({
+					eventName: Events.UpdateAnotherUser,
+					loadItems: (user) => {return UserModel.getSubscriptions(user.id, 20, 0);}
+				})},
+		];
+	}
 
 	renderAnotherProfileComponents() {
 		this.profile = new Profile({
@@ -69,10 +89,14 @@ class AnotherProfileController extends BaseController {
 			eventName: Events.UpdateAnotherUser
 		});
 		this.profile.render('user-info');
+
+		this.tabs = new ProfileTabs('Playlists', this.getProfileTabs());
+		this.tabs.render('user-tabs');
 	}
 
 	onHide() {
 		this.profile.onDestroy();
+		this.tabs.onDestroy();
 	}
 }
 

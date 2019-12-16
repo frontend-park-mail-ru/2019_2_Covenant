@@ -3,23 +3,23 @@ import template from './PlaylistsTab.pug';
 import EventBus from '../../../services/EventBus';
 import Events from '../../../services/Events';
 import {formatServerRootForArray} from '../../../services/Utils';
-import PlaylistModel from '../../../models/PlaylistModel';
-import Urls from '../../../services/Urls';
 
 class PlaylistsTab extends BaseComponent {
-	constructor() {
+	constructor({ eventName = '', loadItems = () => {}} = {}) {
 		const initState = {
-			items: []
+			items: [],
+			eventName: eventName,
+			loadItems: loadItems
 		};
 		super(template, initState);
 		this.state  = initState;
 		this.updateUser = this.updateUser.bind(this);
 
-		EventBus.subscribe(Events.UpdateUser, this.updateUser);
+		EventBus.subscribe(eventName, this.updateUser);
 	}
 
-	updateUser() {
-		PlaylistModel.getPlaylists(20, 0)
+	updateUser(user) {
+		this.state.loadItems(user)
 			.then(response => {
 				this.state.items = response.body.playlists;
 				formatServerRootForArray(this.state.items, 'photo');

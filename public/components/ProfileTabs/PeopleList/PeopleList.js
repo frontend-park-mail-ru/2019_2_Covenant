@@ -5,7 +5,10 @@ import Events from '../../../services/Events';
 import {formatServerRootForArray} from '../../../services/Utils';
 
 class PeopleList extends BaseComponent {
-	constructor({loadItems = () => {}, itemsName = ''}) {
+	constructor({
+		loadItems = () => {},
+		itemsName = '',
+		eventName = '' }) {
 		const initState = {
 			items: []
 		};
@@ -15,11 +18,11 @@ class PeopleList extends BaseComponent {
 		this.itemsName = itemsName;
 		this.updateUser = this.updateUser.bind(this);
 
-		EventBus.subscribe(Events.UpdateUser, this.updateUser);
+		EventBus.subscribe(eventName, this.updateUser);
 	}
 
-	updateUser() {
-		this.loadItems()
+	updateUser(user) {
+		this.loadItems(user)
 			.then(response => {
 				this.state.items = response.body[this.itemsName];
 				formatServerRootForArray(this.state.items, 'avatar');

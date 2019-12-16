@@ -1,4 +1,5 @@
 import {SERVER_ROOT} from './Settings';
+import Urls from './Urls';
 
 export const formatServerRootForArray = (items, property) => {
 	items.forEach(item => {
@@ -36,4 +37,15 @@ export const formatYear = (item) => {
 			item.year = res[1];
 		}
 	}
+};
+
+
+export const getTabFromUrl = (defaultValue) => {
+	const pattern = new RegExp('^' + Urls.ProfileUrl + '(\\?tab=(\\w+))?$');
+	const url = `${window.location.pathname}${window.location.search}`;
+	const params = url.match(pattern);
+	if (!params[2]) {
+		return defaultValue;
+	}
+	return params[2];
 };

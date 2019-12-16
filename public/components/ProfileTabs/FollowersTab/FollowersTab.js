@@ -1,11 +1,11 @@
-import SubscriptionModel from '../../../models/SubscriptionModel';
 import PeopleList from '../PeopleList/PeopleList';
 
 class FollowersTab extends PeopleList {
-	constructor() {
+	constructor({eventName = '', loadItems = () => {}} = {}) {
 		super({
-			loadItems: () => {return SubscriptionModel.getSubscriptions(20, 0);},
-			itemsName: 'followers'
+			loadItems: loadItems,
+			itemsName: 'followers',
+			eventName: eventName
 		});
 	}
 

@@ -9,6 +9,14 @@ import Profile from '../components/Profile/Profile';
 import Player from '../components/Player/Player';
 import profileView from '../views/ProfileView/ProfileView';
 import ProfileTabs from '../components/ProfileTabs/ProfileTabs';
+import {getTabFromUrl} from '../services/Utils';
+import PlaylistsTab from '../components/ProfileTabs/PlaylistsTab/PlaylistsTab';
+import FavouritesTab from '../components/ProfileTabs/FavouritesTab/FavouritesTab';
+import FollowersTab from '../components/ProfileTabs/FollowersTab/FollowersTab';
+import FollowingTab from '../components/ProfileTabs/FollowingTab/FollowingTab';
+import ProfileSettings from '../components/ProfileTabs/ProfileSettings/ProfileSettings';
+import PlaylistModel from '../models/PlaylistModel';
+import SubscriptionModel from '../models/SubscriptionModel';
 
 class ProfileController extends BaseController {
 	constructor() {
@@ -43,24 +51,33 @@ class ProfileController extends BaseController {
 		this.player.render('player-id');
 	}
 
+	getProfileTabs() {
+		return [
+			{name: 'Playlists', id: 'tab-playlists-id', component: new PlaylistsTab({
+					eventName: Events.UpdateUser,
+					loadItems: () => { return PlaylistModel.getPlaylists(20, 0);}
+				})},
+			{name: 'Favourite', id: 'tab-favourite-id', component: new FavouritesTab()},
+			{name: 'Followers', id: 'tab-followers-id', component: new FollowersTab({
+					eventName: Events.UpdateUser,
+					loadItems: () => {return SubscriptionModel.getSubscriptions(20, 0);}
+				})},
+			{name: 'Following', id: 'tab-following-id', component: new FollowingTab({
+					eventName: Events.UpdateUser,
+					loadItems: () => {return SubscriptionModel.getSubscriptions(20, 0);}
+				})},
+			{name: 'Settings',  id: 'tab-settings-id', component: new ProfileSettings()}
+		];
+	}
+
 	renderProfileComponents() {
 		this.profile = new Profile({
 			eventName: Events.UpdateUser
 		});
 		this.profile.render('user-info');
 
-		this.tabs = new ProfileTabs(this.getTabFromUrl());
+		this.tabs = new ProfileTabs(getTabFromUrl('Settings'), this.getProfileTabs());
 		this.tabs.render('user-tabs');
-	}
-
-	getTabFromUrl() {
-		const pattern = new RegExp('^' + Urls.ProfileUrl + '(\\?tab=(\\w+))?$');
-		const url = `${window.location.pathname}${window.location.search}`;
-		const params = url.match(pattern);
-		if (!params[2]) {
-			return 'Settings';
-		}
-		return params[2];
 	}
 
 	onHide() {

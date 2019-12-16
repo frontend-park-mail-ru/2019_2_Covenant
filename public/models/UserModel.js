@@ -58,16 +58,16 @@ class UserModel {
 		.then(response => response.json());
 	}
 
-	getSubscriptions(id) {
+	getSubscriptions(id, count, offset) {
 		return Http.fetchGet({
-			path: `/users/${id}/subscriptions`
+			path: `/users/${id}/subscriptions?count=${count}&offset=${offset}`
 		})
 		.then(response => response.json());
 	}
 
-	getPlaylists(id) {
+	getPlaylists(id, count, offset) {
 		return Http.fetchGet({
-			path: `/users/${id}/playlists`
+			path: `/users/${id}/playlists?count=${count}&offset=${offset}`
 		})
 		.then(response => response.json());
 	}
