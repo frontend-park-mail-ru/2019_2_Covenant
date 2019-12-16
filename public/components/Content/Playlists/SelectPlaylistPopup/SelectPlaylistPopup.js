@@ -1,4 +1,4 @@
-import BaseComponent from '../../../BaseComponent/BaseComponent';
+import BaseComponent from '../../../../common/BaseComponent/BaseComponent';
 import template from './SelectPlaylistPopup.pug';
 import PlaylistModel from '../../../../models/PlaylistModel';
 import {formatServerRootForArray} from '../../../../services/Utils';

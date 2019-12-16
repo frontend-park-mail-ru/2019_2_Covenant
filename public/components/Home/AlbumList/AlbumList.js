@@ -1,4 +1,4 @@
-import BaseComponent from '../../BaseComponent/BaseComponent';
+import BaseComponent from '../../../common/BaseComponent/BaseComponent';
 import template from './AlbumList.pug';
 
 class AlbumList extends BaseComponent {

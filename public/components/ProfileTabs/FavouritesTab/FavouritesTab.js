@@ -1,4 +1,4 @@
-import BaseComponent from '../../BaseComponent/BaseComponent';
+import BaseComponent from '../../../common/BaseComponent/BaseComponent';
 import EventBus from '../../../services/EventBus';
 import Events from '../../../services/Events';
 import TrackModel from '../../../models/TrackModel';

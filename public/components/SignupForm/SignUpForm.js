@@ -1,11 +1,11 @@
-import BaseComponent from '../BaseComponent/BaseComponent';
+import BaseComponent from '../../common/BaseComponent/BaseComponent';
 import template from './SignupForm.pug';
-import Input from '../Input/Input';
+import Input from '../../common/Kit/Input/Input';
 import SessionModel from '../../models/SessionModel';
 import Events from '../../services/Events';
 import Urls from '../../services/Urls';
 import EventBus from '../../services/EventBus';
-import Link from '../Link/Link';
+import Link from '../../common/Kit/Link/Link';
 
 class SignUpForm extends  BaseComponent {
 	constructor() {

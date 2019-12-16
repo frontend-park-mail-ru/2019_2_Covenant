@@ -1,10 +1,10 @@
-import BaseComponent from '../../BaseComponent/BaseComponent';
+import BaseComponent from '../../../common/BaseComponent/BaseComponent';
 import template from './Playlists.pug';
 import PlaylistPopup from './PlaylistPopup/PlaylistPopup';
 import PlaylistModel from '../../../models/PlaylistModel';
 import EventBus from '../../../services/EventBus';
 import Events from '../../../services/Events';
-import ConfirmationDialog from '../../../common/ConfirmationDialog/ConfirmationDialog';
+import ConfirmationDialog from '../../../common/Kit/ConfirmationDialog/ConfirmationDialog';
 import {formatServerRootForArray} from '../../../services/Utils';
 
 class Playlists extends BaseComponent {

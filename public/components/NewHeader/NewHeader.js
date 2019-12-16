@@ -1,9 +1,9 @@
-import BaseComponent from '../BaseComponent/BaseComponent';
+import BaseComponent from '../../common/BaseComponent/BaseComponent';
 import template from './NewHeader.pug';
 import EventBus from '../../services/EventBus';
 import Events from '../../services/Events';
 import {SERVER_ROOT} from '../../services/Settings';
-import Link from '../Link/Link';
+import Link from '../../common/Kit/Link/Link';
 import Urls from '../../services/Urls';
 import SearchAutocomplete from '../SearchAutocomplete/SearchAutocomplete';
 

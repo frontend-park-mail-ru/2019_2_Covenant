@@ -3,9 +3,9 @@ import EventBus from '../../services/EventBus';
 import SessionModel from '../../models/SessionModel';
 import Events from '../../services/Events';
 import Urls from '../../services/Urls';
-import BaseComponent from '../BaseComponent/BaseComponent';
-import Input from '../Input/Input';
-import Link from '../Link/Link';
+import BaseComponent from '../../common/BaseComponent/BaseComponent';
+import Input from '../../common/Kit/Input/Input';
+import Link from '../../common/Kit/Link/Link';
 
 class LoginForm extends BaseComponent {
 	constructor() {

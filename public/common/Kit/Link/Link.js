@@ -1,5 +1,5 @@
-import EventBus from '../../services/EventBus.js';
-import Events from '../../services/Events.js';
+import EventBus from '../../../services/EventBus.js';
+import Events from '../../../services/Events.js';
 
 class Link {
 	constructor({elementId= '', eventType = 'click', route = '/'} = {}) {

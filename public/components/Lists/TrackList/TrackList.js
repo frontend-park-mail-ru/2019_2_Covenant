@@ -1,4 +1,4 @@
-import BaseComponent from '../../BaseComponent/BaseComponent';
+import BaseComponent from '../../../common/BaseComponent/BaseComponent';
 import template from './TrackList.pug';
 import {formatDurationForArray, formatServerRootForArray} from '../../../services/Utils';
 import Track from './Track/Track';

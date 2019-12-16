@@ -1,4 +1,4 @@
-import BaseComponent from '../BaseComponent/BaseComponent';
+import BaseComponent from '../../common/BaseComponent/BaseComponent';
 import template from './ProfileTabs.pug';
 import ProfileSettings from './ProfileSettings/ProfileSettings';
 import FollowingTab from './FollowingTab/FollowingTab';

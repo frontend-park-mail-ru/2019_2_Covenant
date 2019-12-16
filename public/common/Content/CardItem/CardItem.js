@@ -1,4 +1,4 @@
-import BaseComponent from '../../../components/BaseComponent/BaseComponent';
+import BaseComponent from '../../BaseComponent/BaseComponent';
 
 class CardItem extends BaseComponent {
 	constructor(props) {

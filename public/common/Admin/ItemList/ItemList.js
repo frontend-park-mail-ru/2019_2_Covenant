@@ -1,5 +1,5 @@
-import BaseComponent from '../../../components/BaseComponent/BaseComponent';
-import Pagination from '../../../components/Pagination/Pagination';
+import BaseComponent from '../../BaseComponent/BaseComponent';
+import Pagination from '../../Kit/Pagination/Pagination';
 import EventBus from '../../../services/EventBus';
 import Events from '../../../services/Events';
 import template from './ItemList.pug';

@@ -1,4 +1,4 @@
-import BaseComponent from '../BaseComponent/BaseComponent';
+import BaseComponent from '../../BaseComponent/BaseComponent';
 import template from './Pagination.pug';
 
 class Pagination extends BaseComponent {

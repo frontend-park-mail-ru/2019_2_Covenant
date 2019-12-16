@@ -1,4 +1,4 @@
-import BaseComponent from '../../BaseComponent/BaseComponent';
+import BaseComponent from '../../../common/BaseComponent/BaseComponent';
 import template from './ArtistList.pug';
 import {formatServerRootForArray} from '../../../services/Utils';
 

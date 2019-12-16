@@ -1,5 +1,5 @@
-import BaseComponent from '../../../components/BaseComponent/BaseComponent';
-import Pagination from '../../../components/Pagination/Pagination';
+import BaseComponent from '../../BaseComponent/BaseComponent';
+import Pagination from '../../Kit/Pagination/Pagination';
 
 class CardList extends BaseComponent {
 	constructor({

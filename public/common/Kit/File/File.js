@@ -1,4 +1,4 @@
-import BaseComponent from '../../../components/BaseComponent/BaseComponent';
+import BaseComponent from '../../BaseComponent/BaseComponent';
 import template from './File.pug';
 
 class File extends BaseComponent {

@@ -1,4 +1,4 @@
-import BaseComponent from '../../BaseComponent/BaseComponent';
+import BaseComponent from '../../../common/BaseComponent/BaseComponent';
 import template from './PeopleList.pug';
 import EventBus from '../../../services/EventBus';
 import Events from '../../../services/Events';

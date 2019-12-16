@@ -1,4 +1,4 @@
-import BaseComponent from '../../../BaseComponent/BaseComponent';
+import BaseComponent from '../../../../common/BaseComponent/BaseComponent';
 import template from './Track.pug';
 import TrackModel from '../../../../models/TrackModel';
 import SelectPlaylistPopup from '../../../Content/Playlists/SelectPlaylistPopup/SelectPlaylistPopup';

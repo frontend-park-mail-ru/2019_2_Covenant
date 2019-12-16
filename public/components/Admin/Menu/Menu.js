@@ -1,8 +1,8 @@
 import template from './Menu.pug';
 
-import Link from '../../Link/Link';
+import Link from '../../../common/Kit/Link/Link';
 import Urls from '../../../services/Urls';
-import BaseComponent from '../../BaseComponent/BaseComponent';
+import BaseComponent from '../../../common/BaseComponent/BaseComponent';
 import SessionModel from '../../../models/SessionModel';
 import EventBus from '../../../services/EventBus';
 import Events from '../../../services/Events';

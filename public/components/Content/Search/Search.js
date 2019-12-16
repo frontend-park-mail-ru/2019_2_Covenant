@@ -1,4 +1,4 @@
-import BaseComponent from '../../BaseComponent/BaseComponent';
+import BaseComponent from '../../../common/BaseComponent/BaseComponent';
 import template from './Search.pug';
 import Urls from '../../../services/Urls';
 import SearchModel from '../../../models/SearchModel';

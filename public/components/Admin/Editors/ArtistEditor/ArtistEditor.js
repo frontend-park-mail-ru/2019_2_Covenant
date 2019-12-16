@@ -1,6 +1,6 @@
 import Urls from '../../../../services/Urls';
 import ArtistModel from '../../../../models/ArtistModel';
-import Input from '../../../Input/Input';
+import Input from '../../../../common/Kit/Input/Input';
 import ItemEditor from '../../../../common/Admin/ItemEditor/ItemEditor';
 import template from './ArtistEditor.pug';
 import {SERVER_ROOT} from '../../../../services/Settings';

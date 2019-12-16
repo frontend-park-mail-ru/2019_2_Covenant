@@ -1,4 +1,4 @@
-import BaseComponent from '../../BaseComponent/BaseComponent';
+import BaseComponent from '../../../common/BaseComponent/BaseComponent';
 import template from './Home.pug';
 import AlbumModel from '../../../models/AlbumModel';
 import TrackModel from '../../../models/TrackModel';

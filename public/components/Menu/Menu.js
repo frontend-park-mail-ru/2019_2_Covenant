@@ -1,8 +1,8 @@
-import BaseComponent from '../BaseComponent/BaseComponent';
+import BaseComponent from '../../common/BaseComponent/BaseComponent';
 import EventBus from '../../services/EventBus';
 import Events from '../../services/Events';
 import template from './Menu.pug';
-import Link from '../Link/Link';
+import Link from '../../common/Kit/Link/Link';
 import Urls from '../../services/Urls';
 import {UserRole} from '../../models/UserModel';
 

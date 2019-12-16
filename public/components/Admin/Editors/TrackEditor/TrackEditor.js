@@ -1,9 +1,9 @@
 import ItemEditor from '../../../../common/Admin/ItemEditor/ItemEditor';
 import template from './TrackEditor.pug';
 import Urls from '../../../../services/Urls';
-import Autocomplete from '../../../../common/Autocomplete/Autocomplete';
+import Autocomplete from '../../../../common/Kit/Autocomplete/Autocomplete';
 import SearchModel from '../../../../models/SearchModel';
-import Input from '../../../Input/Input';
+import Input from '../../../../common/Kit/Input/Input';
 import File from '../../../../common/Kit/File/File';
 import TrackModel from '../../../../models/TrackModel';
 

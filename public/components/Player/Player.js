@@ -1,4 +1,4 @@
-import BaseComponent from '../BaseComponent/BaseComponent';
+import BaseComponent from '../../common/BaseComponent/BaseComponent';
 import template from './Player.pug';
 import {AudioPlayer} from '../../../audio-system/audioplayer';
 import EventBus from '../../services/EventBus';

@@ -1,8 +1,7 @@
 @import url('views/ProfileView/ProfileView.scss');
 @import url('components/SignupForm/SignupForm.css');
 @import url('components/LoginForm/LoginForm.css');
-@import url('components/TrackList/TrackList.css');
-@import "common/Autocomplete/Autocomplete";
+@import "common/Kit/Autocomplete/Autocomplete";
 @import "components/Menu/Menu";
 @import "components/Home/AlbumList/AlbumList";
 @import "components/NewHeader/NewHeader";
@@ -11,10 +10,10 @@
 @import "components/Content/Playlists/Playlists";
 @import "components/Content/Playlists/PlaylistPopup/PlaylistPopup";
 @import "components/ProfileTabs/ProfileTabs";
-@import "common/ConfirmationDialog/ConfirmationDialog";
+@import "common/Kit/ConfirmationDialog/ConfirmationDialog";
 @import "components/Content/Search/Search";
 @import "components/Content/Home/Home";
-@import "components/Pagination/Pagination";
+@import "common/Kit/Pagination/Pagination";
 @import "components/Lists/TrackList/TrackList";
 @import "components/Lists/AlbumScroll/AlbumScroll";
 @import "common/Kit/File/File";

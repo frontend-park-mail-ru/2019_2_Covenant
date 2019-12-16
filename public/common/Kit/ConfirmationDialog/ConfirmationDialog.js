@@ -1,4 +1,4 @@
-import BaseComponent from '../../components/BaseComponent/BaseComponent';
+import BaseComponent from '../../BaseComponent/BaseComponent';
 import template from './ConfirmationDialog.pug';
 
 class ConfirmationDialog extends BaseComponent {
