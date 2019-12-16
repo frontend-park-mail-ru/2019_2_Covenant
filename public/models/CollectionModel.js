@@ -1,6 +1,4 @@
-import HttpModule from '../services/Http';
-
-const Http = new HttpModule();
+import Http from '../services/Http';
 
 class CollectionModel {
 	createCollection({

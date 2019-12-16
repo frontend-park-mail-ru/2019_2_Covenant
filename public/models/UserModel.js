@@ -1,7 +1,5 @@
-import HttpModule from '../services/Http';
+import Http from '../services/Http';
 import { SERVER_API_PATH } from '../services/Settings';
-
-const Http = new HttpModule();
 
 export const UserRole = {
 	User: 0,
@@ -59,6 +57,21 @@ class UserModel {
 		})
 		.then(response => response.json());
 	}
+
+	getSubscriptions(id) {
+		return Http.fetchGet({
+			path: `/users/${id}/subscriptions`
+		})
+		.then(response => response.json());
+	}
+
+	getPlaylists(id) {
+		return Http.fetchGet({
+			path: `/users/${id}/playlists`
+		})
+		.then(response => response.json());
+	}
+
 }
 
 export default new UserModel();

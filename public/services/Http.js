@@ -55,4 +55,4 @@ class Http {
 	}
 }
 
-export default Http;
+export default new Http();

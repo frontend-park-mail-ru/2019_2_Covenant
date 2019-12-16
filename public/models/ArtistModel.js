@@ -1,7 +1,5 @@
-import HttpModule from '../services/Http';
+import Http from '../services/Http';
 import {SERVER_API_PATH} from '../services/Settings';
-
-const Http = new HttpModule();
 
 class ArtistModel {
 	createArtist({name = '', file = ''} = {}) {
