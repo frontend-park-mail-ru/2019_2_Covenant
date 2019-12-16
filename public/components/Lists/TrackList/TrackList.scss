@@ -45,7 +45,11 @@
 }
 
 .col-2 {
-  columns: 2;
+  column-count: 2;
+}
+
+.col-3 {
+  column-count: 3;
 }
 
 .track {

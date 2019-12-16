@@ -6,6 +6,7 @@ import ArtistModel from '../../../models/ArtistModel';
 import TrackList from '../../Lists/TrackList/TrackList';
 import AlbumScroll from '../../Lists/AlbumScroll/AlbumScroll';
 import {formatServerRootForArray} from '../../../services/Utils';
+import ArtistList from '../../Lists/ArtistList/ArtistList';
 
 class Home extends BaseComponent {
 	constructor() {
@@ -25,6 +26,11 @@ class Home extends BaseComponent {
 			albums: this.state.albums
 		});
 		albumList.render('home-album-list-id');
+
+		const artistList = new ArtistList({
+			artists: this.state.artists
+		});
+		artistList.render('home-artist-list-id');
 
 		this.trackList = new TrackList({
 			tracks: this.state.tracks

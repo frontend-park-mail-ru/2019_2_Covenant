@@ -1,15 +1,5 @@
 div(class="home")
 	div(class="home__albums-container" id="home-album-list-id")
 	div(class="home__tracks-container" id="home-track-list-id")
-	div(class="home__artists-container")
-		div(class="headline dark size-20")="Artists"
-		div(class="headline light size-14")="View all"
-		ul(class="artists-list")
-			if artists.length > 0
-				each artist in artists
-					li(class="artists-list__item")
-						div(class="artist__avatar-container")
-							div(class="artist__avatar-img" style=`background-image: url(${artist.photo})`)
-						div(class="artist__name-container")
-							div(class="artist__name")
-								div(class="artist__name-label")=artist.name
+	div(class="home__artists-container" id="home-artist-list-id")
+

@@ -4,6 +4,7 @@ import Urls from '../../../services/Urls';
 import SearchModel from '../../../models/SearchModel';
 import TrackList from '../../Lists/TrackList/TrackList';
 import AlbumScroll from '../../Lists/AlbumScroll/AlbumScroll';
+import ArtistList from '../../Lists/ArtistList/ArtistList';
 
 class Search extends BaseComponent {
 	constructor() {
@@ -60,6 +61,12 @@ class Search extends BaseComponent {
 			tracks: this.state.tracks
 		});
 		trackList.render('search-tracks-container-id');
+
+		const artistList = new ArtistList({
+			artists: this.state.artists,
+			artistsClassName: 'artists-list col-3'
+		});
+		artistList.render('search-artists-container-id');
 	}
 }
 
