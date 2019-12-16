@@ -141,3 +141,13 @@ div.card-item__img:hover span.card-item__dots {visibility: visible;}
 .dropdown:hover .dropdown-content {
   display: block;
 }
+
+.share-btn {
+  width: 100px;
+  height: 100px;
+  border-radius: 100px;
+  border: 0;
+  box-shadow: none;
+  display: inline;
+  margin-right: 20px;
+}

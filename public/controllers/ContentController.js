@@ -14,12 +14,14 @@ import Player from '../components/Player/Player';
 import Album from '../components/Content/Album/Album';
 import Playlist from '../components/Content/Playlist/Playlist';
 import AlbumList from '../components/Lists/AlbumList/AlbumList';
+import Urls from '../services/Urls';
 
 export default class ContentController extends BaseController {
-    constructor(component) {
+    constructor(component, withRedirect = false) {
         super(homeView);
 
         this.component = component;
+        this.withRedirect = withRedirect;
     }
 
     onShow() {
@@ -40,7 +42,12 @@ export default class ContentController extends BaseController {
             console.log(response);
             if (!response.error) {
                 EventBus.publish(Events.UpdateUser, response.body.user);
+                return;
             }
+            if (this.withRedirect) {
+                EventBus.publish(Events.ChangeRoute, {newUrl: Urls.LoginUrl});
+            }
+
         })
         .catch(error => {
             console.log(error);
@@ -96,6 +103,6 @@ export class AlbumController extends ContentController {
 
 export class PlaylistController extends ContentController {
     constructor() {
-        super(Playlist);
+        super(Playlist, true);
     }
 }

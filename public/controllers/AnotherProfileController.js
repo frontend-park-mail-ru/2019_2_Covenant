@@ -25,7 +25,10 @@ class AnotherProfileController extends BaseController {
 		const nick = params[2];
 		UserModel.getProfile()
 			.then(response => {
-				if (response.error) { return; }
+				if (response.error) {
+					EventBus.publish(Events.ChangeRoute, {newUrl: Urls.LoginUrl});
+					return;
+				}
 				this.renderContent();
 				EventBus.publish(Events.UpdateUser, response.body.user);
 			})

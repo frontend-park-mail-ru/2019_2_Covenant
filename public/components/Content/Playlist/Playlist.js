@@ -38,7 +38,9 @@ class Playlist extends CardItem {
 	}
 
 	onDestroy() {
-		this.trackList.onDestroy();
+		if (this.trackList) {
+			this.trackList.onDestroy();
+		}
 	}
 }
 

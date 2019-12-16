@@ -6,6 +6,7 @@ import EventBus from '../../../services/EventBus';
 import Events from '../../../services/Events';
 import ConfirmationDialog from '../../../common/Kit/ConfirmationDialog/ConfirmationDialog';
 import {formatServerRootForArray} from '../../../services/Utils';
+import SharePopup from './SharePopup/SharePopup';
 
 class Playlists extends BaseComponent {
 	constructor() {
@@ -44,6 +45,7 @@ class Playlists extends BaseComponent {
 
 		this.addDeleteHandlers();
 		this.addNameHandlers();
+		this.addShareHandlers();
 	}
 
 	createPlaylistHandler() {
@@ -69,6 +71,16 @@ class Playlists extends BaseComponent {
 		});
 	}
 
+	addShareHandlers() {
+		this.state.items.forEach(item => {
+			const shareBtn = document.getElementById(`share-playlist-btn-${item.id}`);
+			if (!shareBtn) {return;}
+			shareBtn.addEventListener('click', () => {
+				this.sharePlaylistHandler(item.id);
+			});
+		});
+	}
+
 	deletePlaylist(id) {
 		PlaylistModel.deletePlaylist(id)
 		.then(response => {
@@ -88,6 +100,13 @@ class Playlists extends BaseComponent {
 			}
 		});
 		dialog.render('popup');
+	}
+
+	sharePlaylistHandler(playlistId) {
+		const sharePopup = new SharePopup({
+			playlistId: playlistId
+		});
+		sharePopup.render('popup');
 	}
 }
 

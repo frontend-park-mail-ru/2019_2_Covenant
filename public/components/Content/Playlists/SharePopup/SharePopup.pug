@@ -1,0 +1,12 @@
+div(class="overlay")
+	div(class="popup-container")
+		span(class="close" id="popup-close-btn") &times
+		h2(class="text-center")="Share playlist"
+		div(class="popup__field-container popup__select-row")
+			div(class="popup__field-container popup__select-row")
+				a(href=`http://vkontakte.ru/share.php?url=${url}` target="_blank")
+					img(class="share-btn" src="/static/img/vk-icon.png" alt="")
+				a(href=`https://telegram.me/share/url?url=${url}`)
+					img(class="share-btn" src="/static/img/telegram-icon.png" alt="")
+		div(class="popup__btn-row")
+			button(type="button" class="btn-default popup-btn" id="popup-cancel-btn")="Cancel"
