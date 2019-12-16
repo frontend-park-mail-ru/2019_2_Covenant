@@ -1,11 +1,10 @@
 import BaseComponent from '../../../../common/BaseComponent/BaseComponent';
 import template from './SharePopup.pug';
-import {SERVER_ROOT} from '../../../../services/Settings';
 
 class SharePopup extends BaseComponent {
 	constructor({playlistId = ''} = {}) {
 		const initialState = {
-			url: `${SERVER_ROOT}/playlist/${playlistId}`
+			url: `https://covenant.fun/playlist/${playlistId}`
 		};
 		super(template, initialState);
 		this.state = initialState;
