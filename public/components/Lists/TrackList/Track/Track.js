@@ -2,6 +2,7 @@ import BaseComponent from '../../../../common/BaseComponent/BaseComponent';
 import template from './Track.pug';
 import TrackModel from '../../../../models/TrackModel';
 import SelectPlaylistPopup from '../../../Content/Playlists/SelectPlaylistPopup/SelectPlaylistPopup';
+import LikeModel from '../../../../models/LikeModel';
 
 class Track extends BaseComponent {
 	constructor({index = -1, track = null} = {}) {
@@ -16,6 +17,8 @@ class Track extends BaseComponent {
 		this.addToFavouriteHandler = this.addToFavouriteHandler.bind(this);
 		this.removeFromFavouriteHandler = this.removeFromFavouriteHandler.bind(this);
 		this.playlistHandler = this.playlistHandler.bind(this);
+		this.addToRatingHandler = this.addToRatingHandler.bind(this);
+		this.removeFromRatingHandler = this.removeFromRatingHandler.bind(this);
 	}
 
 	onRender() {
@@ -29,6 +32,16 @@ class Track extends BaseComponent {
 			removeFromFavourite.addEventListener('click', this.removeFromFavouriteHandler);
 		}
 
+		const addToRating = document.getElementById(`rating-up-btn-${this.state.track.id}`);
+		if (addToRating) {
+			addToRating.addEventListener('click', this.addToRatingHandler);
+		}
+
+		const removeFromRating = document.getElementById(`rating-down-${this.state.track.id}`);
+		if (removeFromRating) {
+			removeFromRating.addEventListener('click', this.removeFromRatingHandler);
+		}
+
 		const playlistBtn = document.getElementById(`add-to-playlist-${this.state.track.id}`);
 		if (playlistBtn) {
 			playlistBtn.addEventListener('click', this.playlistHandler);
@@ -37,6 +50,36 @@ class Track extends BaseComponent {
 
 	onDestroy() {
 
+	}
+
+	addToRatingHandler() {
+		LikeModel.like(this.state.track.id)
+			.then(response => {
+				if (response.error ) {
+					console.log(response.error);
+					return;
+				}
+				this.state.track.is_liked = true;
+				this.update(this.state);
+			})
+			.catch(error => {
+				console.log(error);
+			});
+	}
+
+	removeFromRatingHandler() {
+		LikeModel.dislike(this.state.track.id)
+		.then(response => {
+			if (response.error ) {
+				console.log(response.error);
+				return;
+			}
+			this.state.track.is_liked = false;
+			this.update(this.state);
+		})
+		.catch(error => {
+			console.log(error);
+		});
 	}
 
 	addToFavouriteHandler() {

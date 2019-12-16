@@ -32,6 +32,10 @@ div
 						p(class="dropdown-content__item" id=`like-btn-${track.id}`)="Add to favourite"
 					else
 						p(class="dropdown-content__item" id=`remove-btn-${track.id}`)="Remove from favourite"
+					if !track.is_liked
+						p(class="dropdown-content__item" id=`rating-up-btn-${track.id}`)="Like"
+					else
+						p(class="dropdown-content__item" id=`rating-down-${track.id}`)="Unlike"
 					p(class="dropdown-content__item border-bottom" id=`add-to-playlist-${track.id}`)="Add to playlist"
 
 	div(class="track__duration-container")
