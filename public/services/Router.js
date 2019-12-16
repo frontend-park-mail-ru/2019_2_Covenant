@@ -6,13 +6,16 @@ import SignupController from '../controllers/SignupController.js';
 import ProfileController from '../controllers/ProfileController';
 import {
 	AlbumController,
-	AlbumsController, ArtistsController,
-	CollectionsController, FavouriteController, FollowersController, FollowingController, HomeController,
-	PlayListsController, SearchController
+	AlbumsController,
+	ArtistsController,
+	CollectionsController,
+	HomeController,
+	PlaylistController,
+	PlayListsController,
+	SearchController
 } from '../controllers/ContentController';
 
 // Views
-import profileView from '../views/ProfileView/ProfileView';
 import emptyView from '../views/EmptyView/EmptyView';
 
 // Utils
@@ -54,10 +57,8 @@ class Router {
 		this.registerRegexp(new RegExp('^'+ Urls.SearchUrl + '(\\?s=?(\\w+))?$'), new SearchController());
 
 		this.register(Urls.PlaylistsUrl, new PlayListsController());
-		this.register(Urls.FavouritesUrl, new FavouriteController());
-		this.register(Urls.Followers, new FollowersController());
-		this.register(Urls.Following, new FollowingController());
 		this.register(Urls.AlbumURl, new AlbumController());
+		this.register(Urls.PlaylistUrl, new PlaylistController());
 
 		this.eventHandler = this.eventHandler.bind(this);
 		EventBus.subscribe(Events.ChangeRoute, this.eventHandler);

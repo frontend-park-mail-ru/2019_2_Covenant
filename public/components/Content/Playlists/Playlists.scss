@@ -51,6 +51,11 @@
 	transition: .3s;
   }
 
+  &__title:hover {
+	text-decoration: underline;
+	cursor: pointer;
+  }
+
   &__subtitle {
 	font-size: 14px;
 	color: $font-light-color;

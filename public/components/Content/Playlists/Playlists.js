@@ -43,6 +43,7 @@ class Playlists extends BaseComponent {
 		createBtn.addEventListener('click', this.createPlaylistHandler);
 
 		this.addDeleteHandlers();
+		this.addNameHandlers();
 	}
 
 	createPlaylistHandler() {
@@ -53,9 +54,18 @@ class Playlists extends BaseComponent {
 	addDeleteHandlers() {
 		this.state.items.forEach(item => {
 			const deleteBtn = document.getElementById(`delete-playlist-btn-${item.id}`);
-			if (deleteBtn) {
-				deleteBtn.addEventListener('click', () => { this.deletePlaylistHandler(item.id)});
-			}
+			if (!deleteBtn) {return;}
+			deleteBtn.addEventListener('click', () => { this.deletePlaylistHandler(item.id)});
+		});
+	}
+
+	addNameHandlers() {
+		this.state.items.forEach(item => {
+			const nameBtn = document.getElementById(`playlist-name-${item.id}`);
+			if (!nameBtn) {return;}
+			nameBtn.addEventListener('click', () => {
+				EventBus.publish(Events.ChangeRoute,{newUrl: `/playlist/${item.id}`});
+			});
 		});
 	}
 

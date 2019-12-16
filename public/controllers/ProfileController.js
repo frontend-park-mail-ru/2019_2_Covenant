@@ -57,7 +57,7 @@ class ProfileController extends BaseController {
 		const pattern = new RegExp('^' + Urls.ProfileUrl + '(\\?tab=(\\w+))?$');
 		const url = `${window.location.pathname}${window.location.search}`;
 		const params = url.match(pattern);
-		if (!params) {
+		if (!params[2]) {
 			return 'Settings';
 		}
 		return params[2];

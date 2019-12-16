@@ -11,11 +11,9 @@ import Collections from '../components/Content/Collections/Collections';
 import Albums from '../components/Content/Albums/Albums';
 import Artists from '../components/Content/Artists/Artists';
 import Search from '../components/Content/Search/Search';
-import Favourites from '../components/Content/Favourites/Favourites';
-import Followers from '../components/Content/Followers/Followers';
-import Following from '../components/Content/Following/Following';
 import Player from '../components/Player/Player';
 import Album from '../components/Content/Album/Album';
+import Playlist from '../components/Content/Playlist/Playlist';
 
 export default class ContentController extends BaseController {
     constructor(component) {
@@ -90,26 +88,14 @@ export class PlayListsController extends ContentController {
     }
 }
 
-export class FavouriteController extends ContentController {
-    constructor() {
-        super(Favourites);
-    }
-}
-
-export class FollowersController extends ContentController {
-    constructor() {
-        super(Followers);
-    }
-}
-
-export class FollowingController extends ContentController {
-    constructor() {
-        super(Following);
-    }
-}
-
 export class AlbumController extends ContentController {
     constructor() {
         super(Album);
+    }
+}
+
+export class PlaylistController extends ContentController {
+    constructor() {
+        super(Playlist);
     }
 }
