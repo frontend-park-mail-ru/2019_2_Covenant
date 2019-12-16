@@ -2,14 +2,16 @@ import BaseComponent from '../../common/BaseComponent/BaseComponent';
 import template from './NewHeader.pug';
 import EventBus from '../../services/EventBus';
 import Events from '../../services/Events';
-import {SERVER_ROOT} from '../../services/Settings';
 import Link from '../../common/Kit/Link/Link';
 import Urls from '../../services/Urls';
 import SearchAutocomplete from '../SearchAutocomplete/SearchAutocomplete';
+import {formatServerRoot} from '../../services/Utils';
 
 class NewHeader extends BaseComponent {
-	constructor() {
-		super(template);
+	constructor({headerPositionClass = 'header__align-center'} = {}) {
+		const initState = {headerPositionClass: headerPositionClass};
+		super(template, initState);
+		this.state = initState;
 
 		this.updateUser = this.updateUser.bind(this);
 		EventBus.subscribe(Events.UpdateUser, this.updateUser);
@@ -28,10 +30,9 @@ class NewHeader extends BaseComponent {
 			return;
 		}
 
-		if (!data.avatar.includes(SERVER_ROOT)){
-			data.avatar = `${SERVER_ROOT}${data.avatar}`;
-		}
-		this.update({ user: data});
+		formatServerRoot(data, 'avatar');
+		this.state.user = data;
+		this.update(this.state);
 		this.addProfileLink();
 	}
 

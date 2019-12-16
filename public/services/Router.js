@@ -33,6 +33,7 @@ import {
 } from '../controllers/AdminController';
 import {AdminArtistEditorController} from '../controllers/AdminController';
 import AnotherProfileController from '../controllers/AnotherProfileController';
+import ArtistController from '../controllers/ArtistController';
 
 class Router {
 	constructor() {
@@ -58,6 +59,7 @@ class Router {
 
 		this.register(Urls.PlaylistsUrl, new PlayListsController());
 		this.register(Urls.AlbumURl, new AlbumController());
+		this.register(Urls.ArtistUrl, new ArtistController());
 		this.register(Urls.PlaylistUrl, new PlaylistController());
 
 		this.eventHandler = this.eventHandler.bind(this);

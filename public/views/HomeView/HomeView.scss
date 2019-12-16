@@ -18,6 +18,12 @@
   height: 100%;
 }
 
+.artist-container-grid {
+  display: grid;
+  grid-template-rows: [header] $artist-height [body] auto;
+  border-radius: 50px 0 0 0;
+}
+
 .content-container-grid {
   display: grid;
   grid-template-rows: [header] $header-height [body] auto;

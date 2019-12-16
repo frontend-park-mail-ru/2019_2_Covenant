@@ -27,10 +27,10 @@ class Home extends BaseComponent {
 		});
 		albumList.render('home-album-list-id');
 
-		const artistList = new ArtistList({
+		this.artistList = new ArtistList({
 			artists: this.state.artists
 		});
-		artistList.render('home-artist-list-id');
+		this.artistList.render('home-artist-list-id');
 
 		this.trackList = new TrackList({
 			tracks: this.state.tracks
@@ -60,6 +60,7 @@ class Home extends BaseComponent {
 
 	onDestroy() {
 		this.trackList.onDestroy();
+		this.artistList.onDestroy();
 	}
 }
 
