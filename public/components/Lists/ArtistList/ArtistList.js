@@ -3,7 +3,7 @@ import template from './ArtistList.pug';
 import {formatServerRootForArray} from '../../../services/Utils';
 
 class ArtistList extends BaseComponent {
-	constructor({artists = [], artistsClassName = ''}) {
+	constructor({artists = [], artistsClassName = 'artists-list'}) {
 		const initialState = {
 			artists: [],
 			artistsClassName: artistsClassName
