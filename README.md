@@ -8,7 +8,7 @@
 
 
 #### Deploy
-    https://covenant.fun
+[Covenant deploy](https://covenant.fun)
 
 ##### Getting started:
 * develop \
