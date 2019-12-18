@@ -248,10 +248,9 @@ $icon_color: #6b6b6b;
 }
 
 .input_field {
-    /* customize the input tag with lighter font and some padding*/
     color: $icon_color;
     background-color: inherit;
-    width: 90%;
+    width: 100%;
     border: none;
     font-size: 1.3rem;
     font-weight: 400;
