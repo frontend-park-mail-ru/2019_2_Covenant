@@ -9,4 +9,4 @@ div
 						div(class="artist__avatar-img" style=`background-image: url(${artist.photo})`)
 					div(class="artist__name-container")
 						div(class="artist__name")
-							div(class="artist__name-label")=artist.name
+							div(class="artist__name-label" id=`artist-name-${artist.id}`)=artist.name

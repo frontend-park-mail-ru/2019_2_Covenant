@@ -1,6 +1,7 @@
 import BaseComponent from '../../../common/BaseComponent/BaseComponent';
 import template from './ArtistList.pug';
 import {formatServerRootForArray} from '../../../services/Utils';
+import Link from '../../../common/Kit/Link/Link';
 
 class ArtistList extends BaseComponent {
 	constructor({artists = [], artistsClassName = 'artists-list'}) {
@@ -16,6 +17,16 @@ class ArtistList extends BaseComponent {
 	}
 
 	onRender() {
+		this.addArtistHandlers();
+	}
+
+	addArtistHandlers() {
+		this.state.artists.forEach(artist => {
+			new Link({elementId: `artist-name-${artist.id}`, eventType: 'click', route: `/artist/${artist.id}`});
+		});
+	}
+
+	onDestroy() {
 
 	}
 }
