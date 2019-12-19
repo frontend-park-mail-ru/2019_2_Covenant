@@ -56,6 +56,7 @@ class File extends BaseComponent {
 	}
 
 	onLoadEnd() {
+		if (this.state.asButton) { return; }
 		this.state.src = this.reader.result;
 		this.update(this.state);
 	}
