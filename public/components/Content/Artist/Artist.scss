@@ -1,0 +1,16 @@
+@import '../../../vars';
+
+.artist-page {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  margin-left: $padding-left-content;
+  margin-right: $padding-right-content;
+
+  &__albums-container {
+	grid-row: 1/2;
+  }
+
+  &__tracks-container {
+	grid-row: 2/3;
+  }
+}

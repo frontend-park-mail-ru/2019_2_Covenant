@@ -57,6 +57,22 @@ class ArtistModel {
 		})
 		.then(response => response.json());
 	}
+
+	getAlbums({
+		id = '', count = 10, offset = 0}) {
+		return Http.fetchGet({
+			path: `/artists/${id}/albums?count=${count}&offset=${offset}`,
+		})
+		.then(response => response.json());
+	}
+
+	getTracks({
+		id = '', count = 10, offset = 0}) {
+		return Http.fetchGet({
+			path: `/artists/${id}/tracks?count=${count}&offset=${offset}`,
+		})
+		.then(response => response.json());
+	}
 }
 
 export default new ArtistModel();
