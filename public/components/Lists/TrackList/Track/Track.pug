@@ -15,28 +15,25 @@ div
 			div(class="track__title")=track.name
 			div(class="track__subtitle")=track.artist
 
-	//div(class="track__like-container")
-	//	button(class="track__like")
-	//		if user
-	//			if track.is_favourite && track.is_favourite === true
-	//				img(class="track__like-btn" src="/static/img/heart_fill.png" alt="" id=`like-btn-${track.id}`)
-	//			else
-	//				img(class="track__like-btn" src="/static/img/heart.png" alt="" id=`like-btn-${track.id}`)
-
 	div(class="track__like-container")
 		div(class="track__like")
 			div(class="dropdown")
 				img(class="card-item__dots-size clickable" src="static/img/dots.png" alt="")
 				div(class="dropdown-content")
-					if !track.is_favourite
-						p(class="dropdown-content__item" id=`like-btn-${track.id}`)="Add to favourite"
-					else
-						p(class="dropdown-content__item" id=`remove-btn-${track.id}`)="Remove from favourite"
-					if !track.is_liked
-						p(class="dropdown-content__item" id=`rating-up-btn-${track.id}`)="Like"
-					else
-						p(class="dropdown-content__item" id=`rating-down-${track.id}`)="Unlike"
-					p(class="dropdown-content__item border-bottom" id=`add-to-playlist-${track.id}`)="Add to playlist"
+					if track.is_liked != null
+						if track.is_liked === true
+							p(class="dropdown-content__item" id=`rating-down-btn-${track.id}`)="Unlike"
+						else
+							p(class="dropdown-content__item" id=`rating-up-${track.id}`)="Like"
+						p(class="dropdown-content__item border-bottom" id=`add-to-playlist-${track.id}`)="Add to playlist"
+
+	div(class="track__like-container mr-10")
+		button(class="track__like")
+			if track.is_favourite != null
+				if track.is_favourite === true
+					img(class="track__like-btn" src="/static/img/heart_fill.png" alt="" id=`like-btn-${track.id}`)
+				else
+					img(class="track__like-btn" src="/static/img/heart.png" alt="" id=`like-btn-${track.id}`)
 
 	div(class="track__duration-container")
 		div(class="track__duration")=track.duration

@@ -24,7 +24,6 @@ class ArtistController extends BaseController {
 
 		UserModel.getProfile()
 		.then(response => {
-			console.log(response);
 			if (!response.error) {
 				EventBus.publish(Events.UpdateUser, response.body.user);
 			}

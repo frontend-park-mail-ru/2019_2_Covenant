@@ -30,9 +30,6 @@ class TrackList extends ItemList {
 			{
 				title: 'Album name',
 				dataIndex: 'album'
-			},
-			{
-				title: 'Actions'
 			}
 		];
 	}

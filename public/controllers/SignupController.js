@@ -16,10 +16,10 @@ class SignupController extends BaseController {
 
 		UserModel.getProfile().then(response =>
 		{
-			if (!response.error) {
-				console.log(response);
-				EventBus.publish(Events.ChangeRoute, Urls.ProfileUrl);
+			if (response.error) {
+				return;
 			}
+			EventBus.publish(Events.ChangeRoute, Urls.ProfileUrl);
 		})
 		.catch(error => {
 			console.log(error);

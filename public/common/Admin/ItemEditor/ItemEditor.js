@@ -72,7 +72,6 @@ class ItemEditor extends BaseComponent {
 
 		handler()
 			.then(response => {
-				console.log(response);
 				if (!response.error) {
 					EventBus.publish(Events.ChangeRoute, {newUrl: this.backPath});
 				}
