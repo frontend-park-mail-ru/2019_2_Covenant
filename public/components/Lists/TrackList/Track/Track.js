@@ -3,6 +3,9 @@ import template from './Track.pug';
 import TrackModel from '../../../../models/TrackModel';
 import SelectPlaylistPopup from '../../../Content/Playlists/SelectPlaylistPopup/SelectPlaylistPopup';
 import LikeModel from '../../../../models/LikeModel';
+import Button from '../../../../common/Kit/Button/Button';
+import Urls from '../../../../services/Urls';
+import Link from '../../../../common/Kit/Link/Link';
 
 class Track extends BaseComponent {
 	constructor({index = -1, track = null} = {}) {
@@ -22,30 +25,14 @@ class Track extends BaseComponent {
 	}
 
 	onRender() {
-		const addToFavourite = document.getElementById(`like-btn-${this.state.track.id}`);
-		if (addToFavourite) {
-			addToFavourite.addEventListener('click', this.addToFavouriteHandler);
-		}
+		new Button({id: `like-btn-${this.state.track.id}`, callback: this.addToFavouriteHandler});
+		new Button({id: `remove-btn-${this.state.track.id}`, callback: this.removeFromFavouriteHandler});
+		new Button({id: `rating-up-btn-${this.state.track.id}`, callback: this.addToRatingHandler});
+		new Button({id: `rating-down-${this.state.track.id}`, callback: this.removeFromRatingHandler});
+		new Button({id: `add-to-playlist-${this.state.track.id}`, callback: this.playlistHandler});
 
-		const removeFromFavourite = document.getElementById(`remove-btn-${this.state.track.id}`);
-		if (removeFromFavourite) {
-			removeFromFavourite.addEventListener('click', this.removeFromFavouriteHandler);
-		}
-
-		const addToRating = document.getElementById(`rating-up-btn-${this.state.track.id}`);
-		if (addToRating) {
-			addToRating.addEventListener('click', this.addToRatingHandler);
-		}
-
-		const removeFromRating = document.getElementById(`rating-down-${this.state.track.id}`);
-		if (removeFromRating) {
-			removeFromRating.addEventListener('click', this.removeFromRatingHandler);
-		}
-
-		const playlistBtn = document.getElementById(`add-to-playlist-${this.state.track.id}`);
-		if (playlistBtn) {
-			playlistBtn.addEventListener('click', this.playlistHandler);
-		}
+		const url = Urls.ArtistUrl.replace(/:\w+/, this.state.track.artist_id);
+		new Link({elementId: `track-artist-${this.state.track.id}`, eventType: 'click', route: url});
 	}
 
 	onDestroy() {

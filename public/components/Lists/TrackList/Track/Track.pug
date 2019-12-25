@@ -13,14 +13,14 @@ div
 	div(class="track__name-container")
 		div(class="track__name")
 			div(class="track__title")=track.name
-			div(class="track__subtitle")=track.artist
+			div(class="track__subtitle" id=`track-artist-${track.id}`)=track.artist
 
-	div(class="track__like-container")
-		div(class="track__like")
-			div(class="dropdown")
-				img(class="card-item__dots-size clickable" src="/static/img/dots.png" alt="")
-				div(class="dropdown-content")
-					if track.is_liked != null
+	if track.is_liked != null
+		div(class="track__like-container")
+			div(class="track__like")
+				div(class="dropdown")
+					img(class="card-item__dots-size clickable" src="/static/img/dots.png" alt="")
+					div(class="dropdown-content")
 						if track.is_liked === true
 							p(class="dropdown-content__item" id=`rating-down-${track.id}`)="Unlike"
 						else
