@@ -95,6 +95,7 @@ class AnotherProfileController extends BaseController {
 	}
 
 	onHide() {
+		if (!this.profile || !this.tabs) {return;}
 		this.profile.onDestroy();
 		this.tabs.onDestroy();
 	}

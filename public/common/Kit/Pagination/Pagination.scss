@@ -1,3 +1,5 @@
+@import '../../../vars';
+
 .pagination-container  {
   margin-top: 10px;
   color: rgba(0,0,0,0.65);
@@ -30,10 +32,10 @@
   }
 
   &__current {
-    border: 1px solid #1890ff;
+    border: 1px solid $accent-color;
   }
 
   &__item-link:hover {
-    border: 1px solid #1890ff;
+    border: 1px solid $accent-color;
   }
 }

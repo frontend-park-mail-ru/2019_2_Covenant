@@ -3,6 +3,8 @@ import template from './PeopleList.pug';
 import EventBus from '../../../services/EventBus';
 import Events from '../../../services/Events';
 import {formatServerRootForArray} from '../../../services/Utils';
+import Urls from '../../../services/Urls';
+import Link from '../../../common/Kit/Link/Link';
 
 class PeopleList extends BaseComponent {
 	constructor({
@@ -35,6 +37,14 @@ class PeopleList extends BaseComponent {
 
 	onDestroy() {
 		EventBus.unSubscribe(Events.UpdateUser, this.updateUser);
+	}
+
+	onRender() {
+		this.state.items.forEach(item => {
+			const url = `${Urls.ProfileUrl}/${item.nickname}`;
+			new Link({elementId: `people-list-avatar-${item.nickname}`, eventType: 'click', route: url});
+			new Link({elementId: `people-list-nick-${item.nickname}`, eventType: 'click', route: url});
+		});
 	}
 
 }

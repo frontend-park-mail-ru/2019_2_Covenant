@@ -11,6 +11,8 @@ class Playlist extends CardItem {
 			path: Urls.PlaylistUrl,
 			template: template
 		});
+
+		this.setPlaylistsPhotoToTracks = this.setPlaylistsPhotoToTracks.bind(this);
 	}
 
 	loadItem(id) {
@@ -22,6 +24,7 @@ class Playlist extends CardItem {
 
 	onLoadItem() {
 		formatServerRoot(this.state.item.playlist, 'photo');
+		this.setPlaylistsPhotoToTracks();
 
 		this.trackList = new TrackList({
 			trackClassName: 'track-list',
@@ -41,6 +44,12 @@ class Playlist extends CardItem {
 		if (this.trackList) {
 			this.trackList.onDestroy();
 		}
+	}
+
+	setPlaylistsPhotoToTracks() {
+		this.state.item.tracks.forEach(track => {
+			track.photo = this.state.item.playlist.photo;
+		});
 	}
 }
 

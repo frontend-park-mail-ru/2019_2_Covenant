@@ -22,7 +22,6 @@
 
 .headline {
   width: fit-content;
-  cursor: pointer;
   display: inline-block;
   margin-right: 10px;
   height: 30px;
@@ -30,7 +29,6 @@
 
   &__block {
 	display: block !important;
-	cursor: default !important;
   }
 }
 
@@ -151,6 +149,23 @@
 	color: $font-light-color;
 	font-weight: bold;
 	cursor: pointer;
+  }
+
+  &__description {
+	font-size: 14px;
+	color: $font-light-color;
+	font-weight: bold;
+  }
+
+  &__label {
+	font-size: 14px;
+	color: $font-color;
+	font-weight: bold;
+	cursor: pointer;
+  }
+
+  &__label:hover {
+	text-decoration: underline;
   }
 
   &__subtitle:hover {
