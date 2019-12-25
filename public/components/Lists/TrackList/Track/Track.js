@@ -104,7 +104,7 @@ class Track extends BaseComponent {
 					console.log(response.error);
 					return;
 				}
-				this.state.track.is_favourite = null;
+				this.state.track.is_favourite = false;
 				this.update(this.state);
 			})
 			.catch(error => {

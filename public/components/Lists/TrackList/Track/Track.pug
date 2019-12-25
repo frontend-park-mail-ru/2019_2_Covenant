@@ -22,16 +22,16 @@ div
 				div(class="dropdown-content")
 					if track.is_liked != null
 						if track.is_liked === true
-							p(class="dropdown-content__item" id=`rating-down-btn-${track.id}`)="Unlike"
+							p(class="dropdown-content__item" id=`rating-down-${track.id}`)="Unlike"
 						else
-							p(class="dropdown-content__item" id=`rating-up-${track.id}`)="Like"
+							p(class="dropdown-content__item" id=`rating-up-btn-${track.id}`)="Like"
 						p(class="dropdown-content__item border-bottom" id=`add-to-playlist-${track.id}`)="Add to playlist"
 
 	div(class="track__like-container mr-10")
 		button(class="track__like")
 			if track.is_favourite != null
 				if track.is_favourite === true
-					img(class="track__like-btn" src="/static/img/heart_fill.png" alt="" id=`like-btn-${track.id}`)
+					img(class="track__like-btn" src="/static/img/heart_fill.png" alt="" id=`remove-btn-${track.id}`)
 				else
 					img(class="track__like-btn" src="/static/img/heart.png" alt="" id=`like-btn-${track.id}`)
 
