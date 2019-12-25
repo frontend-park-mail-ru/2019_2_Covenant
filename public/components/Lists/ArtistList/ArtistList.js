@@ -23,6 +23,7 @@ class ArtistList extends BaseComponent {
 	addArtistHandlers() {
 		this.state.artists.forEach(artist => {
 			new Link({elementId: `artist-name-${artist.id}`, eventType: 'click', route: `/artist/${artist.id}`});
+			new Link({elementId: `artist-img-${artist.id}`, eventType: 'click', route: `/artist/${artist.id}`});
 		});
 	}
 

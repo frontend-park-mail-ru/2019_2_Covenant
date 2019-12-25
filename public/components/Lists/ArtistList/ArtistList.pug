@@ -6,7 +6,7 @@ div
 			each artist in artists
 				li(class="artists-list__item")
 					div(class="artist__avatar-container")
-						div(class="artist__avatar-img" style=`background-image: url(${artist.photo})`)
+						div(class="artist__avatar-img clickable" style=`background-image: url(${artist.photo})` id=`artist-img-${artist.id}`)
 					div(class="artist__name-container")
 						div(class="artist__name")
 							div(class="artist__name-label" id=`artist-name-${artist.id}`)=artist.name

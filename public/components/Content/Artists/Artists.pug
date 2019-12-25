@@ -5,8 +5,8 @@ div(class="content-cards")
 			each item in items
 				li(class="artists-list__item")
 					div(class="artist__avatar-container")
-						div(class="artist__avatar-img artist__avatar-size" style=`background-image: url(${item.photo})`)
+						div(class="artist__avatar-img artist__avatar-size clickable" style=`background-image: url(${item.photo})` id=`artist-list-img-${item.id}`)
 					div(class="artist__name-container")
 						div(class="artist__name")
-							div(class="artist__name-label")=item.name
+							div(class="artist__name-label" id=`artist-list-name-${item.id}`)=item.name
 	div(id="pagination")
