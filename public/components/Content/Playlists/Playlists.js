@@ -7,6 +7,8 @@ import Events from '../../../services/Events';
 import ConfirmationDialog from '../../../common/Kit/ConfirmationDialog/ConfirmationDialog';
 import {formatServerRootForArray} from '../../../services/Utils';
 import SharePopup from './SharePopup/SharePopup';
+import Link from '../../../common/Kit/Link/Link';
+import Urls from '../../../services/Urls';
 
 class Playlists extends BaseComponent {
 	constructor() {
@@ -63,11 +65,9 @@ class Playlists extends BaseComponent {
 
 	addNameHandlers() {
 		this.state.items.forEach(item => {
-			const nameBtn = document.getElementById(`playlist-name-${item.id}`);
-			if (!nameBtn) {return;}
-			nameBtn.addEventListener('click', () => {
-				EventBus.publish(Events.ChangeRoute,{newUrl: `/playlist/${item.id}`});
-			});
+			const url = Urls.PlaylistUrl.replace(/:\w+/, item.id);
+			new Link({elementId: `playlist-name-${item.id}`, eventType: 'click', route: url});
+			new Link({elementId:  `playlist-img-${item.id}`, eventType: 'click', route: url});
 		});
 	}
 

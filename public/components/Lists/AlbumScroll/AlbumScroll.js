@@ -1,9 +1,8 @@
 import BaseComponent from '../../../common/BaseComponent/BaseComponent';
 import template from './AlbumScroll.pug';
-import EventBus from '../../../services/EventBus';
-import Events from '../../../services/Events';
 import Urls from '../../../services/Urls';
 import {formatServerRootForArray} from '../../../services/Utils';
+import Link from '../../../common/Kit/Link/Link';
 
 class AlbumScroll extends BaseComponent {
 	constructor({albums = [], title = 'Albums'} ={}) {
@@ -26,24 +25,17 @@ class AlbumScroll extends BaseComponent {
 
 	addAlbumHandlers() {
 		this.state.albums.forEach(album => {
-			const albumRef = document.getElementById(`scroll-album-title-${album.id}`);
-			if (!albumRef) { return; }
-			albumRef.addEventListener('click', () => {
-				console.log(Urls.AlbumURl.replace(/:\w+/, album.id));
-				EventBus.publish(Events.ChangeRoute, {newUrl: Urls.AlbumURl.replace(/:\w+/, album.id)});
-			});
+			const url = Urls.AlbumURl.replace(/:\w+/, album.id);
+			new Link({elementId: `scroll-album-img-${album.id}`, eventType: 'click', route: url});
+			new Link({elementId: `scroll-album-title-${album.id}`, eventType: 'click', route: url});
 		});
 	}
 
 	addArtistHandlers() {
 		this.state.albums.forEach(album => {
-			const artistRef = document.getElementById(`scroll-album-artist-title-${album.artist_id}`);
-			if (!artistRef) { return; }
-			artistRef.addEventListener('click', () => {
-				EventBus.publish(Events.ChangeRoute, {newUrl: `${Urls.ArtistsUrl}/${album.id}`});
-			});
+			const url = Urls.ArtistUrl.replace(/:\w+/, album.artist_id);
+			new Link({elementId: `scroll-album-artist-title-${album.id}`, eventType: 'click', route: url});
 		});
-
 	}
 }
 

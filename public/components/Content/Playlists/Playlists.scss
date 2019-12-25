@@ -32,6 +32,7 @@
 	width: 160px;
 	height: 160px;
 	transition: .3s;
+	cursor: pointer;
   }
 
   &__img-new {
@@ -150,4 +151,13 @@ div.card-item__img:hover span.card-item__dots {visibility: visible;}
   box-shadow: none;
   display: inline;
   margin-right: 20px;
+}
+
+.text-link {
+  transition: .3s;
+}
+
+.text-link:hover {
+  text-decoration: underline;
+  cursor: pointer;
 }

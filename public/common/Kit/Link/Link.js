@@ -7,8 +7,11 @@ class Link {
 		this.route = route;
 
 		this.handler = this.handler.bind(this);
-		if (this.element)
+		if (this.element) {
 			this.element.addEventListener(eventType, this.handler);
+			return;
+		}
+		console.log(`link for ${elementId} to ${route} NOT FOUND`);
 	}
 
 	handler() {

@@ -6,8 +6,6 @@ import Urls from '../../../services/Urls';
 import ArtistModel from '../../../models/ArtistModel';
 import {formatServerRoot} from '../../../services/Utils';
 import NewHeader from '../../NewHeader/NewHeader';
-import Menu from '../../Menu/Menu';
-import Player from '../../Player/Player';
 import AlbumScroll from '../../Lists/AlbumScroll/AlbumScroll';
 import TrackList from '../../Lists/TrackList/TrackList';
 
@@ -33,7 +31,10 @@ class Artist extends BaseComponent {
 	}
 
 	onRender() {
-		this.renderContent();
+		const header = new NewHeader({
+			headerPositionClass: 'header__align-top'
+		});
+		header.render('header');
 	}
 
 	setArtistId() {
@@ -102,19 +103,6 @@ class Artist extends BaseComponent {
 		.catch(error => {
 			console.log(error);
 		});
-	}
-
-	renderContent() {
-		const header = new NewHeader({
-			headerPositionClass: 'header__align-top'
-		});
-		header.render('header');
-
-		const menu = new Menu();
-		menu.render('menu');
-
-		this.player = Player.getInstance();
-		this.player.render('player-id');
 	}
 }
 

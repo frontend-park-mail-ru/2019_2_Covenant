@@ -5,7 +5,7 @@ div(class="content-cards")
 			each item in items
 				div(class="card-item__container")
 					div(class="card-item__img")
-						img(src=item.photo alt="" class="card-item__img-inner")
-					div(class="card-item__title card-item__fix-width" id=`playlist-name-${item.id}`)=item.name
-					div(class="card-item__subtitle card-item__fix-width")=item.artist
+						img(src=item.photo alt="" class="card-item__img-inner" id=`album-list-img-${item.id}`)
+					div(class="card-item__title card-item__fix-width" id=`album-list-title-${item.id}`)=item.name
+					div(class="card-item__subtitle card-item__fix-width text-link" id=`album-list-artist-${item.id}`)=item.artist
 	div(id="pagination")

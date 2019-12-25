@@ -5,6 +5,6 @@ div(class="albums-container")
 			each album in albums
 				div(class="album-item")
 					div(class="album-item__img")
-						img(src=album.photo alt="" class="album-item__img-inner")
+						img(src=album.photo alt="" class="album-item__img-inner" id=`scroll-album-img-${album.id}`)
 					div(class="album-item__title" id=`scroll-album-title-${album.id}`)=album.name
-					div(class="album-item__subtitle" id=`scroll-album-artist-title-${album.artist_id}`)=album.artist
+					div(class="album-item__subtitle" id=`scroll-album-artist-title-${album.id}`)=album.artist

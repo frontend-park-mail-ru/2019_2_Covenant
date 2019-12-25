@@ -23,7 +23,7 @@ class EventBus {
 		}
 	}
 
-	publish(name, data){
+	publish(name, data) {
 		const channel = this.channels[name];
 		if (!channel || !channel.length) {
 			return;

@@ -1,7 +1,7 @@
 import { SERVER_API_PATH } from './Settings';
 
 class Http {
-	constructor(){
+	constructor() {
 		this.baseUrl = SERVER_API_PATH;
 	}
 
