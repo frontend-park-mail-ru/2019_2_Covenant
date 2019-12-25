@@ -3,7 +3,7 @@ import Http from '../services/Http';
 class SessionModel {
 	login(form) {
 		return Http.fetchPost({
-			path: '/session',
+			path: '/sessions',
 			body: JSON.stringify({...form})
 		})
 		.then(response => response.json());
@@ -19,7 +19,7 @@ class SessionModel {
 
 	logOut() {
 		return Http.fetchDelete({
-			path: '/session'
+			path: '/sessions'
 		})
 		.then(response => response.json());
 	}
