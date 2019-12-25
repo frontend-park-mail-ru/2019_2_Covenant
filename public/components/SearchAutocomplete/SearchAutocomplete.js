@@ -16,7 +16,7 @@ class SearchAutocomplete extends BaseComponent {
 	onRender() {
 		this.searchAutocomplete = new Autocomplete({
 			loadItems: this.loadItems,
-			propertyName: 'nickname',
+			getItemName: this.getItemName,
 			containerClassName: 'search__input-autocomplete',
 			inputClassName: 'search__input-container',
 			placeholder: 'Search track, artist, album or @user',
@@ -25,6 +25,27 @@ class SearchAutocomplete extends BaseComponent {
 			onClose: this.onCloseSearch
 		});
 		this.searchAutocomplete.render('search-autocomplete-id');
+	}
+
+	getItemName(item) {
+		let result = '';
+		if (item.name) {
+			result += ` ${item.name}`;
+		}
+
+		if (item.artist) {
+			result += ` (${item.artist})`;
+		}
+
+		if (item.album) {
+			result += ` ${item.album}`;
+		}
+
+		if (item.nickname) {
+			result += item.nickname;
+		}
+
+		return result;
 	}
 
 	loadItems(text) {

@@ -6,8 +6,8 @@ class Autocomplete extends BaseComponent {
 		loadItems = () => {},
 		containerClassName = 'autocomplete',
 		inputClassName = 'autocomplete-input',
-		propertyName = 'name',
 		placeholder = 'Search',
+		getItemName = (item) => {return item.name;},
 		onLoad = () => {},
 		onSelect = () => {},
 		onClose = () => {} }) {
@@ -22,7 +22,7 @@ class Autocomplete extends BaseComponent {
 		this.currentFocus = 0;
 		this.selectedObject = null;
 		this.loadItems = loadItems;
-		this.propertyName = propertyName;
+		this.getItemName = getItemName;
 		this.onLoad = onLoad;
 		this.onSelect = onSelect;
 		this.onClose = onClose;
@@ -64,7 +64,7 @@ class Autocomplete extends BaseComponent {
 
 					for (i = 0; i < items.length; i++) {
 						b = document.createElement('DIV');
-						const name = items[i][this.propertyName] || items[i].name, item = items[i];
+						const name = this.getItemName(items[i]), item = items[i];
 						let index = name.toLowerCase().indexOf(val.toLowerCase());
 						if (index < 0) {
 							index = 0;
