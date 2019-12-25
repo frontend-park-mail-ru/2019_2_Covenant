@@ -14,8 +14,7 @@ class Profile extends BaseComponent {
 		const initialState = {
 			anotherProfile: anotherProfile,
 			eventName: eventName,
-			user: null,
-			forFollow: true
+			user: null
 		};
 		super(template, initialState);
 		this.state = initialState;
@@ -81,7 +80,7 @@ class Profile extends BaseComponent {
 		EventBus.unSubscribe(this.state.eventName, this.updateUser);
 	}
 
-	addBtn({id = '', promise = () => {}, forFollow = false} ={} ) {
+	addBtn({id = '', promise = () => {}} ={} ) {
 		const btn = document.getElementById(id);
 		if (btn) {
 			btn.addEventListener('click', () => {
@@ -90,7 +89,7 @@ class Profile extends BaseComponent {
 					if (response.error) {
 						console.log(response.error);
 					}
-					this.state.forFollow = forFollow;
+					this.state.user.subscription = !this.state.user.subscription;
 					this.update(this.state);
 				})
 				.catch(error => {
@@ -107,8 +106,7 @@ class Profile extends BaseComponent {
 
 		this.addBtn({
 			id: 'follow-btn',
-			promise: () => {return SubscriptionModel.subscribe(this.state.user.id);},
-			forFollow: false
+			promise: () => {return SubscriptionModel.subscribe(this.state.user.id);}
 		});
 	}
 
@@ -119,8 +117,7 @@ class Profile extends BaseComponent {
 
 		this.addBtn({
 			id: 'unfollow-btn',
-			promise: () => {return SubscriptionModel.unsubscribe(this.state.user.id);},
-			forFollow: true
+			promise: () => {return SubscriptionModel.unsubscribe(this.state.user.id);}
 		});
 	}
 }

@@ -9,7 +9,8 @@ div
 				if !anotherProfile
 					div(class="user-info__main-logout" id="logout_link")="Log Out"
 				else
-					if forFollow
-						div(class="btn btn-accent user-info__follow-btn" id='follow-btn')="Follow"
-					else
-						div(class="btn btn-light user-info__follow-btn" id='unfollow-btn')="Unfollow"
+					if user && user.subscription != null
+						if user.subscription
+							div(class="btn btn-light user-info__follow-btn" id='unfollow-btn')="Unfollow"
+						else
+							div(class="btn btn-accent user-info__follow-btn" id='follow-btn')="Follow"
