@@ -3,6 +3,7 @@ import template from './PlaylistsTab.pug';
 import EventBus from '../../../services/EventBus';
 import Events from '../../../services/Events';
 import {formatServerRootForArray} from '../../../services/Utils';
+import Link from '../../../common/Kit/Link/Link';
 
 class PlaylistsTab extends BaseComponent {
 	constructor({ eventName = '', loadItems = () => {}} = {}) {
@@ -36,12 +37,9 @@ class PlaylistsTab extends BaseComponent {
 
 	onRender() {
 		this.state.items.forEach(item => {
-			const playlistHref = document.getElementById(`playlist-href-${item.id}`);
-			if (playlistHref) {
-				playlistHref.addEventListener('click', () => {
-					EventBus.publish(Events.ChangeRoute, {newUrl: `/playlist/${item.id}`})
-				});
-			}
+			const url = `/playlist/${item.id}`;
+			new Link({elementId: `playlist-href-${item.id}`, eventType: 'click', route: url});
+			new Link({elementId: `playlist-avatar-${item.id}`, eventType: 'click', route: url});
 		});
 	}
 }
