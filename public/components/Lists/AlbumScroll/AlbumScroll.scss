@@ -16,7 +16,7 @@
 .hs {
   padding: 10px;
   display: grid;
-  grid-gap: calc(var(--gutter) / 2);
+  grid-gap: calc(50px / 2);
   grid-template-columns: repeat(15, 160px);
   grid-template-rows: minmax(200px, 1fr);
 

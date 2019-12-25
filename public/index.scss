@@ -1,6 +1,3 @@
-@import url('views/ProfileView/ProfileView.scss');
-@import url('components/SignupForm/SignupForm.css');
-@import url('components/LoginForm/LoginForm.css');
 @import "common/Kit/Autocomplete/Autocomplete";
 @import "components/Menu/Menu";
 @import "components/NewHeader/NewHeader";
@@ -32,47 +29,10 @@
     box-sizing: border-box;
 }
 
-@font-face {
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 400;
-    src: local('Montserrat Regular'), local('Montserrat-Regular'),
-    url(https://fonts.gstatic.com/s/montserrat/v14/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2) format('woff2');
-    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC,
-    U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
-:root {
-    --gray: #171717;
-    --light-gray: #262626;
-    --soft-gray: #383838;
-    --very-light-gray: #f8f8f8;
-    --white: #FFFFFF;
-    --red: #FF473A;
-    --fb-color: #3B5998;
-    --google-color: #dd4b39;
-    --twitter-color: #55ACEE;
-
-    --gutter: 50px;
-
-    --logo-font: Megrim;
-    --main-font: Montserrat;
-}
-
-/*----------------frame start--------------------*/
-
 .container {
     display: flex;
     height: 100vh;
     background: var(--light-gray);
-}
-
-.footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 35px;
-    background: var(--gray);
 }
 
 .title {
@@ -85,43 +45,6 @@
 .content-inner {
     margin: 30px 0 30px 50px;
 }
-
-/*----------------frame end--------------------*/
-
-
-
-/*----------------icons start--------------------*/
-
-.fa {
-    padding: 12px;
-    margin: 3px;
-    font-size: 20px;
-    width: 20px;
-    text-align: center;
-    text-decoration: none;
-    border-radius: 50%;
-}
-
-.fa:hover {
-    opacity: 0.7;
-}
-
-.fa-facebook {
-    background: var(--fb-color);
-    color: var(--white);
-}
-
-.fa-google {
-    background: var(--google-color);
-    color: var(--white);
-}
-
-.fa-twitter {
-    background: var(--twitter-color);
-    color: var(--white);
-}
-
-/*----------------icons end--------------------*/
 
 .clickable {
     cursor: pointer;
@@ -195,9 +118,6 @@
     border: none;
     outline: none;
 }
-
-
-/******************* form start *******************/
 
 .form_background {
     height: 100vh;
@@ -275,5 +195,3 @@ $icon_color: #6b6b6b;
     text-align: center;
     height: 14px;
 }
-
-/******************* form end *******************/
