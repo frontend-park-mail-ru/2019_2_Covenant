@@ -5,9 +5,9 @@ import Events from '../../../services/Events';
 import Urls from '../../../services/Urls';
 import ArtistModel from '../../../models/ArtistModel';
 import {formatServerRoot} from '../../../services/Utils';
-import NewHeader from '../../NewHeader/NewHeader';
 import AlbumScroll from '../../Lists/AlbumScroll/AlbumScroll';
 import TrackList from '../../Lists/TrackList/TrackList';
+import NewHeader from '../../NewHeader/NewHeader';
 
 class Artist extends BaseComponent {
 	constructor() {

@@ -5,6 +5,8 @@ import EventBus from '../../services/EventBus';
 import Events from '../../services/Events';
 import {formatServerRootForArray} from '../../services/Utils';
 import Button from '../../common/Kit/Button/Button';
+import Urls from '../../services/Urls';
+import Link from '../../common/Kit/Link/Link';
 
 class Player extends BaseComponent {
 	constructor() {
@@ -48,6 +50,21 @@ class Player extends BaseComponent {
 		new Button({id: 'player-control-btn', callback: this.controlHandler});
 		new Button({id: 'player-next-btn', callback: this.nextHandler});
 		new Button({id: 'secondary-progress-id', callback: this.setDurationHandler});
+
+		if (this.state.item) {
+			const artistId = this.state.item.artist_id;
+			const albumId =  this.state.item.album_id;
+
+			if (artistId) {
+				const artistUrl =  Urls.ArtistUrl.replace(/:\w+/, artistId);
+				new Link({elementId: 'player-artist-name-id', eventType: 'click', route: artistUrl});
+			}
+
+			if (albumId) {
+				const albumUrl = Urls.AlbumURl.replace(/:\w+/, albumId);
+				new Link({elementId: 'playlist-album-img-id', eventType: 'click', route: albumUrl});
+			}
+		}
 	}
 
 	prevHandler() {
