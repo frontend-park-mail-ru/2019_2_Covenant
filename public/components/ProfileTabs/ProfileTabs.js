@@ -35,6 +35,10 @@ class ProfileTabs extends BaseComponent {
 	}
 
 	onDestroy() {
+		if (this.state.currentTab) {
+			this.state.currentTab.hide();
+		}
+
 		this.state.tabs.forEach(tab => {
 			tab.component.onDestroy();
 		});

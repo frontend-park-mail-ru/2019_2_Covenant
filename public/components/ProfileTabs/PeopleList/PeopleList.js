@@ -41,7 +41,7 @@ class PeopleList extends BaseComponent {
 
 	onRender() {
 		this.state.items.forEach(item => {
-			const url = `${Urls.ProfileUrl}/${item.nickname}`;
+			const url = `${Urls.ProfileUrl}/${item.nickname}?tab=Playlists`;
 			new Link({elementId: `people-list-avatar-${item.nickname}`, eventType: 'click', route: url});
 			new Link({elementId: `people-list-nick-${item.nickname}`, eventType: 'click', route: url});
 		});

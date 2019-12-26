@@ -124,9 +124,9 @@
 }
 
 .primary-progress {
-  width: 30%;
   background-color: $accent-color;
   height: 6px;
+  width: 0;
 }
 
 .secondary-progress {

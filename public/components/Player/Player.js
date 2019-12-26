@@ -4,6 +4,7 @@ import {AudioPlayer} from '../../../audio-system/audioplayer';
 import EventBus from '../../services/EventBus';
 import Events from '../../services/Events';
 import {formatServerRootForArray} from '../../services/Utils';
+import Button from '../../common/Kit/Button/Button';
 
 class Player extends BaseComponent {
 	constructor() {
@@ -19,11 +20,14 @@ class Player extends BaseComponent {
 
 		this.setTracksToQueue = this.setTracksToQueue.bind(this);
 		this.onTrackChanged = this.onTrackChanged.bind(this);
+		this.onTimeUpdate = this.onTimeUpdate.bind(this);
+		this.setDurationHandler = this.setDurationHandler.bind(this);
 
 		this.state = initialState;
 		this.tracks = [];
 		this.audioPlayer = AudioPlayer.getInstance();
 		this.audioPlayer.onTrackChanged = this.onTrackChanged;
+		this.audioPlayer.onTimeUpdate = this.onTimeUpdate;
 
 		EventBus.subscribe(Events.UpdateTracksQueue, this.setTracksToQueue);
 	}
@@ -40,14 +44,10 @@ class Player extends BaseComponent {
 	}
 
 	addHandlers() {
-		const prevBtn = document.getElementById('player-prev-btn');
-		prevBtn.addEventListener('click', this.prevHandler);
-
-		const playBtn = document.getElementById('player-control-btn');
-		playBtn.addEventListener('click', this.controlHandler);
-
-		const nextBtn = document.getElementById('player-next-btn');
-		nextBtn.addEventListener('click', this.nextHandler);
+		new Button({id: 'player-prev-btn', callback: this.prevHandler});
+		new Button({id: 'player-control-btn', callback: this.controlHandler});
+		new Button({id: 'player-next-btn', callback: this.nextHandler});
+		new Button({id: 'secondary-progress-id', callback: this.setDurationHandler});
 	}
 
 	prevHandler() {
@@ -73,6 +73,23 @@ class Player extends BaseComponent {
 
 		this.audioPlayer.play();
 		btn.src = '/static/img/pause.png';
+	}
+
+	setDurationHandler(e) {
+		const parent = document.getElementById('secondary-progress-id');
+		const width = parent.offsetWidth;
+		const diff = e.x - parent.offsetLeft;
+		const percent = (diff * 100 / width).toFixed(2);
+		const normalizedPosition =  (diff / width).toFixed(2);
+
+		if (!this.audioPlayer.currentPlayback) {
+			return;
+		}
+
+		const progress = document.getElementById('primary-progress-id');
+		progress.style.width = `${percent}%`;
+
+		this.audioPlayer.seekToNormalized(+normalizedPosition);
 	}
 
 	setTracksToQueue(object) {
@@ -103,6 +120,13 @@ class Player extends BaseComponent {
 
 		const btn = document.getElementById('player-control-btn');
 		btn.src = '/static/img/pause.png';
+	}
+
+	onTimeUpdate() {
+		const normPosition = this.audioPlayer.normalizedPosition;
+
+		const progress = document.getElementById('primary-progress-id');
+		progress.style.width = `${normPosition * 100}%`;
 	}
 
 	isEqualQueues(queue) {
