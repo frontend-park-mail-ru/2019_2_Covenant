@@ -133,6 +133,19 @@
   width: 100%;
   background-color: $progress-dark-color;
   height: 6px;
+  cursor: pointer;
+}
+
+.primary-progress:hover {
+  height: 9px;
+}
+
+.secondary-progress:hover {
+  height: 9px;
+}
+
+.secondary-progress:hover .primary-progress {
+  height: 9px;
 }
 
 .volume-img {
