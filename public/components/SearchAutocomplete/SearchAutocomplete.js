@@ -101,7 +101,7 @@ class SearchAutocomplete extends BaseComponent {
 
 	onSelectSearch(text) {
 		if (text !== '') {
-			const userSearchRegExp = new RegExp('^@(\\w+)$');
+			const userSearchRegExp = new RegExp('^@(\\w+)?$');
 			const match = text.match(userSearchRegExp);
 
 			if (!match) {

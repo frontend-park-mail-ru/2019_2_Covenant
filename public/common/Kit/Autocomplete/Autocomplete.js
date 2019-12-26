@@ -73,7 +73,7 @@ class Autocomplete extends BaseComponent {
 						}
 						const before = name.substr(0, index), after = name.substr(index + val.length, name.length);
 						b.innerHTML = `${before}<strong>${name.substr(index, val.length)}</strong>${after}`;
-						b.innerHTML += `<input type='hidden' value='${items[i].name}'>`;
+						b.innerHTML += `<input type='hidden' value='${name}'>`;
 						b.addEventListener('click', (e) => {
 							const element = e.currentTarget;
 							inp.value =  element.getElementsByTagName('input')[0].value;
