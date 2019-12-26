@@ -1,4 +1,4 @@
-import BaseView from '../BaseView/BaseView';
+import BaseView from '../../common/BaseView/BaseView';
 import templateFunc from './ProfileView.pug';
 
 const profileView = new BaseView(

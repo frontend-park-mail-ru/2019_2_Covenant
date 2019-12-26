@@ -1,0 +1,37 @@
+@import "../../vars";
+
+.wrapper {
+  height: calc(100vh - 80px);
+  background-color: $background-color;
+  overflow-y: auto;
+}
+
+.wrapper-grid {
+  display: grid;
+  grid-template-columns: [menu] 250px [content] calc(100% - 250px);
+}
+
+.content-container {
+  grid-column: content;
+  background-color: $background-accent-color;
+  border-radius: $border-radius-content 0 0 0;
+  height: 100%;
+}
+
+.artist-container-grid {
+  display: grid;
+  grid-template-rows: [header] $artist-height [body] auto;
+  border-radius: 50px 0 0 0;
+}
+
+.content-container-grid {
+  display: grid;
+  grid-template-rows: [header] $header-height [body] auto;
+}
+
+.content {
+  grid-row: body;
+  background-color: $content-color;
+  border-radius: $border-radius-content 0 0 0;
+  width: 100%;
+}

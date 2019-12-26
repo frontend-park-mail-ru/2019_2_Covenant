@@ -1,0 +1,109 @@
+@import '../../../vars';
+
+.albums-container {
+  padding: 20px 0;
+  display: grid;
+  grid-row-gap: 20px;
+  grid-column-gap: 20px;
+  grid-template-columns: 1fr;
+  align-content: start;
+}
+
+.albums-container > * {
+  grid-column: 2 / -2;
+}
+
+.hs {
+  padding: 10px;
+  display: grid;
+  grid-gap: calc(50px / 2);
+  grid-template-columns: repeat(15, 160px);
+  grid-template-rows: minmax(200px, 1fr);
+
+  overflow-x: scroll;
+  scroll-snap-type: x proximity;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+.album-item {
+  scroll-snap-align: center;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+}
+
+.album-item:hover {
+  transform: scale(1.05);
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.album-item {
+  &__img {
+	position: relative;
+	margin-bottom: 10px;
+  }
+
+  &__img-inner {
+	border-radius: 10px;
+	width: 160px;
+	height: 160px;
+	transition: .3s;
+	cursor: pointer;
+  }
+
+  &__fix-width {
+	overflow: hidden;
+	white-space: nowrap;
+	width: 100%;
+  }
+
+  &__title {
+	font-size: 18px;
+	margin-bottom: 5px;
+	transition: .3s;
+	cursor: pointer;
+  }
+
+  &__title:hover {
+	text-decoration: underline;
+  }
+
+  &__subtitle {
+	font-size: 14px;
+	color: $font-light-color;
+	transition: .3s;
+	cursor: pointer;
+  }
+
+  &__subtitle:hover {
+	text-decoration: underline;
+  }
+
+  &__dots {
+	position: absolute;
+	color: $font-light-color;
+	right: 5px;
+	top: 10px;
+	cursor: pointer;
+  }
+
+  &__dots-size {
+	width: 20px;
+	height: 20px;
+  }
+}
+
+div.album-item__img span.album-item__dots {visibility: hidden;}
+div.album-item__img:hover span.album-item__dots {visibility: visible;}

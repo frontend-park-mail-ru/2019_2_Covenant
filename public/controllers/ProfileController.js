@@ -1,118 +1,88 @@
 import UserModel from '../models/UserModel';
 import Events from '../services/Events';
-import EventBusModule from '../services/EventBus';
-import Avatar from '../components/Avatar/Avatar';
-import EditableField from '../components/EditableField/EditableField';
-import BaseController from "./BaseController";
-import Header from "../components/Header/Header";
-import Urls from "../services/Urls";
-import TrackList from "../components/TrackList/TrackList";
-import TrackModel from "../models/TrackModel";
-
-const EventBus = new EventBusModule();
+import EventBus from '../services/EventBus';
+import BaseController from './BaseController';
+import Urls from '../services/Urls';
+import NewHeader from '../components/NewHeader/NewHeader';
+import Menu from '../components/Menu/Menu';
+import Profile from '../components/Profile/Profile';
+import Player from '../components/Player/Player';
+import profileView from '../views/ProfileView/ProfileView';
+import ProfileTabs from '../components/ProfileTabs/ProfileTabs';
+import {getTabFromUrl} from '../services/Utils';
+import PlaylistsTab from '../components/ProfileTabs/PlaylistsTab/PlaylistsTab';
+import FavouritesTab from '../components/ProfileTabs/FavouritesTab/FavouritesTab';
+import FollowersTab from '../components/ProfileTabs/FollowersTab/FollowersTab';
+import FollowingTab from '../components/ProfileTabs/FollowingTab/FollowingTab';
+import ProfileSettings from '../components/ProfileTabs/ProfileSettings/ProfileSettings';
+import PlaylistModel from '../models/PlaylistModel';
+import SubscriptionModel from '../models/SubscriptionModel';
 
 class ProfileController extends BaseController {
-	constructor(view) {
-		super(view);
-		this.title = 'Profile Page';
-
-		this.page = {
-			user: null
-		};
-
-		this.onSave = this.onSave.bind(this);
-		this.onUploadAvatar = this.onUploadAvatar.bind(this);
+	constructor() {
+		super(profileView);
 	}
 
 	onShow() {
-		UserModel.getProfile().then(response =>
-		{
-			if (response.error) {
-				EventBus.publish(Events.ChangeRoute, Urls.LoginUrl);
-			} else {
-				this.mountHeader();
-				this.mountAvatar();
-				this.mountEditableName();
-				this.mountTracks();
-
-				EventBus.publish(Events.UpdateUser, response.body);
-
-				console.log(response);
+		UserModel.getProfile()
+		.then(response => {
+			if (response.error || response.message) {
+				EventBus.publish(Events.ChangeRoute, {newUrl: Urls.MainUrl});
+				return;
 			}
+			this.renderContent();
+			this.renderProfileComponents();
+			const user = response.body.user;
+			EventBus.publish(Events.UpdateUser, user);
 		})
 		.catch(error => {
 			console.log(error);
 		});
 	}
 
-	mountHeader() {
-		const header = new Header();
+	renderContent() {
+		const header = new NewHeader();
 		header.render('header');
+
+		const menu = new Menu();
+		menu.render('menu');
+
+		this.player = Player.getInstance();
+		this.player.render('player-id');
 	}
 
-	mountAvatar() {
-		const avatar = new Avatar({
-			width: 120,
-			height: 120,
-			accept: '.jpg, .jpeg, .png',
-			onUpload: this.onUploadAvatar
-		});
-		avatar.render('avatar');
+	getProfileTabs() {
+		return [
+			{name: 'Playlists', id: 'tab-playlists-id', component: new PlaylistsTab({
+					eventName: Events.UpdateUser,
+					loadItems: () => { return PlaylistModel.getPlaylists(20, 0);}
+				})},
+			{name: 'Favourite', id: 'tab-favourite-id', component: new FavouritesTab()},
+			{name: 'Followers', id: 'tab-followers-id', component: new FollowersTab({
+					eventName: Events.UpdateUser,
+					loadItems: () => {return SubscriptionModel.getSubscriptions(20, 0);}
+				})},
+			{name: 'Following', id: 'tab-following-id', component: new FollowingTab({
+					eventName: Events.UpdateUser,
+					loadItems: () => {return SubscriptionModel.getSubscriptions(20, 0);}
+				})},
+			{name: 'Settings',  id: 'tab-settings-id', component: new ProfileSettings()}
+		];
 	}
 
-	mountEditableName() {
-		const editableField = new EditableField({
-			onSave: this.onSave
+	renderProfileComponents() {
+		this.profile = new Profile({
+			eventName: Events.UpdateUser
 		});
-		editableField.render('info-user');
+		this.profile.render('user-info');
+
+		this.tabs = new ProfileTabs(getTabFromUrl('Settings'), this.getProfileTabs());
+		this.tabs.render('user-tabs');
 	}
 
-	mountTracks() {
-		TrackModel.favourites()
-		.then(response => {
-			if (!response.error) {
-				const tracks = response.body;
-
-				const trackList = new TrackList({
-					containerClasssName: 'track-list-container__left',
-					title: 'My favourites',
-					tracks: tracks
-				});
-				trackList.render('profile__tracks');
-
-			} else {
-				console.log(response.error);
-			}
-		})
-		.catch(error => {
-			console.log(error);
-		});
-	}
-
-	onSave(fieldValue) {
-		const name = fieldValue;
-		if(!name || name === '')
-			return;
-
-		UserModel.updateProfile(name)
-		.then(response => {
-			if (!response.error) {
-				this.page.user = response.body;
-				EventBus.publish(Events.UpdateUser, response.body);
-			}
-		}).catch(error => {
-			console.log(error);
-		});
-	}
-
-	onUploadAvatar(file) {
-		UserModel.uploadAvatar(file)
-		.then(response => {
-			this.page.user = response.body;
-			EventBus.publish(Events.UpdateUser, this.page.user);
-		}).catch(error => {
-			console.log(error);
-		});
+	onHide() {
+		this.profile.onDestroy();
+		this.tabs.onDestroy();
 	}
 }
 

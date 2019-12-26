@@ -1,0 +1,173 @@
+@import '../../vars';
+
+.player {
+  height: 80px;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  background-color: $player-color;
+  border-top: $border-color solid 1px;
+  padding-left: 50px;
+  padding-right: 50px;
+
+  &__column {
+    display: inline-block;
+    vertical-align: top;
+    height: 100%;
+  }
+
+  &__column-name {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+  }
+
+  &__column-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+}
+
+.player-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  height: 100%;
+}
+
+.player__info {
+  grid-column: 1/2;
+}
+
+.player__track-logo {
+  width: 60px;
+  height: 60px;
+  border-radius: 5px;
+}
+
+.track-name {
+  font-weight: 800;
+  font-size: 14px;
+  color: $font-color;
+  height: 20px;
+}
+
+.artist-name {
+  color: $font-light-color;
+  font-size: 14px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.artist-name:hover {
+  text-decoration: underline;
+}
+
+.player__control {
+  grid-column: 2/3;
+  display: table;
+  height: 100%;
+}
+
+.player__control-block {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.control-btn {
+  vertical-align: middle;
+  margin-left: 10px;
+  margin-right: 10px;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.control-btn:hover {
+  transform: scale(1.1);
+}
+
+.size-s {
+  width: 15px;
+  height: 15px;
+}
+
+.size-m {
+  width: 18px;
+  height: 18px;
+}
+
+.size-l {
+  width: 25px;
+  height: 25px;
+}
+
+.player__volume {
+  grid-column: 3/4;
+  height: 100%;
+}
+
+.player__volume-block {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.controls {
+  height: 40px;
+}
+
+.progress {
+  height: 20px;
+}
+
+.primary-progress {
+  background-color: $accent-color;
+  height: 6px;
+  width: 0;
+}
+
+.secondary-progress {
+  width: 100%;
+  background-color: $progress-dark-color;
+  height: 6px;
+  cursor: pointer;
+}
+
+.primary-progress:hover {
+  height: 9px;
+}
+
+.secondary-progress:hover {
+  height: 9px;
+}
+
+.secondary-progress:hover .primary-progress {
+  height: 9px;
+}
+
+.volume-img {
+  margin-right: 20px;
+  vertical-align: middle;
+  width: 20px;
+  height: 20px;
+}
+
+.volume-w {
+  width: 150px;
+}
+
+.volume-progress {
+  vertical-align: middle;
+  width: 100%;
+  background-color: $progress-dark-color;
+  height: 6px;
+}
+
+.volume-primary-progress {
+  width: 30%;
+  background-color: $accent-color;
+  height: 6px;
+}

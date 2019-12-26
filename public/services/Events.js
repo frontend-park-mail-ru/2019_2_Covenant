@@ -2,8 +2,12 @@
 const Events = {
 	ChangeRoute: 'changeRoute',
 	UpdateUser: 'updateUser',
+	UpdateAnotherUser: 'updateAnotherUser',
 	UpdateFavourites: 'updateFavourites',
-	UpdateTrack: 'updateTrack'
+	UpdatePlaylists: 'updatePlaylists',
+	UpdateTrack: 'updateTrack',
+	UpdateTracksQueue: 'updateTracksQueue',
+	TrackChange: 'trackChange'
 };
 
 export default Events;

@@ -1,0 +1,13 @@
+extends ../../../../common/Admin/ItemEditor/ItemEditor
+
+block content
+	div(class="form-edit__container")
+		label(class="form-edit__label")="Upload track:"
+		div(id="track-file-container")
+	div(class="form-edit__container")
+		label(class="form-edit__label")="Name"
+		div(class="form-edit__input-container")
+			input(class="form-edit__input" type="text" name="name" id='track-name-input' value=item.name)
+	div(class="form-edit__container")
+		label(class="form-edit__label")="Album"
+		div(id="album-autocomplete-id")

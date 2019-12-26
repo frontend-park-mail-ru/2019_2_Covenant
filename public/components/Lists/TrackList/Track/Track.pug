@@ -1,0 +1,40 @@
+div
+	div(class="track__avatar-container")
+		if index >= 0
+			div(class="track__avatar")
+				div(class="track__avatar-img" id=`track-avatar-control-${track.id}`)
+					div(class="track__index")=index + 1
+					img(class="track__arrow" src="/static/img/play-arrow.png" alt="" id=`track-arrow-${track.id}`)
+		else
+			div(class="track__avatar")
+				div(class="track__avatar-img" style=`background: url(${track.photo}) no-repeat center/cover;` id=`track-avatar-control-${track.id}`)
+					img(class="track__arrow" src="/static/img/play-arrow.png" alt="" id=`track-arrow-${track.id}`)
+
+	div(class="track__name-container")
+		div(class="track__name")
+			div(class="track__title")=track.name
+			div(class="track__subtitle" id=`track-artist-${track.id}`)=track.artist
+
+	if track.is_liked != null
+		div(class="track__like-container")
+			div(class="track__like")
+				div(class="dropdown")
+					img(class="card-item__dots-size clickable" src="/static/img/dots.png" alt="")
+					div(class="dropdown-content")
+						if track.is_liked === true
+							p(class="dropdown-content__item" id=`rating-down-${track.id}`)="Unlike"
+						else
+							p(class="dropdown-content__item" id=`rating-up-btn-${track.id}`)="Like"
+						p(class="dropdown-content__item border-bottom" id=`add-to-playlist-${track.id}`)="Add to playlist"
+
+	div(class="track__like-container mr-10")
+		button(class="track__like")
+			if track.is_favourite != null
+				if track.is_favourite === true
+					img(class="track__like-btn" src="/static/img/heart_fill.png" alt="" id=`remove-btn-${track.id}`)
+				else
+					img(class="track__like-btn" src="/static/img/heart.png" alt="" id=`like-btn-${track.id}`)
+
+	div(class="track__duration-container")
+		div(class="track__duration")=track.duration
+

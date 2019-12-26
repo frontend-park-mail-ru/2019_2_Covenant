@@ -1,0 +1,197 @@
+@import "common/Kit/Autocomplete/Autocomplete";
+@import "components/Menu/Menu";
+@import "components/NewHeader/NewHeader";
+@import "components/Profile/Profile";
+@import "components/ProfileTabs/ProfileSettings/ProfileSettings";
+@import "components/Content/Playlists/Playlists";
+@import "components/Content/Playlists/PlaylistPopup/PlaylistPopup";
+@import "components/ProfileTabs/ProfileTabs";
+@import "common/Kit/ConfirmationDialog/ConfirmationDialog";
+@import "components/Content/Search/Search";
+@import "components/Content/Home/Home";
+@import "common/Kit/Pagination/Pagination";
+@import "components/Lists/TrackList/TrackList";
+@import "components/Lists/AlbumScroll/AlbumScroll";
+@import "common/Kit/File/File";
+@import "components/Content/Album/Album";
+@import "components/Player/Player";
+@import "components/Content/Artist/Artist";
+@import "views/HomeView/HomeView";
+@import "components/Admin/Menu/admin";
+@import "views/ProfileView/ProfileView";
+@import "vars";
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: $font, sans-serif;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+    background: var(--light-gray);
+}
+
+.title {
+    margin-bottom: 10px;
+    color: $font-color;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.content-inner {
+    margin: 30px 0 30px 50px;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+
+.table {
+    display: table;
+}
+
+.table-cell {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.pull-right {
+    float: right;
+}
+
+.pull-left {
+    float: left;
+}
+
+.pr {
+    padding-right: $padding-right-content;
+}
+
+.mb-10 {
+    margin-bottom: 10px;
+}
+
+.mr-10 {
+    margin-right: 10px;
+}
+
+
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+.mr-20 {
+    margin-right: 20px;
+}
+
+.link {
+    text-align: center;
+    cursor: pointer;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+.form_btn {
+    width: 100%;
+    background-color: $accent-color;
+    color: #ffffff;
+    text-align: center;
+    height: 60px;
+    border-radius: 20px;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    font-weight: bold;
+    outline: none;
+}
+
+.btn {
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+.form_background {
+    height: 100vh;
+    display: flex;
+    background-color: #00000022;
+    color: $font-color;
+}
+
+.form_wrapper {
+    margin: auto;
+    background-color: var(--form_bg);
+    border-radius: 50px;
+    padding: 5vh 15px;
+    display: flex;
+    align-items: center; /* horizontal */
+    justify-content: center; /* vertical */
+}
+
+$body_gradient_left: #7200D0;
+$body_gradient_right: #C800C1;
+$form_bg: #ffffff;
+$input_bg: #E5E5E5;
+$input_hover: #eaeaea;
+$submit_bg: #1FCC44;
+$submit_hover: #40e263;
+$icon_color: #6b6b6b;
+
+.form_inner {
+    width: 500px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 10px;
+    padding: 20% 20%;
+    background-color: #ffffff;
+    border-radius: 50px;
+}
+
+.input_label {
+    font-size: 14px;
+}
+
+.input_field:hover {
+    background-color: $input_hover;
+}
+
+.input_container {
+    width: 100%;
+}
+
+.input_field {
+    color: $icon_color;
+    background-color: inherit;
+    width: 100%;
+    border: none;
+    font-size: 1.3rem;
+    font-weight: 400;
+    outline: none;
+    border-bottom: solid 1px #1F2F5B;
+    margin-bottom: 3px;
+    height: 40px;
+}
+.text-center {
+    text-align: center;
+}
+
+.input__error {
+    font-size: 14px;
+    height: 14px;
+    color: $accent-color;
+}
+
+.submit__error {
+    color: $accent-color;
+    font-size: 14px;
+    text-align: center;
+    height: 14px;
+}

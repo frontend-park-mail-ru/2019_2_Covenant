@@ -1,0 +1,11 @@
+div(class="content-cards")
+	div(class="headline dark size-20 mb-20") Albums
+	div(class="cards-container")
+		if items.length > 0
+			each item in items
+				div(class="card-item__container")
+					div(class="card-item__img")
+						img(src=item.photo alt="" class="card-item__img-inner" id=`album-list-img-${item.id}`)
+					div(class="card-item__title card-item__fix-width" id=`album-list-title-${item.id}`)=item.name
+					div(class="card-item__subtitle card-item__fix-width text-link" id=`album-list-artist-${item.id}`)=item.artist
+	div(id="pagination")

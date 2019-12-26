@@ -1,0 +1,12 @@
+div(class="content-cards")
+	div(class="headline dark size-20 mb-20") Artists
+	ul(class="artists-list col-2")
+		if items.length > 0
+			each item in items
+				li(class="artists-list__item")
+					div(class="artist__avatar-container")
+						div(class="artist__avatar-img artist__avatar-size clickable" style=`background-image: url(${item.photo})` id=`artist-list-img-${item.id}`)
+					div(class="artist__name-container")
+						div(class="artist__name")
+							div(class="artist__name-label" id=`artist-list-name-${item.id}`)=item.name
+	div(id="pagination")

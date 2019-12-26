@@ -1,29 +1,22 @@
-form(class="signup" id="signup-form")
-    h1(class="signup__title") Sign Up
-
-    div(class="signup__email")
-        label(class="signup__email_label" for="signup__email_input") E-mail
-        input(class="signup__email_input" id="signup__email_input" name="signup__email_input" type="text")
-        div(class="signup__email_error")
-
-    div(class="signup__password")
-        label(class="signup__password_label" for="signup__password_input") Password
-        input(class="signup__password_input" id="signup__password_input" name="signup__password_input" type="password")
-        div(class="signup__password_error")
-
-    div(class="signup__repeat_password")
-        label(class="signup__repeat_password_label" for="signup__repeat_password_input") Repeat password
-        input(class="signup__repeat_password_input" id="signup__repeat_password_input" name="signup__repeat_password_input" type="password")
-        div(class="signup__repeat_error")
-
-    div(class="signup__submit")
-        button(class="signup__submit_button" type="submit") Sign Up
-        div(class="signup__submit_error")
-
-    div(class="signup__addition")
-        div(class="signup__social_label") Or Sign up Using
-
-        div(class="signup_social_icons")
-            a(href="#" class="fa fa-google")
-            a(href="#" class="fa fa-facebook")
-            a(href="#" class="fa fa-twitter")
+form(class="form_wrapper")
+	div(class="form_inner")
+		h1(class="text-center")="Sign Up"
+		div(class="input_container")
+			label(for="signup__email_input" class="input_label")="Email"
+			input(class="input_field" type="email" name="Email" id="signup__email_input")
+			div(class="input__error" id="email-error-id")
+		div(class="input_container")
+			label(for="signup__nick_input" class="input_label")="Nickname"
+			input(class="input_field" type="text" id="signup__nick_input")
+			div(class="input__error" id="nickname-error-id")
+		div(class="input_container")
+			label(for="signup__password_input" class="input_label")="Password"
+			input(class="input_field" type="password" id="signup__password_input")
+			div(class="input__error" id="password-error-id")
+		div(class="input_container")
+			label(for="signup__repeat_password_input" class="input_label")="Repeat password"
+			input(class="input_field" type="password" id="signup__repeat_password_input")
+			div(class="input__error" id="repeat-error-id")
+		button(type="submit" class="form_btn")="Sign Up"
+		div(class="submit__error" id="submit-error-id")
+		span(class="link" id="login_link")="Already have an account?"

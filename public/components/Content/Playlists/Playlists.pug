@@ -1,0 +1,21 @@
+div(class="content-cards")
+	h1(class="title")=title
+	div(class="cards-container")
+		div(class="card-item__container")
+			div(class="card-item__img")
+				div(class="card-item__img-inner card-item__img-new")
+					div(class="plus-button" id="create-playlist-btn")
+						img(class="plus-button__img" src="/static/img/plus.png" alt="")
+		if items.length > 0
+			each item in items
+				div(class="card-item__container")
+					div(class="card-item__img")
+						img(src=item.photo alt="" class="card-item__img-inner" id=`playlist-img-${item.id}`)
+						span(class="card-item__dots" id=`card-additions-btn-${item.id}`)
+							div(class="dropdown")
+								img(class="card-item__dots-size" src="/static/img/dots_white.png" alt="")
+								div(class="dropdown-content")
+									p(class="dropdown-content__item" id=`delete-playlist-btn-${item.id}`)="Remove playlist"
+									p(class="dropdown-content__item border-bottom" id=`share-playlist-btn-${item.id}`)="Share playlist"
+					div(class="card-item__title card-item__fix-width" id=`playlist-name-${item.id}`)=item.name
+					div(class="card-item__subtitle card-item__fix-width")=item.description

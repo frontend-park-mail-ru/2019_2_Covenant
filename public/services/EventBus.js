@@ -16,7 +16,14 @@ class EventBus {
 		this.channels[name].push(listener);
 	}
 
-	publish(name, data){
+	unSubscribe(name, listener) {
+		if (this.channels[name]) {
+			const index = this.channels[name].indexOf(listener);
+			this.channels[name].splice(index, 1);
+		}
+	}
+
+	publish(name, data) {
 		const channel = this.channels[name];
 		if (!channel || !channel.length) {
 			return;
@@ -25,4 +32,4 @@ class EventBus {
 	}
 }
 
-export default EventBus;
+export default new EventBus();

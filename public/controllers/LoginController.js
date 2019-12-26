@@ -1,34 +1,26 @@
 import LoginForm from '../components/LoginForm/LoginForm';
-import BaseController from "./BaseController";
-import UserModel from "../models/UserModel";
-import Header from "../components/Header/Header";
-import EventBusModule from '../services/EventBus';
+import BaseController from './BaseController';
+import UserModel from '../models/UserModel';
+import EventBus from '../services/EventBus';
 import Events from '../services/Events';
 import Urls from '../services/Urls';
-
-const EventBus = new EventBusModule();
 
 
 class LoginController extends  BaseController {
 	constructor(view) {
 		super(view);
-
-		this.title = 'Login Page';
 	}
 
 	onShow() {
-		const header = new Header();
-		header.render('header');
-
 		const form = new LoginForm();
-		form.render('container');
+		form.render('body');
 
 		UserModel.getProfile().then(response =>
 		{
-			if (!response.error) {
-				console.log(response);
-				EventBus.publish(Events.ChangeRoute, Urls.ProfileUrl);
+			if (response.error) {
+				return;
 			}
+			EventBus.publish(Events.ChangeRoute, Urls.ProfileUrl);
 		})
 		.catch(error => {
 			console.log(error);

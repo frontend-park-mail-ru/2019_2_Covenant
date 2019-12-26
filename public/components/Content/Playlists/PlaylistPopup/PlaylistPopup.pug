@@ -1,0 +1,13 @@
+div(class="overlay")
+	div(class="popup-container")
+		span(class="close" id="popup-close-btn") &times
+		h2(class="text-center")="Create playlist"
+		div(class="popup__field-container")
+			label(for="popup-name-input" class="input_label")="Name"
+			input(class="popup-input__field" id="popup-name-input")
+		div(class="popup__field-container")
+			label(for="popup-description-input" class="input_label")="Description"
+			input(class="popup-input__field" id="popup-description-input")
+		div(class="popup__btn-row")
+			button(type="button" class="btn-accent popup-btn" id="popup-save-btn")="Create"
+			button(type="button" class="btn-default popup-btn" id="popup-cancel-btn")="Cancel"

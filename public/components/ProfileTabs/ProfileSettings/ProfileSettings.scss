@@ -1,0 +1,91 @@
+@import "../../../vars";
+
+.user-tabs {
+  grid-row: 2/4;
+}
+
+.tabs__title {
+  margin-bottom: 30px;
+}
+
+.settings-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 100px;
+}
+
+.settings-name {
+  grid-column: 1/2;
+
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.settings-password {
+  grid-column: 2/3;
+
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.input-container {
+  margin-bottom: 30px;
+
+  &__label {
+    font-size: 14px;
+  }
+
+  &__input {
+    height: 50px;
+    width: 100%;
+    font-size: 16px;
+    padding-left: 10px;
+    outline: none;
+    border: none;
+    border-bottom: $font-color solid 1px;
+  }
+
+  &__input:hover {
+    background-color: $background-color;
+    border-radius: 20px;
+  }
+}
+
+.settings-btn {
+  background-color: $accent-color;
+  color: #ffffff;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 30px;
+  height: 40px;
+  width: 120px;
+  outline: none;
+  cursor: pointer;
+}
+
+.settings-btn:hover {
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.checkbox__label {
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.tab-grid {
+  display: grid;
+  margin-right: 50px;
+  grid-template-columns: 1fr 1fr;
+
+  &__column {
+    grid-column: 1/2;
+  }
+
+  &__item {
+    padding: 5px 0;
+    border-bottom: 1px solid #ddd;
+  }
+}

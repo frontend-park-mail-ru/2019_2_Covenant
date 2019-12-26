@@ -1,11 +1,9 @@
-import HttpModule from '../services/Http';
-
-const Http = new HttpModule();
+import Http from '../services/Http';
 
 class SessionModel {
 	login(form) {
 		return Http.fetchPost({
-			path: '/login',
+			path: '/sessions',
 			body: JSON.stringify({...form})
 		})
 		.then(response => response.json());
@@ -13,15 +11,15 @@ class SessionModel {
 
 	signUp(form) {
 		return Http.fetchPost({
-			path: '/signup',
+			path: '/users',
 			body: JSON.stringify({...form})
 		})
 		.then(response => response.json());
 	}
 
 	logOut() {
-		return Http.fetchGet({
-			path: '/logout'
+		return Http.fetchDelete({
+			path: '/sessions'
 		})
 		.then(response => response.json());
 	}

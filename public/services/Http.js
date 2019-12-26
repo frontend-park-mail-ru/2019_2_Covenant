@@ -1,7 +1,7 @@
 import { SERVER_API_PATH } from './Settings';
 
 class Http {
-	constructor(){
+	constructor() {
 		this.baseUrl = SERVER_API_PATH;
 	}
 
@@ -15,6 +15,14 @@ class Http {
 	fetchPost({ path, body }) {
 		return this.fetchRequest({
 			method: 'POST',
+			path: path,
+			body: body
+		});
+	}
+
+	fetchPut({ path, body }) {
+		return this.fetchRequest({
+			method: 'PUT',
 			path: path,
 			body: body
 		});
@@ -47,4 +55,4 @@ class Http {
 	}
 }
 
-export default Http;
+export default new Http();

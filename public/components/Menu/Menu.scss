@@ -1,0 +1,82 @@
+@import "../../vars";
+
+.menu {
+  grid-column: menu;
+}
+
+.menu-title {
+  padding-left: 20px;
+  padding-right: 20px;
+  display: table;
+  height: $header-height;
+  font-size: 24px;
+  font-weight: 800;
+  color: $font-color;
+  cursor: pointer;
+
+  &__label {
+    vertical-align:middle;
+    display:table-cell;
+    text-align:justify;
+  }
+
+  &__img {
+    vertical-align:middle;
+    display:table-cell;
+  }
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+.menu-list {
+
+  &__item {
+    padding-left: 20px;
+    padding-right: 20px;
+    display: table;
+    height: 50px;
+  }
+
+  &__img {
+    width: 60px;
+    vertical-align:middle;
+    display:table-cell;
+    text-align: center;
+  }
+
+  &__img-inner {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+  }
+
+  &__label {
+    vertical-align:middle;
+    display:table-cell;
+    text-align:justify;
+    font-weight: bold;
+    width: fit-content;
+  }
+
+  &__label:hover {
+    border-bottom: $accent-color solid 2px;
+    padding-left: 10px;
+    cursor: pointer;
+  }
+
+  &__separator {
+    vertical-align:middle;
+    display:table-cell;
+    text-align:justify;
+    font-weight: bold;
+    width: fit-content;
+
+    color: $font-light-color;
+    padding-left: 20px;
+  }
+}

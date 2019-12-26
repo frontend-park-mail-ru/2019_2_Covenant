@@ -1,0 +1,64 @@
+@import "../../vars";
+
+.user-info {
+  grid-row: 1/2;
+
+  &__inner {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__aside {
+    width: 150px;
+    margin: 0 30px 0 0;
+  }
+
+  &__aside-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+  }
+
+  &__main {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__main-nick {
+    color: $font-color;
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 5px;
+  }
+
+  &__main-email {
+    color: $font-light-color;
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+
+  &__main-logout {
+    color: $accent-color;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  &__main-logout:hover {
+    text-decoration: underline;
+  }
+
+  &__follow-btn {
+    width: 120px;
+    border-radius: 20px;
+    padding: 10px 30px;
+    font-size: 18px;
+  }
+}
+
+.btn-accent {
+  background-color: $accent-color;
+}
+
+.btn-light {
+  background-color: $font-light-color;
+}

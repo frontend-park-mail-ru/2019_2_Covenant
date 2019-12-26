@@ -1,0 +1,11 @@
+extends ../../../../common/Admin/ItemEditor/ItemEditor
+
+block content
+	div(class="form-edit__container")
+		label(class="form-edit__label")="Upload image of artist:"
+		div(id="artist-file-container")
+	div(class="form-edit__container")
+		label(class="form-edit__label")="Name"
+		div(class="form-edit__input-container")
+			input(class="form-edit__input" type="text" name="name" id='artist-name-input' value=item.name)
+

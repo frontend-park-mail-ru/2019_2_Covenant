@@ -1,0 +1,147 @@
+@import "../../vars";
+
+.header {
+  grid-row: header;
+  height: 100%;
+}
+
+.header__link-container {
+  display: flex;
+  flex-direction: row-reverse;
+  height: 100%;
+  align-items: center;
+  padding-right: $padding-right-content;
+}
+
+.header__link {
+  margin-left: 30px;
+  font-size: 18px;
+  color: $accent-color;
+  cursor: pointer;
+}
+
+.header-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.header__search-container {
+  grid-column: 1/4;
+  height: 100%;
+}
+
+.header__search-container-inner {
+  padding-left: $padding-left-content;
+  padding-right: 30px;
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+}
+
+.header__align-center {
+  align-items: center;
+}
+
+.header__align-top {
+  margin-top: 20px;
+}
+
+.search {
+  height: 40px;
+  background-color: $content-color;
+  width: 100%;
+  border: $border-color solid 1px;
+  border-radius: 40px;
+  position: relative;
+
+  &__img {
+    height: 100%;
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 10px;
+    margin-right: 20px;
+  }
+
+  &__img-container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  &__img_size {
+    width: 20px;
+    height: 20px;
+  }
+
+  &__input {
+    display: inline-block;
+    width: 500px;
+    height: 100%;
+  }
+
+  &__input-autocomplete {
+    height: 100%;
+    width: 500px !important;
+  }
+
+  &__input-container {
+    outline: none;
+    background-color: transparent;
+    padding-right: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: none;
+    float: left;
+    text-align: left;
+    font-size: 16px;
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.header__user-container {
+  grid-column: 4/6;
+}
+
+.header__user-container-inner {
+  float: right;
+  padding-right: $padding-right-content;
+  display: table;
+  height: 100%;
+}
+
+.user-nickname {
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 20px;
+  height: 100%;
+}
+
+.user-nickname__inner {
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  height: 100%;
+}
+
+.user-logo {
+  display: inline-block;
+  vertical-align: top;
+  height: 100%;
+
+  &__img-container {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+  }
+
+  &__img {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    border-radius: 40px;
+  }
+}

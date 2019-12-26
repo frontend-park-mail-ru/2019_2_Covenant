@@ -1,0 +1,13 @@
+ddiv(class="tab-grid")
+	div(class="tab-grid__column")
+		each item in items
+			div(class="tab-grid__item")
+				div(class="track__avatar-container")
+						div(class="track__avatar")
+							div(class="track__avatar-img" style=`background: url(${item.avatar}) no-repeat center/cover;` id=`people-list-avatar-${item.nickname}`)
+				div(class="track__name-container")
+					div(class="track__name")
+						div(class="track__title")=item.email
+						div(class="track__subtitle" id=`people-list-nick-${item.nickname}`)=`@${item.nickname}`
+
+

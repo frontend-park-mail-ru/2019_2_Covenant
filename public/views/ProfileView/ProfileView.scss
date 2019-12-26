@@ -1,0 +1,8 @@
+@import "../../vars.scss";
+
+.content-profile {
+    display: grid;
+    padding: 30px 0 30px $padding-left-content;
+    grid-row-gap: 30px;
+    grid-template-rows: min-content;
+}

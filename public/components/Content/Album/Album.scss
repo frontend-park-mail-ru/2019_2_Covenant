@@ -1,0 +1,26 @@
+@import '../../../vars';
+
+.album-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-column-gap: 100px;
+
+  &__photo-container {
+    grid-column: 1/2;
+  }
+
+  &__tracks-container {
+    grid-column: 2/5;
+    margin-right: $padding-right-content;
+  }
+}
+
+.album-aside {
+  margin-bottom: 10px;
+
+  &__photo {
+    border-radius: 10px;
+    width: 300px;
+    height: 300px;
+  }
+}

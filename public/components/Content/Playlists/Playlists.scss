@@ -1,0 +1,163 @@
+@import '../../../vars';
+
+.content-cards {
+  margin: 30px 0 30px $padding-left-content;
+}
+
+.cards-container {
+
+}
+
+.card-item {
+  &__container {
+	display: inline-block;
+	vertical-align: top;
+	margin-bottom: 20px;
+	margin-right: 20px;
+	width: 160px;
+  }
+
+  &__container:hover {
+	transform: scale(1.05);
+  }
+
+  &__img {
+	position: relative;
+	cursor: pointer;
+	margin-bottom: 10px;
+  }
+
+  &__img-inner {
+	border-radius: 10px;
+	width: 160px;
+	height: 160px;
+	transition: .3s;
+	cursor: pointer;
+  }
+
+  &__img-new {
+	background-color: $accent-color;
+	opacity: .5;
+  }
+
+  &__fix-width {
+	overflow: hidden;
+	white-space: nowrap;
+	width: 100%;
+  }
+
+  &__title {
+	font-size: 18px;
+	margin-bottom: 5px;
+	transition: .3s;
+  }
+
+  &__title:hover {
+	text-decoration: underline;
+	cursor: pointer;
+  }
+
+  &__subtitle {
+	font-size: 14px;
+	color: $font-light-color;
+	transition: .3s;
+  }
+
+  &__close {
+	position: absolute;
+	color: $font-light-color;
+	right: 6px;
+	font-size: 28px;
+	font-weight: bold;
+  }
+
+  &__close:hover,
+  &__close:focus {
+	color: $font-color;
+	text-decoration: none;
+	cursor: pointer;
+  }
+
+  &__dots {
+	position: absolute;
+	color: $font-light-color;
+	right: 5px;
+	top: 10px;
+	cursor: pointer;
+  }
+
+  &__dots-size {
+	width: 20px;
+	height: 20px;
+  }
+}
+
+div.card-item__img span.card-item__dots {visibility: hidden;}
+div.card-item__img:hover span.card-item__dots {visibility: visible;}
+
+
+.plus-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  &__img {
+	width: 50px;
+	height: 50px;
+  }
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  border-radius: 10px;
+  right: 0;
+  z-index: 1;
+
+  &__item {
+	color: $font-color;
+	padding: 10px 15px;
+	border-bottom: 1px solid rgba(0,0,0,0.2);
+  }
+
+  &__item:hover {
+	font-weight: bold;
+  }
+}
+
+.border-bottom {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.share-btn {
+  width: 100px;
+  height: 100px;
+  border-radius: 100px;
+  border: 0;
+  box-shadow: none;
+  display: inline;
+  margin-right: 20px;
+}
+
+.text-link {
+  transition: .3s;
+}
+
+.text-link:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}

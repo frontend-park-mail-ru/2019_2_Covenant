@@ -1,29 +1,35 @@
 import template from './LoginForm.pug';
-import EventBusModule from '../../services/EventBus';
+import EventBus from '../../services/EventBus';
 import SessionModel from '../../models/SessionModel';
 import Events from '../../services/Events';
 import Urls from '../../services/Urls';
-import BaseComponent from '../BaseComponent/BaseComponent';
-import Input from '../Input/Input';
-
-const EventBus = new EventBusModule();
+import BaseComponent from '../../common/BaseComponent/BaseComponent';
+import Input from '../../common/Kit/Input/Input';
+import Link from '../../common/Kit/Link/Link';
 
 class LoginForm extends BaseComponent {
 	constructor() {
 		super(template);
 
+		this.handlerSubmit();
+	}
+
+	onRender() {
 		this.emailInput = new Input({
-			inputClass: 'login__email_input',
-			errorClass: 'login__email_error',
-			component: this.element
-		});
-		this.passwordInput = new Input({
-			inputClass: 'login__password_input',
-			errorClass: 'login__password_error',
-			component: this.element
+			inputId: 'login__email_input',
+			errorId: 'email-error-id'
 		});
 
-		this.handlerSubmit();
+		this.passwordInput = new Input({
+			inputId: 'login__password_input',
+			errorId: 'password-error-id'
+		});
+
+		this.submitError =  new Input({
+			errorId: 'submit-error-id'
+		});
+
+		new Link({elementId: 'no-account-link', eventType: 'click', route: Urls.SignupUrl});
 	}
 
 	isValid() {
@@ -44,11 +50,6 @@ class LoginForm extends BaseComponent {
 		return valid;
 	}
 
-	setFormError(text) {
-		const submitError = document.getElementsByClassName('login__error')[0];
-		submitError.innerText = text;
-	}
-
 	submit() {
 		const form = {
 			email: this.emailInput.value,
@@ -58,7 +59,7 @@ class LoginForm extends BaseComponent {
 		SessionModel.login(form)
 			.then(response => {
 				if (response.error) {
-					this.setFormError(response.error);
+					this.submitError.setError(response.error);
 				} else {
 					EventBus.publish(Events.ChangeRoute, {newUrl: Urls.ProfileUrl});
 				}
@@ -71,6 +72,7 @@ class LoginForm extends BaseComponent {
 	clearErrors() {
 		this.emailInput.clearError();
 		this.passwordInput.clearError();
+		this.submitError.clearError();
 	}
 
 	handlerSubmit() {

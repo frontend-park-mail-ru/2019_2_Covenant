@@ -1,0 +1,16 @@
+div
+	h1(class="title")="Profile"
+	div(class="user-info__inner")
+		if user
+			div(class="user-info__aside" id="avatar")
+			div(class="user-info__main")
+				div(class="user-info__main-nick")=`@${user.nickname}`
+				div(class="user-info__main-email")=user.email
+				if !anotherProfile
+					div(class="user-info__main-logout" id="logout_link")="Log Out"
+				else
+					if user && user.subscription != null
+						if user.subscription
+							div(class="btn btn-light user-info__follow-btn" id='unfollow-btn')="Unfollow"
+						else
+							div(class="btn btn-accent user-info__follow-btn" id='follow-btn')="Follow"

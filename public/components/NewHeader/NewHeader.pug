@@ -1,0 +1,15 @@
+div(class="header header-grid")
+	div(class="header__search-container")
+		div(class=`header__search-container-inner ${headerPositionClass}` id="search-container-id")
+	div(class="header__user-container")
+		if (!user)
+			div(class="header__link-container")
+				div(class="header__link" id="signup_link")="Sign Up"
+				div(class="header__link" id="login_link")="Log In"
+		else
+			div(class="header__user-container-inner")
+				div(class="user-nickname" id="profile_name")
+					div(class=`user-nickname__inner ${headerPositionClass}`)=user.nickname
+				div(class="user-logo")
+					div(class=`user-logo__img-container ${headerPositionClass}`)
+						img(class="user-logo__img" src=user.avatar alt="img" id="profile_avatar")
