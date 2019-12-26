@@ -8,8 +8,8 @@ import SearchAutocomplete from '../SearchAutocomplete/SearchAutocomplete';
 import {formatServerRoot} from '../../services/Utils';
 
 class NewHeader extends BaseComponent {
-	constructor({headerPositionClass = 'header__align-center', artist = null} = {}) {
-		const initState = {headerPositionClass: headerPositionClass, artist: artist};
+	constructor({headerPositionClass = 'header__align-center', artistPage = false} = {}) {
+		const initState = {headerPositionClass: headerPositionClass, artistPage: artistPage};
 		super(template, initState);
 		this.state = initState;
 

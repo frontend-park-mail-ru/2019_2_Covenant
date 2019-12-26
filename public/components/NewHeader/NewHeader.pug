@@ -8,8 +8,9 @@ div(class="header header-grid")
 				div(class="header__link" id="login_link")="Log In"
 		else
 			div(class="header__user-container-inner")
-				div(class="user-nickname" id="profile_name")
-					div(class=`user-nickname__inner ${headerPositionClass}`)=user.nickname
+				if (!artistPage)
+					div(class="user-nickname" id="profile_name")
+						div(class=`user-nickname__inner ${headerPositionClass}`)=user.nickname
 				div(class="user-logo")
 					div(class=`user-logo__img-container ${headerPositionClass}`)
-						img(class="user-logo__img" src=user.avatar alt="img" id="profile_avatar")
+						img(class=`user-logo__img ${artistPage ? 'user-logo__img-border' : ''}` src=user.avatar alt="img" id="profile_avatar")

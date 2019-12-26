@@ -6,6 +6,7 @@ import EventBus from '../services/EventBus';
 import Events from '../services/Events';
 import Menu from '../components/Menu/Menu';
 import Player from '../components/Player/Player';
+import NewHeader from '../components/NewHeader/NewHeader';
 
 class ArtistController extends BaseController {
 	constructor() {

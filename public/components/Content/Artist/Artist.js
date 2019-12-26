@@ -19,22 +19,24 @@ class Artist extends BaseComponent {
 		this.path = Urls.ArtistUrl;
 		this.id = null;
 
+		this.header = new NewHeader({
+			headerPositionClass: 'header__align-top',
+			artistPage: true
+		});
+
 		this.setArtistId = this.setArtistId.bind(this);
 		this.loadArtist = this.loadArtist.bind(this);
 		this.loadAlbums = this.loadAlbums.bind(this);
 		this.loadTracks = this.loadTracks.bind(this);
+		this.loadContent = this.loadContent.bind(this);
 
 		this.setArtistId();
 		this.loadArtist();
-		this.loadAlbums();
-		this.loadTracks();
+		this.loadContent();
 	}
 
 	onRender() {
-		const header = new NewHeader({
-			headerPositionClass: 'header__align-top'
-		});
-		header.render('header');
+		this.header.render('header');
 	}
 
 	setArtistId() {
@@ -66,43 +68,44 @@ class Artist extends BaseComponent {
 		});
 	}
 
-	loadAlbums() {
-		ArtistModel.getAlbums({
-			id: this.id,
-			count: 9
-		})
-		.then(response => {
-			if (response.error) {
-				return;
-			}
-			const albumList = new AlbumScroll({
-				albums: response.body.albums
-			});
-			albumList.render('artist-album-list-id');
-		})
-		.catch(error => {
-			console.log(error);
+	loadAlbums(response) {
+		if (response.error) {
+			return;
+		}
+		const albumList = new AlbumScroll({
+			albums: response.body.albums
 		});
+		albumList.render('artist-album-list-id');
 	}
 
-	loadTracks() {
-		ArtistModel.getTracks({
+	loadContent() {
+		const albumsPromise = ArtistModel.getAlbums({
+			id: this.id,
+			count: 9
+		});
+
+		const trackPromise =  ArtistModel.getTracks({
 			id: this.id,
 			count: 20
-		})
-		.then(response => {
-			if (response.error) {
-				return;
-			}
-			const trackList = new TrackList({
-				tracks: response.body.tracks,
-				trackClassName: 'track-list col-3'
-			});
-			trackList.render('artist-track-list-id');
-		})
-		.catch(error => {
-			console.log(error);
 		});
+
+		Promise.all([albumsPromise, trackPromise])
+			.then(res => {
+				this.loadAlbums(res[0]);
+				this.loadTracks(res[1]);
+			})
+			.catch(err => console.log(err));
+	}
+
+	loadTracks(response) {
+		if (response.error) {
+			return;
+		}
+		const trackList = new TrackList({
+			tracks: response.body.tracks,
+			trackClassName: 'track-list col-3'
+		});
+		trackList.render('artist-track-list-id');
 	}
 }
 
