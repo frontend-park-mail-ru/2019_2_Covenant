@@ -4,6 +4,7 @@ import template from './Album.pug';
 import CardItem from '../../../common/Content/CardItem/CardItem';
 import {formatServerRoot, formatYear} from '../../../services/Utils';
 import TrackList from '../../Lists/TrackList/TrackList';
+import Link from '../../../common/Kit/Link/Link';
 
 class Album extends CardItem {
 	constructor() {
@@ -37,6 +38,10 @@ class Album extends CardItem {
 	onRender() {
 		if (this.trackList) {
 			this.trackList.render('album-track-list-id');
+		}
+		if (this.state.item) {
+			const url = Urls.ArtistUrl.replace(/:\w+/, this.state.item.album.artist_id);
+			new Link({elementId: 'item-album-artist', eventType: 'click', route: url});
 		}
 	}
 

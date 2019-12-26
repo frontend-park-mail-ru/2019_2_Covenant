@@ -8,6 +8,6 @@ div(class="content-inner")
 				div(class="headline light size-14")=`${item.amount_of_tracks} songs`
 			div(class="album-container__tracks-container")
 				div(class="headline headline__block dark size-20")=item.album.name
-				div(class="headline headline__block accent size-20")=item.album.artist
+				div(class="headline headline__block accent size-20 clickable" id="item-album-artist")=item.album.artist
 				div(class="headline headline__block light size-14")=item.album.year
 				div(id="album-track-list-id")
