@@ -3,6 +3,7 @@ import template from './Autocomplete.pug';
 
 class Autocomplete extends BaseComponent {
 	constructor({
+		value = '',
 		loadItems = () => {},
 		containerClassName = 'autocomplete',
 		inputClassName = 'autocomplete-input',
@@ -12,6 +13,7 @@ class Autocomplete extends BaseComponent {
 		onSelect = () => {},
 		onClose = () => {} }) {
 		const props = {
+			value: value,
 			containerClassName: containerClassName,
 			inputClassName: inputClassName,
 			placeholder: placeholder
@@ -102,7 +104,14 @@ class Autocomplete extends BaseComponent {
 				e.preventDefault();
 				if (this.currentFocus > -1) {
 					if (x) x[this.currentFocus].click();
+					return;
 				}
+				if (input.value.includes('@')) {
+					return;
+				}
+				inp.value =  input.value;
+				this.onSelect(input.value);
+				this.closeAllLists();
 			}
 		});
 	}

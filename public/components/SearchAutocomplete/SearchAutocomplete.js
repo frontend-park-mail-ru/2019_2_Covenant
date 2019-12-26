@@ -13,8 +13,16 @@ class SearchAutocomplete extends BaseComponent {
 		this.onSelectSearch = this.onSelectSearch.bind(this);
 	}
 
+	getUrlParam() {
+		const pattern = new RegExp('^'+ Urls.SearchUrl + '(\\?s=?(\\w+))?$');
+		const url = `${window.location.pathname}${window.location.search}`;
+		const params = url.match(pattern);
+		return params ? (params[2] ? params[2] : '') : '';
+	}
+
 	onRender() {
 		this.searchAutocomplete = new Autocomplete({
+			value: this.getUrlParam(),
 			loadItems: this.loadItems,
 			getItemName: this.getItemName,
 			containerClassName: 'search__input-autocomplete',
