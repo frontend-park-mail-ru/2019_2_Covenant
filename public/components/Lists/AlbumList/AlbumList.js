@@ -9,7 +9,8 @@ class AlbumList extends CardList {
 	constructor() {
 		super({
 			template: template,
-			itemsName: 'albums'
+			itemsName: 'albums',
+			countPerPage: 14
 		});
 	}
 

@@ -13,4 +13,10 @@
   &__tracks-container {
 	grid-row: 2/3;
   }
+
+  &__artist-header {
+	background-position: center top;
+	background-repeat: no-repeat;
+	background-size: contain;
+  }
 }
