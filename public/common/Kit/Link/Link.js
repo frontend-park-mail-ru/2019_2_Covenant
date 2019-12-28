@@ -12,7 +12,8 @@ class Link {
 		}
 	}
 
-	handler() {
+	handler(event) {
+		event.preventDefault();
 		const path = this.route;
 		EventBus.publish(Events.ChangeRoute, { newUrl:  path});
 	}
