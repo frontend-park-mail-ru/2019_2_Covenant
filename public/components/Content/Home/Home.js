@@ -17,6 +17,8 @@ class Home extends BaseComponent {
 		};
 		super(template, initialState);
 
+		console.log('created Home')
+
 		this.state = initialState;
 		this.loadData();
 	}

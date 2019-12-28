@@ -14,10 +14,10 @@ class SearchAutocomplete extends BaseComponent {
 	}
 
 	getUrlParam() {
-		const pattern = new RegExp('^'+ Urls.SearchUrl + '(\\?s=?(\\w+))?$');
+		const pattern = new RegExp('^'+ Urls.SearchUrl + '(\\?s=?(.+))?$');
 		const url = `${window.location.pathname}${window.location.search}`;
 		const params = url.match(pattern);
-		return params ? (params[2] ? params[2] : '') : '';
+		return params ? (params[2] ? window.decodeURI(params[2]) : '') : '';
 	}
 
 	onRender() {

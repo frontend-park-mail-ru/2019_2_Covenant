@@ -19,10 +19,7 @@ class Artist extends BaseComponent {
 		this.path = Urls.ArtistUrl;
 		this.id = null;
 
-		this.header = new NewHeader({
-			headerPositionClass: 'header__align-top',
-			artistPage: true
-		});
+		this.header = NewHeader.getInstance();
 
 		this.setArtistId = this.setArtistId.bind(this);
 		this.loadArtist = this.loadArtist.bind(this);
@@ -45,10 +42,10 @@ class Artist extends BaseComponent {
 		const params = url.match(pattern);
 		const id = params[1];
 
-		if (id < 0) {
-			EventBus.publish(Events.ChangeRoute, {newUrl: Urls.MainUrl});
-			return;
-		}
+		// if (id < 0) {
+		// 	EventBus.publish(Events.ChangeRoute, {newUrl: Urls.MainUrl});
+		// 	return;
+		// }
 		this.id = id;
 	}
 

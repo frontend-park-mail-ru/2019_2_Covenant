@@ -64,9 +64,9 @@ class Profile extends BaseComponent {
 					.then(response => {
 						if (response.error) {
 							console.log(response.error);
-						} else {
-							EventBus.publish(Events.ChangeRoute, {newUrl: Urls.MainUrl});
 						}
+						EventBus.publish(Events.UpdateUser, null);
+						EventBus.publish(Events.ChangeRoute, {newUrl: Urls.MainUrl});
 					})
 					.catch(error => {
 						console.log(error);

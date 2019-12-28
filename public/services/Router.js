@@ -3,15 +3,14 @@
 // Controllers
 import LoginController from '../controllers/LoginController.js';
 import SignupController from '../controllers/SignupController.js';
-import ProfileController from '../controllers/ProfileController';
 import {
 	AlbumController,
-	AlbumsController,
+	AlbumsController, AnotherProfilePageController,
 	ArtistsController,
 	CollectionsController,
 	HomeController,
 	PlaylistController,
-	PlayListsController,
+	PlayListsController, ProfilePageController,
 	SearchController
 } from '../controllers/ContentController';
 
@@ -32,7 +31,6 @@ import {
 	AdminTracksController
 } from '../controllers/AdminController';
 import {AdminArtistEditorController} from '../controllers/AdminController';
-import AnotherProfileController from '../controllers/AnotherProfileController';
 import ArtistController from '../controllers/ArtistController';
 
 class Router {
@@ -41,8 +39,8 @@ class Router {
 		this.register(Urls.MainUrl, new HomeController());
 		this.register(Urls.LoginUrl, new LoginController(emptyView));
 		this.register(Urls.SignupUrl, new SignupController(emptyView));
-		this.registerRegexp(new RegExp('^' + Urls.ProfileUrl + '(\\?tab=\\w+)?$'), new ProfileController());
-		this.registerRegexp(new RegExp('^' + Urls.ProfileUrl + '(/\\w+)(\\?tab=\\w+)?$'), new AnotherProfileController());
+		this.registerRegexp(new RegExp('^' + Urls.ProfileUrl + '(\\?tab=\\w+)?$'), new ProfilePageController());
+		this.registerRegexp(new RegExp('^' + Urls.ProfileUrl + '(/\\w+)(\\?tab=\\w+)?$'), new AnotherProfilePageController());
 		this.register(Urls.CollectionsUrl, new CollectionsController());
 		this.register(Urls.ALbumsUrl, new AlbumsController());
 		this.register(Urls.ArtistsUrl, new ArtistsController());
@@ -55,7 +53,7 @@ class Router {
 		this.register(Urls.AdminTrackEditor, new AdminTrackEditorController());
 		this.register(Urls.AdminCollections, new AdminCollectionsController());
 		this.register(Urls.AdminCollectionEditor, new AdminCollectionEditorController());
-		this.registerRegexp(new RegExp('^'+ Urls.SearchUrl + '(\\?s=?(\\w+))?$'), new SearchController());
+		this.registerRegexp(new RegExp('^'+ Urls.SearchUrl + '(\\?s=?(.+))?$'), new SearchController());
 
 		this.register(Urls.PlaylistsUrl, new PlayListsController());
 		this.register(Urls.AlbumURl, new AlbumController());

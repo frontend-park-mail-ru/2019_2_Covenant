@@ -14,7 +14,7 @@ class ArtistController extends BaseController {
 	}
 
 	onShow() {
-		const menu = new Menu();
+		const menu = Menu.getInstance();
 		menu.render('menu');
 
 		this.player = Player.getInstance();

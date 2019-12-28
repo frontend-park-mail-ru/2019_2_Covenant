@@ -23,7 +23,7 @@ class Search extends BaseComponent {
 	}
 
 	loadItems() {
-		const pattern = new RegExp('^'+ Urls.SearchUrl + '(\\?s=?(\\w+))?$');
+		const pattern = new RegExp('^'+ Urls.SearchUrl + '(\\?s=?(.+))?$');
 		const url = `${window.location.pathname}${window.location.search}`;
 		const params = url.match(pattern);
 		const text = params[2];

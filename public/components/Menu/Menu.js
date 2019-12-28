@@ -2,7 +2,7 @@ import BaseComponent from '../../common/BaseComponent/BaseComponent';
 import EventBus from '../../services/EventBus';
 import Events from '../../services/Events';
 import template from './Menu.pug';
-import Link from '../../common/Kit/Link/Link';
+import Link, {Unlink} from '../../common/Kit/Link/Link';
 import Urls from '../../services/Urls';
 import {UserRole} from '../../models/UserModel';
 
@@ -11,7 +11,8 @@ class Menu extends BaseComponent {
 		const initialState = {
 			defaultMenuItems: [],
 			userMenuItems: [],
-			adminMenuItems: []
+			adminMenuItems: [],
+			user: null
 		};
 		super(template, initialState);
 		this.state = initialState;
@@ -20,6 +21,14 @@ class Menu extends BaseComponent {
 
 		this.renderDefaultMenuItems();
 	}
+
+	static getInstance() {
+		if (!Menu.instance) {
+			Menu.instance = new Menu();
+		}
+		return Menu.instance;
+	}
+
 
 	getDefaultMenuItems() {
 		return [
@@ -51,7 +60,19 @@ class Menu extends BaseComponent {
 	}
 
 	updateUser(user) {
-		if (user.anotherProfile) {
+		if (user && user.anotherProfile) {
+			return;
+		}
+
+		if (this.state.user === user) {
+			return;
+		}
+		this.state.user = user;
+
+		if (!user) {
+			this.state.userMenuItems = [];
+			this.state.adminMenuItems = [];
+			this.update(this.state);
 			return;
 		}
 
@@ -83,6 +104,8 @@ class Menu extends BaseComponent {
 		items.push(...this.state.adminMenuItems);
 
 		items.forEach(item => {
+			console.log('link');
+			new Unlink({elementId: item.id, eventType: 'click', route: item.route});
 			new Link({elementId: item.id, eventType: 'click', route: item.route});
 		});
     }
