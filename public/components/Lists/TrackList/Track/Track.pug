@@ -7,7 +7,8 @@ div
 					img(class="track__arrow" src="/static/img/play-arrow.png" alt="" id=`track-arrow-${track.id}`)
 		else
 			div(class="track__avatar")
-				div(class="track__avatar-img" style=`background: url(${track.photo}) no-repeat center/cover;` id=`track-avatar-control-${track.id}`)
+				div(class="track__avatar-img" id=`track-avatar-control-${track.id}`)
+					img(src=track.photo alt="" class="track__avatar-img_size")
 					img(class="track__arrow" src="/static/img/play-arrow.png" alt="" id=`track-arrow-${track.id}`)
 
 	div(class="track__name-container")

@@ -8,13 +8,21 @@ import SearchAutocomplete from '../SearchAutocomplete/SearchAutocomplete';
 import {formatServerRoot} from '../../services/Utils';
 
 class NewHeader extends BaseComponent {
-	constructor({headerPositionClass = 'header__align-center', artist = null} = {}) {
-		const initState = {headerPositionClass: headerPositionClass, artist: artist};
+	constructor({headerPositionClass = 'header__align-center', artistPage = false} = {}) {
+		const initState = {headerPositionClass: headerPositionClass, artistPage: artistPage};
 		super(template, initState);
 		this.state = initState;
+		this.state.user = null;
 
 		this.updateUser = this.updateUser.bind(this);
 		EventBus.subscribe(Events.UpdateUser, this.updateUser);
+	}
+
+	static getInstance() {
+		if (!NewHeader.instance) {
+			NewHeader.instance = new NewHeader();
+		}
+		return NewHeader.instance;
 	}
 
 	onRender() {
@@ -26,9 +34,14 @@ class NewHeader extends BaseComponent {
 	}
 
 	updateUser(data) {
-		if (data.anotherProfile) {
+		if (data && data.anotherProfile) {
 			return;
 		}
+
+		if (this.state.user === data ) {
+			return;
+		}
+		this.state.user = data;
 
 		formatServerRoot(data, 'avatar');
 		this.state.user = data;

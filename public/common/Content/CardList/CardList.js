@@ -3,7 +3,8 @@ import Pagination from '../../Kit/Pagination/Pagination';
 
 class CardList extends BaseComponent {
 	constructor({
-		template = '', itemsName = '' } = {}) {
+		template = '', itemsName = '',
+		countPerPage = 10} = {}) {
 		const initState = {
 			total: 0,
 			items: []
@@ -11,7 +12,7 @@ class CardList extends BaseComponent {
 		super(template, initState);
 		this.state = initState;
 
-		this.countPerPage = 10;
+		this.countPerPage = countPerPage;
 		this.itemsName = itemsName;
 
 		this.pagination = this.initPagination();

@@ -15,6 +15,8 @@ import Album from '../components/Content/Album/Album';
 import Playlist from '../components/Content/Playlist/Playlist';
 import AlbumList from '../components/Lists/AlbumList/AlbumList';
 import Urls from '../services/Urls';
+import ProfilePage from '../components/ProfilePage/ProfilePage';
+import AnotherProfilePage from '../components/AnotherProfilePage/AnotherProfilePage';
 
 export default class ContentController extends BaseController {
     constructor(component, withRedirect = false) {
@@ -25,11 +27,11 @@ export default class ContentController extends BaseController {
     }
 
     onShow() {
-        const header = new NewHeader();
-        header.render('header');
+        this.header = NewHeader.getInstance();
+        this.header.render('header');
 
-        const menu = new Menu();
-        menu.render('menu');
+        this.menu = Menu.getInstance();
+        this.menu.render('menu');
 
         this.player = Player.getInstance();
         this.player.render('player-id');
@@ -54,6 +56,8 @@ export default class ContentController extends BaseController {
     }
 
     onHide() {
+        this.header.onDestroy();
+        this.menu.onDestroy();
         this.content.onDestroy();
     }
 }
@@ -103,5 +107,17 @@ export class AlbumController extends ContentController {
 export class PlaylistController extends ContentController {
     constructor() {
         super(Playlist, true);
+    }
+}
+
+export class ProfilePageController extends ContentController {
+    constructor() {
+        super(ProfilePage);
+    }
+}
+
+export class AnotherProfilePageController extends ContentController {
+    constructor() {
+        super(AnotherProfilePage);
     }
 }

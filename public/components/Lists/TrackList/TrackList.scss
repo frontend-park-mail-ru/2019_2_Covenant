@@ -81,13 +81,16 @@
   }
 
   &__avatar-img {
-	border-radius: 5px;
-	width: 50px;
-	height: 50px;
 	cursor: pointer;
 	font-size: 24px;
 	color: $font-light-color;
 	transition: .3s;
+
+	&_size {
+	  border-radius: 5px;
+	  width: 50px;
+	  height: 50px;
+	}
   }
 
   &__avatar-img:hover {
@@ -101,6 +104,8 @@
 	box-sizing: initial;
 	background: rgba(60, 60, 60, 0.6);
 	border-radius: 5px;
+	position: absolute;
+	top: 0;
   }
 
   &__avatar-img .track__arrow {
@@ -116,11 +121,14 @@
   }
 
   &__avatar-img:hover .track__index {
-	display: none;
+
   }
 
   &__index {
 	text-align: center;
+	border-radius: 5px;
+	width: 50px;
+	height: 50px;
   }
 
   &__avatar {

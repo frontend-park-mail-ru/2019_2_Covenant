@@ -6,6 +6,7 @@ import EventBus from '../services/EventBus';
 import Events from '../services/Events';
 import Menu from '../components/Menu/Menu';
 import Player from '../components/Player/Player';
+import NewHeader from '../components/NewHeader/NewHeader';
 
 class ArtistController extends BaseController {
 	constructor() {
@@ -13,7 +14,7 @@ class ArtistController extends BaseController {
 	}
 
 	onShow() {
-		const menu = new Menu();
+		const menu = Menu.getInstance();
 		menu.render('menu');
 
 		this.player = Player.getInstance();

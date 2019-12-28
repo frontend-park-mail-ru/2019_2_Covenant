@@ -43,7 +43,7 @@
 }
 
 .content-inner {
-    margin: 30px 0 30px 50px;
+    margin: 20px 0 30px 50px;
 }
 
 .clickable {
@@ -146,13 +146,20 @@ $submit_hover: #40e263;
 $icon_color: #6b6b6b;
 
 .form_inner {
-    width: 500px;
     display: grid;
     grid-template-columns: 1fr;
-    grid-gap: 10px;
-    padding: 20% 20%;
+    padding: 10% 10%;
     background-color: #ffffff;
     border-radius: 50px;
+
+    @media (min-width: 540px) {
+        width: 500px;
+    }
+
+    @media (min-height: 680px) {
+        grid-gap: 10px;
+        padding: 20% 20%;
+    }
 }
 
 .input_label {
@@ -177,7 +184,10 @@ $icon_color: #6b6b6b;
     outline: none;
     border-bottom: solid 1px #1F2F5B;
     margin-bottom: 3px;
-    height: 40px;
+
+    @media (min-height: 630px) {
+        height: 40px;
+    }
 }
 .text-center {
     text-align: center;
@@ -194,4 +204,10 @@ $icon_color: #6b6b6b;
     font-size: 14px;
     text-align: center;
     height: 14px;
+}
+
+.img-size {
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
 }

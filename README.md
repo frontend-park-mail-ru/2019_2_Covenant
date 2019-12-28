@@ -17,10 +17,3 @@
 * production \
     npm run build-prod \
     nginx -s start/reload
-    
-* log in as admin: \
-    email: admin@admin.com \
-    password: 1234567
-    
-    (aside would be admin menu for filling content)\
-    !please don't remove our content!

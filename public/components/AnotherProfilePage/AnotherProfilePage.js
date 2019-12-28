@@ -1,24 +1,19 @@
-import BaseController from './BaseController';
-import profileView from '../views/ProfileView/ProfileView';
-import Urls from '../services/Urls';
-import UserModel from '../models/UserModel';
-import EventBus from '../services/EventBus';
-import Events from '../services/Events';
-import Profile from '../components/Profile/Profile';
-import NewHeader from '../components/NewHeader/NewHeader';
-import Menu from '../components/Menu/Menu';
-import Player from '../components/Player/Player';
-import ProfileTabs from '../components/ProfileTabs/ProfileTabs';
-import PlaylistsTab from '../components/ProfileTabs/PlaylistsTab/PlaylistsTab';
-import FollowersTab from '../components/ProfileTabs/FollowersTab/FollowersTab';
-import FollowingTab from '../components/ProfileTabs/FollowingTab/FollowingTab';
+import BaseComponent from '../../common/BaseComponent/BaseComponent';
+import template from './AnotherProfilePage.pug';
+import Urls from '../../services/Urls';
+import EventBus from '../../services/EventBus';
+import Events from '../../services/Events';
+import UserModel from '../../models/UserModel';
+import PlaylistsTab from '../ProfileTabs/PlaylistsTab/PlaylistsTab';
+import FollowersTab from '../ProfileTabs/FollowersTab/FollowersTab';
+import FollowingTab from '../ProfileTabs/FollowingTab/FollowingTab';
+import Profile from '../Profile/Profile';
+import ProfileTabs from '../ProfileTabs/ProfileTabs';
 
-class AnotherProfileController extends BaseController {
+class AnotherProfilePage extends BaseComponent {
 	constructor() {
-		super(profileView);
-	}
+		super(template);
 
-	onShow() {
 		const pattern = new RegExp('^' + Urls.ProfileUrl + '(/(\\w+))?$');
 		const url = window.location.pathname;
 		const params = url.match(pattern);
@@ -43,7 +38,7 @@ class AnotherProfileController extends BaseController {
 		UserModel.getProfileByNickname(nick)
 			.then(response => {
 				if (response.error) {
-					EventBus.publish(Events.ChangeRoute, {newUrl: Urls.LoginUrl});
+					EventBus.publish(Events.ChangeRoute, {newUrl: Urls.MainUrl});
 					return;
 				}
 				this.renderAnotherProfileComponents();
@@ -83,6 +78,11 @@ class AnotherProfileController extends BaseController {
 		this.tabs.render('user-tabs');
 	}
 
+	onDestroy() {
+		if (!this.profile || !this.tabs) {return;}
+		this.profile.onDestroy();
+		this.tabs.onDestroy();
+	}
 }
 
-export default AnotherProfileController;
+export default AnotherProfilePage;

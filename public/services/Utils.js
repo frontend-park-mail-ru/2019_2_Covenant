@@ -8,7 +8,7 @@ export const formatServerRootForArray = (items, property) => {
 };
 
 export const formatServerRoot = (item, property) => {
-	if (item[property]  && !item[property].includes(SERVER_ROOT)) {
+	if (item && item[property]  && !item[property].includes(SERVER_ROOT)) {
 		item[property] = `${SERVER_ROOT}${item[property]}`;
 	}
 };
@@ -20,7 +20,7 @@ export const formatDurationForArray = (items) => {
 };
 
 export const formatDuration = (item) => {
-	if (item.duration) {
+	if (item && item.duration) {
 		const regExp = new RegExp('^\\w+:(\\d+:\\d+)Z?$');
 		const res = item.duration.match(regExp);
 		if (res) {
@@ -30,7 +30,7 @@ export const formatDuration = (item) => {
 };
 
 export const formatYear = (item) => {
-	if (item.year) {
+	if (item && item.year) {
 		const regExp = new RegExp('^(\\d+)-\\d+-\\d+T\\d+:\\d+:\\d+Z?$');
 		const res = item.year.match(regExp);
 		if (res) {

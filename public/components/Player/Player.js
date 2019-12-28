@@ -104,7 +104,9 @@ class Player extends BaseComponent {
 		}
 
 		const progress = document.getElementById('primary-progress-id');
-		progress.style.width = `${percent}%`;
+		if (progress) {
+			progress.style.width = `${percent}%`;
+		}
 
 		this.audioPlayer.seekToNormalized(+normalizedPosition);
 	}
@@ -143,7 +145,9 @@ class Player extends BaseComponent {
 		const normPosition = this.audioPlayer.normalizedPosition;
 
 		const progress = document.getElementById('primary-progress-id');
-		progress.style.width = `${normPosition * 100}%`;
+		if (progress) {
+			progress.style.width = `${normPosition * 100}%`;
+		}
 	}
 
 	isEqualQueues(queue) {
